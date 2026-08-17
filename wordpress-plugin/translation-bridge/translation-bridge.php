@@ -186,19 +186,22 @@ function tb_link_translations( WP_REST_Request $request ) {
 }
 
 /**
- * Yoast doesn't register these as REST meta, so PATCH /wp/v2/posts/{id}
- * with a "meta" object would silently drop them without this (confirmed
- * empirically during the phase-00 audit — see the plan doc).
+ * Custom REST fields not exposed by WordPress/Yoast by default: the two
+ * Yoast SEO fields, plus (below) a stable raw-content field for hashing.
  *
- * Deliberately NOT using register_post_meta() for these two: on the live
- * site (unlike the Yoast-less Playground test) Yoast SEO itself registers
- * these same keys with show_in_rest => false, loading after this plugin
- * (alphabetically "wordpress-seo" > "translation-bridge") and overriding
- * ours. register_rest_field() with its own field names sidesteps that
- * registry collision entirely — confirmed working on production.
+ * Yoast doesn't register yoast_title/yoast_metadesc as REST meta, so PATCH
+ * /wp/v2/posts/{id} with a "meta" object would silently drop them without
+ * this (confirmed empirically during the phase-00 audit — see the plan
+ * doc). Deliberately NOT using register_post_meta() for these two: on the
+ * live site (unlike the Yoast-less Playground test) Yoast SEO itself
+ * registers these same keys with show_in_rest => false, loading after this
+ * plugin (alphabetically "wordpress-seo" > "translation-bridge") and
+ * overriding ours. register_rest_field() with its own field names
+ * sidesteps that registry collision entirely — confirmed working on
+ * production.
  */
-add_action( 'rest_api_init', 'tb_register_yoast_fields' );
-function tb_register_yoast_fields() {
+add_action( 'rest_api_init', 'tb_register_custom_rest_fields' );
+function tb_register_custom_rest_fields() {
 	register_rest_field(
 		'post',
 		'yoast_title',
@@ -236,6 +239,33 @@ function tb_register_yoast_fields() {
 			'schema'          => array(
 				'type'        => 'string',
 				'description' => 'Yoast SEO meta description (bypasses register_meta to avoid a collision with Yoast\'s own registration).',
+				'context'     => array( 'view', 'edit' ),
+			),
+		)
+	);
+
+	/**
+	 * content.rendered is unstable between requests for the same unchanged
+	 * post — WordPress core's Image block lightbox feature (and possibly
+	 * others) injects randomized IDs/attributes at render time, so a
+	 * content-hash computed from it never matches between runs, defeating
+	 * change detection entirely (found during live testing: every post
+	 * looked "changed" on every run). content.raw (WP's own ?context=edit)
+	 * would be stable, but requires edit_post on that specific post, which
+	 * translation-bot (Author) doesn't have for posts it doesn't own. This
+	 * exposes the raw, unfiltered post_content directly — stable, and
+	 * gated the same way as the other custom fields, not by ownership.
+	 */
+	register_rest_field(
+		'post',
+		'raw_content',
+		array(
+			'get_callback' => function ( $post ) {
+				return get_post_field( 'post_content', $post['id'] );
+			},
+			'schema'       => array(
+				'type'        => 'string',
+				'description' => 'Raw, unfiltered post_content — stable across requests, unlike content.rendered. Used for change-detection hashing, not for translation input.',
 				'context'     => array( 'view', 'edit' ),
 			),
 		)
