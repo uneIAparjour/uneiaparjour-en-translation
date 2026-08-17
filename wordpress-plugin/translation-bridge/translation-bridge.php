@@ -98,6 +98,55 @@ function tb_set_language( WP_REST_Request $request ) {
 }
 
 /**
+ * translation-bot is an Author, which can assign existing categories/tags
+ * to its own posts but — correctly, by WordPress default — cannot create
+ * new taxonomy terms via the standard /wp/v2/categories REST endpoint
+ * (rest_cannot_create, found during the first live test). This lets the
+ * script get-or-create an EN term through our own gated endpoint instead
+ * of needing a broader WP capability grant on the account itself.
+ */
+add_action( 'rest_api_init', 'tb_register_term_route' );
+function tb_register_term_route() {
+	register_rest_route(
+		'translation-bridge/v1',
+		'/create-term',
+		array(
+			'methods'             => 'POST',
+			'callback'            => 'tb_create_term',
+			'permission_callback' => 'tb_can_manage_translations',
+			'args'                => array(
+				'taxonomy' => array(
+					'required' => true,
+					'type'     => 'string',
+					'enum'     => array( 'category', 'post_tag' ),
+				),
+				'name'     => array(
+					'required' => true,
+					'type'     => 'string',
+				),
+			),
+		)
+	);
+}
+
+function tb_create_term( WP_REST_Request $request ) {
+	$taxonomy = $request->get_param( 'taxonomy' );
+	$name     = $request->get_param( 'name' );
+
+	$existing = get_term_by( 'name', $name, $taxonomy );
+	if ( $existing ) {
+		return new WP_REST_Response( array( 'success' => true, 'term_id' => $existing->term_id, 'created' => false ), 200 );
+	}
+
+	$result = wp_insert_term( $name, $taxonomy );
+	if ( is_wp_error( $result ) ) {
+		return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
+	}
+
+	return new WP_REST_Response( array( 'success' => true, 'term_id' => $result['term_id'], 'created' => true ), 200 );
+}
+
+/**
  * Links an FR post and an EN post as Polylang translations of each other.
  * Idempotent: calling it again with the same pair is a no-op, not a duplicate link.
  */
