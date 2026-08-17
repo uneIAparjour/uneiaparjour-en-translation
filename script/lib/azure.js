@@ -49,11 +49,11 @@ export function applyDictionary(text, glossary) {
  * strings with no markup — kept true everywhere callers batch HTML content
  * together with plain text. Every call (from here or from taxonomy.js's
  * separate category/tag name lookups) goes through throttle() first, and
- * still retries on 429 with exponential backoff (2s/4s/8s) as a second line
- * of defense — F0's rate limit turned out too strict for per-post batching
- * alone to reliably avoid.
+ * still retries on 429, honoring Azure's Retry-After header when present
+ * rather than guessing — F0's rate limit turned out too strict for
+ * per-post batching and a fixed delay guess to reliably avoid.
  */
-export async function translateBatch(texts, { isHtml, glossary = [], retries = 3 } = {}) {
+export async function translateBatch(texts, { isHtml, glossary = [], retries = 4 } = {}) {
 	if (texts.length === 0) {
 		return [];
 	}
@@ -90,8 +90,19 @@ export async function translateBatch(texts, { isHtml, glossary = [], retries = 3
 		}
 
 		if (res.status === 429 && attempt < retries) {
-			const delay = 5000 * 2 ** attempt; // 5s/10s/20s
-			console.log(`Azure rate-limited (429), retrying in ${delay}ms (attempt ${attempt + 1}/${retries})...`);
+			// Prefer Azure's own Retry-After header over our guessed backoff —
+			// three rounds of manually widening the delay (2s/6s/still 429ing)
+			// suggest a rolling-window quota we can't correctly guess from the
+			// outside. Log every header on a 429 too, for real diagnostic data
+			// if this still isn't enough.
+			const retryAfterHeader = res.headers.get('retry-after');
+			const retryAfterMs = retryAfterHeader ? Number(retryAfterHeader) * 1000 : null;
+			const delay = retryAfterMs && !Number.isNaN(retryAfterMs) ? retryAfterMs : 8000 * 2 ** attempt; // fallback 8s/16s/32s
+
+			const headerDump = [...res.headers.entries()].map(([k, v]) => `${k}: ${v}`).join(' | ');
+			console.log(
+				`Azure rate-limited (429), retry-after header: ${retryAfterHeader ?? 'none'}, waiting ${delay}ms (attempt ${attempt + 1}/${retries}). Headers: ${headerDump}`
+			);
 			await sleep(delay);
 			continue;
 		}
