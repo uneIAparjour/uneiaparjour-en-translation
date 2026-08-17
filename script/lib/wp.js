@@ -118,3 +118,9 @@ export async function listTags(search) {
  * endpoints (rest_cannot_create) — this goes through the bridge plugin's
  * own gated endpoint instead. Get-or-create in one call.
  */
+export async function createOrGetTerm(taxonomy, name) {
+	return wpFetch('/translation-bridge/v1/create-term', {
+		method: 'POST',
+		body: JSON.stringify({ taxonomy, name }),
+	});
+}
