@@ -3,45 +3,45 @@
     "fr_slug": "flow-gemini-omni",
     "en_id": 18434,
     "en_slug": "flow-gemini-omni-2",
-    "source_hash": "a6e54f44cb98d7dbea3575889ee9c81e020c26a9854972477c20616b8e3461eb",
+    "source_hash": "9787a45cbdcb511af03c4e8e2195f34121ec28ce96c31629f56a0f5da051b18b",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:18:27.097Z"
+    "updated_at": "2026-08-17T20:24:34.273Z"
   },
   "18353": {
     "fr_slug": "longcat-video",
     "en_id": 18433,
     "en_slug": "longcat-video-2",
-    "source_hash": "ccd7950008c236a9534425511f3e2ad37323bf77af716ac7938d1ba104347ef6",
+    "source_hash": "beb2f3fdd6e546ecc1ab47d74562110ba122745fa19da78864e65470b412111d",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:17:03.035Z"
+    "updated_at": "2026-08-17T20:22:04.180Z"
   },
   "18355": {
     "fr_slug": "looops",
     "en_id": 18440,
     "en_slug": "looops-2",
-    "source_hash": "5ddedc4932dcbbe397d0c8776404b9b469e0feb706447b520488f51e4d645b74",
+    "source_hash": "87bb43d8721bb91ff5160c702b2f7b81d136360e08c5e0b9e9d7c3a88e02a068",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:18:17.130Z"
+    "updated_at": "2026-08-17T20:24:28.979Z"
   },
   "18365": {
     "fr_slug": "vunote",
     "en_id": 18430,
     "en_slug": "vunote-2",
-    "source_hash": "909d60281e7e8355ccad39210d5e2ccaea974fed59535a3a2ceba1695e425e90",
-    "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T20:17:44.224Z"
+    "source_hash": "99f87d190e75d0e5f22a950a3a191f0b0755df4d6f42e1c7d5ff2bb3a6fa2e47",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:23:25.997Z"
   },
   "18390": {
     "fr_slug": "minddory",
     "en_id": 18429,
-    "en_slug": "minddory-2",
-    "source_hash": "4b2b8666ede290905507502fdc3068f37f677f17dfec469820c8a97ad52bf5e2",
+    "en_slug": "minddory",
+    "source_hash": "5d98798945249c511c41828c7377cd655c469d2179edaf4a172eac08936e8a9b",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:16:58.774Z"
+    "updated_at": "2026-08-17T20:21:57.849Z"
   }
 }
