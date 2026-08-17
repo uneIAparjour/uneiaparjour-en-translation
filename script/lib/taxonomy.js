@@ -35,21 +35,16 @@ async function resolveTerm(map, kind, frId, frName, glossary) {
 		return bucket[frId];
 	}
 
-	const list = kind === 'categories' ? wp.listCategories : wp.listTags;
-	const create = kind === 'categories' ? wp.createCategory : wp.createTag;
+	// translation-bot (Author) can't create terms via the standard REST
+	// endpoints, so this goes through the bridge plugin's gated
+	// get-or-create endpoint instead (found during the first live test).
+	const taxonomy = kind === 'categories' ? 'category' : 'post_tag';
 
-	const [translatedName] = await translateBatch([frName], { isHtml: false, glossary });
+	const [translatedName] = await translateBatch([frName], { isHtml: true, glossary });
+	const result = await wp.createOrGetTerm(taxonomy, translatedName);
 
-	const existing = await list(translatedName);
-	const exactMatch = existing.find((t) => t.name.toLowerCase() === translatedName.toLowerCase());
-	if (exactMatch) {
-		bucket[frId] = exactMatch.id;
-		return exactMatch.id;
-	}
-
-	const created = await create(translatedName);
-	bucket[frId] = created.id;
-	return created.id;
+	bucket[frId] = result.term_id;
+	return result.term_id;
 }
 
 /**
