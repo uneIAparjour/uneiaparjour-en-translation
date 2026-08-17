@@ -4,6 +4,7 @@ import { translateBatch } from './lib/azure.js';
 import { splitBlocks, wrapGutenberg, rewriteInternalLinks } from './lib/content.js';
 import { mapTerms } from './lib/taxonomy.js';
 import { loadState, saveState, hashSource } from './lib/state.js';
+import { loadAllowedSlugs } from './lib/toolsDataset.js';
 
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
@@ -38,8 +39,12 @@ async function main() {
 
 	console.log(`Fetching all FR posts...`);
 	const allPosts = await wp.listAllPosts();
-	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id));
-	console.log(`${allPosts.length} posts total, ${frPosts.length} are FR sources.`);
+	const allowedSlugs = await loadAllowedSlugs();
+	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id) && allowedSlugs.has(p.slug));
+	const excludedCount = allPosts.length - frPosts.length - knownEnIds.size;
+	console.log(
+		`${allPosts.length} posts total, ${allowedSlugs.size} in the tools dataset, ${frPosts.length} are FR sources to process (${excludedCount} posts excluded — not in the dataset, e.g. newsletter/focus/lecture content).`
+	);
 
 	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
 	const categoryNames = buildTermLookup(allCategories);
