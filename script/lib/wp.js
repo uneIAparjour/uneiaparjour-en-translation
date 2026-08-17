@@ -44,7 +44,7 @@ export async function listAllPosts() {
 	const perPage = 100;
 
 	while (true) {
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_fields=id,slug,title,content,excerpt,date,date_gmt,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
+		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_fields=id,slug,title,content,excerpt,date,date_gmt,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
@@ -72,7 +72,7 @@ export async function listAllPosts() {
 }
 
 export async function getPost(id) {
-	return wpFetch(`/wp/v2/posts/${id}?_fields=id,slug,title,content,excerpt,date,date_gmt,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`);
+	return wpFetch(`/wp/v2/posts/${id}?_fields=id,slug,title,content,excerpt,date,date_gmt,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`);
 }
 
 export async function createPost(data) {
@@ -118,9 +118,3 @@ export async function listTags(search) {
  * endpoints (rest_cannot_create) — this goes through the bridge plugin's
  * own gated endpoint instead. Get-or-create in one call.
  */
-export async function createOrGetTerm(taxonomy, name) {
-	return wpFetch('/translation-bridge/v1/create-term', {
-		method: 'POST',
-		body: JSON.stringify({ taxonomy, name }),
-	});
-}
