@@ -1,0 +1,64 @@
+name: Translate FR articles to EN
+
+on:
+  schedule:
+    # Once a day. Covers both the graduated backlog rollout (phases 04-06)
+    # and the ongoing daily flow (phase 07) with the same workflow.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no writes)'
+        type: boolean
+        default: false
+      limit:
+        description: 'Max posts to process this run'
+        type: string
+        default: '15'
+      repair_links:
+        description: 'Run the link-repair pass instead of translating'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run translation script
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.repair_links }}" = "true" ]; then
+            ARGS="--repair-links"
+          else
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              ARGS="--dry-run"
+            fi
+            ARGS="$ARGS --limit=${{ inputs.limit || '15' }}"
+          fi
+          node translate.js $ARGS
+
+      - name: Commit updated state
+        run: |
+          git config user.name "translation-bot"
+          git config user.email "actions@github.com"
+          git add state/translations.json config/taxonomy-map.json
+          git diff --cached --quiet || git commit -m "Update translation state [skip ci]"
+          git push
