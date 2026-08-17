@@ -175,6 +175,13 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		// already exists), status is deliberately omitted so an already-
 		// published EN post stays published instead of being reverted to draft.
 		...(isNewPost ? { status: 'draft' } : {}),
+		// Match the FR post's original publish date on creation (site's whole
+		// identity is "one AI tool per day" — the EN version should say the
+		// same day, not the translation date). Set explicitly here, one
+		// direction only, never touching the FR post — NOT via Polylang's
+		// own date-sync setting, which was found to sync backwards (EN's
+		// creation date overwriting the FR original) and got disabled.
+		...(isNewPost ? { date: post.date, date_gmt: post.date_gmt } : {}),
 		featured_media: post.featured_media || 0,
 		categories: enCategories,
 		tags: enTags,
