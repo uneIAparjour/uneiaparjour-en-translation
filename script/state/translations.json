@@ -3,45 +3,45 @@
     "fr_slug": "flow-gemini-omni",
     "en_id": 18434,
     "en_slug": "flow-gemini-omni-2",
-    "source_hash": "9787a45cbdcb511af03c4e8e2195f34121ec28ce96c31629f56a0f5da051b18b",
+    "source_hash": "ad8640c401ae49ec89eb836c97c2ad0383b503728cb140ded7b73ed2924faec5",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:24:34.273Z"
+    "updated_at": "2026-08-17T20:41:37.964Z"
   },
   "18353": {
     "fr_slug": "longcat-video",
     "en_id": 18433,
     "en_slug": "longcat-video-2",
-    "source_hash": "beb2f3fdd6e546ecc1ab47d74562110ba122745fa19da78864e65470b412111d",
+    "source_hash": "600690b51c266ad32ecd9f531264da834fab6cacc218c81ccfc727ff6b511fed",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:22:04.180Z"
+    "updated_at": "2026-08-17T20:39:25.027Z"
   },
   "18355": {
     "fr_slug": "looops",
     "en_id": 18440,
     "en_slug": "looops-2",
-    "source_hash": "87bb43d8721bb91ff5160c702b2f7b81d136360e08c5e0b9e9d7c3a88e02a068",
+    "source_hash": "e351f847515e4dc9ca50a419642634291809e5d90af3d20d431367c8d2e5986b",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:24:28.979Z"
+    "updated_at": "2026-08-17T20:41:33.004Z"
   },
   "18365": {
     "fr_slug": "vunote",
     "en_id": 18430,
     "en_slug": "vunote-2",
-    "source_hash": "99f87d190e75d0e5f22a950a3a191f0b0755df4d6f42e1c7d5ff2bb3a6fa2e47",
+    "source_hash": "107dea4cf85e168738fbb97b2d0a8d1d75a0432756ad5cb2c76fa326ea207aea",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:23:25.997Z"
+    "updated_at": "2026-08-17T20:40:29.309Z"
   },
   "18390": {
     "fr_slug": "minddory",
     "en_id": 18429,
     "en_slug": "minddory",
-    "source_hash": "5d98798945249c511c41828c7377cd655c469d2179edaf4a172eac08936e8a9b",
+    "source_hash": "f62327ecb7d2e5ce671cc17beb7043c2b9af421c88e71116e226837ca4ddeed1",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T20:21:57.849Z"
+    "updated_at": "2026-08-17T20:38:20.959Z"
   }
 }
