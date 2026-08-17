@@ -13,6 +13,7 @@ const limitArg = args.find((a) => a.startsWith('--limit='));
 const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
 
 const stripHtml = (html) => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function loadGlossary() {
 	const raw = await readFile(new URL('./config/glossary.json', import.meta.url), 'utf8');
@@ -98,6 +99,7 @@ async function main() {
 			};
 			await saveState(state);
 		}
+		await sleep(500); // courtesy delay between posts, Azure F0's rate limit is strict
 	}
 
 	console.log('Batch done.');
@@ -129,12 +131,28 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 
 	console.log(`FR #${post.id} "${title}": translating...`);
 
-	const [translatedTitle, translatedContent, translatedYoastTitle, translatedYoastMetadesc] = await Promise.all([
-		translateBatch([title], { isHtml: false, glossary }).then((r) => r[0]),
-		content ? translateBatch([content], { isHtml: true, glossary }).then((r) => r[0]) : Promise.resolve(''),
-		yoastTitle ? translateBatch([yoastTitle], { isHtml: false, glossary }).then((r) => r[0]) : Promise.resolve(''),
-		yoastMetadesc ? translateBatch([yoastMetadesc], { isHtml: false, glossary }).then((r) => r[0]) : Promise.resolve(''),
-	]);
+	// One Azure call for all four texts, not four parallel calls — F0's rate
+	// limit reliably 429s on 4 simultaneous requests per post (found during
+	// the first live test). tag_handling=html is safe for the plain-text
+	// fields too (no markup to mistranslate), so they can share the request.
+	const fields = ['title', 'content', 'yoastTitle', 'yoastMetadesc'];
+	const values = [title, content, yoastTitle, yoastMetadesc];
+	const nonEmpty = values
+		.map((value, index) => ({ value, field: fields[index] }))
+		.filter((entry) => entry.value);
+
+	const translatedValues =
+		nonEmpty.length > 0 ? await translateBatch(nonEmpty.map((entry) => entry.value), { isHtml: true, glossary }) : [];
+
+	const translatedByField = {};
+	nonEmpty.forEach((entry, i) => {
+		translatedByField[entry.field] = translatedValues[i];
+	});
+
+	const translatedTitle = translatedByField.title || '';
+	const translatedContent = translatedByField.content || '';
+	const translatedYoastTitle = translatedByField.yoastTitle || '';
+	const translatedYoastMetadesc = translatedByField.yoastMetadesc || '';
 
 	const linkedContent = rewriteInternalLinks(translatedContent, slugMap);
 	const finalContent = wrapGutenberg(splitBlocks(linkedContent));
