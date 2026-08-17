@@ -195,7 +195,7 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 
 	let enId;
 	if (isNewPost) {
-		payload.slug = post.slug; // WP de-dupes automatically if already taken by another language's post
+		payload.slug = post.slug;
 		const created = await wp.createPost(payload);
 		enId = created.id;
 		console.log(`FR #${post.id}: created EN post ${enId}.`);
@@ -206,6 +206,19 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 	}
 
 	await wp.linkTranslations(post.id, enId);
+
+	// WP's slug-uniqueness check runs at creation time, before Polylang knows
+	// this post is "en" (language is only set by the /link call just above),
+	// so it sees a collision with the FR original and appends "-2". Polylang
+	// allows identical slugs across languages once the language is actually
+	// known — re-applying the clean slug now, after linking, lets it through.
+	if (isNewPost) {
+		const check = await wp.getPost(enId);
+		if (check.slug !== post.slug) {
+			await wp.updatePost(enId, { slug: post.slug });
+			console.log(`FR #${post.id}: corrected EN slug "${check.slug}" -> "${post.slug}".`);
+		}
+	}
 
 	const enPostFinal = await wp.getPost(enId);
 	state[post.id] = {
