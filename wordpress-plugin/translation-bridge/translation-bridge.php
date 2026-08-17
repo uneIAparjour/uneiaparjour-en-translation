@@ -46,6 +46,55 @@ function tb_register_rest_route() {
 			),
 		)
 	);
+
+	// One-off migration helper (2026-08-17): the site's ~1329 existing FR
+	// posts were all mistakenly tagged "en" in Polylang (it was configured
+	// with English as the only/default language, never French). This lets
+	// an admin-capable account bulk-correct that. Requires edit_others_posts
+	// specifically — stricter than the other endpoints on purpose, since it
+	// can touch any post, not just ones the caller owns.
+	register_rest_route(
+		'translation-bridge/v1',
+		'/set-language',
+		array(
+			'methods'             => 'POST',
+			'callback'            => 'tb_set_language',
+			'permission_callback' => function () {
+				return current_user_can( 'edit_others_posts' );
+			},
+			'args'                => array(
+				'post_id' => array(
+					'required'          => true,
+					'type'              => 'integer',
+					'validate_callback' => function ( $value ) {
+						return is_numeric( $value );
+					},
+				),
+				'lang'    => array(
+					'required' => true,
+					'type'     => 'string',
+					'enum'     => array( 'fr', 'en' ),
+				),
+			),
+		)
+	);
+}
+
+function tb_set_language( WP_REST_Request $request ) {
+	if ( ! function_exists( 'pll_set_post_language' ) ) {
+		return new WP_Error( 'polylang_missing', 'Polylang is not active or its functions are unavailable.', array( 'status' => 500 ) );
+	}
+
+	$post_id = (int) $request->get_param( 'post_id' );
+	$lang    = $request->get_param( 'lang' );
+
+	if ( ! get_post( $post_id ) ) {
+		return new WP_Error( 'invalid_post', "Post {$post_id} does not exist.", array( 'status' => 404 ) );
+	}
+
+	pll_set_post_language( $post_id, $lang );
+
+	return new WP_REST_Response( array( 'success' => true, 'post_id' => $post_id, 'lang' => $lang ), 200 );
 }
 
 /**
