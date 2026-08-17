@@ -57,7 +57,13 @@ async function main() {
 		const content = post.content.rendered;
 		const yoastTitle = post.yoast_title || '';
 		const yoastMetadesc = post.yoast_metadesc || '';
-		const currentHash = hashSource({ title, content, yoastTitle, yoastMetadesc });
+		// Hash content.raw (via the plugin's raw_content field), not
+		// content.rendered — the rendered HTML is unstable between requests
+		// for the same unchanged post (WP core's image lightbox injects
+		// randomized IDs at render time), which made every post look
+		// "changed" on every run. content.rendered is still what gets
+		// translated below — just not what detects change.
+		const currentHash = hashSource({ title, content: post.raw_content || content, yoastTitle, yoastMetadesc });
 
 		const existing = state[post.id];
 		if (existing && existing.source_hash === currentHash) {
