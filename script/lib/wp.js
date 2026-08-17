@@ -108,21 +108,19 @@ export async function listCategories(search) {
 	return wpFetch(`/wp/v2/categories${qs}`);
 }
 
-export async function createCategory(name) {
-	return wpFetch('/wp/v2/categories', {
-		method: 'POST',
-		body: JSON.stringify({ name }),
-	});
-}
-
 export async function listTags(search) {
 	const qs = search ? `?search=${encodeURIComponent(search)}&per_page=100` : '?per_page=100';
 	return wpFetch(`/wp/v2/tags${qs}`);
 }
 
-export async function createTag(name) {
-	return wpFetch('/wp/v2/tags', {
+/**
+ * translation-bot (Author) can't create terms via the standard /wp/v2
+ * endpoints (rest_cannot_create) — this goes through the bridge plugin's
+ * own gated endpoint instead. Get-or-create in one call.
+ */
+export async function createOrGetTerm(taxonomy, name) {
+	return wpFetch('/translation-bridge/v1/create-term', {
 		method: 'POST',
-		body: JSON.stringify({ name }),
+		body: JSON.stringify({ taxonomy, name }),
 	});
 }
