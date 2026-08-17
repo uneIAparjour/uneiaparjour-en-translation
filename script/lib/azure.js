@@ -8,6 +8,8 @@ function requireEnv(name) {
 	return value;
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 /**
  * Wraps glossary terms in Azure's dynamic-dictionary markup so protected
  * brand/model names (Claude, Gemma, GLM...) survive translation untouched.
@@ -25,12 +27,15 @@ export function applyDictionary(text, glossary) {
 }
 
 /**
- * Translates one or more strings FR -> EN via Azure Translator.
- * `isHtml` must be true for content containing markup (tag_handling=html
- * preserves tags and only translates text nodes); false for plain strings
- * like the SEO title/description.
+ * Translates one or more strings FR -> EN via Azure Translator, in a single
+ * request (F0's free-tier rate limit is strict enough that one call per text
+ * per post — 4+ parallel requests — reliably triggers 429s; batching all of
+ * a post's texts into one call cuts that by ~4x). `isHtml` uses
+ * tag_handling=html, which is safe even for plain strings with no markup —
+ * kept true everywhere callers batch HTML content together with plain text.
+ * Retries on 429 with exponential backoff (2s/4s/8s) before giving up.
  */
-export async function translateBatch(texts, { isHtml, glossary = [] } = {}) {
+export async function translateBatch(texts, { isHtml, glossary = [], retries = 3 } = {}) {
 	if (texts.length === 0) {
 		return [];
 	}
@@ -49,21 +54,30 @@ export async function translateBatch(texts, { isHtml, glossary = [] } = {}) {
 		params.set('textType', 'html');
 	}
 
-	const res = await fetch(`${ENDPOINT}/translate?${params.toString()}`, {
-		method: 'POST',
-		headers: {
-			'Ocp-Apim-Subscription-Key': key,
-			'Ocp-Apim-Subscription-Region': region,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(prepared.map((text) => ({ text }))),
-	});
+	for (let attempt = 0; attempt <= retries; attempt++) {
+		const res = await fetch(`${ENDPOINT}/translate?${params.toString()}`, {
+			method: 'POST',
+			headers: {
+				'Ocp-Apim-Subscription-Key': key,
+				'Ocp-Apim-Subscription-Region': region,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(prepared.map((text) => ({ text }))),
+		});
 
-	if (!res.ok) {
+		if (res.ok) {
+			const data = await res.json();
+			return data.map((entry) => entry.translations[0].text);
+		}
+
+		if (res.status === 429 && attempt < retries) {
+			const delay = 2000 * 2 ** attempt;
+			console.log(`Azure rate-limited (429), retrying in ${delay}ms (attempt ${attempt + 1}/${retries})...`);
+			await sleep(delay);
+			continue;
+		}
+
 		const body = await res.text().catch(() => '');
 		throw new Error(`Azure Translator -> ${res.status}: ${body.slice(0, 500)}`);
 	}
-
-	const data = await res.json();
-	return data.map((entry) => entry.translations[0].text);
 }
