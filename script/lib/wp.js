@@ -96,6 +96,13 @@ export async function linkTranslations(frId, enId) {
 	});
 }
 
+export async function setLanguage(postId, lang) {
+	return wpFetch('/translation-bridge/v1/set-language', {
+		method: 'POST',
+		body: JSON.stringify({ post_id: postId, lang }),
+	});
+}
+
 export async function listCategories(search) {
 	const qs = search ? `?search=${encodeURIComponent(search)}&per_page=100` : '?per_page=100';
 	return wpFetch(`/wp/v2/categories${qs}`);
