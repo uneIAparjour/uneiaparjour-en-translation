@@ -1,0 +1,15 @@
+{
+  "name": "uneiaparjour-en-translation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Translates uneiaparjour.fr articles FR to EN via Azure Translator and publishes them to WordPress as linked Polylang translations.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "translate": "node translate.js",
+    "translate:dry": "node translate.js --dry-run",
+    "repair-links": "node translate.js --repair-links"
+  }
+}

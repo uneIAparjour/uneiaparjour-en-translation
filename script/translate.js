@@ -1,0 +1,225 @@
+import { readFile } from 'node:fs/promises';
+import * as wp from './lib/wp.js';
+import { translateBatch } from './lib/azure.js';
+import { splitBlocks, wrapGutenberg, rewriteInternalLinks } from './lib/content.js';
+import { mapTerms } from './lib/taxonomy.js';
+import { loadState, saveState, hashSource } from './lib/state.js';
+
+const args = process.argv.slice(2);
+const DRY_RUN = args.includes('--dry-run');
+const REPAIR_LINKS = args.includes('--repair-links');
+const limitArg = args.find((a) => a.startsWith('--limit='));
+const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
+
+const stripHtml = (html) => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+async function loadGlossary() {
+	const raw = await readFile(new URL('./config/glossary.json', import.meta.url), 'utf8');
+	return JSON.parse(raw);
+}
+
+function buildTermLookup(terms) {
+	const map = new Map();
+	for (const t of terms) {
+		map.set(t.id, t.name);
+	}
+	return map;
+}
+
+async function main() {
+	const glossary = await loadGlossary();
+	const state = await loadState();
+	const knownEnIds = new Set(Object.values(state).map((s) => s.en_id).filter(Boolean));
+
+	if (REPAIR_LINKS) {
+		await repairLinks(state);
+		return;
+	}
+
+	console.log(`Fetching all FR posts...`);
+	const allPosts = await wp.listAllPosts();
+	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id));
+	console.log(`${allPosts.length} posts total, ${frPosts.length} are FR sources.`);
+
+	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
+	const categoryNames = buildTermLookup(allCategories);
+	const tagNames = buildTermLookup(allTags);
+
+	const todo = [];
+	for (const post of frPosts) {
+		const title = stripHtml(post.title.rendered);
+		const content = post.content.rendered;
+		const yoastTitle = post.yoast_title || '';
+		const yoastMetadesc = post.yoast_metadesc || '';
+		const currentHash = hashSource({ title, content, yoastTitle, yoastMetadesc });
+
+		const existing = state[post.id];
+		if (existing && existing.source_hash === currentHash) {
+			continue; // already up to date
+		}
+		if (existing && existing.status === 'locked_skip') {
+			continue; // was manually edited on the EN side, needs human review, never auto-touch
+		}
+		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash });
+	}
+
+	console.log(`${todo.length} post(s) need (re)translation, processing up to ${BATCH_SIZE} this run.`);
+	const batch = todo.slice(0, BATCH_SIZE);
+
+	if (DRY_RUN) {
+		for (const { post, title } of batch) {
+			const action = state[post.id] ? 'would UPDATE' : 'would CREATE';
+			console.log(`[dry-run] ${action} EN post for FR #${post.id} "${title}" (/${post.slug}/)`);
+		}
+		console.log(`[dry-run] No changes written. ${batch.length} post(s) would be processed.`);
+		return;
+	}
+
+	const slugMap = buildSlugMap(state);
+
+	for (const item of batch) {
+		const { post } = item;
+		try {
+			await processPost(item, state, glossary, categoryNames, tagNames, slugMap);
+			await saveState(state); // persist after every post, not just at the end, so a crash mid-batch doesn't lose progress
+		} catch (err) {
+			console.error(`FR #${post.id} failed: ${err.message}`);
+			state[post.id] = {
+				...(state[post.id] || {}),
+				fr_slug: post.slug,
+				status: 'failed',
+				last_error: err.message,
+				updated_at: new Date().toISOString(),
+			};
+			await saveState(state);
+		}
+	}
+
+	console.log('Batch done.');
+}
+
+function buildSlugMap(state) {
+	const map = new Map();
+	for (const entry of Object.values(state)) {
+		if (entry.en_slug && entry.status === 'translated') {
+			map.set(entry.fr_slug, entry.en_slug);
+		}
+	}
+	return map;
+}
+
+async function processPost(item, state, glossary, categoryNames, tagNames, slugMap) {
+	const { post, title, content, yoastTitle, yoastMetadesc, currentHash } = item;
+	const existing = state[post.id];
+
+	// If we're updating an existing EN post, never overwrite a manual human edit.
+	if (existing && existing.en_id) {
+		const enPost = await wp.getPost(existing.en_id);
+		if (enPost.meta && enPost.meta._translation_locked) {
+			console.log(`FR #${post.id}: EN post ${existing.en_id} is locked (manually edited), skipping.`);
+			state[post.id] = { ...existing, status: 'locked_skip', updated_at: new Date().toISOString() };
+			return;
+		}
+	}
+
+	console.log(`FR #${post.id} "${title}": translating...`);
+
+	const [translatedTitle, translatedContent, translatedYoastTitle, translatedYoastMetadesc] = await Promise.all([
+		translateBatch([title], { isHtml: false, glossary }).then((r) => r[0]),
+		content ? translateBatch([content], { isHtml: true, glossary }).then((r) => r[0]) : Promise.resolve(''),
+		yoastTitle ? translateBatch([yoastTitle], { isHtml: false, glossary }).then((r) => r[0]) : Promise.resolve(''),
+		yoastMetadesc ? translateBatch([yoastMetadesc], { isHtml: false, glossary }).then((r) => r[0]) : Promise.resolve(''),
+	]);
+
+	const linkedContent = rewriteInternalLinks(translatedContent, slugMap);
+	const finalContent = wrapGutenberg(splitBlocks(linkedContent));
+
+	const { categories: enCategories, tags: enTags } = await mapTerms(
+		{
+			categories: post.categories.map((id) => ({ id, name: categoryNames.get(id) || String(id) })),
+			tags: post.tags.map((id) => ({ id, name: tagNames.get(id) || String(id) })),
+		},
+		glossary
+	);
+
+	const isNewPost = !(existing && existing.en_id);
+
+	const payload = {
+		title: translatedTitle,
+		content: finalContent,
+		// Only force draft status on first creation — human review gate per
+		// phases 04/05. On a re-sync (FR source changed after the EN post
+		// already exists), status is deliberately omitted so an already-
+		// published EN post stays published instead of being reverted to draft.
+		...(isNewPost ? { status: 'draft' } : {}),
+		featured_media: post.featured_media || 0,
+		categories: enCategories,
+		tags: enTags,
+		meta: {
+			_translation_source_hash: currentHash,
+			_translation_locked: false,
+		},
+		yoast_title: translatedYoastTitle,
+		yoast_metadesc: translatedYoastMetadesc,
+	};
+
+	let enId;
+	if (isNewPost) {
+		payload.slug = post.slug; // WP de-dupes automatically if already taken by another language's post
+		const created = await wp.createPost(payload);
+		enId = created.id;
+		console.log(`FR #${post.id}: created EN post ${enId}.`);
+	} else {
+		await wp.updatePost(existing.en_id, payload);
+		enId = existing.en_id;
+		console.log(`FR #${post.id}: updated existing EN post ${enId}.`);
+	}
+
+	await wp.linkTranslations(post.id, enId);
+
+	const enPostFinal = await wp.getPost(enId);
+	state[post.id] = {
+		fr_slug: post.slug,
+		en_id: enId,
+		en_slug: enPostFinal.slug,
+		source_hash: currentHash,
+		status: 'translated',
+		last_error: null,
+		updated_at: new Date().toISOString(),
+	};
+	slugMap.set(post.slug, enPostFinal.slug);
+}
+
+/**
+ * Re-scans already-translated EN posts and re-applies internal link
+ * rewriting using the current (more complete) slug map, fixing links that
+ * degraded to their FR target because the destination wasn't translated yet
+ * at the time. Meant to be run periodically, e.g. once the backlog empties out.
+ */
+async function repairLinks(state) {
+	const slugMap = buildSlugMap(state);
+	let updatedCount = 0;
+
+	for (const [frId, entry] of Object.entries(state)) {
+		if (entry.status !== 'translated' || !entry.en_id) {
+			continue;
+		}
+		const enPost = await wp.getPost(entry.en_id);
+		if (enPost.meta && enPost.meta._translation_locked) {
+			continue; // don't touch manually-edited posts even for link repair
+		}
+		const repaired = rewriteInternalLinks(enPost.content.rendered, slugMap);
+		if (repaired !== enPost.content.rendered) {
+			await wp.updatePost(entry.en_id, { content: repaired });
+			updatedCount += 1;
+			console.log(`Repaired links in EN post ${entry.en_id} (FR #${frId}).`);
+		}
+	}
+
+	console.log(`Link repair done: ${updatedCount} post(s) updated.`);
+}
+
+main().catch((err) => {
+	console.error('Fatal error:', err);
+	process.exitCode = 1;
+});

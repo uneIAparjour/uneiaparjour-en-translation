@@ -1,0 +1,17 @@
+[
+	{ "term": "Claude", "translation": "Claude" },
+	{ "term": "GLM", "translation": "GLM" },
+	{ "term": "Gemma", "translation": "Gemma" },
+	{ "term": "ChatGPT", "translation": "ChatGPT" },
+	{ "term": "Mistral", "translation": "Mistral" },
+	{ "term": "Llama", "translation": "Llama" },
+	{ "term": "DeepSeek", "translation": "DeepSeek" },
+	{ "term": "Gemini", "translation": "Gemini" },
+	{ "term": "Kimi", "translation": "Kimi" },
+	{ "term": "MiniMax", "translation": "MiniMax" },
+	{ "term": "Qwen", "translation": "Qwen" },
+	{ "term": "IA générative", "translation": "generative AI" },
+	{ "term": "agent IA", "translation": "AI agent" },
+	{ "term": "modèle de langage", "translation": "language model" },
+	{ "term": "open source", "translation": "open-source" }
+]
