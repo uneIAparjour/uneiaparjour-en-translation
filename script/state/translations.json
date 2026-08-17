@@ -1,38 +1,44 @@
 {
   "18336": {
     "fr_slug": "flow-gemini-omni",
-    "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T19:49:41.529Z"
+    "en_id": 18434,
+    "en_slug": "flow-gemini-omni-2",
+    "source_hash": "48d2f1ae0d572551284a89dc04d18360e6fb0ba1897b1c6938b61948736f36d8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T19:55:03.882Z"
   },
   "18353": {
     "fr_slug": "longcat-video",
-    "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T19:48:48.339Z"
+    "en_id": 18433,
+    "en_slug": "longcat-video-2",
+    "source_hash": "1c4b5b91726206452dc328199fc344b62834bb914136f93da54b6e36dd0a36a7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T19:54:11.451Z"
   },
   "18355": {
     "fr_slug": "looops",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T19:49:26.050Z"
+    "updated_at": "2026-08-17T19:54:45.021Z"
   },
   "18365": {
     "fr_slug": "vunote",
     "en_id": 18430,
     "en_slug": "vunote-2",
     "source_hash": "4a4abba1a9d9d62e3d339dd65347c95dec9c44a7008ef9e000ae80451f629fa1",
-    "status": "translated",
-    "last_error": null,
-    "updated_at": "2026-08-17T19:49:09.197Z"
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:54:28.046Z"
   },
   "18390": {
     "fr_slug": "minddory",
     "en_id": 18429,
     "en_slug": "minddory-2",
-    "source_hash": "c6c1e8acada90fa743f8cf874f6e003cf368824217595b791d0951c907b32c8c",
+    "source_hash": "ba4c4c86c61e63756fbf57b7bfb0337d6dd0b38912a67afc47486a1ae3599df9",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T19:48:30.885Z"
+    "updated_at": "2026-08-17T19:53:50.218Z"
   }
 }
