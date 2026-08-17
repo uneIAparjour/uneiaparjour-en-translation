@@ -1,33 +1,48 @@
 {
   "18256": {
     "fr_slug": "reve-photographer",
-    "status": "failed",
-    "last_error": "wp.createOrGetTerm is not a function",
-    "updated_at": "2026-08-17T20:46:11.248Z"
+    "en_id": 18463,
+    "en_slug": "reve-photographer-2",
+    "source_hash": "0cb69057a5f9c76ae7ebb6f7236e7e4dc6fde7f850f4b154cdbac0b51f4f872f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:52:10.117Z"
   },
   "18289": {
     "fr_slug": "t3-chat",
-    "status": "failed",
-    "last_error": "wp.createOrGetTerm is not a function",
-    "updated_at": "2026-08-17T20:45:35.460Z"
+    "en_id": 18461,
+    "en_slug": "t3-chat-2",
+    "source_hash": "7dbb5aab6bc5930b6157a385a6f1d157697c4c78bd522e7d43dab4cc9987a5d8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:52:03.775Z"
   },
   "18296": {
     "fr_slug": "paperfig",
-    "status": "failed",
-    "last_error": "wp.createOrGetTerm is not a function",
-    "updated_at": "2026-08-17T20:45:23.337Z"
+    "en_id": 18459,
+    "en_slug": "paperfig-2",
+    "source_hash": "45cbcc961dfab2cc94b65aed90a20e3a3b913249f56269e52281dfd0709bd3a1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:51:41.222Z"
   },
   "18309": {
     "fr_slug": "vibes",
-    "status": "failed",
-    "last_error": "wp.createOrGetTerm is not a function",
-    "updated_at": "2026-08-17T20:44:14.026Z"
+    "en_id": 18457,
+    "en_slug": "vibes-2",
+    "source_hash": "01afa90cb1d16e9d3667cebe19a096b7d2a7eee06f8e48c329db35f282805d72",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:50:31.570Z"
   },
   "18326": {
     "fr_slug": "textavoice",
-    "status": "failed",
-    "last_error": "wp.createOrGetTerm is not a function",
-    "updated_at": "2026-08-17T20:43:37.005Z"
+    "en_id": 18454,
+    "en_slug": "textavoice-2",
+    "source_hash": "7053f6080033ae6ecbf8ae0e2852e528d356cad858a5890d5ed60814cb92d290",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T20:50:19.988Z"
   },
   "18336": {
     "fr_slug": "flow-gemini-omni",
