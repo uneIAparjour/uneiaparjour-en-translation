@@ -18,7 +18,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  * per-post calls). A shared minimum interval covers every call site.
  */
 let lastCallAt = 0;
-const MIN_INTERVAL_MS = 2000;
+const MIN_INTERVAL_MS = 6000; // bumped from 2000: still 429ing with 2s spacing (3rd live test) — looks like a rolling-window quota, not just a per-call gap
 async function throttle() {
 	const wait = MIN_INTERVAL_MS - (Date.now() - lastCallAt);
 	if (wait > 0) {
@@ -90,7 +90,7 @@ export async function translateBatch(texts, { isHtml, glossary = [], retries = 3
 		}
 
 		if (res.status === 429 && attempt < retries) {
-			const delay = 2000 * 2 ** attempt;
+			const delay = 5000 * 2 ** attempt; // 5s/10s/20s
 			console.log(`Azure rate-limited (429), retrying in ${delay}ms (attempt ${attempt + 1}/${retries})...`);
 			await sleep(delay);
 			continue;
