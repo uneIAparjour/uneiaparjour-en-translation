@@ -3,42 +3,42 @@
     "fr_slug": "flow-gemini-omni",
     "en_id": 18434,
     "en_slug": "flow-gemini-omni-2",
-    "source_hash": "48d2f1ae0d572551284a89dc04d18360e6fb0ba1897b1c6938b61948736f36d8",
+    "source_hash": "7f33562cc4fce190fbc0279351369bc2fc42c05f0eded6d2be46fd18dd01c424",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T19:55:03.882Z"
+    "updated_at": "2026-08-17T20:00:02.734Z"
   },
   "18353": {
     "fr_slug": "longcat-video",
     "en_id": 18433,
     "en_slug": "longcat-video-2",
     "source_hash": "1c4b5b91726206452dc328199fc344b62834bb914136f93da54b6e36dd0a36a7",
-    "status": "translated",
-    "last_error": null,
-    "updated_at": "2026-08-17T19:54:11.451Z"
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:58:53.956Z"
   },
   "18355": {
     "fr_slug": "looops",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T19:54:45.021Z"
+    "updated_at": "2026-08-17T19:59:48.940Z"
   },
   "18365": {
     "fr_slug": "vunote",
     "en_id": 18430,
     "en_slug": "vunote-2",
-    "source_hash": "4a4abba1a9d9d62e3d339dd65347c95dec9c44a7008ef9e000ae80451f629fa1",
-    "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-17T19:54:28.046Z"
+    "source_hash": "909d60281e7e8355ccad39210d5e2ccaea974fed59535a3a2ceba1695e425e90",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-17T19:59:07.466Z"
   },
   "18390": {
     "fr_slug": "minddory",
     "en_id": 18429,
     "en_slug": "minddory-2",
-    "source_hash": "ba4c4c86c61e63756fbf57b7bfb0337d6dd0b38912a67afc47486a1ae3599df9",
+    "source_hash": "bdde98f08ded1bf657f473aeba7a22d69a4c82806907cbd203b94f4e99499911",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-17T19:53:50.218Z"
+    "updated_at": "2026-08-17T19:58:11.641Z"
   }
 }
