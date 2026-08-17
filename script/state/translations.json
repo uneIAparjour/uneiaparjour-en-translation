@@ -1,4 +1,34 @@
 {
+  "18256": {
+    "fr_slug": "reve-photographer",
+    "status": "failed",
+    "last_error": "wp.createOrGetTerm is not a function",
+    "updated_at": "2026-08-17T20:46:11.248Z"
+  },
+  "18289": {
+    "fr_slug": "t3-chat",
+    "status": "failed",
+    "last_error": "wp.createOrGetTerm is not a function",
+    "updated_at": "2026-08-17T20:45:35.460Z"
+  },
+  "18296": {
+    "fr_slug": "paperfig",
+    "status": "failed",
+    "last_error": "wp.createOrGetTerm is not a function",
+    "updated_at": "2026-08-17T20:45:23.337Z"
+  },
+  "18309": {
+    "fr_slug": "vibes",
+    "status": "failed",
+    "last_error": "wp.createOrGetTerm is not a function",
+    "updated_at": "2026-08-17T20:44:14.026Z"
+  },
+  "18326": {
+    "fr_slug": "textavoice",
+    "status": "failed",
+    "last_error": "wp.createOrGetTerm is not a function",
+    "updated_at": "2026-08-17T20:43:37.005Z"
+  },
   "18336": {
     "fr_slug": "flow-gemini-omni",
     "en_id": 18434,
