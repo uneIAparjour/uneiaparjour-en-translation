@@ -221,3 +221,17 @@ function tb_register_post_meta() {
 		)
 	);
 }
+
+/**
+ * The site tagline (Réglages > Général > Slogan) is a single global WP
+ * option, not made translatable by Polylang's string-translation system
+ * (unlike the theme/plugin strings registered via pll_register_string()).
+ * Swap it for the English version when the current language is "en".
+ */
+add_filter( 'option_blogdescription', 'tb_translate_tagline' );
+function tb_translate_tagline( $value ) {
+	if ( function_exists( 'pll_current_language' ) && 'en' === pll_current_language() ) {
+		return 'One day, one generative AI tool.';
+	}
+	return $value;
+}
