@@ -11,6 +11,23 @@ function requireEnv(name) {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
+ * Global pacing across every Azure call in the process, not just per-post —
+ * category/tag name translation (lib/taxonomy.js) makes its own separate
+ * calls, so per-post batching alone wasn't enough to stay under F0's rate
+ * limit (found during the second live test: still 429ing with batched
+ * per-post calls). A shared minimum interval covers every call site.
+ */
+let lastCallAt = 0;
+const MIN_INTERVAL_MS = 2000;
+async function throttle() {
+	const wait = MIN_INTERVAL_MS - (Date.now() - lastCallAt);
+	if (wait > 0) {
+		await sleep(wait);
+	}
+	lastCallAt = Date.now();
+}
+
+/**
  * Wraps glossary terms in Azure's dynamic-dictionary markup so protected
  * brand/model names (Claude, Gemma, GLM...) survive translation untouched.
  * Case-sensitive, word-boundary matches only, skips terms already wrapped.
@@ -28,12 +45,13 @@ export function applyDictionary(text, glossary) {
 
 /**
  * Translates one or more strings FR -> EN via Azure Translator, in a single
- * request (F0's free-tier rate limit is strict enough that one call per text
- * per post — 4+ parallel requests — reliably triggers 429s; batching all of
- * a post's texts into one call cuts that by ~4x). `isHtml` uses
- * tag_handling=html, which is safe even for plain strings with no markup —
- * kept true everywhere callers batch HTML content together with plain text.
- * Retries on 429 with exponential backoff (2s/4s/8s) before giving up.
+ * request. `isHtml` uses tag_handling=html, which is safe even for plain
+ * strings with no markup — kept true everywhere callers batch HTML content
+ * together with plain text. Every call (from here or from taxonomy.js's
+ * separate category/tag name lookups) goes through throttle() first, and
+ * still retries on 429 with exponential backoff (2s/4s/8s) as a second line
+ * of defense — F0's rate limit turned out too strict for per-post batching
+ * alone to reliably avoid.
  */
 export async function translateBatch(texts, { isHtml, glossary = [], retries = 3 } = {}) {
 	if (texts.length === 0) {
@@ -55,6 +73,7 @@ export async function translateBatch(texts, { isHtml, glossary = [], retries = 3
 	}
 
 	for (let attempt = 0; attempt <= retries; attempt++) {
+		await throttle();
 		const res = await fetch(`${ENDPOINT}/translate?${params.toString()}`, {
 			method: 'POST',
 			headers: {
