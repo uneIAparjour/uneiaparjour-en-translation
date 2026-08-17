@@ -1,1 +1,32 @@
-{}
+{
+  "18336": {
+    "fr_slug": "flow-gemini-omni",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:37:13.103Z"
+  },
+  "18353": {
+    "fr_slug": "longcat-video",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:37:11.660Z"
+  },
+  "18355": {
+    "fr_slug": "looops",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:37:12.405Z"
+  },
+  "18365": {
+    "fr_slug": "vunote",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-17T19:37:12.346Z"
+  },
+  "18390": {
+    "fr_slug": "minddory",
+    "status": "failed",
+    "last_error": "WP REST POST /wp/v2/categories -> 403: {\"code\":\"rest_cannot_create\",\"message\":\"D\\u00e9sol\\u00e9, vous n\\u2019avez pas l\\u2019autorisation de cr\\u00e9er des termes dans cette taxonomie.\",\"data\":{\"status\":403}}",
+    "updated_at": "2026-08-17T19:37:11.002Z"
+  }
+}
