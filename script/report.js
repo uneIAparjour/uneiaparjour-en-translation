@@ -7,6 +7,15 @@ import { loadAllowedSlugs } from './lib/toolsDataset.js';
  * the live WP posts and the pipeline's own state, so gaps are visible
  * without manually comparing 1275 rows by hand. Never writes anything.
  *
+ * Also verifies FR/EN publish dates match for every translated pair — the
+ * pipeline sets EN's date once, from FR, at creation, and never touches it
+ * again (see translate.js's isNewPost date-copy logic and the phase-04
+ * incident where Polylang's own date-sync setting corrupted FR dates,
+ * since disabled). A mismatch here means either a manual edit on the EN
+ * side, or a regression of that class of bug — worth surfacing, not
+ * guessing at (found live 2026-08-19: user suspected some EN dates/articles
+ * were off after the busy review session, asked for a full FR/EN check).
+ *
  * Run: node report.js
  */
 async function main() {
@@ -42,7 +51,7 @@ async function main() {
 		if (!entry) {
 			neverAttempted.push({ slug, id: post.id });
 		} else if (entry.status === 'translated') {
-			translated.push({ slug, id: post.id });
+			translated.push({ slug, id: post.id, frDate: post.date, enId: entry.en_id });
 		} else if (entry.status === 'failed') {
 			failed.push({ slug, id: post.id, error: entry.last_error });
 		} else if (entry.status === 'locked_skip') {
@@ -62,6 +71,32 @@ async function main() {
 	console.log(`  Introuvables sur WP  : ${missingFromWp.length}`);
 	const total = translated.length + failed.length + lockedSkip.length + neverAttempted.length + missingFromWp.length;
 	console.log(`  Total verifie        : ${total} / ${allowedSlugs.size}`);
+
+	console.log('');
+	console.log(`Verification des dates FR/EN sur ${translated.length} paire(s) traduite(s)...`);
+	const dateMismatches = [];
+	for (const t of translated) {
+		try {
+			const enPost = await wp.getPost(t.enId);
+			if (enPost.date !== t.frDate) {
+				dateMismatches.push({ ...t, enDate: enPost.date, enStatus: enPost.status });
+			}
+		} catch (err) {
+			dateMismatches.push({ ...t, enDate: `ERREUR: ${err.message}`, enStatus: '?' });
+		}
+	}
+
+	if (dateMismatches.length > 0) {
+		console.log('');
+		console.log(`--- ${dateMismatches.length} decalage(s) de date FR/EN (a verifier a la main) ---`);
+		for (const d of dateMismatches) {
+			console.log(`  FR #${d.id} /${d.slug}/ (statut EN: ${d.enStatus})`);
+			console.log(`    FR : ${d.frDate}`);
+			console.log(`    EN : ${d.enDate}  (EN #${d.enId})`);
+		}
+	} else {
+		console.log('Aucun decalage de date detecte sur les paires traduites.');
+	}
 
 	if (failed.length > 0) {
 		console.log('');
