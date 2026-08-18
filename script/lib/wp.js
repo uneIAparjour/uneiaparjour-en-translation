@@ -116,11 +116,21 @@ export async function listTags(search) {
 /**
  * translation-bot (Author) can't create terms via the standard /wp/v2
  * endpoints (rest_cannot_create) — this goes through the bridge plugin's
- * own gated endpoint instead. Get-or-create in one call.
+ * own gated endpoint instead. Get-or-create in one call. `frTermId`, when
+ * given, links the new/found EN term to its FR source as a Polylang
+ * translation pair — without it, EN category/tag terms end up orphaned
+ * (a v1 gap closed 2026-08-18).
  */
-export async function createOrGetTerm(taxonomy, name) {
+export async function createOrGetTerm(taxonomy, name, frTermId) {
 	return wpFetch('/translation-bridge/v1/create-term', {
 		method: 'POST',
-		body: JSON.stringify({ taxonomy, name }),
+		body: JSON.stringify({ taxonomy, name, fr_term_id: frTermId }),
+	});
+}
+
+export async function setTermLanguage(termId, lang) {
+	return wpFetch('/translation-bridge/v1/set-term-language', {
+		method: 'POST',
+		body: JSON.stringify({ term_id: termId, lang }),
 	});
 }
