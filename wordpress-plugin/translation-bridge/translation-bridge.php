@@ -260,7 +260,29 @@ function tb_term_audit( WP_REST_Request $request ) {
 			'term_id'      => $term->term_id,
 			'name'         => $term->name,
 			'slug'         => $term->slug,
+			// $term->count only reflects published posts (WordPress's own
+			// term-count maintenance only fires on publish transitions) —
+			// every EN category/tag looks permanently "empty" by that
+			// measure while this project's posts stay in draft for review,
+			// which would make the migration script delete categories that
+			// are actively assigned to draft posts. real_count queries
+			// every post status instead, so "empty" means genuinely unused
+			// (found live 2026-08-18, before any damage — the delete calls
+			// happened to 403 for an unrelated permissions reason first).
 			'count'        => (int) $term->count,
+			'real_count'   => ( new WP_Query( array(
+				'post_type'      => 'post',
+				'post_status'    => 'any',
+				'tax_query'      => array(
+					array(
+						'taxonomy' => $taxonomy,
+						'field'    => 'term_id',
+						'terms'    => $term->term_id,
+					),
+				),
+				'fields'         => 'ids',
+				'posts_per_page' => 1,
+			) ) )->found_posts,
 			'lang'         => function_exists( 'pll_get_term_language' ) ? pll_get_term_language( $term->term_id ) : null,
 			'translations' => function_exists( 'pll_get_term_translations' ) ? pll_get_term_translations( $term->term_id ) : array(),
 		);
@@ -279,9 +301,25 @@ function tb_delete_term( WP_REST_Request $request ) {
 	}
 
 	// Server-side safety net, independent of whatever the caller already
-	// checked: never delete a term that still has posts attached.
-	if ( (int) $term->count > 0 ) {
-		return new WP_Error( 'term_not_empty', "Term {$term_id} still has {$term->count} post(s) attached — refusing to delete.", array( 'status' => 409 ) );
+	// checked: never delete a term that still has posts attached. Uses the
+	// same any-status count as the audit endpoint, not $term->count (which
+	// only reflects published posts and would let a term full of draft
+	// posts through this check — see tb_term_audit()'s real_count comment).
+	$attached = new WP_Query( array(
+		'post_type'      => 'post',
+		'post_status'    => 'any',
+		'tax_query'      => array(
+			array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				'terms'    => $term_id,
+			),
+		),
+		'fields'         => 'ids',
+		'posts_per_page' => 1,
+	) );
+	if ( $attached->found_posts > 0 ) {
+		return new WP_Error( 'term_not_empty', "Term {$term_id} still has {$attached->found_posts} post(s) attached — refusing to delete.", array( 'status' => 409 ) );
 	}
 
 	$result = wp_delete_term( $term_id, $taxonomy );
