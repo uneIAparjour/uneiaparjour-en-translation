@@ -270,9 +270,19 @@ function tb_term_audit( WP_REST_Request $request ) {
 			// (found live 2026-08-18, before any damage — the delete calls
 			// happened to 403 for an unrelated permissions reason first).
 			'count'        => (int) $term->count,
+			// 'lang' => '' explicitly disables Polylang's automatic
+			// language filtering on this WP_Query. Without it, Polylang
+			// silently constrains every query (including ours, run from a
+			// REST callback) to a single "current" language — found live
+			// 2026-08-18 when this real_count query, meant to fix the
+			// draft-count blind spot, turned out to have its own blind
+			// spot: it was silently only ever seeing French posts, so
+			// every English category looked permanently empty and got
+			// deleted, including ones with real draft posts attached.
 			'real_count'   => ( new WP_Query( array(
 				'post_type'      => 'post',
 				'post_status'    => 'any',
+				'lang'           => '',
 				'tax_query'      => array(
 					array(
 						'taxonomy' => $taxonomy,
@@ -308,6 +318,7 @@ function tb_delete_term( WP_REST_Request $request ) {
 	$attached = new WP_Query( array(
 		'post_type'      => 'post',
 		'post_status'    => 'any',
+		'lang'           => '', // see tb_term_audit()'s real_count comment — bypasses Polylang's automatic language filtering
 		'tax_query'      => array(
 			array(
 				'taxonomy' => $taxonomy,
