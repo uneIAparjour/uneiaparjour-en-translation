@@ -103,14 +103,49 @@ export async function setLanguage(postId, lang) {
 	});
 }
 
+/**
+ * Paginated, same reasoning as listAllPosts(): a flat per_page=100 fetch
+ * would silently truncate if the site ever has more than 100 categories or
+ * tags, and a caller falling back to a numeric ID as the "name" for any
+ * term missed that way (found while reviewing fix-categories.js) could end
+ * up creating a category literally named after its own ID.
+ */
+async function listAllTerms(taxonomy, search) {
+	const terms = [];
+	let page = 1;
+	const perPage = 100;
+
+	while (true) {
+		const qs = new URLSearchParams({ per_page: String(perPage), page: String(page) });
+		if (search) qs.set('search', search);
+		const res = await fetch(`${WP_URL}/wp-json/wp/v2/${taxonomy}?${qs.toString()}`, {
+			headers: { Authorization: AUTH_HEADER },
+		});
+
+		if (!res.ok) {
+			if (res.status === 400 && page > 1) {
+				break; // past the last page, same as listAllPosts()
+			}
+			const body = await res.text().catch(() => '');
+			throw new Error(`WP REST GET /wp/v2/${taxonomy} (page ${page}) -> ${res.status}: ${body.slice(0, 500)}`);
+		}
+
+		const batch = await res.json();
+		if (!Array.isArray(batch) || batch.length === 0) break;
+		terms.push(...batch);
+		if (batch.length < perPage) break;
+		page += 1;
+	}
+
+	return terms;
+}
+
 export async function listCategories(search) {
-	const qs = search ? `?search=${encodeURIComponent(search)}&per_page=100` : '?per_page=100';
-	return wpFetch(`/wp/v2/categories${qs}`);
+	return listAllTerms('categories', search);
 }
 
 export async function listTags(search) {
-	const qs = search ? `?search=${encodeURIComponent(search)}&per_page=100` : '?per_page=100';
-	return wpFetch(`/wp/v2/tags${qs}`);
+	return listAllTerms('tags', search);
 }
 
 /**
@@ -132,5 +167,21 @@ export async function setTermLanguage(termId, lang) {
 	return wpFetch('/translation-bridge/v1/set-term-language', {
 		method: 'POST',
 		body: JSON.stringify({ term_id: termId, lang }),
+	});
+}
+
+/**
+ * Ground-truth per-term Polylang state (language + linked translations) —
+ * used by the one-off category/tag language cleanup, since the standard
+ * /wp/v2 endpoints don't expose Polylang's per-term language at all.
+ */
+export async function termAudit(taxonomy) {
+	return wpFetch(`/translation-bridge/v1/term-audit?taxonomy=${encodeURIComponent(taxonomy)}`);
+}
+
+export async function deleteTerm(termId, taxonomy) {
+	return wpFetch('/translation-bridge/v1/delete-term', {
+		method: 'POST',
+		body: JSON.stringify({ term_id: termId, taxonomy }),
 	});
 }
