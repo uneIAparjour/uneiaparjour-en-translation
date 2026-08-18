@@ -1,4 +1,136 @@
 {
+  "18075": {
+    "fr_slug": "researchdeck",
+    "status": "failed",
+    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
+    "updated_at": "2026-08-18T06:49:14.760Z"
+  },
+  "18089": {
+    "fr_slug": "aistoryhub",
+    "en_id": 18494,
+    "en_slug": "aistoryhub-2",
+    "source_hash": "ca8b0e6274b383cd01b2e52a559d7ebe660b4bf9ee843835eef64702f6a079cb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:51:22.785Z"
+  },
+  "18110": {
+    "fr_slug": "mode-ia-de-google",
+    "en_id": 18492,
+    "en_slug": "mode-ia-de-google-2",
+    "source_hash": "b196d3e5a8614912330b87075c3eb12dafd0f12e30e8cd5e81e9da0b800af182",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:50:19.687Z"
+  },
+  "18119": {
+    "fr_slug": "womp",
+    "en_id": 18486,
+    "en_slug": "womp-2",
+    "source_hash": "2866630a7ce4f90aab596a9409b35e59abc94195e39c90c593a3ff9b863d145e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:48:36.114Z"
+  },
+  "18121": {
+    "fr_slug": "qwen-image-3-0",
+    "en_id": 18488,
+    "en_slug": "qwen-image-3-0-2",
+    "source_hash": "9ff3e89d4a7af7cd0f6e5dc3f9ffc8e4158644977b30e669a1bcd0f062ec9ef3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:49:06.200Z"
+  },
+  "18139": {
+    "fr_slug": "apercu-ia-de-google",
+    "en_id": 18490,
+    "en_slug": "apercu-ia-de-google-2",
+    "source_hash": "05496768c93ee7db9e9930207a5347a276e474e2f0b34ce250611390e92357fe",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:49:10.593Z"
+  },
+  "18152": {
+    "fr_slug": "fikry",
+    "en_id": 18483,
+    "en_slug": "fikry-2",
+    "source_hash": "71f687b18d7a0ce308f3c565c64495b1816029b1616432f237bb9669c0e97a69",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:47:26.307Z"
+  },
+  "18163": {
+    "fr_slug": "script-it",
+    "en_id": 18481,
+    "en_slug": "script-it-2",
+    "source_hash": "bdd8996dcf3582907f603b40b5c44390f74b40cb78e2043a69b6b96f86088b66",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:47:20.083Z"
+  },
+  "18175": {
+    "fr_slug": "musegen",
+    "en_id": 18479,
+    "en_slug": "musegen-2",
+    "source_hash": "b5fc0d6f33b37851fd045d7ea7b78b1f2767ed975043341185b3d070456d493a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:46:43.326Z"
+  },
+  "18188": {
+    "fr_slug": "logocreator",
+    "en_id": 18477,
+    "en_slug": "logocreator-2",
+    "source_hash": "5a2755b8008053684d90e28b47c4d47014e27908538f7838034cfd263f9e6734",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:46:31.157Z"
+  },
+  "18200": {
+    "fr_slug": "text2diagram",
+    "en_id": 18475,
+    "en_slug": "text2diagram-2",
+    "source_hash": "985e49f5a16ef33aadbaf062ef550ef200f0bb5c04546f6f6f975ae4fc3a707c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:45:27.657Z"
+  },
+  "18209": {
+    "fr_slug": "mycoloring-ai",
+    "en_id": 18473,
+    "en_slug": "mycoloring-ai-2",
+    "source_hash": "fd9d4768737005fc70dc788705ddcc808e8c290ed76b2bc99cc040c394ecd16c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:44:24.034Z"
+  },
+  "18220": {
+    "fr_slug": "mirothinker",
+    "en_id": 18471,
+    "en_slug": "mirothinker-2",
+    "source_hash": "b03213ec7df2d74317b02c0cee51862d1e6e57114cea2cec3899543e390352fb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:43:21.396Z"
+  },
+  "18233": {
+    "fr_slug": "gpt-live",
+    "en_id": 18469,
+    "en_slug": "gpt-live-2",
+    "source_hash": "42386bae8e1324aa6e5c3f4cacb45a9abb617aa08bf68b244dc7ba4460a1d2ed",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:42:09.374Z"
+  },
+  "18242": {
+    "fr_slug": "frontpage",
+    "en_id": 18467,
+    "en_slug": "frontpage-2",
+    "source_hash": "b971da06307e853b508075771e56b2860d86d2a6f4a0ca89d2ae6caf2c21bb7b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T06:42:03.893Z"
+  },
   "18256": {
     "fr_slug": "reve-photographer",
     "en_id": 18463,
