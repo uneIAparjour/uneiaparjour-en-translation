@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import * as wp from './lib/wp.js';
 import { translateBatch } from './lib/azure.js';
-import { splitBlocks, wrapGutenberg, rewriteInternalLinks, repairImageBlockMarkup } from './lib/content.js';
+import { splitBlocks, wrapGutenberg, rewriteInternalLinks, repairImageBlockMarkup, repairGalleryLayouts } from './lib/content.js';
 import { mapTerms } from './lib/taxonomy.js';
 import { loadState, saveState, hashSource } from './lib/state.js';
 import { loadAllowedSlugs } from './lib/toolsDataset.js';
@@ -11,6 +11,7 @@ const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
 const REPAIR_IMAGES = args.includes('--repair-images');
 const REPAIR_IMAGE_BLOCKS = args.includes('--repair-image-blocks');
+const REPAIR_GALLERIES = args.includes('--repair-galleries');
 const onlyFrIdArg = args.find((a) => a.startsWith('--only-fr-id='));
 const ONLY_FR_ID = onlyFrIdArg ? parseInt(onlyFrIdArg.split('=')[1], 10) : null;
 const limitArg = args.find((a) => a.startsWith('--limit='));
@@ -55,6 +56,11 @@ async function main() {
 
 	if (REPAIR_IMAGE_BLOCKS) {
 		await repairImageBlocks(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
+		return;
+	}
+
+	if (REPAIR_GALLERIES) {
+		await repairGalleries(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
 		return;
 	}
 
@@ -390,6 +396,54 @@ async function repairImageBlocks(state, { dryRun, onlyFrId }) {
 	}
 
 	console.log(`Image block repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
+}
+
+/**
+ * Restores WP Gallery column layouts lost on already-translated EN posts —
+ * see content.js's repairGalleryLayouts() for the root cause and approach
+ * (2026-08-18, found live on Looops: 3 galleries collapsed to 15 standalone
+ * full-width images). Run this AFTER --repair-image-blocks, not before —
+ * it relies on each EN image block's <img src> matching FR's exactly, which
+ * --repair-image-blocks doesn't change, but running in the same order this
+ * was verified in avoids any doubt. --dry-run / --only-fr-id follow the same
+ * staged-verification pattern as the other repair modes.
+ */
+async function repairGalleries(state, { dryRun, onlyFrId }) {
+	let changedCount = 0;
+	let checkedCount = 0;
+
+	for (const [frIdStr, entry] of Object.entries(state)) {
+		const frId = Number(frIdStr);
+		if (onlyFrId && frId !== onlyFrId) {
+			continue;
+		}
+		if (entry.status !== 'translated' || !entry.en_id) {
+			continue;
+		}
+		const enPost = await wp.getPost(entry.en_id);
+		if (enPost.meta && enPost.meta._translation_locked) {
+			continue; // don't touch manually-edited posts, same as the other repair modes
+		}
+		const frPost = await wp.getPost(frId);
+		checkedCount += 1;
+
+		const frRaw = frPost.raw_content || '';
+		const enRaw = enPost.raw_content || '';
+		const { result, changed } = repairGalleryLayouts(frRaw, enRaw);
+		if (!changed) {
+			continue;
+		}
+		if (dryRun) {
+			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would restore gallery layout(s).`);
+			changedCount += 1;
+			continue;
+		}
+		await wp.updatePost(entry.en_id, { content: result });
+		changedCount += 1;
+		console.log(`Restored gallery layout(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
+	}
+
+	console.log(`Gallery layout repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
 }
 
 main().catch((err) => {
