@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import * as wp from './lib/wp.js';
 import { translateBatch } from './lib/azure.js';
-import { splitBlocks, wrapGutenberg, rewriteInternalLinks, repairImageBlockMarkup, repairGalleryLayouts } from './lib/content.js';
+import { splitBlocks, wrapGutenberg, rewriteInternalLinks, fixMediaBlocksFromSource } from './lib/content.js';
 import { mapTerms } from './lib/taxonomy.js';
 import { loadState, saveState, hashSource } from './lib/state.js';
 import { loadAllowedSlugs } from './lib/toolsDataset.js';
@@ -10,8 +10,7 @@ const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
 const REPAIR_IMAGES = args.includes('--repair-images');
-const REPAIR_IMAGE_BLOCKS = args.includes('--repair-image-blocks');
-const REPAIR_GALLERIES = args.includes('--repair-galleries');
+const FIX_MEDIA = args.includes('--fix-media');
 const onlyFrIdArg = args.find((a) => a.startsWith('--only-fr-id='));
 const ONLY_FR_ID = onlyFrIdArg ? parseInt(onlyFrIdArg.split('=')[1], 10) : null;
 const limitArg = args.find((a) => a.startsWith('--limit='));
@@ -54,13 +53,8 @@ async function main() {
 		return;
 	}
 
-	if (REPAIR_IMAGE_BLOCKS) {
-		await repairImageBlocks(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
-		return;
-	}
-
-	if (REPAIR_GALLERIES) {
-		await repairGalleries(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
+	if (FIX_MEDIA) {
+		await fixMedia(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
 		return;
 	}
 
@@ -210,7 +204,14 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 	const translatedYoastMetadesc = translatedByField.yoastMetadesc || '';
 
 	const linkedContent = rewriteInternalLinks(translatedContent, slugMap);
-	const finalContent = wrapGutenberg(splitBlocks(linkedContent));
+	const draftContent = wrapGutenberg(splitBlocks(linkedContent));
+	// wrapGutenberg's figure-handling above only ever produces an
+	// approximate draft for images/galleries (built from content.rendered,
+	// which bakes in render-time-only markup) — fixMediaBlocksFromSource
+	// replaces those regions with FR's own clean, valid block markup
+	// (images are never translated, so this is a safe direct copy). See
+	// content.js for the full story (found live 2026-08-18 on Looops).
+	const finalContent = fixMediaBlocksFromSource(post.raw_content || '', draftContent).result;
 
 	const { categories: enCategories, tags: enTags } = await mapTerms(
 		{
@@ -355,60 +356,17 @@ async function repairImages(state) {
 }
 
 /**
- * Fixes wp:image blocks in already-translated EN posts via
- * content.js's repairImageBlockMarkup() — see that file for what it fixes
- * and why (2026-08-18, found live on Vunote). --dry-run prints what would
- * change per post without writing. --only-fr-id=N scopes to a single FR
+ * Fixes image/gallery blocks in already-translated EN posts via
+ * content.js's fixMediaBlocksFromSource() — see that file for the root
+ * cause and approach (2026-08-18, found live on Vunote and Looops).
+ * Supersedes the earlier repairImageBlockMarkup/repairGalleries modes
+ * (2026-08-18, same day) — those treated symptoms, this fixes the source.
+ * --dry-run previews without writing. --only-fr-id=N scopes to a single FR
  * post, meant for verifying on one real post live before trusting a run
- * across all of them — this project has already had two bulk-fix incidents
+ * across all of them — this project has already had bulk-fix incidents
  * from skipping that kind of staged verification, don't skip it here either.
  */
-async function repairImageBlocks(state, { dryRun, onlyFrId }) {
-	let changedCount = 0;
-	let checkedCount = 0;
-
-	for (const [frIdStr, entry] of Object.entries(state)) {
-		const frId = Number(frIdStr);
-		if (onlyFrId && frId !== onlyFrId) {
-			continue;
-		}
-		if (entry.status !== 'translated' || !entry.en_id) {
-			continue;
-		}
-		const enPost = await wp.getPost(entry.en_id);
-		if (enPost.meta && enPost.meta._translation_locked) {
-			continue; // don't touch manually-edited posts, same as repairLinks()/repairImages()
-		}
-		checkedCount += 1;
-		const raw = enPost.raw_content || '';
-		const { result, changed } = repairImageBlockMarkup(raw);
-		if (!changed) {
-			continue;
-		}
-		if (dryRun) {
-			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would fix image block(s).`);
-			changedCount += 1;
-			continue;
-		}
-		await wp.updatePost(entry.en_id, { content: result });
-		changedCount += 1;
-		console.log(`Fixed image block(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
-	}
-
-	console.log(`Image block repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
-}
-
-/**
- * Restores WP Gallery column layouts lost on already-translated EN posts —
- * see content.js's repairGalleryLayouts() for the root cause and approach
- * (2026-08-18, found live on Looops: 3 galleries collapsed to 15 standalone
- * full-width images). Run this AFTER --repair-image-blocks, not before —
- * it relies on each EN image block's <img src> matching FR's exactly, which
- * --repair-image-blocks doesn't change, but running in the same order this
- * was verified in avoids any doubt. --dry-run / --only-fr-id follow the same
- * staged-verification pattern as the other repair modes.
- */
-async function repairGalleries(state, { dryRun, onlyFrId }) {
+async function fixMedia(state, { dryRun, onlyFrId }) {
 	let changedCount = 0;
 	let checkedCount = 0;
 
@@ -429,21 +387,21 @@ async function repairGalleries(state, { dryRun, onlyFrId }) {
 
 		const frRaw = frPost.raw_content || '';
 		const enRaw = enPost.raw_content || '';
-		const { result, changed } = repairGalleryLayouts(frRaw, enRaw);
+		const { result, changed } = fixMediaBlocksFromSource(frRaw, enRaw);
 		if (!changed) {
 			continue;
 		}
 		if (dryRun) {
-			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would restore gallery layout(s).`);
+			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would fix media block(s).`);
 			changedCount += 1;
 			continue;
 		}
 		await wp.updatePost(entry.en_id, { content: result });
 		changedCount += 1;
-		console.log(`Restored gallery layout(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
+		console.log(`Fixed media block(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
 	}
 
-	console.log(`Gallery layout repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
+	console.log(`Media block repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
 }
 
 main().catch((err) => {
