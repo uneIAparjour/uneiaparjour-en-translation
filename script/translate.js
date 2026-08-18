@@ -11,8 +11,23 @@ const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
 const REPAIR_IMAGES = args.includes('--repair-images');
 const FIX_MEDIA = args.includes('--fix-media');
+// Accepts a single id or a comma-separated list (--only-fr-id=17632 or
+// --only-fr-id=17632,18075,18119) — added 2026-08-19 to retry a specific
+// handful of old failures (ResearchDeck, Video Transcription AI, Bubul,
+// LearnKata, Floor Plan Maker) that a generic --limit run wouldn't reach,
+// since wp.listAllPosts() returns newest-first and these are older than the
+// backlog of never-attempted posts published since. Now used both by the
+// repair modes below AND the main translate flow (previously repair-only).
 const onlyFrIdArg = args.find((a) => a.startsWith('--only-fr-id='));
-const ONLY_FR_ID = onlyFrIdArg ? parseInt(onlyFrIdArg.split('=')[1], 10) : null;
+const ONLY_FR_IDS = onlyFrIdArg
+	? new Set(
+			onlyFrIdArg
+				.split('=')[1]
+				.split(',')
+				.map((s) => parseInt(s.trim(), 10))
+				.filter((n) => !Number.isNaN(n))
+		)
+	: null;
 const limitArg = args.find((a) => a.startsWith('--limit='));
 const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
 
@@ -54,7 +69,7 @@ async function main() {
 	}
 
 	if (FIX_MEDIA) {
-		await fixMedia(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
+		await fixMedia(state, { dryRun: DRY_RUN, onlyFrIds: ONLY_FR_IDS });
 		return;
 	}
 
@@ -95,8 +110,16 @@ async function main() {
 		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash });
 	}
 
-	console.log(`${todo.length} post(s) need (re)translation, processing up to ${BATCH_SIZE} this run.`);
-	const batch = todo.slice(0, BATCH_SIZE);
+	const scopedTodo = ONLY_FR_IDS ? todo.filter((item) => ONLY_FR_IDS.has(item.post.id)) : todo;
+	console.log(
+		`${todo.length} post(s) need (re)translation${
+			ONLY_FR_IDS ? ` (${scopedTodo.length} match --only-fr-id out of ${ONLY_FR_IDS.size} requested)` : ''
+		}, processing up to ${BATCH_SIZE} this run.`
+	);
+	// When explicitly scoped to a handful of ids, process all of them
+	// regardless of --limit — the point of scoping is "give me exactly
+	// these", not "give me up to N of these".
+	const batch = ONLY_FR_IDS ? scopedTodo : scopedTodo.slice(0, BATCH_SIZE);
 
 	if (DRY_RUN) {
 		for (const { post, title } of batch) {
@@ -361,18 +384,18 @@ async function repairImages(state) {
  * cause and approach (2026-08-18, found live on Vunote and Looops).
  * Supersedes the earlier repairImageBlockMarkup/repairGalleries modes
  * (2026-08-18, same day) — those treated symptoms, this fixes the source.
- * --dry-run previews without writing. --only-fr-id=N scopes to a single FR
- * post, meant for verifying on one real post live before trusting a run
+ * --dry-run previews without writing. --only-fr-id scopes to specific FR
+ * post(s), meant for verifying on one real post live before trusting a run
  * across all of them — this project has already had bulk-fix incidents
  * from skipping that kind of staged verification, don't skip it here either.
  */
-async function fixMedia(state, { dryRun, onlyFrId }) {
+async function fixMedia(state, { dryRun, onlyFrIds }) {
 	let changedCount = 0;
 	let checkedCount = 0;
 
 	for (const [frIdStr, entry] of Object.entries(state)) {
 		const frId = Number(frIdStr);
-		if (onlyFrId && frId !== onlyFrId) {
+		if (onlyFrIds && !onlyFrIds.has(frId)) {
 			continue;
 		}
 		if (entry.status !== 'translated' || !entry.en_id) {
