@@ -111,11 +111,12 @@ export function wrapGutenberg(blocks) {
 }
 
 /**
- * Replaces every image/gallery region in enRawContent with the corresponding
- * block(s) copied VERBATIM from frRawContent, matched by <img src> (images
- * are never translated — identical URLs, same media library both
- * languages). This is the root fix for the whole image/gallery bug class
- * found 2026-08-18 (lightbox "contenu invalide", collapsed gallery columns):
+ * Replaces every image/gallery/video region in enRawContent with the
+ * corresponding block(s) copied VERBATIM from frRawContent, matched by
+ * <img>/<video> src (media is never translated — identical URLs, same
+ * media library both languages). This is the root fix for the whole
+ * image/gallery/video bug class found 2026-08-18 (lightbox "contenu
+ * invalide", collapsed gallery columns, videos that don't play):
  * translate.js builds EN content from content.rendered — WordPress's
  * SERVER-RENDERED HTML, which bakes in the interactive lightbox wrapper
  * (data-wp-interactive, the zoom button) at render time. That markup was
@@ -131,7 +132,17 @@ export function wrapGutenberg(blocks) {
  * this root cause; this replaces both.
  */
 const WP_GALLERY_PATTERN = /<!-- wp:gallery [^>]*-->[\s\S]*?<!-- \/wp:gallery -->/g;
-const WP_IMAGE_PATTERN = /<!-- wp:image [^>]*-->[\s\S]*?<!-- \/wp:image -->/g;
+// Matches any top-level block by comment, whatever its declared type — a
+// backreference (\1) ties the closing comment to the same type as the
+// opening one, so e.g. a wp:image block can never be mis-closed by an
+// unrelated /wp:video. Needed because a video's block TYPE label can't be
+// trusted: FR itself sometimes mislabels a video as wp:image at authoring
+// time (found live 2026-08-18 on LongCat-Video and Flow + Gemini Omni — a
+// <video> pasted through a workflow that doesn't produce a real wp:video
+// block), and EN inherits whatever mislabeling FR had *at translation time*
+// even after FR itself later gets cleaned up to a proper wp:video block.
+const ANY_BLOCK_PATTERN = /<!-- wp:([a-z][\w-]*(?:\/[\w-]+)?) ?[^>]*-->[\s\S]*?<!-- \/wp:\1 -->/g;
+const HAS_MEDIA_SRC = /<(?:img|video)\b[^>]*\bsrc="/i;
 
 function extractTopLevelMediaBlocks(raw) {
 	WP_GALLERY_PATTERN.lastIndex = 0;
@@ -142,15 +153,16 @@ function extractTopLevelMediaBlocks(raw) {
 	}
 	const insideGallery = (pos) => galleries.some((g) => pos >= g.start && pos < g.end);
 
-	WP_IMAGE_PATTERN.lastIndex = 0;
-	const standaloneImages = [];
-	while ((m = WP_IMAGE_PATTERN.exec(raw)) !== null) {
-		if (!insideGallery(m.index)) {
-			standaloneImages.push({ start: m.index, end: m.index + m[0].length, text: m[0] });
+	ANY_BLOCK_PATTERN.lastIndex = 0;
+	const standaloneMedia = [];
+	while ((m = ANY_BLOCK_PATTERN.exec(raw)) !== null) {
+		if (m[1] === 'gallery' || !HAS_MEDIA_SRC.test(m[0]) || insideGallery(m.index)) {
+			continue;
 		}
+		standaloneMedia.push({ start: m.index, end: m.index + m[0].length, text: m[0] });
 	}
 
-	return [...galleries, ...standaloneImages].sort((a, b) => a.start - b.start).map((b) => b.text);
+	return [...galleries, ...standaloneMedia].sort((a, b) => a.start - b.start).map((b) => b.text);
 }
 
 export function fixMediaBlocksFromSource(frRawContent, enRawContent) {
@@ -183,10 +195,17 @@ export function fixMediaBlocksFromSource(frRawContent, enRawContent) {
 			enGalleries.push({ start: gMatch.index, end: gMatch.index + gMatch[0].length });
 		}
 
-		WP_IMAGE_PATTERN.lastIndex = 0;
+		// Search by generic block boundary, not a specific type — EN's
+		// current label for this media (wp:image, wp:html, wp:video, ...)
+		// can't be assumed, precisely because mislabeling is the bug being
+		// fixed here.
+		ANY_BLOCK_PATTERN.lastIndex = 0;
 		const matches = [];
 		let match;
-		while ((match = WP_IMAGE_PATTERN.exec(result)) !== null) {
+		while ((match = ANY_BLOCK_PATTERN.exec(result)) !== null) {
+			if (match[1] === 'gallery') {
+				continue; // handled via enGalleries below, not as a single src match
+			}
 			const src = (match[0].match(/src="([^"]+)"/) || [])[1];
 			if (src && srcs.includes(src)) {
 				matches.push({ src, start: match.index, end: match.index + match[0].length });
