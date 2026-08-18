@@ -23,7 +23,7 @@ async function saveMap(map) {
 	await writeFile(MAP_PATH, JSON.stringify(map, null, 2) + '\n', 'utf8');
 }
 
-async function resolveTerm(map, kind, frId, frName, glossary) {
+async function resolveTerm(map, kind, frId, frName, glossary, categoryTranslations) {
 	const bucket = map[kind];
 	if (bucket[frId]) {
 		return bucket[frId];
@@ -37,7 +37,15 @@ async function resolveTerm(map, kind, frId, frName, glossary) {
 	// leaving new EN terms orphaned, a known v1 gap).
 	const taxonomy = kind === 'categories' ? 'category' : 'post_tag';
 
-	const [translatedName] = await translateBatch([frName], { isHtml: true, glossary });
+	// Azure translates short, context-free single words unreliably (found
+	// live 2026-08-18: "vidéo" sent alone came back as "vidéo", unchanged —
+	// unlike full sentences, where surrounding context helps). This site's
+	// category/tag names are a small, finite, known set, so a hand-verified
+	// lookup table beats machine translation here; only fall back to Azure
+	// for a name that isn't in it yet (a brand-new category never seen before).
+	const manualTranslation = categoryTranslations[frName];
+	const translatedName = manualTranslation || (await translateBatch([frName], { isHtml: true, glossary }))[0];
+
 	const result = await wp.createOrGetTerm(taxonomy, translatedName, frId);
 
 	bucket[frId] = result.term_id;
@@ -48,17 +56,17 @@ async function resolveTerm(map, kind, frId, frName, glossary) {
  * Maps a set of FR category/tag term objects ({id, name}) to EN term IDs,
  * creating the EN term (once, cached) the first time each is encountered.
  */
-export async function mapTerms({ categories = [], tags = [] }, glossary) {
+export async function mapTerms({ categories = [], tags = [] }, glossary, categoryTranslations = {}) {
 	const map = await loadMap();
 
 	const enCategoryIds = [];
 	for (const term of categories) {
-		enCategoryIds.push(await resolveTerm(map, 'categories', term.id, term.name, glossary));
+		enCategoryIds.push(await resolveTerm(map, 'categories', term.id, term.name, glossary, categoryTranslations));
 	}
 
 	const enTagIds = [];
 	for (const term of tags) {
-		enTagIds.push(await resolveTerm(map, 'tags', term.id, term.name, glossary));
+		enTagIds.push(await resolveTerm(map, 'tags', term.id, term.name, glossary, categoryTranslations));
 	}
 
 	await saveMap(map);
