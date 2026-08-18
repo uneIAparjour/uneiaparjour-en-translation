@@ -1,398 +1,167 @@
-import { readFile } from 'node:fs/promises';
-import * as wp from './lib/wp.js';
-import { translateBatch } from './lib/azure.js';
-import { splitBlocks, wrapGutenberg, rewriteInternalLinks, repairImageBlockMarkup } from './lib/content.js';
-import { mapTerms } from './lib/taxonomy.js';
-import { loadState, saveState, hashSource } from './lib/state.js';
-import { loadAllowedSlugs } from './lib/toolsDataset.js';
+/**
+ * Splits a flat sequence of top-level HTML block elements into an array of
+ * { tag, html } entries. Matches this site's actual content shape (verified
+ * empirically across ~20 real articles: simple flat paragraphs/lists/headings)
+ * — not a general-purpose HTML/Gutenberg parser. figure is handled separately
+ * below because it's the one tag that nests (a WP Gallery block is a <figure>
+ * containing several child <figure><img></figure> elements) — a naive
+ * non-greedy regex match stops at the first inner </figure>, leaving the
+ * outer gallery tag unclosed (found live 2026-08-18 on a Vunote gallery,
+ * surfaced as "contenu invalide" in the block editor).
+ */
+const SIMPLE_BLOCK_PATTERN = /<(p|h[1-6]|ul|ol|blockquote|table)\b[^>]*>[\s\S]*?<\/\1>/gi;
+const FIGURE_TAG_PATTERN = /<(\/?)figure\b[^>]*>/gi;
 
-const args = process.argv.slice(2);
-const DRY_RUN = args.includes('--dry-run');
-const REPAIR_LINKS = args.includes('--repair-links');
-const REPAIR_IMAGES = args.includes('--repair-images');
-const REPAIR_IMAGE_BLOCKS = args.includes('--repair-image-blocks');
-const onlyFrIdArg = args.find((a) => a.startsWith('--only-fr-id='));
-const ONLY_FR_ID = onlyFrIdArg ? parseInt(onlyFrIdArg.split('=')[1], 10) : null;
-const limitArg = args.find((a) => a.startsWith('--limit='));
-const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
-
-const stripHtml = (html) => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-async function loadGlossary() {
-	const raw = await readFile(new URL('./config/glossary.json', import.meta.url), 'utf8');
-	return JSON.parse(raw);
+function findBalancedFigureEnd(html, openIndex) {
+	FIGURE_TAG_PATTERN.lastIndex = openIndex;
+	let depth = 0;
+	let match;
+	while ((match = FIGURE_TAG_PATTERN.exec(html)) !== null) {
+		depth += match[1] === '/' ? -1 : 1;
+		if (depth === 0) {
+			return match.index + match[0].length;
+		}
+	}
+	return -1; // unbalanced input — caller should stop rather than loop forever
 }
 
-async function loadCategoryTranslations() {
-	const raw = await readFile(new URL('./config/category-translations.json', import.meta.url), 'utf8');
-	return JSON.parse(raw);
+export function splitBlocks(html) {
+	const blocks = [];
+	let cursor = 0;
+	while (cursor < html.length) {
+		const figureIdx = html.indexOf('<figure', cursor);
+		SIMPLE_BLOCK_PATTERN.lastIndex = cursor;
+		const simpleMatch = SIMPLE_BLOCK_PATTERN.exec(html);
+
+		if (figureIdx !== -1 && (!simpleMatch || figureIdx <= simpleMatch.index)) {
+			const end = findBalancedFigureEnd(html, figureIdx);
+			if (end === -1) break;
+			blocks.push({ tag: 'figure', html: html.slice(figureIdx, end) });
+			cursor = end;
+			continue;
+		}
+		if (simpleMatch) {
+			blocks.push({ tag: simpleMatch[1].toLowerCase(), html: simpleMatch[0] });
+			cursor = simpleMatch.index + simpleMatch[0].length;
+			continue;
+		}
+		break;
+	}
+	return blocks;
 }
 
-function buildTermLookup(terms) {
-	const map = new Map();
-	for (const t of terms) {
-		map.set(t.id, t.name);
-	}
-	return map;
+/**
+ * Wraps each block in the Gutenberg block comments WordPress expects, so the
+ * resulting post stays normally editable in the block editor instead of
+ * showing up as unrecognized/classic content.
+ */
+export function wrapGutenberg(blocks) {
+	return blocks
+		.map(({ tag, html }) => {
+			if (tag === 'p') {
+				return `<!-- wp:paragraph -->\n${html}\n<!-- /wp:paragraph -->`;
+			}
+			if (/^h[1-6]$/.test(tag)) {
+				const level = tag.slice(1);
+				return `<!-- wp:heading {"level":${level}} -->\n${html}\n<!-- /wp:heading -->`;
+			}
+			if (tag === 'ul') {
+				return `<!-- wp:list -->\n${html}\n<!-- /wp:list -->`;
+			}
+			if (tag === 'ol') {
+				return `<!-- wp:list {"ordered":true} -->\n${html}\n<!-- /wp:list -->`;
+			}
+			if (tag === 'blockquote') {
+				return `<!-- wp:quote -->\n${html}\n<!-- /wp:quote -->`;
+			}
+			if (tag === 'figure' && /wp-block-gallery/i.test(html)) {
+				// A real WP Gallery block (2+ images grouped) — each child
+				// image already carries its own baked-in lightbox markup (or
+				// lack of it) from FR's rendered HTML, so preserving it as-is
+				// inside a generic wp:html block displays identically to FR
+				// without us needing to declare a single lightbox value for
+				// a block that actually holds several images.
+				return `<!-- wp:html -->\n${html}\n<!-- /wp:html -->`;
+			}
+			if (tag === 'figure' && /<img\b/i.test(html)) {
+				// WordPress 6.4 added the image-block "lightbox" (click to
+				// enlarge) feature, on by default for new blocks, retroactively
+				// disabled on every pre-existing image block at rollout time.
+				// That per-block enabled/disabled state only lives in the raw
+				// block comment, not in content.rendered (all we have here),
+				// so it's lost when reconstructing the block from scratch —
+				// but it IS observable indirectly: WordPress only renders the
+				// interactive lightbox wrapper (data-wp-interactive, the zoom
+				// button) into content.rendered when the block's effective
+				// lightbox setting is enabled. Detect that instead of
+				// hardcoding false — a hardcoded false on a post created
+				// after the feature's rollout (real lightbox: enabled) was
+				// declaring the opposite of what the HTML actually contained,
+				// which is what WordPress's block validator flagged as
+				// "contenu invalide" (found live 2026-08-18 on Vunote).
+				const lightboxEnabled = /data-wp-interactive="core\/image"|class="lightbox-trigger"/i.test(html);
+				return `<!-- wp:image {"lightbox":{"enabled":${lightboxEnabled}}} -->\n${html}\n<!-- /wp:image -->`;
+			}
+			// Safe fallback for anything not explicitly mapped (table, a
+			// figure without an <img>...): keep the markup working without
+			// claiming a block type we're not sure of.
+			return `<!-- wp:html -->\n${html}\n<!-- /wp:html -->`;
+		})
+		.join('\n\n');
 }
 
-async function main() {
-	const glossary = await loadGlossary();
-	const categoryTranslations = await loadCategoryTranslations();
-	const state = await loadState();
-	const knownEnIds = new Set(Object.values(state).map((s) => s.en_id).filter(Boolean));
+/**
+ * Fixes wp:image blocks already written to already-translated EN posts,
+ * before this file's own fixes existed (found live 2026-08-18 on Vunote):
+ * a hardcoded lightbox:false that doesn't match the actual embedded markup
+ * (WordPress's block validator flags this as "contenu invalide"), and WP
+ * Gallery blocks whose outer <figure> was left unclosed by the old
+ * non-greedy splitBlocks(). Pure string transform, no network access, so it
+ * can (and should) be tested against a real captured sample before ever
+ * running against the live site — the source of the two prior taxonomy
+ * incidents this project has already had was skipping exactly that step.
+ */
+const WP_IMAGE_BLOCK_PATTERN = /<!-- wp:image [^>]*-->\n?([\s\S]*?)\n?<!-- \/wp:image -->/g;
 
-	if (REPAIR_LINKS) {
-		await repairLinks(state);
-		return;
-	}
+export function repairImageBlockMarkup(rawContent) {
+	let changed = false;
+	const result = rawContent.replace(WP_IMAGE_BLOCK_PATTERN, (match, inner) => {
+		let fixedInner = inner;
+		const opens = (inner.match(/<figure\b/gi) || []).length;
+		const closes = (inner.match(/<\/figure>/gi) || []).length;
+		if (opens > closes) {
+			// Dangling unclosed outer gallery <figure> — strip just that
+			// leading orphaned opening tag, keep the inner (already
+			// complete) child figure untouched. No content is lost: the old
+			// splitBlocks() never dropped bytes, it only mis-split them.
+			fixedInner = inner.replace(/^<figure\b[^>]*>\s*/i, '');
+		}
+		const lightboxEnabled = /data-wp-interactive="core\/image"|class="lightbox-trigger"/i.test(fixedInner);
+		const newBlock = `<!-- wp:image {"lightbox":{"enabled":${lightboxEnabled}}} -->\n${fixedInner}\n<!-- /wp:image -->`;
+		if (newBlock !== match) {
+			changed = true;
+		}
+		return newBlock;
+	});
+	return { result, changed };
+}
 
-	if (REPAIR_IMAGES) {
-		await repairImages(state);
-		return;
-	}
-
-	if (REPAIR_IMAGE_BLOCKS) {
-		await repairImageBlocks(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
-		return;
-	}
-
-	console.log(`Fetching all FR posts...`);
-	const allPosts = await wp.listAllPosts();
-	const allowedSlugs = await loadAllowedSlugs();
-	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id) && allowedSlugs.has(p.slug));
-	const excludedCount = allPosts.length - frPosts.length - knownEnIds.size;
-	console.log(
-		`${allPosts.length} posts total, ${allowedSlugs.size} in the tools dataset, ${frPosts.length} are FR sources to process (${excludedCount} posts excluded — not in the dataset, e.g. newsletter/focus/lecture content).`
+/**
+ * Rewrites links to other uneiaparjour.fr articles so they point at the EN
+ * translation when one exists yet, per the fr_slug -> en_slug map built from
+ * state.json. Falls back to leaving the original FR link untouched when no
+ * EN translation exists yet (graceful degradation) — repairLinks() re-runs
+ * this later once more of the backlog is translated.
+ */
+export function rewriteInternalLinks(html, slugMap) {
+	return html.replace(
+		/href="https?:\/\/(?:www\.)?uneiaparjour\.fr\/([a-z0-9-]+)\/?"/gi,
+		(fullMatch, slug) => {
+			const enSlug = slugMap.get(slug);
+			if (!enSlug) {
+				return fullMatch;
+			}
+			return `href="https://www.uneiaparjour.fr/en/${enSlug}/"`;
+		}
 	);
-
-	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
-	const categoryNames = buildTermLookup(allCategories);
-	const tagNames = buildTermLookup(allTags);
-
-	const todo = [];
-	for (const post of frPosts) {
-		const title = stripHtml(post.title.rendered);
-		const content = post.content.rendered;
-		const yoastTitle = post.yoast_title || '';
-		const yoastMetadesc = post.yoast_metadesc || '';
-		// Hash content.raw (via the plugin's raw_content field), not
-		// content.rendered — the rendered HTML is unstable between requests
-		// for the same unchanged post (WP core's image lightbox injects
-		// randomized IDs at render time), which made every post look
-		// "changed" on every run. content.rendered is still what gets
-		// translated below — just not what detects change.
-		const currentHash = hashSource({ title, content: post.raw_content || content, yoastTitle, yoastMetadesc });
-
-		const existing = state[post.id];
-		if (existing && existing.source_hash === currentHash) {
-			continue; // already up to date
-		}
-		if (existing && existing.status === 'locked_skip') {
-			continue; // was manually edited on the EN side, needs human review, never auto-touch
-		}
-		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash });
-	}
-
-	console.log(`${todo.length} post(s) need (re)translation, processing up to ${BATCH_SIZE} this run.`);
-	const batch = todo.slice(0, BATCH_SIZE);
-
-	if (DRY_RUN) {
-		for (const { post, title } of batch) {
-			const action = state[post.id] ? 'would UPDATE' : 'would CREATE';
-			console.log(`[dry-run] ${action} EN post for FR #${post.id} "${title}" (/${post.slug}/)`);
-		}
-		console.log(`[dry-run] No changes written. ${batch.length} post(s) would be processed.`);
-		return;
-	}
-
-	const slugMap = buildSlugMap(state);
-
-	for (const item of batch) {
-		const { post } = item;
-		try {
-			await processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations);
-			await saveState(state); // persist after every post, not just at the end, so a crash mid-batch doesn't lose progress
-		} catch (err) {
-			console.error(`FR #${post.id} failed: ${err.message}`);
-			state[post.id] = {
-				...(state[post.id] || {}),
-				fr_slug: post.slug,
-				status: 'failed',
-				last_error: err.message,
-				updated_at: new Date().toISOString(),
-			};
-			await saveState(state);
-		}
-		await sleep(500); // courtesy delay between posts, Azure F0's rate limit is strict
-	}
-
-	console.log('Batch done.');
 }
-
-function buildSlugMap(state) {
-	const map = new Map();
-	for (const entry of Object.values(state)) {
-		if (entry.en_slug && entry.status === 'translated') {
-			map.set(entry.fr_slug, entry.en_slug);
-		}
-	}
-	return map;
-}
-
-async function processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations) {
-	const { post, title, content, yoastTitle, yoastMetadesc, currentHash } = item;
-	const existing = state[post.id];
-
-	// If we're updating an existing EN post, never overwrite a manual human edit.
-	if (existing && existing.en_id) {
-		const enPost = await wp.getPost(existing.en_id);
-		if (enPost.meta && enPost.meta._translation_locked) {
-			console.log(`FR #${post.id}: EN post ${existing.en_id} is locked (manually edited), skipping.`);
-			state[post.id] = { ...existing, status: 'locked_skip', updated_at: new Date().toISOString() };
-			return;
-		}
-	}
-
-	console.log(`FR #${post.id} "${title}": translating...`);
-
-	// One Azure call for all four texts, not four parallel calls — F0's rate
-	// limit reliably 429s on 4 simultaneous requests per post (found during
-	// the first live test). tag_handling=html is safe for the plain-text
-	// fields too (no markup to mistranslate), so they can share the request.
-	const fields = ['title', 'content', 'yoastTitle', 'yoastMetadesc'];
-	const values = [title, content, yoastTitle, yoastMetadesc];
-	const nonEmpty = values
-		.map((value, index) => ({ value, field: fields[index] }))
-		.filter((entry) => entry.value);
-
-	// Azure's hard cap is 50,000 characters across the whole request array,
-	// and glossary dictionary-wrapping adds further overhead on top of the
-	// raw length — found live on FR #18075 "ResearchDeck" (an unusually long
-	// article), which hit "400077 The maximum request size has been
-	// exceeded" when batched normally. Rare — most articles are short — so
-	// only fall back to a separate call for `content` (virtually always the
-	// large field) above a conservative threshold, keeping the common case
-	// at one call.
-	const CONTENT_SIZE_THRESHOLD = 20000;
-	const totalLength = nonEmpty.reduce((sum, entry) => sum + entry.value.length, 0);
-	const translatedByField = {};
-
-	if (totalLength > CONTENT_SIZE_THRESHOLD && nonEmpty.some((entry) => entry.field === 'content')) {
-		const contentEntry = nonEmpty.find((entry) => entry.field === 'content');
-		const others = nonEmpty.filter((entry) => entry.field !== 'content');
-		if (others.length > 0) {
-			const othersTranslated = await translateBatch(others.map((entry) => entry.value), { isHtml: true, glossary });
-			others.forEach((entry, i) => {
-				translatedByField[entry.field] = othersTranslated[i];
-			});
-		}
-		const [contentTranslated] = await translateBatch([contentEntry.value], { isHtml: true, glossary });
-		translatedByField.content = contentTranslated;
-	} else {
-		const translatedValues =
-			nonEmpty.length > 0 ? await translateBatch(nonEmpty.map((entry) => entry.value), { isHtml: true, glossary }) : [];
-		nonEmpty.forEach((entry, i) => {
-			translatedByField[entry.field] = translatedValues[i];
-		});
-	}
-
-	const translatedTitle = translatedByField.title || '';
-	const translatedContent = translatedByField.content || '';
-	const translatedYoastTitle = translatedByField.yoastTitle || '';
-	const translatedYoastMetadesc = translatedByField.yoastMetadesc || '';
-
-	const linkedContent = rewriteInternalLinks(translatedContent, slugMap);
-	const finalContent = wrapGutenberg(splitBlocks(linkedContent));
-
-	const { categories: enCategories, tags: enTags } = await mapTerms(
-		{
-			categories: post.categories.map((id) => ({ id, name: categoryNames.get(id) || String(id) })),
-			tags: post.tags.map((id) => ({ id, name: tagNames.get(id) || String(id) })),
-		},
-		glossary,
-		categoryTranslations
-	);
-
-	const isNewPost = !(existing && existing.en_id);
-
-	const payload = {
-		title: translatedTitle,
-		content: finalContent,
-		// Only force draft status on first creation — human review gate per
-		// phases 04/05. On a re-sync (FR source changed after the EN post
-		// already exists), status is deliberately omitted so an already-
-		// published EN post stays published instead of being reverted to draft.
-		...(isNewPost ? { status: 'draft' } : {}),
-		// Match the FR post's original publish date on creation (site's whole
-		// identity is "one AI tool per day" — the EN version should say the
-		// same day, not the translation date). Set explicitly here, one
-		// direction only, never touching the FR post — NOT via Polylang's
-		// own date-sync setting, which was found to sync backwards (EN's
-		// creation date overwriting the FR original) and got disabled.
-		...(isNewPost ? { date: post.date, date_gmt: post.date_gmt } : {}),
-		featured_media: post.featured_media || 0,
-		categories: enCategories,
-		tags: enTags,
-		meta: {
-			_translation_source_hash: currentHash,
-			_translation_locked: false,
-		},
-		yoast_title: translatedYoastTitle,
-		yoast_metadesc: translatedYoastMetadesc,
-	};
-
-	// Deliberately NOT setting payload.slug = post.slug here (as an earlier
-	// version did). Copying the FR slug always collided with the FR post and
-	// got "-2" appended by WP — confirmed unfixable even via Polylang's own
-	// native "add translation" UI (2026-08-17 live testing), so trying to
-	// match the FR slug is a dead end regardless of approach. It was also
-	// actively wrong for FR titles that are French descriptive phrases
-	// rather than bare product names (e.g. "Aperçu IA de Google" -> "Google
-	// AI Preview"): reusing the FR slug left French text in the URL of an
-	// English post. Leaving slug unset lets WordPress generate it from the
-	// translated title instead, fixing that case with a clean English URL.
-	// Note this does NOT eliminate "-2" for the common case where the title
-	// is just the tool's own name unchanged in both languages (e.g. "T3
-	// Chat") — FR and EN still generate the identical slug there, so the
-	// same collision (and "-2") still happens; only the mixed-phrase titles
-	// benefit. Accepted anyway, same as the rest of this slug limitation.
-	let enId;
-	if (isNewPost) {
-		const created = await wp.createPost(payload);
-		enId = created.id;
-		console.log(`FR #${post.id}: created EN post ${enId}.`);
-	} else {
-		await wp.updatePost(existing.en_id, payload);
-		enId = existing.en_id;
-		console.log(`FR #${post.id}: updated existing EN post ${enId}.`);
-	}
-
-	await wp.linkTranslations(post.id, enId);
-
-	const enPostFinal = await wp.getPost(enId);
-	state[post.id] = {
-		fr_slug: post.slug,
-		en_id: enId,
-		en_slug: enPostFinal.slug,
-		source_hash: currentHash,
-		status: 'translated',
-		last_error: null,
-		updated_at: new Date().toISOString(),
-	};
-	slugMap.set(post.slug, enPostFinal.slug);
-}
-
-/**
- * Re-scans already-translated EN posts and re-applies internal link
- * rewriting using the current (more complete) slug map, fixing links that
- * degraded to their FR target because the destination wasn't translated yet
- * at the time. Meant to be run periodically, e.g. once the backlog empties out.
- */
-async function repairLinks(state) {
-	const slugMap = buildSlugMap(state);
-	let updatedCount = 0;
-
-	for (const [frId, entry] of Object.entries(state)) {
-		if (entry.status !== 'translated' || !entry.en_id) {
-			continue;
-		}
-		const enPost = await wp.getPost(entry.en_id);
-		if (enPost.meta && enPost.meta._translation_locked) {
-			continue; // don't touch manually-edited posts even for link repair
-		}
-		const repaired = rewriteInternalLinks(enPost.content.rendered, slugMap);
-		if (repaired !== enPost.content.rendered) {
-			await wp.updatePost(entry.en_id, { content: repaired });
-			updatedCount += 1;
-			console.log(`Repaired links in EN post ${entry.en_id} (FR #${frId}).`);
-		}
-	}
-
-	console.log(`Link repair done: ${updatedCount} post(s) updated.`);
-}
-
-/**
- * Re-scans already-translated EN posts and upgrades any image wrapped as a
- * generic wp:html block (content.js's fallback before the lightbox fix,
- * 2026-08-18) into a proper wp:image block with lightbox explicitly
- * disabled, matching FR — patches the stored block markup directly via
- * raw_content, no re-translation needed. Posts translated after the fix
- * already have this; running it again is a safe no-op for them.
- */
-async function repairImages(state) {
-	let updatedCount = 0;
-	const pattern = /<!-- wp:html -->\s*(<figure\b[\s\S]*?<img\b[\s\S]*?<\/figure>)\s*<!-- \/wp:html -->/gi;
-
-	for (const [frId, entry] of Object.entries(state)) {
-		if (entry.status !== 'translated' || !entry.en_id) {
-			continue;
-		}
-		const enPost = await wp.getPost(entry.en_id);
-		if (enPost.meta && enPost.meta._translation_locked) {
-			continue; // don't touch manually-edited posts, same as repairLinks()
-		}
-		const raw = enPost.raw_content || '';
-		const repaired = raw.replace(
-			pattern,
-			(match, figureHtml) => `<!-- wp:image {"lightbox":{"enabled":false}} -->\n${figureHtml}\n<!-- /wp:image -->`
-		);
-		if (repaired !== raw) {
-			await wp.updatePost(entry.en_id, { content: repaired });
-			updatedCount += 1;
-			console.log(`Repaired image block(s) in EN post ${entry.en_id} (FR #${frId}).`);
-		}
-	}
-
-	console.log(`Image repair done: ${updatedCount} post(s) updated.`);
-}
-
-/**
- * Fixes wp:image blocks in already-translated EN posts via
- * content.js's repairImageBlockMarkup() — see that file for what it fixes
- * and why (2026-08-18, found live on Vunote). --dry-run prints what would
- * change per post without writing. --only-fr-id=N scopes to a single FR
- * post, meant for verifying on one real post live before trusting a run
- * across all of them — this project has already had two bulk-fix incidents
- * from skipping that kind of staged verification, don't skip it here either.
- */
-async function repairImageBlocks(state, { dryRun, onlyFrId }) {
-	let changedCount = 0;
-	let checkedCount = 0;
-
-	for (const [frIdStr, entry] of Object.entries(state)) {
-		const frId = Number(frIdStr);
-		if (onlyFrId && frId !== onlyFrId) {
-			continue;
-		}
-		if (entry.status !== 'translated' || !entry.en_id) {
-			continue;
-		}
-		const enPost = await wp.getPost(entry.en_id);
-		if (enPost.meta && enPost.meta._translation_locked) {
-			continue; // don't touch manually-edited posts, same as repairLinks()/repairImages()
-		}
-		checkedCount += 1;
-		const raw = enPost.raw_content || '';
-		const { result, changed } = repairImageBlockMarkup(raw);
-		if (!changed) {
-			continue;
-		}
-		if (dryRun) {
-			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would fix image block(s).`);
-			changedCount += 1;
-			continue;
-		}
-		await wp.updatePost(entry.en_id, { content: result });
-		changedCount += 1;
-		console.log(`Fixed image block(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
-	}
-
-	console.log(`Image block repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
-}
-
-main().catch((err) => {
-	console.error('Fatal error:', err);
-	process.exitCode = 1;
-});
