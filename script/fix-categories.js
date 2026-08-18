@@ -122,12 +122,20 @@ async function auditAndFix(taxonomy) {
 	return { relabeled, deleted, flagged, failed, anomalies };
 }
 
-async function purgeStaleCache(relabeledIds) {
+async function purgeStaleCache(staleIds) {
+	// staleIds covers both relabeled (now unusable as "en") and deleted
+	// terms. Deleted ones were the more dangerous gap: resolveTerm() trusts
+	// this cache before ever asking WordPress again, so a term_id deleted
+	// by step 1 but left cached here made every post that used it get
+	// silently reassigned to a now-nonexistent term on the very next
+	// reresolveTranslatedPosts() pass in the same run — found live
+	// 2026-08-18 as the reason categories kept coming back empty even after
+	// looking correctly re-resolved.
 	const map = await loadTaxonomyMap();
 	let purged = 0;
 	for (const kind of ['categories', 'tags']) {
 		for (const [frId, enId] of Object.entries(map[kind])) {
-			if (relabeledIds.has(enId)) {
+			if (staleIds.has(enId)) {
 				delete map[kind][frId];
 				purged += 1;
 			}
@@ -229,8 +237,12 @@ async function main() {
 		}
 	}
 
-	const relabeledIds = new Set([...categoriesResult.relabeled, ...tagsResult.relabeled].map((r) => r.term_id));
-	const purged = await purgeStaleCache(relabeledIds);
+	const staleIds = new Set(
+		[...categoriesResult.relabeled, ...tagsResult.relabeled, ...categoriesResult.deleted, ...tagsResult.deleted].map(
+			(r) => r.term_id
+		)
+	);
+	const purged = await purgeStaleCache(staleIds);
 	console.log('');
 	console.log(`Entrees de cache obsoletes purgees : ${purged}`);
 
