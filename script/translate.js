@@ -9,6 +9,7 @@ import { loadAllowedSlugs } from './lib/toolsDataset.js';
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
+const REPAIR_IMAGES = args.includes('--repair-images');
 const limitArg = args.find((a) => a.startsWith('--limit='));
 const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
 
@@ -35,6 +36,11 @@ async function main() {
 
 	if (REPAIR_LINKS) {
 		await repairLinks(state);
+		return;
+	}
+
+	if (REPAIR_IMAGES) {
+		await repairImages(state);
 		return;
 	}
 
@@ -285,11 +291,46 @@ async function repairLinks(state) {
 		if (repaired !== enPost.content.rendered) {
 			await wp.updatePost(entry.en_id, { content: repaired });
 			updatedCount += 1;
-			console.log(`Repaired links in EN post (FR #${frId}).`);
+			console.log(`Repaired links in EN post ${entry.en_id} (FR #${frId}).`);
 		}
 	}
 
 	console.log(`Link repair done: ${updatedCount} post(s) updated.`);
+}
+
+/**
+ * Re-scans already-translated EN posts and upgrades any image wrapped as a
+ * generic wp:html block (content.js's fallback before the lightbox fix,
+ * 2026-08-18) into a proper wp:image block with lightbox explicitly
+ * disabled, matching FR — patches the stored block markup directly via
+ * raw_content, no re-translation needed. Posts translated after the fix
+ * already have this; running it again is a safe no-op for them.
+ */
+async function repairImages(state) {
+	let updatedCount = 0;
+	const pattern = /<!-- wp:html -->\s*(<figure\b[\s\S]*?<img\b[\s\S]*?<\/figure>)\s*<!-- \/wp:html -->/gi;
+
+	for (const [frId, entry] of Object.entries(state)) {
+		if (entry.status !== 'translated' || !entry.en_id) {
+			continue;
+		}
+		const enPost = await wp.getPost(entry.en_id);
+		if (enPost.meta && enPost.meta._translation_locked) {
+			continue; // don't touch manually-edited posts, same as repairLinks()
+		}
+		const raw = enPost.raw_content || '';
+		const repaired = raw.replace(
+			pattern,
+			(match, figureHtml) => `<!-- wp:image {"lightbox":{"enabled":false}} -->\n${figureHtml}\n<!-- /wp:image -->`
+		);
+		if (repaired !== raw) {
+			await wp.updatePost(entry.en_id, { content: repaired });
+			updatedCount += 1;
+			console.log(`Repaired image block(s) in EN post ${entry.en_id} (FR #${frId}).`);
+		}
+	}
+
+	console.log(`Image repair done: ${updatedCount} post(s) updated.`);
 }
 
 main().catch((err) => {
