@@ -185,16 +185,33 @@ export function repairGalleryLayouts(frRawContent, enRawContent) {
 			continue;
 		}
 
+		// Existing EN wp:gallery spans — a wp:image sitting inside one of
+		// these is already grouped and must never be re-matched, otherwise
+		// re-running this repair on already-fixed content nests a second
+		// wp:gallery wrapper inside the first (caught by a local idempotency
+		// test before ever deploying this, 2026-08-18 — the previous version
+		// doubled the gallery count on a second run).
+		FR_GALLERY_PATTERN.lastIndex = 0;
+		const existingGalleries = [];
+		let galleryMatch;
+		while ((galleryMatch = FR_GALLERY_PATTERN.exec(result)) !== null) {
+			existingGalleries.push({ start: galleryMatch.index, end: galleryMatch.index + galleryMatch[0].length });
+		}
+		const insideExistingGallery = (pos) => existingGalleries.some((g) => pos >= g.start && pos < g.end);
+
 		EN_IMAGE_BLOCK_PATTERN_G.lastIndex = 0;
 		const enMatches = [];
 		let match;
 		while ((match = EN_IMAGE_BLOCK_PATTERN_G.exec(result)) !== null) {
 			const src = (match[0].match(/src="([^"]+)"/) || [])[1];
-			if (src && frSrcs.includes(src)) {
+			if (src && frSrcs.includes(src) && !insideExistingGallery(match.index)) {
 				enMatches.push({ src, start: match.index, end: match.index + match[0].length, text: match[0] });
 			}
 		}
 
+		if (enMatches.length === 0) {
+			continue; // every image for this FR gallery is already correctly grouped in EN — nothing to do
+		}
 		if (enMatches.length !== frSrcs.length) {
 			continue; // couldn't cleanly find every image for this gallery — skip rather than guess
 		}
