@@ -21,6 +21,11 @@ async function loadGlossary() {
 	return JSON.parse(raw);
 }
 
+async function loadCategoryTranslations() {
+	const raw = await readFile(new URL('./config/category-translations.json', import.meta.url), 'utf8');
+	return JSON.parse(raw);
+}
+
 function buildTermLookup(terms) {
 	const map = new Map();
 	for (const t of terms) {
@@ -31,6 +36,7 @@ function buildTermLookup(terms) {
 
 async function main() {
 	const glossary = await loadGlossary();
+	const categoryTranslations = await loadCategoryTranslations();
 	const state = await loadState();
 	const knownEnIds = new Set(Object.values(state).map((s) => s.en_id).filter(Boolean));
 
@@ -98,7 +104,7 @@ async function main() {
 	for (const item of batch) {
 		const { post } = item;
 		try {
-			await processPost(item, state, glossary, categoryNames, tagNames, slugMap);
+			await processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations);
 			await saveState(state); // persist after every post, not just at the end, so a crash mid-batch doesn't lose progress
 		} catch (err) {
 			console.error(`FR #${post.id} failed: ${err.message}`);
@@ -127,7 +133,7 @@ function buildSlugMap(state) {
 	return map;
 }
 
-async function processPost(item, state, glossary, categoryNames, tagNames, slugMap) {
+async function processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations) {
 	const { post, title, content, yoastTitle, yoastMetadesc, currentHash } = item;
 	const existing = state[post.id];
 
@@ -197,7 +203,8 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 			categories: post.categories.map((id) => ({ id, name: categoryNames.get(id) || String(id) })),
 			tags: post.tags.map((id) => ({ id, name: tagNames.get(id) || String(id) })),
 		},
-		glossary
+		glossary,
+		categoryTranslations
 	);
 
 	const isNewPost = !(existing && existing.en_id);
