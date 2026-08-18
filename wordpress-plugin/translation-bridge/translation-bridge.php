@@ -186,6 +186,116 @@ function tb_register_term_route() {
 			),
 		)
 	);
+
+	// Read-only audit used by the one-off category/tag language cleanup
+	// (2026-08-18): lists every term in a taxonomy with its real Polylang
+	// language and linked translations, so the migration script works from
+	// ground truth instead of guessing from names/slugs.
+	register_rest_route(
+		'translation-bridge/v1',
+		'/term-audit',
+		array(
+			'methods'             => 'GET',
+			'callback'            => 'tb_term_audit',
+			'permission_callback' => 'tb_can_manage_translations',
+			'args'                => array(
+				'taxonomy' => array(
+					'required' => true,
+					'type'     => 'string',
+					'enum'     => array( 'category', 'post_tag' ),
+				),
+			),
+		)
+	);
+
+	// Companion to the cleanup above: deletes leftover empty duplicate terms
+	// (0 posts) created by the pre-fix version of /create-term, which didn't
+	// set a language and could produce orphaned junk terms. Same permission
+	// level as the other bulk-migration endpoints. Refuses server-side if
+	// the term isn't actually empty, regardless of what the caller checked.
+	register_rest_route(
+		'translation-bridge/v1',
+		'/delete-term',
+		array(
+			'methods'             => 'POST',
+			'callback'            => 'tb_delete_term',
+			'permission_callback' => function () {
+				return current_user_can( 'edit_others_posts' );
+			},
+			'args'                => array(
+				'term_id'  => array(
+					'required'          => true,
+					'type'              => 'integer',
+					'validate_callback' => function ( $value ) {
+						return is_numeric( $value );
+					},
+				),
+				'taxonomy' => array(
+					'required' => true,
+					'type'     => 'string',
+					'enum'     => array( 'category', 'post_tag' ),
+				),
+			),
+		)
+	);
+}
+
+function tb_term_audit( WP_REST_Request $request ) {
+	$taxonomy = $request->get_param( 'taxonomy' );
+
+	$terms = get_terms(
+		array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+		)
+	);
+
+	if ( is_wp_error( $terms ) ) {
+		return new WP_Error( 'term_audit_failed', $terms->get_error_message(), array( 'status' => 500 ) );
+	}
+
+	$rows = array();
+	foreach ( $terms as $term ) {
+		$rows[] = array(
+			'term_id'      => $term->term_id,
+			'name'         => $term->name,
+			'slug'         => $term->slug,
+			'count'        => (int) $term->count,
+			'lang'         => function_exists( 'pll_get_term_language' ) ? pll_get_term_language( $term->term_id ) : null,
+			'translations' => function_exists( 'pll_get_term_translations' ) ? pll_get_term_translations( $term->term_id ) : array(),
+		);
+	}
+
+	return new WP_REST_Response( $rows, 200 );
+}
+
+function tb_delete_term( WP_REST_Request $request ) {
+	$term_id  = (int) $request->get_param( 'term_id' );
+	$taxonomy = $request->get_param( 'taxonomy' );
+
+	$term = get_term( $term_id, $taxonomy );
+	if ( ! $term || is_wp_error( $term ) ) {
+		return new WP_Error( 'invalid_term', "Term {$term_id} does not exist in {$taxonomy}.", array( 'status' => 404 ) );
+	}
+
+	// Server-side safety net, independent of whatever the caller already
+	// checked: never delete a term that still has posts attached.
+	if ( (int) $term->count > 0 ) {
+		return new WP_Error( 'term_not_empty', "Term {$term_id} still has {$term->count} post(s) attached — refusing to delete.", array( 'status' => 409 ) );
+	}
+
+	$result = wp_delete_term( $term_id, $taxonomy );
+	if ( is_wp_error( $result ) ) {
+		return new WP_Error( 'term_delete_failed', $result->get_error_message(), array( 'status' => 500 ) );
+	}
+	// wp_delete_term() returns 0 (not WP_Error) when refusing to delete the
+	// taxonomy's default term (e.g. "Uncategorized") — falsy either way,
+	// caught by a loose check rather than strict `false === $result`.
+	if ( ! $result ) {
+		return new WP_Error( 'term_delete_failed', 'WordPress refused to delete this term (possibly the default category).', array( 'status' => 500 ) );
+	}
+
+	return new WP_REST_Response( array( 'success' => true, 'term_id' => $term_id ), 200 );
 }
 
 function tb_create_term( WP_REST_Request $request ) {
@@ -211,6 +321,17 @@ function tb_create_term( WP_REST_Request $request ) {
 		$created = false;
 	} else {
 		$result = wp_insert_term( $name, $taxonomy );
+		if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
+			// WordPress itself refuses two terms with the identical display
+			// name under the same parent, independent of Polylang and of the
+			// slug — hit live 2026-08-18 once legacy categories were
+			// relabelled back to "fr" (e.g. "images" the category still
+			// existed in French, blocking a same-named English one). An
+			// explicit, unique slug sidesteps it; the visible name is
+			// untouched, so it still displays correctly in English.
+			$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
+			$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
+		}
 		if ( is_wp_error( $result ) ) {
 			return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
 		}
