@@ -19,6 +19,10 @@ on:
         description: 'Run the link-repair pass instead of translating'
         type: boolean
         default: false
+      repair_images:
+        description: 'Run the image-block repair pass instead of translating'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -47,6 +51,8 @@ jobs:
           ARGS=""
           if [ "${{ inputs.repair_links }}" = "true" ]; then
             ARGS="--repair-links"
+          elif [ "${{ inputs.repair_images }}" = "true" ]; then
+            ARGS="--repair-images"
           else
             if [ "${{ inputs.dry_run }}" = "true" ]; then
               ARGS="--dry-run"
