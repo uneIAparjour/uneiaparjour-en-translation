@@ -23,6 +23,14 @@ on:
         description: 'Run the image-block repair pass instead of translating'
         type: boolean
         default: false
+      repair_image_blocks:
+        description: 'Fix wp:image lightbox mismatches + broken gallery HTML (2026-08-18 bug) instead of translating'
+        type: boolean
+        default: false
+      only_fr_id:
+        description: 'With repair_image_blocks: limit to one FR post ID (leave empty for all)'
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -53,6 +61,14 @@ jobs:
             ARGS="--repair-links"
           elif [ "${{ inputs.repair_images }}" = "true" ]; then
             ARGS="--repair-images"
+          elif [ "${{ inputs.repair_image_blocks }}" = "true" ]; then
+            ARGS="--repair-image-blocks"
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              ARGS="$ARGS --dry-run"
+            fi
+            if [ -n "${{ inputs.only_fr_id }}" ]; then
+              ARGS="$ARGS --only-fr-id=${{ inputs.only_fr_id }}"
+            fi
           else
             if [ "${{ inputs.dry_run }}" = "true" ]; then
               ARGS="--dry-run"
