@@ -28,7 +28,7 @@ on:
         type: boolean
         default: false
       only_fr_id:
-        description: 'With fix_media: limit to one FR post ID (leave empty for all)'
+        description: 'Limit to specific FR post ID(s), comma-separated (e.g. 18075,18119) — works with fix_media AND normal translation runs. Leave empty for the default behavior.'
         type: string
         default: ''
 
@@ -74,6 +74,9 @@ jobs:
               ARGS="--dry-run"
             fi
             ARGS="$ARGS --limit=${{ inputs.limit || '15' }}"
+            if [ -n "${{ inputs.only_fr_id }}" ]; then
+              ARGS="$ARGS --only-fr-id=${{ inputs.only_fr_id }}"
+            fi
           fi
           node translate.js $ARGS
 
