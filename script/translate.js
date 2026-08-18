@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import * as wp from './lib/wp.js';
 import { translateBatch } from './lib/azure.js';
-import { splitBlocks, wrapGutenberg, rewriteInternalLinks } from './lib/content.js';
+import { splitBlocks, wrapGutenberg, rewriteInternalLinks, repairImageBlockMarkup } from './lib/content.js';
 import { mapTerms } from './lib/taxonomy.js';
 import { loadState, saveState, hashSource } from './lib/state.js';
 import { loadAllowedSlugs } from './lib/toolsDataset.js';
@@ -10,6 +10,9 @@ const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
 const REPAIR_IMAGES = args.includes('--repair-images');
+const REPAIR_IMAGE_BLOCKS = args.includes('--repair-image-blocks');
+const onlyFrIdArg = args.find((a) => a.startsWith('--only-fr-id='));
+const ONLY_FR_ID = onlyFrIdArg ? parseInt(onlyFrIdArg.split('=')[1], 10) : null;
 const limitArg = args.find((a) => a.startsWith('--limit='));
 const BATCH_SIZE = limitArg ? parseInt(limitArg.split('=')[1], 10) : 15;
 
@@ -47,6 +50,11 @@ async function main() {
 
 	if (REPAIR_IMAGES) {
 		await repairImages(state);
+		return;
+	}
+
+	if (REPAIR_IMAGE_BLOCKS) {
+		await repairImageBlocks(state, { dryRun: DRY_RUN, onlyFrId: ONLY_FR_ID });
 		return;
 	}
 
@@ -338,6 +346,50 @@ async function repairImages(state) {
 	}
 
 	console.log(`Image repair done: ${updatedCount} post(s) updated.`);
+}
+
+/**
+ * Fixes wp:image blocks in already-translated EN posts via
+ * content.js's repairImageBlockMarkup() — see that file for what it fixes
+ * and why (2026-08-18, found live on Vunote). --dry-run prints what would
+ * change per post without writing. --only-fr-id=N scopes to a single FR
+ * post, meant for verifying on one real post live before trusting a run
+ * across all of them — this project has already had two bulk-fix incidents
+ * from skipping that kind of staged verification, don't skip it here either.
+ */
+async function repairImageBlocks(state, { dryRun, onlyFrId }) {
+	let changedCount = 0;
+	let checkedCount = 0;
+
+	for (const [frIdStr, entry] of Object.entries(state)) {
+		const frId = Number(frIdStr);
+		if (onlyFrId && frId !== onlyFrId) {
+			continue;
+		}
+		if (entry.status !== 'translated' || !entry.en_id) {
+			continue;
+		}
+		const enPost = await wp.getPost(entry.en_id);
+		if (enPost.meta && enPost.meta._translation_locked) {
+			continue; // don't touch manually-edited posts, same as repairLinks()/repairImages()
+		}
+		checkedCount += 1;
+		const raw = enPost.raw_content || '';
+		const { result, changed } = repairImageBlockMarkup(raw);
+		if (!changed) {
+			continue;
+		}
+		if (dryRun) {
+			console.log(`[dry-run] FR #${frId} (${entry.fr_slug}) -> EN #${entry.en_id}: would fix image block(s).`);
+			changedCount += 1;
+			continue;
+		}
+		await wp.updatePost(entry.en_id, { content: result });
+		changedCount += 1;
+		console.log(`Fixed image block(s) in EN post ${entry.en_id} (FR #${frId}, ${entry.fr_slug}).`);
+	}
+
+	console.log(`Image block repair ${dryRun ? '(dry-run) ' : ''}done: ${checkedCount} post(s) checked, ${changedCount} changed.`);
 }
 
 main().catch((err) => {
