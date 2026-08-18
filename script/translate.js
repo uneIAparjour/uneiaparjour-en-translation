@@ -147,13 +147,36 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		.map((value, index) => ({ value, field: fields[index] }))
 		.filter((entry) => entry.value);
 
-	const translatedValues =
-		nonEmpty.length > 0 ? await translateBatch(nonEmpty.map((entry) => entry.value), { isHtml: true, glossary }) : [];
-
+	// Azure's hard cap is 50,000 characters across the whole request array,
+	// and glossary dictionary-wrapping adds further overhead on top of the
+	// raw length — found live on FR #18075 "ResearchDeck" (an unusually long
+	// article), which hit "400077 The maximum request size has been
+	// exceeded" when batched normally. Rare — most articles are short — so
+	// only fall back to a separate call for `content` (virtually always the
+	// large field) above a conservative threshold, keeping the common case
+	// at one call.
+	const CONTENT_SIZE_THRESHOLD = 20000;
+	const totalLength = nonEmpty.reduce((sum, entry) => sum + entry.value.length, 0);
 	const translatedByField = {};
-	nonEmpty.forEach((entry, i) => {
-		translatedByField[entry.field] = translatedValues[i];
-	});
+
+	if (totalLength > CONTENT_SIZE_THRESHOLD && nonEmpty.some((entry) => entry.field === 'content')) {
+		const contentEntry = nonEmpty.find((entry) => entry.field === 'content');
+		const others = nonEmpty.filter((entry) => entry.field !== 'content');
+		if (others.length > 0) {
+			const othersTranslated = await translateBatch(others.map((entry) => entry.value), { isHtml: true, glossary });
+			others.forEach((entry, i) => {
+				translatedByField[entry.field] = othersTranslated[i];
+			});
+		}
+		const [contentTranslated] = await translateBatch([contentEntry.value], { isHtml: true, glossary });
+		translatedByField.content = contentTranslated;
+	} else {
+		const translatedValues =
+			nonEmpty.length > 0 ? await translateBatch(nonEmpty.map((entry) => entry.value), { isHtml: true, glossary }) : [];
+		nonEmpty.forEach((entry, i) => {
+			translatedByField[entry.field] = translatedValues[i];
+		});
+	}
 
 	const translatedTitle = translatedByField.title || '';
 	const translatedContent = translatedByField.content || '';
@@ -199,9 +222,23 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		yoast_metadesc: translatedYoastMetadesc,
 	};
 
+	// Deliberately NOT setting payload.slug = post.slug here (as an earlier
+	// version did). Copying the FR slug always collided with the FR post and
+	// got "-2" appended by WP — confirmed unfixable even via Polylang's own
+	// native "add translation" UI (2026-08-17 live testing), so trying to
+	// match the FR slug is a dead end regardless of approach. It was also
+	// actively wrong for FR titles that are French descriptive phrases
+	// rather than bare product names (e.g. "Aperçu IA de Google" -> "Google
+	// AI Preview"): reusing the FR slug left French text in the URL of an
+	// English post. Leaving slug unset lets WordPress generate it from the
+	// translated title instead, fixing that case with a clean English URL.
+	// Note this does NOT eliminate "-2" for the common case where the title
+	// is just the tool's own name unchanged in both languages (e.g. "T3
+	// Chat") — FR and EN still generate the identical slug there, so the
+	// same collision (and "-2") still happens; only the mixed-phrase titles
+	// benefit. Accepted anyway, same as the rest of this slug limitation.
 	let enId;
 	if (isNewPost) {
-		payload.slug = post.slug;
 		const created = await wp.createPost(payload);
 		enId = created.id;
 		console.log(`FR #${post.id}: created EN post ${enId}.`);
@@ -213,14 +250,6 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 
 	await wp.linkTranslations(post.id, enId);
 
-	// WP's slug-uniqueness check appends "-2" when the EN slug collides with
-	// the FR original. Confirmed via live testing (2026-08-17) that this is
-	// NOT fixable from our side: even Polylang's own native "add translation"
-	// UI hits the same "-2" on this install, with no script or REST call
-	// involved at all. Accepted as a permanent cosmetic limitation of this
-	// WordPress/Polylang install — translation linking, hreflang, and the
-	// language switcher all work fine via Polylang's internal translation
-	// group, independent of the literal slug text. No correction attempted.
 	const enPostFinal = await wp.getPost(enId);
 	state[post.id] = {
 		fr_slug: post.slug,
