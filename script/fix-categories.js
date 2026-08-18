@@ -62,20 +62,10 @@ async function auditAndFix(taxonomy) {
 	const deleted = [];
 	const flagged = [];
 	const failed = [];
+	const anomalies = [];
 
 	for (const row of rows) {
-		if (row.count >= 3 && row.lang === 'en') {
-			console.log(`[${taxonomy}] Relabel "${row.name}" (#${row.term_id}, ${row.count} posts) en -> fr`);
-			if (!DRY_RUN) {
-				try {
-					await wp.setTermLanguage(row.term_id, 'fr');
-				} catch (err) {
-					failed.push({ ...row, error: err.message });
-					continue;
-				}
-			}
-			relabeled.push(row);
-		} else if (row.count === 0) {
+		if (row.count === 0) {
 			console.log(`[${taxonomy}] Delete empty "${row.name}" (#${row.term_id}, slug ${row.slug})`);
 			if (!DRY_RUN) {
 				try {
@@ -93,10 +83,28 @@ async function auditAndFix(taxonomy) {
 			}
 		} else if (row.count <= 2) {
 			flagged.push(row);
+		} else if (row.lang === 'en') {
+			console.log(`[${taxonomy}] Relabel "${row.name}" (#${row.term_id}, ${row.count} posts) en -> fr`);
+			if (!DRY_RUN) {
+				try {
+					await wp.setTermLanguage(row.term_id, 'fr');
+				} catch (err) {
+					failed.push({ ...row, error: err.message });
+					continue;
+				}
+			}
+			relabeled.push(row);
+		} else if (row.lang !== 'fr') {
+			// A term with real posts but a language that's neither "en" nor
+			// "fr" (missing/unexpected) — don't guess which way to fix it,
+			// just surface it. Not expected to happen, but silently doing
+			// nothing here would be worse than a slightly noisy report.
+			anomalies.push(row);
 		}
+		// else: row.lang === 'fr' with count >= 3 — already correct, no action.
 	}
 
-	return { relabeled, deleted, flagged, failed };
+	return { relabeled, deleted, flagged, failed, anomalies };
 }
 
 async function purgeStaleCache(relabeledIds) {
@@ -184,6 +192,15 @@ async function main() {
 		console.log('--- Echecs ---');
 		for (const row of failedAll) {
 			console.log(`  "${row.name}" (#${row.term_id}) : ${row.error}`);
+		}
+	}
+
+	const anomaliesAll = [...categoriesResult.anomalies, ...tagsResult.anomalies];
+	if (anomaliesAll.length > 0) {
+		console.log('');
+		console.log('--- Anomalies (langue Polylang inattendue, non touche) ---');
+		for (const row of anomaliesAll) {
+			console.log(`  "${row.name}" (#${row.term_id}, slug ${row.slug}, ${row.count} article(s), lang=${row.lang ?? '(vide)'})`);
 		}
 	}
 
