@@ -33,18 +33,21 @@ async function wpFetch(path, options = {}) {
 }
 
 /**
- * All published posts, paginated. Deliberately not filtering by lang param —
- * Polylang's REST language filtering isn't confirmed reliable on the free
- * tier, so instead the caller excludes known EN post IDs using the state file.
+ * All posts, paginated. Deliberately not filtering by lang param — Polylang's
+ * REST language filtering isn't confirmed reliable on the free tier, so
+ * instead the caller excludes known EN post IDs using the state file.
+ * Defaults to published only (the original behavior, still what every
+ * existing caller wants); pass 'draft', 'any', etc. to look at other
+ * statuses — e.g. publish.js needs 'draft' to find EN posts ready to go live.
  */
-export async function listAllPosts() {
+export async function listAllPosts(status = 'publish') {
 	const posts = [];
 	let page = 1;
 	// WP REST caps at 100 per page.
 	const perPage = 100;
 
 	while (true) {
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&_fields=id,slug,title,content,excerpt,date,date_gmt,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
+		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,content,excerpt,date,date_gmt,status,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
@@ -72,7 +75,7 @@ export async function listAllPosts() {
 }
 
 export async function getPost(id) {
-	return wpFetch(`/wp/v2/posts/${id}?_fields=id,slug,title,content,excerpt,date,date_gmt,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`);
+	return wpFetch(`/wp/v2/posts/${id}?_fields=id,slug,title,content,excerpt,date,date_gmt,status,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`);
 }
 
 export async function createPost(data) {
