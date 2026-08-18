@@ -6,12 +6,6 @@ const MAP_PATH = new URL('../config/taxonomy-map.json', import.meta.url);
 
 /**
  * Shape: { categories: { [fr_term_id]: en_term_id }, tags: { [fr_term_id]: en_term_id } }
- *
- * Known limitation (accepted for v1, see plan doc): created EN terms aren't
- * explicitly assigned a Polylang term language, since that needs a new
- * pll_set_term_language() bridge endpoint we haven't added. Posts still get
- * the correct language and categorization either way — this only affects
- * whether term archive pages are perfectly bilingual, a secondary concern.
  */
 async function loadMap() {
 	try {
@@ -38,10 +32,13 @@ async function resolveTerm(map, kind, frId, frName, glossary) {
 	// translation-bot (Author) can't create terms via the standard REST
 	// endpoints, so this goes through the bridge plugin's gated
 	// get-or-create endpoint instead (found during the first live test).
+	// Passing frId lets the bridge plugin link the EN term to its FR source
+	// as a Polylang translation pair (fixed 2026-08-18 — was previously
+	// leaving new EN terms orphaned, a known v1 gap).
 	const taxonomy = kind === 'categories' ? 'category' : 'post_tag';
 
 	const [translatedName] = await translateBatch([frName], { isHtml: true, glossary });
-	const result = await wp.createOrGetTerm(taxonomy, translatedName);
+	const result = await wp.createOrGetTerm(taxonomy, translatedName, frId);
 
 	bucket[frId] = result.term_id;
 	return result.term_id;
