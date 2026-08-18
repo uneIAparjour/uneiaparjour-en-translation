@@ -78,6 +78,57 @@ function tb_register_rest_route() {
 			),
 		)
 	);
+
+	// Same fix as /set-language, but for taxonomy terms — the original
+	// misconfiguration (English set as default before French was added)
+	// also mislabeled every pre-existing category/tag as English, and that
+	// was never corrected (only posts were, via /set-language above). Found
+	// 2026-08-18 via a full categories audit: ~30 legacy categories/tags
+	// (chatbot, images, video, etc., holding hundreds of French posts each)
+	// are still tagged "en" in Polylang. Same permission level as
+	// /set-language since it's the same class of bulk site-wide fix.
+	register_rest_route(
+		'translation-bridge/v1',
+		'/set-term-language',
+		array(
+			'methods'             => 'POST',
+			'callback'            => 'tb_set_term_language',
+			'permission_callback' => function () {
+				return current_user_can( 'edit_others_posts' );
+			},
+			'args'                => array(
+				'term_id' => array(
+					'required'          => true,
+					'type'              => 'integer',
+					'validate_callback' => function ( $value ) {
+						return is_numeric( $value );
+					},
+				),
+				'lang'    => array(
+					'required' => true,
+					'type'     => 'string',
+					'enum'     => array( 'fr', 'en' ),
+				),
+			),
+		)
+	);
+}
+
+function tb_set_term_language( WP_REST_Request $request ) {
+	if ( ! function_exists( 'pll_set_term_language' ) ) {
+		return new WP_Error( 'polylang_missing', 'Polylang is not active or its functions are unavailable.', array( 'status' => 500 ) );
+	}
+
+	$term_id = (int) $request->get_param( 'term_id' );
+	$lang    = $request->get_param( 'lang' );
+
+	if ( ! get_term( $term_id ) ) {
+		return new WP_Error( 'invalid_term', "Term {$term_id} does not exist.", array( 'status' => 404 ) );
+	}
+
+	pll_set_term_language( $term_id, $lang );
+
+	return new WP_REST_Response( array( 'success' => true, 'term_id' => $term_id, 'lang' => $lang ), 200 );
 }
 
 function tb_set_language( WP_REST_Request $request ) {
@@ -115,14 +166,22 @@ function tb_register_term_route() {
 			'callback'            => 'tb_create_term',
 			'permission_callback' => 'tb_can_manage_translations',
 			'args'                => array(
-				'taxonomy' => array(
+				'taxonomy'    => array(
 					'required' => true,
 					'type'     => 'string',
 					'enum'     => array( 'category', 'post_tag' ),
 				),
-				'name'     => array(
+				'name'        => array(
 					'required' => true,
 					'type'     => 'string',
+				),
+				// Optional: the FR term this EN term is a translation of —
+				// when given, links them via Polylang so term archive pages
+				// and the language switcher work, instead of leaving new EN
+				// terms orphaned (a known v1 gap, closed 2026-08-18).
+				'fr_term_id'  => array(
+					'required' => false,
+					'type'     => 'integer',
 				),
 			),
 		)
@@ -130,20 +189,49 @@ function tb_register_term_route() {
 }
 
 function tb_create_term( WP_REST_Request $request ) {
-	$taxonomy = $request->get_param( 'taxonomy' );
-	$name     = $request->get_param( 'name' );
+	$taxonomy   = $request->get_param( 'taxonomy' );
+	$name       = $request->get_param( 'name' );
+	$fr_term_id = $request->get_param( 'fr_term_id' );
 
+	// A plain name lookup ignores language entirely, which used to merge new
+	// EN posts into old, same-named categories that were actually still
+	// French underneath (found 2026-08-18: legacy categories/tags predating
+	// proper Polylang setup are mislabeled "en" site-wide, see
+	// /set-term-language above). Only reuse an existing term if it's
+	// confirmed to actually be English already — otherwise a French term
+	// with an identical translated name (e.g. "chatbot", "images",
+	// "application") would get silently reused for EN content too.
 	$existing = get_term_by( 'name', $name, $taxonomy );
-	if ( $existing ) {
-		return new WP_REST_Response( array( 'success' => true, 'term_id' => $existing->term_id, 'created' => false ), 200 );
+	$is_usable_existing = $existing
+		&& function_exists( 'pll_get_term_language' )
+		&& 'en' === pll_get_term_language( $existing->term_id );
+
+	if ( $is_usable_existing ) {
+		$term_id = $existing->term_id;
+		$created = false;
+	} else {
+		$result = wp_insert_term( $name, $taxonomy );
+		if ( is_wp_error( $result ) ) {
+			return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
+		}
+		$term_id = $result['term_id'];
+		$created = true;
 	}
 
-	$result = wp_insert_term( $name, $taxonomy );
-	if ( is_wp_error( $result ) ) {
-		return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
+	if ( function_exists( 'pll_set_term_language' ) ) {
+		pll_set_term_language( $term_id, 'en' );
 	}
 
-	return new WP_REST_Response( array( 'success' => true, 'term_id' => $result['term_id'], 'created' => true ), 200 );
+	if ( $fr_term_id && function_exists( 'pll_save_term_translations' ) ) {
+		pll_save_term_translations(
+			array(
+				'fr' => (int) $fr_term_id,
+				'en' => $term_id,
+			)
+		);
+	}
+
+	return new WP_REST_Response( array( 'success' => true, 'term_id' => $term_id, 'created' => $created ), 200 );
 }
 
 /**
