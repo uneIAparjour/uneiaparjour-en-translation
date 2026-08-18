@@ -1,9 +1,258 @@
 {
+  "17632": {
+    "fr_slug": "justvibe",
+    "en_id": 18542,
+    "en_slug": "",
+    "source_hash": "cbacb066dbe114393efd6ff57d3cecfb70d3922d9f3651799ad9f81d5daaafd1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:07:31.377Z"
+  },
+  "17655": {
+    "fr_slug": "floor-plan-maker",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-18T10:06:19.641Z"
+  },
+  "17678": {
+    "fr_slug": "imaginprompt",
+    "en_id": 18541,
+    "en_slug": "",
+    "source_hash": "c65ba18e2ea64d952241ca2952d2d6b54e68bb4230d79de453653311296c3067",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:04:08.188Z"
+  },
+  "17687": {
+    "fr_slug": "lolaby",
+    "en_id": 18540,
+    "en_slug": "",
+    "source_hash": "a4fef966377de96f33fb4b14fdc30bcd8917da003aa59d4e734dc7ca34267dd0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:03:38.207Z"
+  },
+  "17695": {
+    "fr_slug": "mistral-ocr-4",
+    "en_id": 18539,
+    "en_slug": "",
+    "source_hash": "19ad3b659500ad63f4e21bea6969b9da6e7cb2c26223d46bfb532481bbd5e8b4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:03:32.206Z"
+  },
+  "17710": {
+    "fr_slug": "music0-ai",
+    "en_id": 18538,
+    "en_slug": "",
+    "source_hash": "728a5d2ae9213302b8d8d6a9f11c49a1c8185120682eac9caa1068d200191b28",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:02:22.391Z"
+  },
+  "17721": {
+    "fr_slug": "pluno",
+    "en_id": 18536,
+    "en_slug": "",
+    "source_hash": "5a64bca233f2223fef445b7fd30ee4b99e55b6924658f2a3e050593eda762330",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:02:18.982Z"
+  },
+  "17734": {
+    "fr_slug": "lumo-2-0",
+    "en_id": 18535,
+    "en_slug": "",
+    "source_hash": "26bea7948659fe06f7819b93fd5f90d58a87ed37168c43e139f38cc409ab8c62",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:01:15.210Z"
+  },
+  "17748": {
+    "fr_slug": "boogu-image",
+    "en_id": 18533,
+    "en_slug": "",
+    "source_hash": "09a866acf275f31b8365494471fd091e80c9b3f9f4894754acbbcd0fb78dcb76",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:01:04.106Z"
+  },
+  "17754": {
+    "fr_slug": "acti",
+    "en_id": 18532,
+    "en_slug": "",
+    "source_hash": "feed8d1768b04ff53d1bdb5106df25023fe8d7432e0ff4d7f749fdc757dbfb93",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:00:56.975Z"
+  },
+  "17772": {
+    "fr_slug": "learnkata",
+    "status": "failed",
+    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
+    "updated_at": "2026-08-18T10:00:48.949Z"
+  },
+  "17803": {
+    "fr_slug": "briefed",
+    "en_id": 18531,
+    "en_slug": "",
+    "source_hash": "af8a6c5a0c2b8fa6599c95c0b9e9818cb46ee98d4b8c01a701c1adc5e9a106e3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T10:00:39.241Z"
+  },
+  "17811": {
+    "fr_slug": "bubul",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-18T09:59:27.579Z"
+  },
+  "17842": {
+    "fr_slug": "checklistfox",
+    "en_id": 18530,
+    "en_slug": "",
+    "source_hash": "bdafdcfe1e7a025c4421436fada4aa927472912f1de876000369e17e42b4de77",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:57:15.211Z"
+  },
+  "17849": {
+    "fr_slug": "assistant-ia-etreprof",
+    "en_id": 18529,
+    "en_slug": "",
+    "source_hash": "af046e00d7df34030b0dc88bf7fd2b13c89c6f1cdba3d30fd87185a842c877a6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:57:10.559Z"
+  },
+  "17885": {
+    "fr_slug": "image-to-3d-ai",
+    "en_id": 18525,
+    "en_slug": "",
+    "source_hash": "1c42447c02a69c3d7144aa1bc828d8b403a6026b9fcf25c3038911e93ab6f9be",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:55:26.629Z"
+  },
+  "17887": {
+    "fr_slug": "video-transcription-ai",
+    "status": "failed",
+    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
+    "updated_at": "2026-08-18T09:54:19.167Z"
+  },
+  "17891": {
+    "fr_slug": "muse-image",
+    "en_id": 18528,
+    "en_slug": "",
+    "source_hash": "803b1ac15150aa8ba250e996decd6ad6926156bade5af9afadf8381f4a6380fd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:56:34.682Z"
+  },
+  "17893": {
+    "fr_slug": "kyutai-pocket-tts",
+    "en_id": 18527,
+    "en_slug": "",
+    "source_hash": "3afc712dc647f019e43ab69afa4128305d9d1f7b5f19480c7de5f5b22a617dfa",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:55:29.849Z"
+  },
+  "17953": {
+    "fr_slug": "vidmud-ai-photo-editor",
+    "en_id": 18524,
+    "en_slug": "",
+    "source_hash": "cb671cf309c0bfa0fd8e5dcbc27f1e523af988e0017651e390142043ce9e5d34",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:52:08.141Z"
+  },
+  "17966": {
+    "fr_slug": "convly-image-to-prompt-generator",
+    "en_id": 18523,
+    "en_slug": "",
+    "source_hash": "734edf86ea306c203057c5eedc7c0e4e139420a3751638385302165f4ca78925",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:51:04.574Z"
+  },
+  "17977": {
+    "fr_slug": "fenzo",
+    "en_id": 18522,
+    "en_slug": "",
+    "source_hash": "9aa91f683903ef693c17728d1bea7aab6f99230cb7de17e2daac50312c70a996",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:50:34.756Z"
+  },
+  "17999": {
+    "fr_slug": "moodboard-creator",
+    "en_id": 18520,
+    "en_slug": "",
+    "source_hash": "a72cf0f68b2e10ac807cd2c7a04ad3477e83f8b5caa9f783eaf54e87508941dc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:49:13.529Z"
+  },
+  "18003": {
+    "fr_slug": "memecam",
+    "en_id": 18521,
+    "en_slug": "",
+    "source_hash": "896aa29819c728ac311e3169e167c52653b16f6e708347635af9e0bd43914ac3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:49:18.780Z"
+  },
+  "18020": {
+    "fr_slug": "mixtranslate",
+    "en_id": 18519,
+    "en_slug": "",
+    "source_hash": "081645421290303ff79a8063fa517c1b7aa550cd8429a0e1aaff2b9297bd5a1f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:48:41.722Z"
+  },
+  "18029": {
+    "fr_slug": "aye",
+    "en_id": 18518,
+    "en_slug": "",
+    "source_hash": "a382e4d29bda4ba47f7a82bb5f3c78101046175db26692ed77cfca3017903bff",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:48:37.689Z"
+  },
+  "18042": {
+    "fr_slug": "longscribe",
+    "en_id": 18517,
+    "en_slug": "",
+    "source_hash": "24da51ed69c2c0b079a5151a497f7e99d7e38a9f29c5169331c86aa87eb9d113",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:47:20.495Z"
+  },
+  "18048": {
+    "fr_slug": "deck",
+    "en_id": 18516,
+    "en_slug": "",
+    "source_hash": "8a796713d3968f77022a9a65581aefbd576339553865eb67ae064ee6a5ec2627",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:47:16.667Z"
+  },
+  "18060": {
+    "fr_slug": "playyy",
+    "en_id": 18514,
+    "en_slug": "",
+    "source_hash": "3c5ec95f76bb8deaba42b91ff566b37d69a0f2906b4ca7c0e9d84a9a9ce474be",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-18T09:46:39.264Z"
+  },
   "18075": {
     "fr_slug": "researchdeck",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-18T06:49:14.760Z"
+    "updated_at": "2026-08-18T09:46:17.007Z"
   },
   "18089": {
     "fr_slug": "aistoryhub",
