@@ -40,6 +40,11 @@ async function loadGlossary() {
 	return JSON.parse(raw);
 }
 
+async function loadCategoryTranslations() {
+	const raw = await readFile(new URL('./config/category-translations.json', import.meta.url), 'utf8');
+	return JSON.parse(raw);
+}
+
 const TAXONOMY_MAP_PATH = new URL('./config/taxonomy-map.json', import.meta.url);
 
 async function loadTaxonomyMap() {
@@ -124,7 +129,7 @@ async function purgeStaleCache(relabeledIds) {
 	return purged;
 }
 
-async function reresolveTranslatedPosts(glossary) {
+async function reresolveTranslatedPosts(glossary, categoryTranslations) {
 	const state = await loadState();
 	const allPosts = await wp.listAllPosts();
 	const postsById = new Map(allPosts.map((p) => [p.id, p]));
@@ -134,6 +139,7 @@ async function reresolveTranslatedPosts(glossary) {
 
 	let checked = 0;
 	let updated = 0;
+	const failed = [];
 
 	for (const [frIdStr, entry] of Object.entries(state)) {
 		if (entry.status !== 'translated' || !entry.en_id) continue;
@@ -142,26 +148,35 @@ async function reresolveTranslatedPosts(glossary) {
 		if (!frPost) continue; // FR source not found under this ID anymore — out of scope here, report.js already flags these separately
 		checked += 1;
 
-		const { categories: enCategories, tags: enTags } = await mapTerms(
-			{
-				categories: frPost.categories.map((id) => ({ id, name: categoryNames.get(id) || String(id) })),
-				tags: frPost.tags.map((id) => ({ id, name: tagNames.get(id) || String(id) })),
-			},
-			glossary
-		);
+		// One post's failure (e.g. a term-creation edge case) shouldn't stop
+		// the rest of the batch from being checked — same per-item isolation
+		// as translate.js's main loop.
+		try {
+			const { categories: enCategories, tags: enTags } = await mapTerms(
+				{
+					categories: frPost.categories.map((id) => ({ id, name: categoryNames.get(id) || String(id) })),
+					tags: frPost.tags.map((id) => ({ id, name: tagNames.get(id) || String(id) })),
+				},
+				glossary,
+				categoryTranslations
+			);
 
-		const enPost = await wp.getPost(entry.en_id);
-		const sameCategories = JSON.stringify([...enPost.categories].sort()) === JSON.stringify([...enCategories].sort());
-		const sameTags = JSON.stringify([...enPost.tags].sort()) === JSON.stringify([...enTags].sort());
+			const enPost = await wp.getPost(entry.en_id);
+			const sameCategories = JSON.stringify([...enPost.categories].sort()) === JSON.stringify([...enCategories].sort());
+			const sameTags = JSON.stringify([...enPost.tags].sort()) === JSON.stringify([...enTags].sort());
 
-		if (!sameCategories || !sameTags) {
-			console.log(`FR #${frId} -> EN #${entry.en_id}: categories/tags changed, updating.`);
-			await wp.updatePost(entry.en_id, { categories: enCategories, tags: enTags });
-			updated += 1;
+			if (!sameCategories || !sameTags) {
+				console.log(`FR #${frId} -> EN #${entry.en_id}: categories/tags changed, updating.`);
+				await wp.updatePost(entry.en_id, { categories: enCategories, tags: enTags });
+				updated += 1;
+			}
+		} catch (err) {
+			console.error(`FR #${frId} -> EN #${entry.en_id}: failed, skipping. ${err.message}`);
+			failed.push({ frId, enId: entry.en_id, error: err.message });
 		}
 	}
 
-	return { checked, updated };
+	return { checked, updated, failed };
 }
 
 async function main() {
@@ -218,8 +233,16 @@ async function main() {
 	console.log('');
 	console.log('=== Re-resolution des categories/tags des articles deja traduits ===');
 	const glossary = await loadGlossary();
-	const { checked, updated } = await reresolveTranslatedPosts(glossary);
-	console.log(`Articles verifies : ${checked}, mis a jour : ${updated}`);
+	const categoryTranslations = await loadCategoryTranslations();
+	const { checked, updated, failed: reresolveFailed } = await reresolveTranslatedPosts(glossary, categoryTranslations);
+	console.log(`Articles verifies : ${checked}, mis a jour : ${updated}, echoues : ${reresolveFailed.length}`);
+	if (reresolveFailed.length > 0) {
+		console.log('');
+		console.log('--- Echecs de re-resolution (a relancer plus tard, rien de perdu) ---');
+		for (const f of reresolveFailed) {
+			console.log(`  FR #${f.frId} -> EN #${f.enId} : ${f.error}`);
+		}
+	}
 }
 
 main().catch((err) => {
