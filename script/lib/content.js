@@ -40,8 +40,23 @@ export function wrapGutenberg(blocks) {
 			if (tag === 'blockquote') {
 				return `<!-- wp:quote -->\n${html}\n<!-- /wp:quote -->`;
 			}
-			// Safe fallback for anything not explicitly mapped (figure, table...):
-			// keep the markup working without claiming a block type we're not sure of.
+			if (tag === 'figure' && /<img\b/i.test(html)) {
+				// WordPress 6.4 added the image-block "lightbox" (click to
+				// enlarge) feature and, to avoid changing existing sites'
+				// behavior, retroactively set lightbox.enabled=false on every
+				// pre-existing image block — which is why FR posts never show
+				// the zoom icon. That attribute only lives in the raw block
+				// comment, not in content.rendered (all we have here), so it's
+				// otherwise lost when reconstructing the block from scratch —
+				// found live 2026-08-18: EN images were showing an unwanted
+				// lightbox icon FR never had. Falling through to the generic
+				// wp:html block (as before) also isn't equivalent — set it
+				// explicitly on a real wp:image block instead, matching FR.
+				return `<!-- wp:image {"lightbox":{"enabled":false}} -->\n${html}\n<!-- /wp:image -->`;
+			}
+			// Safe fallback for anything not explicitly mapped (table, a
+			// figure without an <img>...): keep the markup working without
+			// claiming a block type we're not sure of.
 			return `<!-- wp:html -->\n${html}\n<!-- /wp:html -->`;
 		})
 		.join('\n\n');
