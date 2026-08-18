@@ -147,6 +147,105 @@ export function repairImageBlockMarkup(rawContent) {
 }
 
 /**
+ * Restores WP Gallery grouping (columns layout) lost on already-translated
+ * EN posts. Root cause: translate.js builds EN content from content.rendered
+ * (server-rendered HTML), not raw_content (clean block markup) — before
+ * today's splitBlocks() fix, a <figure> nested inside a Gallery's <figure>
+ * broke the old non-greedy capture, fragmenting one wp:gallery block into
+ * several standalone wp:image blocks. Only the first fragment kept a trace
+ * of the gallery wrapper (now stripped by repairImageBlockMarkup above) —
+ * the other images never carried the columns/layout classes at all, so that
+ * grouping can't be recovered from the EN content alone (found live
+ * 2026-08-18 on Looops, 3 galleries collapsed to 15 standalone images).
+ *
+ * Fix: FR's raw_content still has clean, untouched <!-- wp:gallery --> blocks
+ * (images are never translated, so FR is a reliable structural reference).
+ * For each FR gallery, find the matching EN wp:image blocks by <img src>
+ * (identical URLs both languages — same media library), and re-wrap them in
+ * a new wp:gallery block using FR's column/order, keeping EN's own
+ * already-correct per-image markup (lightbox etc.) untouched. Skips (leaves
+ * EN untouched) if the images can't be matched 1:1 — safer than guessing.
+ */
+const FR_GALLERY_PATTERN = /<!-- wp:gallery [^>]*-->[\s\S]*?<!-- \/wp:gallery -->/g;
+const EN_IMAGE_BLOCK_PATTERN_G = /<!-- wp:image [^>]*-->[\s\S]*?<!-- \/wp:image -->/g;
+
+export function repairGalleryLayouts(frRawContent, enRawContent) {
+	const frGalleries = frRawContent.match(FR_GALLERY_PATTERN) || [];
+	if (frGalleries.length === 0) {
+		return { result: enRawContent, changed: false };
+	}
+
+	let result = enRawContent;
+	let changed = false;
+
+	for (const frGallery of frGalleries) {
+		const frImageBlocks = frGallery.match(EN_IMAGE_BLOCK_PATTERN_G) || [];
+		const frSrcs = frImageBlocks.map((block) => (block.match(/src="([^"]+)"/) || [])[1]).filter(Boolean);
+		if (frSrcs.length === 0) {
+			continue;
+		}
+
+		EN_IMAGE_BLOCK_PATTERN_G.lastIndex = 0;
+		const enMatches = [];
+		let match;
+		while ((match = EN_IMAGE_BLOCK_PATTERN_G.exec(result)) !== null) {
+			const src = (match[0].match(/src="([^"]+)"/) || [])[1];
+			if (src && frSrcs.includes(src)) {
+				enMatches.push({ src, start: match.index, end: match.index + match[0].length, text: match[0] });
+			}
+		}
+
+		if (enMatches.length !== frSrcs.length) {
+			continue; // couldn't cleanly find every image for this gallery — skip rather than guess
+		}
+		enMatches.sort((a, b) => a.start - b.start);
+
+		// Require the matched EN blocks to be contiguous (only whitespace
+		// between them) — if something unexpected sits between them, this
+		// isn't the simple "one gallery fragmented into adjacent siblings"
+		// shape this function is designed for, so skip rather than risk
+		// deleting unrelated content.
+		let contiguous = true;
+		for (let i = 1; i < enMatches.length; i++) {
+			const gap = result.slice(enMatches[i - 1].end, enMatches[i].start);
+			if (gap.trim() !== '') {
+				contiguous = false;
+				break;
+			}
+		}
+		if (!contiguous) {
+			continue;
+		}
+
+		const enBySrc = new Map(enMatches.map((m) => [m.src, m.text]));
+		const orderedEnBlocks = frSrcs.map((src) => enBySrc.get(src));
+		if (orderedEnBlocks.some((block) => !block)) {
+			continue;
+		}
+
+		const galleryAttrs = (frGallery.match(/<!-- wp:gallery ([^>]*)-->/) || [])[1] || '{}';
+		const figureClass =
+			(frGallery.match(/<figure class="([^"]*)"/) || [])[1] || 'wp-block-gallery has-nested-images columns-default';
+
+		const first = enMatches[0];
+		const last = enMatches[enMatches.length - 1];
+		const replacement =
+			`<!-- wp:gallery ${galleryAttrs.trim()} -->\n` +
+			`<figure class="${figureClass}">` +
+			orderedEnBlocks.join('\n\n') +
+			`</figure>\n<!-- /wp:gallery -->`;
+
+		result = result.slice(0, first.start) + replacement + result.slice(last.end);
+		changed = true;
+		// Re-run subsequent gallery lookups against the updated string —
+		// positions shift after each replacement, and EN_IMAGE_BLOCK_PATTERN_G
+		// gets reset (lastIndex = 0) at the top of the next loop iteration.
+	}
+
+	return { result, changed };
+}
+
+/**
  * Rewrites links to other uneiaparjour.fr articles so they point at the EN
  * translation when one exists yet, per the fr_slug -> en_slug map built from
  * state.json. Falls back to leaving the original FR link untouched when no
