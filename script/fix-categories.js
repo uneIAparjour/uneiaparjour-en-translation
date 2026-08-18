@@ -70,7 +70,15 @@ async function auditAndFix(taxonomy) {
 	const anomalies = [];
 
 	for (const row of rows) {
-		if (row.count === 0) {
+		// real_count (any post status) drives every decision here, not
+		// count (published-only) — this project's EN posts stay in draft
+		// for review, so count is permanently 0 for every EN term
+		// regardless of how many drafts actually use it. Trusting count
+		// would have deleted actively-used categories (found live
+		// 2026-08-18, caught only because the delete calls happened to
+		// fail for an unrelated permissions reason first).
+		const realCount = row.real_count;
+		if (realCount === 0) {
 			console.log(`[${taxonomy}] Delete empty "${row.name}" (#${row.term_id}, slug ${row.slug})`);
 			if (!DRY_RUN) {
 				try {
@@ -86,10 +94,10 @@ async function auditAndFix(taxonomy) {
 			} else {
 				deleted.push(row);
 			}
-		} else if (row.count <= 2) {
+		} else if (realCount <= 2) {
 			flagged.push(row);
 		} else if (row.lang === 'en') {
-			console.log(`[${taxonomy}] Relabel "${row.name}" (#${row.term_id}, ${row.count} posts) en -> fr`);
+			console.log(`[${taxonomy}] Relabel "${row.name}" (#${row.term_id}, ${realCount} posts) en -> fr`);
 			if (!DRY_RUN) {
 				try {
 					await wp.setTermLanguage(row.term_id, 'fr');
@@ -106,7 +114,7 @@ async function auditAndFix(taxonomy) {
 			// nothing here would be worse than a slightly noisy report.
 			anomalies.push(row);
 		}
-		// else: row.lang === 'fr' with count >= 3 — already correct, no action.
+		// else: row.lang === 'fr' with real_count >= 3 — already correct, no action.
 	}
 
 	return { relabeled, deleted, flagged, failed, anomalies };
@@ -197,7 +205,7 @@ async function main() {
 		console.log('');
 		console.log('--- A verifier a la main (1-2 articles, jamais touche automatiquement) ---');
 		for (const row of flaggedAll) {
-			console.log(`  "${row.name}" (#${row.term_id}, slug ${row.slug}, ${row.count} article(s), lang=${row.lang})`);
+			console.log(`  "${row.name}" (#${row.term_id}, slug ${row.slug}, ${row.real_count} article(s), lang=${row.lang})`);
 		}
 	}
 
@@ -215,7 +223,7 @@ async function main() {
 		console.log('');
 		console.log('--- Anomalies (langue Polylang inattendue, non touche) ---');
 		for (const row of anomaliesAll) {
-			console.log(`  "${row.name}" (#${row.term_id}, slug ${row.slug}, ${row.count} article(s), lang=${row.lang ?? '(vide)'})`);
+			console.log(`  "${row.name}" (#${row.term_id}, slug ${row.slug}, ${row.real_count} article(s), lang=${row.lang ?? '(vide)'})`);
 		}
 	}
 
