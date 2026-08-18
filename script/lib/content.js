@@ -136,13 +136,14 @@ const WP_GALLERY_PATTERN = /<!-- wp:gallery [^>]*-->[\s\S]*?<!-- \/wp:gallery --
 // backreference (\1) ties the closing comment to the same type as the
 // opening one, so e.g. a wp:image block can never be mis-closed by an
 // unrelated /wp:video. Needed because a video's block TYPE label can't be
-// trusted: FR itself sometimes mislabels a video as wp:image at authoring
-// time (found live 2026-08-18 on LongCat-Video and Flow + Gemini Omni — a
-// <video> pasted through a workflow that doesn't produce a real wp:video
-// block), and EN inherits whatever mislabeling FR had *at translation time*
-// even after FR itself later gets cleaned up to a proper wp:video block.
+// trusted: FR itself sometimes mislabels a video or audio embed as wp:image
+// at authoring time (found live 2026-08-18 on LongCat-Video, Flow + Gemini
+// Omni, and Kyutai Pocket TTS's audio samples — media pasted through a
+// workflow that doesn't produce a real wp:video/wp:audio block), and EN
+// inherits whatever mislabeling FR had *at translation time* even after FR
+// itself later gets cleaned up to a proper wp:video/wp:audio block.
 const ANY_BLOCK_PATTERN = /<!-- wp:([a-z][\w-]*(?:\/[\w-]+)?) ?[^>]*-->[\s\S]*?<!-- \/wp:\1 -->/g;
-const HAS_MEDIA_SRC = /<(?:img|video)\b[^>]*\bsrc="/i;
+const HAS_MEDIA_SRC = /<(?:img|video|audio)\b[^>]*\bsrc="/i;
 
 function extractTopLevelMediaBlocks(raw) {
 	WP_GALLERY_PATTERN.lastIndex = 0;
