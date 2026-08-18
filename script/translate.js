@@ -213,19 +213,14 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 
 	await wp.linkTranslations(post.id, enId);
 
-	// WP's slug-uniqueness check runs at creation time, before Polylang knows
-	// this post is "en" (language is only set by the /link call just above),
-	// so it sees a collision with the FR original and appends "-2". Polylang
-	// allows identical slugs across languages once the language is actually
-	// known — re-applying the clean slug now, after linking, lets it through.
-	if (isNewPost) {
-		const check = await wp.getPost(enId);
-		if (check.slug !== post.slug) {
-			await wp.updatePost(enId, { slug: post.slug });
-			console.log(`FR #${post.id}: corrected EN slug "${check.slug}" -> "${post.slug}".`);
-		}
-	}
-
+	// WP's slug-uniqueness check appends "-2" when the EN slug collides with
+	// the FR original. Confirmed via live testing (2026-08-17) that this is
+	// NOT fixable from our side: even Polylang's own native "add translation"
+	// UI hits the same "-2" on this install, with no script or REST call
+	// involved at all. Accepted as a permanent cosmetic limitation of this
+	// WordPress/Polylang install — translation linking, hreflang, and the
+	// language switcher all work fine via Polylang's internal translation
+	// group, independent of the literal slug text. No correction attempted.
 	const enPostFinal = await wp.getPost(enId);
 	state[post.id] = {
 		fr_slug: post.slug,
