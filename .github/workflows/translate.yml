@@ -27,8 +27,12 @@ on:
         description: 'Fix wp:image lightbox mismatches + broken gallery HTML (2026-08-18 bug) instead of translating'
         type: boolean
         default: false
+      repair_galleries:
+        description: 'Restore WP Gallery column layouts lost on already-translated posts (2026-08-18 bug) instead of translating'
+        type: boolean
+        default: false
       only_fr_id:
-        description: 'With repair_image_blocks: limit to one FR post ID (leave empty for all)'
+        description: 'With repair_image_blocks/repair_galleries: limit to one FR post ID (leave empty for all)'
         type: string
         default: ''
 
@@ -63,6 +67,14 @@ jobs:
             ARGS="--repair-images"
           elif [ "${{ inputs.repair_image_blocks }}" = "true" ]; then
             ARGS="--repair-image-blocks"
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              ARGS="$ARGS --dry-run"
+            fi
+            if [ -n "${{ inputs.only_fr_id }}" ]; then
+              ARGS="$ARGS --only-fr-id=${{ inputs.only_fr_id }}"
+            fi
+          elif [ "${{ inputs.repair_galleries }}" = "true" ]; then
+            ARGS="--repair-galleries"
             if [ "${{ inputs.dry_run }}" = "true" ]; then
               ARGS="$ARGS --dry-run"
             fi
