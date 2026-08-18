@@ -285,7 +285,7 @@ async function repairLinks(state) {
 		if (repaired !== enPost.content.rendered) {
 			await wp.updatePost(entry.en_id, { content: repaired });
 			updatedCount += 1;
-			console.log(`Repaired links in EN post ${entry.en_id} (FR #${frId}).`);
+			console.log(`Repaired links in EN post (FR #${frId}).`);
 		}
 	}
 
