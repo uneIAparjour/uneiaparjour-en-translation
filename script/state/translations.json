@@ -71,6 +71,33 @@
     "last_error": null,
     "updated_at": "2026-08-19T21:02:39.262Z"
   },
+  "17363": {
+    "fr_slug": "happycapy",
+    "en_id": 18877,
+    "en_slug": "",
+    "source_hash": "ea55b1fc8a3a744ca9d98b34f1c4fc08a74ed5f1164aa109cca9525bd3122c25",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T21:44:47.233Z"
+  },
+  "17394": {
+    "fr_slug": "manualfig",
+    "en_id": 18875,
+    "en_slug": "",
+    "source_hash": "2aa940de00313c5dd7781781df74cf747f000350afc5bef29ded6230e8bbd854",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T21:44:34.977Z"
+  },
+  "17399": {
+    "fr_slug": "drafted",
+    "en_id": 18872,
+    "en_slug": "",
+    "source_hash": "b610a846619d4e5267e7f8ae15f0c55768351d26c18ae19dc85d9bc02032fa66",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T21:44:22.819Z"
+  },
   "17417": {
     "fr_slug": "clarify-ai",
     "en_id": 18767,
