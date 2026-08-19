@@ -1,19 +1,19 @@
 import * as wp from './lib/wp.js';
 
 /**
- * One-off diagnostic (2026-08-19): isolates whether linking two posts as
- * Polylang translations (tb_link_translations -> pll_set_post_language +
- * pll_save_post_translations) is what corrupts an EN post's categories
- * after they were correctly set at creation time. Every EN post created
- * tonight ended up with its FR category ids instead of the correct EN ones
- * that createOrGetTerm() (confirmed via debug-resolve-term.js) actually
- * resolves — the two known-safe pieces (term resolution, Polylang taxonomy
- * sync setting, which is off) don't explain it, so this checks the one
- * remaining step in translate.js's sequence: /link runs AFTER categories
- * are set on the new post.
+ * One-off diagnostic (2026-08-19), v2: confirmed a freshly-created post has
+ * no Polylang language yet, so Polylang treats it as the site default
+ * language and silently swaps any EN-language category assigned at
+ * creation time for its FR counterpart (found live: creating a post with
+ * categories:[431] came back as categories:[10], even before /link ran).
  *
- * Creates two throwaway draft posts (not linked to anything real), checks
- * categories before and after linking them, then deletes both.
+ * This tests the fix: create WITHOUT categories, link translations first
+ * (which sets the post's language to 'en' via pll_set_post_language), THEN
+ * set categories in a separate update call — once the post's language is
+ * actually 'en', Polylang should accept the EN-language term.
+ *
+ * Creates two throwaway draft posts (not linked to anything real), then
+ * deletes both.
  *
  * Run: node debug-link-categories.js
  */
@@ -22,26 +22,21 @@ async function main() {
 	const frPost = await wp.createPost({ title: 'DEBUG TEST FR (safe to delete)', status: 'draft', content: 'test' });
 	console.log(`  FR test post: #${frPost.id}`);
 
-	console.log('Creating throwaway EN test post with categories: [431]...');
-	const enPost = await wp.createPost({
-		title: 'DEBUG TEST EN (safe to delete)',
-		status: 'draft',
-		content: 'test',
-		categories: [431],
-	});
+	console.log('Creating throwaway EN test post WITHOUT categories...');
+	const enPost = await wp.createPost({ title: 'DEBUG TEST EN (safe to delete)', status: 'draft', content: 'test' });
 	console.log(`  EN test post: #${enPost.id}`);
 
-	const beforeLink = await wp.getPost(enPost.id);
-	console.log('Categories BEFORE linking:', JSON.stringify(beforeLink.categories));
-
-	console.log('Linking as FR/EN translations...');
+	console.log('Linking as FR/EN translations (sets language to en)...');
 	await wp.linkTranslations(frPost.id, enPost.id);
 
-	const afterLink = await wp.getPost(enPost.id);
-	console.log('Categories AFTER linking:', JSON.stringify(afterLink.categories));
+	console.log('Now setting categories: [431] via a separate update call...');
+	await wp.updatePost(enPost.id, { categories: [431] });
 
-	const changed = JSON.stringify(beforeLink.categories) !== JSON.stringify(afterLink.categories);
-	console.log(changed ? '\n>>> CONFIRMED: linking changed the categories.' : '\n>>> Linking did NOT change the categories.');
+	const after = await wp.getPost(enPost.id);
+	console.log('Categories AFTER language-then-categories:', JSON.stringify(after.categories));
+
+	const worked = JSON.stringify(after.categories) === JSON.stringify([431]);
+	console.log(worked ? '\n>>> FIX CONFIRMED: categories stuck as [431].' : '\n>>> Still broken.');
 
 	console.log('\nCleaning up test posts...');
 	await wp.deletePost(frPost.id);
