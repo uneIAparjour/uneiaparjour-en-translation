@@ -92,11 +92,11 @@
   "17466": {
     "fr_slug": "veritas-source",
     "en_id": 18765,
-    "en_slug": "",
-    "source_hash": "f7fa10b8d128fda606c0b908759923bd698750517252735caa6f114cbb039ab3",
+    "en_slug": "veritas-source-2",
+    "source_hash": "bee27044d203f08d18b5e4a2b481e8b00ab26860537809fd45a2e72e85fd1788",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-19T06:54:06.106Z"
+    "updated_at": "2026-08-19T21:43:25.237Z"
   },
   "17501": {
     "fr_slug": "socrati",
