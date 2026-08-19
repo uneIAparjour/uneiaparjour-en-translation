@@ -8,9 +8,23 @@
  * non-greedy regex match stops at the first inner </figure>, leaving the
  * outer gallery tag unclosed (found live 2026-08-18 on a Vunote gallery,
  * surfaced as "contenu invalide" in the block editor).
+ *
+ * A full nested HTML document (a wp:html block whose content is itself a
+ * complete <!doctype html>...</html> page — some articles embed a whole
+ * self-contained interactive report this way) is handled as a third special
+ * case, atomic like figure, for the same reason: it has its own <p>/<h1-6>
+ * tags inside, which SIMPLE_BLOCK_PATTERN would otherwise match individually
+ * as if they were top-level WordPress blocks, shredding the document and
+ * scattering bogus "wp:paragraph" comments through the middle of its <head>
+ * and <body> (found live 2026-08-19 on ResearchDeck: the embedded report's
+ * colors broke because its <style> block ended up detached from a
+ * consistent <head>/<body>, once its internal paragraphs were sliced out
+ * mid-document).
  */
 const SIMPLE_BLOCK_PATTERN = /<(p|h[1-6]|ul|ol|blockquote|table)\b[^>]*>[\s\S]*?<\/\1>/gi;
 const FIGURE_TAG_PATTERN = /<(\/?)figure\b[^>]*>/gi;
+const DOCTYPE_MARKER = '<!doctype html';
+const HTML_CLOSE_MARKER = '</html>';
 
 function findBalancedFigureEnd(html, openIndex) {
 	FIGURE_TAG_PATTERN.lastIndex = openIndex;
@@ -27,49 +41,71 @@ function findBalancedFigureEnd(html, openIndex) {
 
 export function splitBlocks(html) {
 	const blocks = [];
+	const lowerHtml = html.toLowerCase();
 	let cursor = 0;
 	while (cursor < html.length) {
 		const figureIdx = html.indexOf('<figure', cursor);
+		const doctypeIdx = lowerHtml.indexOf(DOCTYPE_MARKER, cursor);
 		SIMPLE_BLOCK_PATTERN.lastIndex = cursor;
 		const simpleMatch = SIMPLE_BLOCK_PATTERN.exec(html);
 
-		if (figureIdx !== -1 && (!simpleMatch || figureIdx <= simpleMatch.index)) {
+		const candidates = [
+			{ type: 'figure', idx: figureIdx },
+			{ type: 'doc', idx: doctypeIdx },
+			{ type: 'simple', idx: simpleMatch ? simpleMatch.index : -1 },
+		].filter((c) => c.idx !== -1);
+
+		if (candidates.length === 0) break;
+		candidates.sort((a, b) => a.idx - b.idx);
+		const winner = candidates[0];
+
+		if (winner.type === 'figure') {
 			const end = findBalancedFigureEnd(html, figureIdx);
 			if (end === -1) break;
 			blocks.push({ tag: 'figure', html: html.slice(figureIdx, end) });
 			cursor = end;
 			continue;
 		}
-		if (simpleMatch) {
-			blocks.push({ tag: simpleMatch[1].toLowerCase(), html: simpleMatch[0] });
-			cursor = simpleMatch.index + simpleMatch[0].length;
+		if (winner.type === 'doc') {
+			const closeIdx = lowerHtml.indexOf(HTML_CLOSE_MARKER, doctypeIdx);
+			if (closeIdx === -1) break; // no matching close — bail rather than guess
+			const end = closeIdx + HTML_CLOSE_MARKER.length;
+			blocks.push({ tag: 'doc', html: html.slice(doctypeIdx, end) });
+			cursor = end;
 			continue;
 		}
-		break;
+		blocks.push({ tag: simpleMatch[1].toLowerCase(), html: simpleMatch[0] });
+		cursor = simpleMatch.index + simpleMatch[0].length;
 	}
 	return blocks;
 }
 
 /**
- * Strips figure blocks (images/galleries) out of rendered HTML before it
- * goes to Azure, replacing each with a small HTML-comment placeholder.
- * Figures carry no translatable text on this site (image alt is always
- * empty) and their markup is what pushed several long articles over Azure's
- * 50,000-char request cap (found live 2026-08-19 on ResearchDeck: 104,635
- * chars of content, ~1,500 of which was actual prose — the rest was
- * gallery/lightbox boilerplate). It's pure waste even under the cap:
- * fixMediaBlocksFromSource() always discards whatever Azure did to figure
- * blocks anyway, replacing them with FR's raw source verbatim (images are
- * never translated) — so nothing is lost by not translating them in the
- * first place. HTML comments are the placeholder vehicle because Azure's
- * tag_handling=html mode translates text nodes only, leaving comments
- * untouched by design.
+ * Strips figure blocks (images/galleries) and embedded nested-HTML-document
+ * blocks (see splitBlocks' "doc" case) out of rendered HTML before it goes
+ * to Azure, replacing each with a small HTML-comment placeholder. Figures
+ * carry no translatable text on this site (image alt is always empty) and
+ * their markup is what pushed several long articles over Azure's 50,000-char
+ * request cap (found live 2026-08-19 on ResearchDeck: 104,635 chars of
+ * content, ~1,500 of which was actual prose — the rest was gallery/lightbox
+ * boilerplate). It's pure waste even under the cap: fixMediaBlocksFromSource()
+ * always discards whatever Azure did to figure blocks anyway, replacing them
+ * with FR's raw source verbatim (images are never translated) — so nothing
+ * is lost by not translating them in the first place. Nested HTML documents
+ * are stripped for a different reason: sending their internal text to Azure
+ * risked nothing on its own, but reassembling the result later means running
+ * splitBlocks() on it a second time, which shreds it (see splitBlocks'
+ * comment) — leaving it untranslated but visually intact is a strict
+ * improvement over translated-but-broken, and it's a rare enough case that
+ * losing translation on it is an acceptable trade. HTML comments are the
+ * placeholder vehicle because Azure's tag_handling=html mode translates text
+ * nodes only, leaving comments untouched by design.
  */
 export function stripFigurePlaceholders(html) {
 	const placeholders = new Map();
 	let i = 0;
 	const blocks = splitBlocks(html).map((block) => {
-		if (block.tag !== 'figure') {
+		if (block.tag !== 'figure' && block.tag !== 'doc') {
 			return block.html;
 		}
 		const key = `<!--FIGPLACEHOLDER${i}-->`;
