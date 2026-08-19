@@ -1,7 +1,14 @@
 import { readFile } from 'node:fs/promises';
 import * as wp from './lib/wp.js';
 import { translateBatch } from './lib/azure.js';
-import { splitBlocks, wrapGutenberg, rewriteInternalLinks, fixMediaBlocksFromSource } from './lib/content.js';
+import {
+	splitBlocks,
+	wrapGutenberg,
+	rewriteInternalLinks,
+	fixMediaBlocksFromSource,
+	stripFigurePlaceholders,
+	restoreFigurePlaceholders,
+} from './lib/content.js';
 import { mapTerms } from './lib/taxonomy.js';
 import { loadState, saveState, hashSource } from './lib/state.js';
 import { loadAllowedSlugs } from './lib/toolsDataset.js';
@@ -180,12 +187,24 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 
 	console.log(`FR #${post.id} "${title}": translating...`);
 
+	// Strip image/gallery markup out of content before it ever reaches Azure
+	// — see stripFigurePlaceholders() in content.js for why (they're never
+	// actually translated; the final content always comes from FR's raw
+	// source instead) and how a giant gallery-heavy article like
+	// ResearchDeck (104,635 chars of content, ~1,500 of it actual text) blew
+	// past Azure's 50,000-char cap on nothing but boilerplate.
+	const {
+		text: contentForTranslation,
+		blocks: contentBlocks,
+		placeholders: figurePlaceholders,
+	} = stripFigurePlaceholders(content);
+
 	// One Azure call for all four texts, not four parallel calls — F0's rate
 	// limit reliably 429s on 4 simultaneous requests per post (found during
 	// the first live test). tag_handling=html is safe for the plain-text
 	// fields too (no markup to mistranslate), so they can share the request.
 	const fields = ['title', 'content', 'yoastTitle', 'yoastMetadesc'];
-	const values = [title, content, yoastTitle, yoastMetadesc];
+	const values = [title, contentForTranslation, yoastTitle, yoastMetadesc];
 	const nonEmpty = values
 		.map((value, index) => ({ value, field: fields[index] }))
 		.filter((entry) => entry.value);
@@ -211,8 +230,43 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 				translatedByField[entry.field] = othersTranslated[i];
 			});
 		}
-		const [contentTranslated] = await translateBatch([contentEntry.value], { isHtml: true, glossary });
-		translatedByField.content = contentTranslated;
+		// Figure-stripping (above) handles the common cause of oversized
+		// content, but a handful of embed-heavy articles (e.g. ResearchDeck:
+		// still 61,147 chars of surviving prose + a document-viewer embed
+		// after stripping) can clear Azure's 50,000-char cap on their own.
+		// Last resort: split along the same block boundaries
+		// stripFigurePlaceholders already computed (never re-parse
+		// contentForTranslation itself — splitBlocks() would silently drop
+		// the placeholder comments, since they match none of its recognized
+		// tags) into sub-cap chunks, each its own Azure call, then rejoin.
+		const CONTENT_HARD_CAP = 45000;
+		if (contentEntry.value.length > CONTENT_HARD_CAP) {
+			const chunks = [];
+			let current = [];
+			let currentLength = 0;
+			for (const blockText of contentBlocks) {
+				if (currentLength + blockText.length > CONTENT_HARD_CAP && current.length > 0) {
+					chunks.push(current.join('\n\n'));
+					current = [];
+					currentLength = 0;
+				}
+				current.push(blockText);
+				currentLength += blockText.length;
+			}
+			if (current.length > 0) {
+				chunks.push(current.join('\n\n'));
+			}
+
+			const translatedChunks = [];
+			for (const chunk of chunks) {
+				const [translated] = await translateBatch([chunk], { isHtml: true, glossary });
+				translatedChunks.push(translated);
+			}
+			translatedByField.content = translatedChunks.join('\n\n');
+		} else {
+			const [contentTranslated] = await translateBatch([contentEntry.value], { isHtml: true, glossary });
+			translatedByField.content = contentTranslated;
+		}
 	} else {
 		const translatedValues =
 			nonEmpty.length > 0 ? await translateBatch(nonEmpty.map((entry) => entry.value), { isHtml: true, glossary }) : [];
@@ -222,7 +276,7 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 	}
 
 	const translatedTitle = translatedByField.title || '';
-	const translatedContent = translatedByField.content || '';
+	const translatedContent = restoreFigurePlaceholders(translatedByField.content || '', figurePlaceholders);
 	const translatedYoastTitle = translatedByField.yoastTitle || '';
 	const translatedYoastMetadesc = translatedByField.yoastMetadesc || '';
 

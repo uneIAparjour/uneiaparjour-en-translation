@@ -51,6 +51,50 @@ export function splitBlocks(html) {
 }
 
 /**
+ * Strips figure blocks (images/galleries) out of rendered HTML before it
+ * goes to Azure, replacing each with a small HTML-comment placeholder.
+ * Figures carry no translatable text on this site (image alt is always
+ * empty) and their markup is what pushed several long articles over Azure's
+ * 50,000-char request cap (found live 2026-08-19 on ResearchDeck: 104,635
+ * chars of content, ~1,500 of which was actual prose — the rest was
+ * gallery/lightbox boilerplate). It's pure waste even under the cap:
+ * fixMediaBlocksFromSource() always discards whatever Azure did to figure
+ * blocks anyway, replacing them with FR's raw source verbatim (images are
+ * never translated) — so nothing is lost by not translating them in the
+ * first place. HTML comments are the placeholder vehicle because Azure's
+ * tag_handling=html mode translates text nodes only, leaving comments
+ * untouched by design.
+ */
+export function stripFigurePlaceholders(html) {
+	const placeholders = new Map();
+	let i = 0;
+	const blocks = splitBlocks(html).map((block) => {
+		if (block.tag !== 'figure') {
+			return block.html;
+		}
+		const key = `<!--FIGPLACEHOLDER${i}-->`;
+		placeholders.set(key, block.html);
+		i += 1;
+		return key;
+	});
+	// `blocks` is exposed alongside the joined `text` so callers that need to
+	// chunk an unusually large result (see translate.js's CONTENT_HARD_CAP)
+	// can split along these exact boundaries instead of re-parsing `text`
+	// with splitBlocks() — a second pass would silently drop the
+	// "<!--FIGPLACEHOLDERn-->" comments (they match none of splitBlocks'
+	// recognized tags), losing the figures they stand in for.
+	return { text: blocks.join('\n\n'), blocks, placeholders };
+}
+
+export function restoreFigurePlaceholders(html, placeholders) {
+	let result = html;
+	for (const [key, original] of placeholders) {
+		result = result.replace(key, original);
+	}
+	return result;
+}
+
+/**
  * Wraps each block in the Gutenberg block comments WordPress expects, so the
  * resulting post stays normally editable in the block editor instead of
  * showing up as unrecognized/classic content.
