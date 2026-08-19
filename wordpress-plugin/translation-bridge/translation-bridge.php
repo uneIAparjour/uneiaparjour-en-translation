@@ -352,40 +352,61 @@ function tb_create_term( WP_REST_Request $request ) {
 	$name       = $request->get_param( 'name' );
 	$fr_term_id = $request->get_param( 'fr_term_id' );
 
-	// A plain name lookup ignores language entirely, which used to merge new
-	// EN posts into old, same-named categories that were actually still
-	// French underneath (found 2026-08-18: legacy categories/tags predating
-	// proper Polylang setup are mislabeled "en" site-wide, see
-	// /set-term-language above). Only reuse an existing term if it's
-	// confirmed to actually be English already — otherwise a French term
-	// with an identical translated name (e.g. "chatbot", "images",
-	// "application") would get silently reused for EN content too.
-	$existing = get_term_by( 'name', $name, $taxonomy );
-	$is_usable_existing = $existing
-		&& function_exists( 'pll_get_term_language' )
-		&& 'en' === pll_get_term_language( $existing->term_id );
+	// Prefer Polylang's own translation-group link when we have the FR term
+	// id — it's the authoritative source (every successful creation below
+	// already calls pll_save_term_translations) and doesn't depend on a
+	// name lookup at all. Fixes a real bug found live 2026-08-19: the old
+	// name+language check further down (get_term_by('name', ...) +
+	// pll_get_term_language()) stopped recognizing manually-renamed EN
+	// terms as reusable — exact cause unconfirmed (WP term-name cache or a
+	// Polylang language-resolution quirk after a Quick-Edit rename), but the
+	// effect was silent duplicate recreation on every run that needed that
+	// category, reproducing the exact old deterministic "-en-{fr_term_id}"
+	// slug each time. get_term() double-checks the linked id still exists,
+	// in case a translation-group link survived pointing at a term that was
+	// since deleted (e.g. during manual cleanup of the resulting duplicates).
+	$existing_en_id = ( $fr_term_id && function_exists( 'pll_get_term' ) )
+		? (int) pll_get_term( (int) $fr_term_id, 'en' )
+		: 0;
+	$linked_term = $existing_en_id ? get_term( $existing_en_id, $taxonomy ) : null;
 
-	if ( $is_usable_existing ) {
-		$term_id = $existing->term_id;
+	if ( $linked_term && ! is_wp_error( $linked_term ) ) {
+		$term_id = $existing_en_id;
 		$created = false;
 	} else {
-		$result = wp_insert_term( $name, $taxonomy );
-		if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
-			// WordPress itself refuses two terms with the identical display
-			// name under the same parent, independent of Polylang and of the
-			// slug — hit live 2026-08-18 once legacy categories were
-			// relabelled back to "fr" (e.g. "images" the category still
-			// existed in French, blocking a same-named English one). An
-			// explicit, unique slug sidesteps it; the visible name is
-			// untouched, so it still displays correctly in English.
-			$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
-			$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
+		// Fallback: name-based lookup, only reusing a term already confirmed
+		// English — a plain name lookup ignores language entirely, which
+		// used to merge new EN posts into old, same-named categories that
+		// were actually still French underneath (found 2026-08-18: legacy
+		// categories/tags predating proper Polylang setup are mislabeled
+		// "en" site-wide, see /set-term-language above).
+		$existing = get_term_by( 'name', $name, $taxonomy );
+		$is_usable_existing = $existing
+			&& function_exists( 'pll_get_term_language' )
+			&& 'en' === pll_get_term_language( $existing->term_id );
+
+		if ( $is_usable_existing ) {
+			$term_id = $existing->term_id;
+			$created = false;
+		} else {
+			$result = wp_insert_term( $name, $taxonomy );
+			if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
+				// WordPress itself refuses two terms with the identical display
+				// name under the same parent, independent of Polylang and of the
+				// slug — hit live 2026-08-18 once legacy categories were
+				// relabelled back to "fr" (e.g. "images" the category still
+				// existed in French, blocking a same-named English one). An
+				// explicit, unique slug sidesteps it; the visible name is
+				// untouched, so it still displays correctly in English.
+				$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
+				$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
+			}
+			if ( is_wp_error( $result ) ) {
+				return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
+			}
+			$term_id = $result['term_id'];
+			$created = true;
 		}
-		if ( is_wp_error( $result ) ) {
-			return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
-		}
-		$term_id = $result['term_id'];
-		$created = true;
 	}
 
 	if ( function_exists( 'pll_set_term_language' ) ) {
