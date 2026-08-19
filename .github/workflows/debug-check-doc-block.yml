@@ -1,0 +1,32 @@
+name: One-off - Check nested HTML doc block integrity (read-only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_id:
+        description: 'EN post ID'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  debug-check-doc-block:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check doc block integrity
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: node debug-check-doc-block.js "${{ inputs.post_id }}"
