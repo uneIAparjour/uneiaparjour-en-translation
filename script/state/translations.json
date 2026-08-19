@@ -3,49 +3,49 @@
     "fr_slug": "replit-slides",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:35:56.669Z"
+    "updated_at": "2026-08-19T10:42:06.156Z"
   },
   "16694": {
     "fr_slug": "knowly",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:35:44.669Z"
+    "updated_at": "2026-08-19T10:41:54.134Z"
   },
   "16868": {
     "fr_slug": "nodalist",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:35:32.613Z"
+    "updated_at": "2026-08-19T10:41:41.789Z"
   },
   "16894": {
     "fr_slug": "saveto",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:35:20.262Z"
+    "updated_at": "2026-08-19T10:41:30.145Z"
   },
   "16951": {
     "fr_slug": "mixboard",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:35:08.626Z"
+    "updated_at": "2026-08-19T10:41:17.753Z"
   },
   "17146": {
     "fr_slug": "workinprocess",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:34:56.270Z"
+    "updated_at": "2026-08-19T10:41:06.095Z"
   },
   "17212": {
     "fr_slug": "arena",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:34:44.600Z"
+    "updated_at": "2026-08-19T10:40:54.100Z"
   },
   "17305": {
     "fr_slug": "lium",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:34:32.712Z"
+    "updated_at": "2026-08-19T10:40:42.089Z"
   },
   "17417": {
     "fr_slug": "clarify-ai",
@@ -78,7 +78,7 @@
     "fr_slug": "socrati",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:34:20.240Z"
+    "updated_at": "2026-08-19T10:40:30.134Z"
   },
   "17593": {
     "fr_slug": "makeinfographic-ai",
@@ -111,7 +111,7 @@
     "fr_slug": "floor-plan-maker",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:34:08.616Z"
+    "updated_at": "2026-08-19T10:40:17.729Z"
   },
   "17678": {
     "fr_slug": "imaginprompt",
@@ -189,7 +189,7 @@
     "fr_slug": "learnkata",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:33:56.223Z"
+    "updated_at": "2026-08-19T10:40:06.116Z"
   },
   "17803": {
     "fr_slug": "briefed",
@@ -204,7 +204,7 @@
     "fr_slug": "bubul",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:33:44.216Z"
+    "updated_at": "2026-08-19T10:39:54.093Z"
   },
   "17842": {
     "fr_slug": "checklistfox",
@@ -237,7 +237,7 @@
     "fr_slug": "video-transcription-ai",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:33:32.211Z"
+    "updated_at": "2026-08-19T10:39:42.141Z"
   },
   "17891": {
     "fr_slug": "muse-image",
@@ -351,7 +351,7 @@
     "fr_slug": "researchdeck",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-08-19T10:33:20.226Z"
+    "updated_at": "2026-08-19T10:39:30.084Z"
   },
   "18089": {
     "fr_slug": "aistoryhub",
