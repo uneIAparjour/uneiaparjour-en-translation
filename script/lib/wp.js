@@ -92,6 +92,12 @@ export async function updatePost(id, data) {
 	});
 }
 
+export async function deletePost(id) {
+	return wpFetch(`/wp/v2/posts/${id}?force=true`, {
+		method: 'DELETE',
+	});
+}
+
 export async function linkTranslations(frId, enId) {
 	return wpFetch('/translation-bridge/v1/link', {
 		method: 'POST',
