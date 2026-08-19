@@ -30,7 +30,7 @@
     "fr_slug": "socrati",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T06:53:26.325Z"
+    "updated_at": "2026-08-19T07:36:14.507Z"
   },
   "17593": {
     "fr_slug": "makeinfographic-ai",
@@ -63,7 +63,7 @@
     "fr_slug": "floor-plan-maker",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T06:52:37.237Z"
+    "updated_at": "2026-08-19T07:35:37.458Z"
   },
   "17678": {
     "fr_slug": "imaginprompt",
@@ -141,7 +141,7 @@
     "fr_slug": "learnkata",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T06:50:23.642Z"
+    "updated_at": "2026-08-19T07:33:23.031Z"
   },
   "17803": {
     "fr_slug": "briefed",
@@ -156,7 +156,7 @@
     "fr_slug": "bubul",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T06:49:15.039Z"
+    "updated_at": "2026-08-19T07:32:13.180Z"
   },
   "17842": {
     "fr_slug": "checklistfox",
@@ -189,7 +189,7 @@
     "fr_slug": "video-transcription-ai",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T06:46:36.808Z"
+    "updated_at": "2026-08-19T07:29:58.585Z"
   },
   "17891": {
     "fr_slug": "muse-image",
@@ -303,7 +303,7 @@
     "fr_slug": "researchdeck",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T06:43:19.253Z"
+    "updated_at": "2026-08-19T07:27:44.158Z"
   },
   "18089": {
     "fr_slug": "aistoryhub",
