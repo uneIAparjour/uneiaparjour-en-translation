@@ -1,0 +1,48 @@
+name: One-off - Pre-create EN categories/tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no writes, preview only)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  create-categories:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Pre-create missing EN categories/tags
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
+          node create-categories.js $ARGS
+
+      - name: Commit updated taxonomy cache
+        if: ${{ inputs.dry_run == 'false' }}
+        run: |
+          git config user.name "translation-bot"
+          git config user.email "actions@github.com"
+          git add config/taxonomy-map.json
+          git diff --cached --quiet || git commit -m "Cache newly pre-created EN category/tag ids [skip ci]"
+          git push

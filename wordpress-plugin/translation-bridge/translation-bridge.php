@@ -395,11 +395,21 @@ function tb_create_term( WP_REST_Request $request ) {
 				// name under the same parent, independent of Polylang and of the
 				// slug — hit live 2026-08-18 once legacy categories were
 				// relabelled back to "fr" (e.g. "images" the category still
-				// existed in French, blocking a same-named English one). An
-				// explicit, unique slug sidesteps it; the visible name is
-				// untouched, so it still displays correctly in English.
-				$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
+				// existed in French, blocking a same-named English one). Common
+				// case: the translated EN name equals (or case-insensitively
+				// matches) its own FR source name, e.g. "chatbot" -> "Chatbot".
+				// Try a clean "-en" slug first — readable, matches the naming
+				// convention used site-wide — before falling back to an
+				// id-suffixed one.
+				$slug   = sanitize_title( $name ) . '-en';
 				$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
+				if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
+					// Even the clean slug collided — e.g. two different FR terms
+					// translating to the same EN name. Fall back to a slug
+					// guaranteed unique via the FR term id.
+					$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
+					$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
+				}
 			}
 			if ( is_wp_error( $result ) ) {
 				return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
