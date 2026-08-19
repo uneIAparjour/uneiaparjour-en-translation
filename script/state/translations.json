@@ -1,4 +1,52 @@
 {
+  "16681": {
+    "fr_slug": "replit-slides",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:23:24.977Z"
+  },
+  "16694": {
+    "fr_slug": "knowly",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:23:13.116Z"
+  },
+  "16868": {
+    "fr_slug": "nodalist",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:23:00.987Z"
+  },
+  "16894": {
+    "fr_slug": "saveto",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:22:49.024Z"
+  },
+  "16951": {
+    "fr_slug": "mixboard",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:22:36.984Z"
+  },
+  "17146": {
+    "fr_slug": "workinprocess",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:22:24.604Z"
+  },
+  "17212": {
+    "fr_slug": "arena",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:22:12.965Z"
+  },
+  "17305": {
+    "fr_slug": "lium",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:22:00.959Z"
+  },
   "17417": {
     "fr_slug": "clarify-ai",
     "en_id": 18767,
@@ -29,8 +77,8 @@
   "17501": {
     "fr_slug": "socrati",
     "status": "failed",
-    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T07:36:14.507Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:21:48.669Z"
   },
   "17593": {
     "fr_slug": "makeinfographic-ai",
@@ -62,8 +110,8 @@
   "17655": {
     "fr_slug": "floor-plan-maker",
     "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T07:35:37.458Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:21:36.572Z"
   },
   "17678": {
     "fr_slug": "imaginprompt",
@@ -140,8 +188,8 @@
   "17772": {
     "fr_slug": "learnkata",
     "status": "failed",
-    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T07:33:23.031Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:21:24.943Z"
   },
   "17803": {
     "fr_slug": "briefed",
@@ -155,8 +203,8 @@
   "17811": {
     "fr_slug": "bubul",
     "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T07:32:13.180Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:21:12.946Z"
   },
   "17842": {
     "fr_slug": "checklistfox",
@@ -188,8 +236,8 @@
   "17887": {
     "fr_slug": "video-transcription-ai",
     "status": "failed",
-    "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-19T07:29:58.585Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:21:00.912Z"
   },
   "17891": {
     "fr_slug": "muse-image",
@@ -302,8 +350,8 @@
   "18075": {
     "fr_slug": "researchdeck",
     "status": "failed",
-    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-19T07:27:44.158Z"
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-08-19T10:20:48.691Z"
   },
   "18089": {
     "fr_slug": "aistoryhub",
