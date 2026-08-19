@@ -1,0 +1,36 @@
+name: One-off - Debug resolveTerm (live)
+
+on:
+  workflow_dispatch:
+    inputs:
+      fr_term_id:
+        description: 'FR category term id'
+        type: string
+        required: true
+      en_name:
+        description: 'EN name to try'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  debug-resolve-term:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Call createOrGetTerm directly
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: node debug-resolve-term.js "${{ inputs.fr_term_id }}" "${{ inputs.en_name }}"
