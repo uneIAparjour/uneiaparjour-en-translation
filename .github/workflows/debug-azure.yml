@@ -1,0 +1,36 @@
+name: One-off - Debug Azure Translator credentials
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  debug-azure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check secret shape (no values printed)
+        env:
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+        run: |
+          echo "Key length: ${#AZURE_TRANSLATOR_KEY}"
+          echo "Key first 4 chars: ${AZURE_TRANSLATOR_KEY:0:4}"
+          echo "Key last 4 chars: ${AZURE_TRANSLATOR_KEY: -4}"
+          echo "Region value: [$AZURE_TRANSLATOR_REGION]"
+          echo "Region length: ${#AZURE_TRANSLATOR_REGION}"
+
+      - name: Raw curl test against Azure Translator (bypasses our own code)
+        env:
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+        run: |
+          curl -sS -o response.json -w "HTTP status: %{http_code}\n" \
+            "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=fr&to=en" \
+            -H "Ocp-Apim-Subscription-Key: $AZURE_TRANSLATOR_KEY" \
+            -H "Ocp-Apim-Subscription-Region: $AZURE_TRANSLATOR_REGION" \
+            -H "Content-Type: application/json" \
+            -d '[{"text":"bonjour"}]'
+          echo "--- response body ---"
+          cat response.json
