@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Translation Bridge (Polylang + SEO)
  * Description: REST endpoint to link FR/EN post translations via Polylang, plus REST read/write access to Yoast SEO fields and translation-tracking meta that aren't exposed by default.
- * Version: 1.0.0
+ * Version: 1.8.0
  * Requires PHP: 7.4
  */
 
