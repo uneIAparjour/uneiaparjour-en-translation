@@ -17,6 +17,15 @@ if (!postId) {
 async function main() {
 	const post = await wp.getPost(parseInt(postId, 10));
 	const raw = post.raw_content || '';
+	console.log(`raw_content length: ${raw.length}`);
+	console.log(`raw_content type: ${typeof post.raw_content}`);
+	console.log('--- last 500 chars ---');
+	console.log(raw.slice(-500));
+	console.log('--- occurrences ---');
+	console.log('doctype count:', (raw.match(/<!doctype html/gi) || []).length);
+	console.log('</html> count:', (raw.match(/<\/html>/gi) || []).length);
+	console.log('<html count:', (raw.match(/<html\b/gi) || []).length);
+
 	const startIdx = raw.toLowerCase().indexOf('<!doctype html');
 	if (startIdx === -1) {
 		console.log('No <!doctype html> block found in this post.');
