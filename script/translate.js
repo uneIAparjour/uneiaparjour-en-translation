@@ -317,8 +317,19 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		// creation date overwriting the FR original) and got disabled.
 		...(isNewPost ? { date: post.date, date_gmt: post.date_gmt } : {}),
 		featured_media: post.featured_media || 0,
-		categories: enCategories,
-		tags: enTags,
+		// Categories/tags are deliberately omitted here for NEW posts — see
+		// the set-categories-after-link call below. A freshly-created post
+		// has no Polylang language yet, so it defaults to the site's and
+		// Polylang silently swaps any EN-language term for its FR
+		// counterpart to keep the post "consistent" with that assumed
+		// language (found live 2026-08-19: every EN post created that day
+		// came out entirely FR-tagged despite createOrGetTerm() correctly
+		// resolving EN term ids — confirmed by creating a throwaway post
+		// with categories:[431] and seeing it come back as [10], before
+		// /link even ran). Existing posts already have lang=en established
+		// from their original creation, so it's safe to include them
+		// directly here for updates.
+		...(isNewPost ? {} : { categories: enCategories, tags: enTags }),
 		meta: {
 			_translation_source_hash: currentHash,
 			_translation_locked: false,
@@ -354,6 +365,14 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 	}
 
 	await wp.linkTranslations(post.id, enId);
+
+	// Now that /link has set this post's Polylang language to 'en', it's
+	// safe to assign the EN-language categories/tags without Polylang
+	// downgrading them to their FR counterparts (see the payload comment
+	// above).
+	if (isNewPost) {
+		await wp.updatePost(enId, { categories: enCategories, tags: enTags });
+	}
 
 	const enPostFinal = await wp.getPost(enId);
 	state[post.id] = {
