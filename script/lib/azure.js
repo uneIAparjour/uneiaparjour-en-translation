@@ -18,7 +18,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  * per-post calls). A shared minimum interval covers every call site.
  */
 let lastCallAt = 0;
-const MIN_INTERVAL_MS = 6000; // bumped from 2000: still 429ing with 2s spacing (3rd live test) — looks like a rolling-window quota, not just a per-call gap
+const MIN_INTERVAL_MS = 12000; // bumped from 6000 (itself bumped from 2000): a 2026-08-18 batch of 50 posts still 429'd on ~7 of them at 6s spacing, each burning through all 4 retries (8/16/32/64s backoff, ~2min wasted) before failing outright — the rolling-window quota suspected earlier is apparently tighter than 1 call/6s
 async function throttle() {
 	const wait = MIN_INTERVAL_MS - (Date.now() - lastCallAt);
 	if (wait > 0) {
