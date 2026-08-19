@@ -1,4 +1,55 @@
 {
+  "17417": {
+    "fr_slug": "clarify-ai",
+    "en_id": 18767,
+    "en_slug": "",
+    "source_hash": "94e5d69fcc55358ce2af3552399c44e8912effab8ee64712ee74dafa26c1b0dc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:56:17.205Z"
+  },
+  "17448": {
+    "fr_slug": "swishy",
+    "en_id": 18766,
+    "en_slug": "",
+    "source_hash": "da1cefc2e3b9066a7a01bfe3e49ee3943177791aa54e7b375ab0fa72846eea8f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:55:08.000Z"
+  },
+  "17466": {
+    "fr_slug": "veritas-source",
+    "en_id": 18765,
+    "en_slug": "",
+    "source_hash": "f7fa10b8d128fda606c0b908759923bd698750517252735caa6f114cbb039ab3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:54:06.106Z"
+  },
+  "17501": {
+    "fr_slug": "socrati",
+    "status": "failed",
+    "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
+    "updated_at": "2026-08-19T06:53:26.325Z"
+  },
+  "17593": {
+    "fr_slug": "makeinfographic-ai",
+    "en_id": 18764,
+    "en_slug": "",
+    "source_hash": "9f3a9200510ef99c336b3bd0a182fdbb4a2d4886934b5aa00ed0ca5a90f17b5c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:53:15.198Z"
+  },
+  "17621": {
+    "fr_slug": "loopa",
+    "en_id": 18763,
+    "en_slug": "",
+    "source_hash": "8c493912c41abd4cdf4b5e529891f60a8b00a332981ca025068a31e6533b2506",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:53:10.371Z"
+  },
   "17632": {
     "fr_slug": "justvibe",
     "en_id": 18542,
@@ -12,7 +63,7 @@
     "fr_slug": "floor-plan-maker",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-18T10:06:19.641Z"
+    "updated_at": "2026-08-19T06:52:37.237Z"
   },
   "17678": {
     "fr_slug": "imaginprompt",
@@ -90,7 +141,7 @@
     "fr_slug": "learnkata",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-18T10:00:48.949Z"
+    "updated_at": "2026-08-19T06:50:23.642Z"
   },
   "17803": {
     "fr_slug": "briefed",
@@ -105,7 +156,7 @@
     "fr_slug": "bubul",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-18T09:59:27.579Z"
+    "updated_at": "2026-08-19T06:49:15.039Z"
   },
   "17842": {
     "fr_slug": "checklistfox",
@@ -138,7 +189,7 @@
     "fr_slug": "video-transcription-ai",
     "status": "failed",
     "last_error": "Azure Translator -> 429: {\"error\":{\"code\":429001,\"message\":\"The server rejected the request because the client has exceeded request limits.\"}}",
-    "updated_at": "2026-08-18T09:54:19.167Z"
+    "updated_at": "2026-08-19T06:46:36.808Z"
   },
   "17891": {
     "fr_slug": "muse-image",
@@ -170,11 +221,11 @@
   "17966": {
     "fr_slug": "convly-image-to-prompt-generator",
     "en_id": 18523,
-    "en_slug": "",
-    "source_hash": "734edf86ea306c203057c5eedc7c0e4e139420a3751638385302165f4ca78925",
+    "en_slug": "convly-image-to-prompt-generator-2",
+    "source_hash": "06c3bbc05b7e9a0d6c4c7915d0b136a73040f45ce747e7a1c2ff1bebbf8960a3",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-18T09:51:04.574Z"
+    "updated_at": "2026-08-19T06:44:25.647Z"
   },
   "17977": {
     "fr_slug": "fenzo",
@@ -252,7 +303,7 @@
     "fr_slug": "researchdeck",
     "status": "failed",
     "last_error": "Azure Translator -> 400: {\"error\":{\"code\":400077,\"message\":\"The maximum request size has been exceeded.\"}}",
-    "updated_at": "2026-08-18T09:46:17.007Z"
+    "updated_at": "2026-08-19T06:43:19.253Z"
   },
   "18089": {
     "fr_slug": "aistoryhub",
@@ -285,10 +336,10 @@
     "fr_slug": "qwen-image-3-0",
     "en_id": 18488,
     "en_slug": "qwen-image-3-0-2",
-    "source_hash": "9ff3e89d4a7af7cd0f6e5dc3f9ffc8e4158644977b30e669a1bcd0f062ec9ef3",
+    "source_hash": "af52f57953684c4f98242fece0bd3d01921b8440526d6cabb15bedf15da8efda",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-18T06:49:06.200Z"
+    "updated_at": "2026-08-19T06:43:08.975Z"
   },
   "18139": {
     "fr_slug": "apercu-ia-de-google",
@@ -461,6 +512,15 @@
     "last_error": null,
     "updated_at": "2026-08-17T20:40:29.309Z"
   },
+  "18388": {
+    "fr_slug": "coachlingo",
+    "en_id": 18759,
+    "en_slug": "",
+    "source_hash": "f3de35304cc558a1453eefa17ac8e5ade9186de4335d6efe874044888f00fb95",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:42:25.454Z"
+  },
   "18390": {
     "fr_slug": "minddory",
     "en_id": 18429,
@@ -469,5 +529,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-17T20:38:20.959Z"
+  },
+  "18500": {
+    "fr_slug": "hereimg",
+    "en_id": 18760,
+    "en_slug": "",
+    "source_hash": "ebc134d137e959c8c0572fff43049c15ecca2e2b3f6da48384749ec604230efc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-19T06:42:31.734Z"
   }
 }
