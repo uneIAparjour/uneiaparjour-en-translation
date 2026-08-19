@@ -1,0 +1,32 @@
+name: One-off - Debug post categories (read-only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_ids:
+        description: 'EN post ID(s), comma-separated'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  debug-post-categories:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check real category/tag assignments
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: node debug-post-categories.js "${{ inputs.post_ids }}"
