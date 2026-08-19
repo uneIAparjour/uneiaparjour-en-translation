@@ -28,5 +28,16 @@
 	{ "term": "IA générative", "translation": "generative AI" },
 	{ "term": "agent IA", "translation": "AI agent" },
 	{ "term": "modèle de langage", "translation": "language model" },
-	{ "term": "open source", "translation": "open-source" }
+	{ "term": "open source", "translation": "open-source" },
+	{ "term": "youtube", "translation": "YouTube" },
+	{ "term": "Youtube", "translation": "YouTube" },
+	{ "term": "tiktok", "translation": "TikTok" },
+	{ "term": "Tiktok", "translation": "TikTok" },
+	{ "term": "python", "translation": "Python" },
+	{ "term": "html", "translation": "HTML" },
+	{ "term": "HuggingFace", "translation": "Hugging Face" },
+	{ "term": "Google drive", "translation": "Google Drive" },
+	{ "term": "Google photos", "translation": "Google Photos" },
+	{ "term": "prompt", "translation": "prompt" },
+	{ "term": "prompts", "translation": "prompts" }
 ]
