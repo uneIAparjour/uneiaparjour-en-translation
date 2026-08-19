@@ -184,28 +184,42 @@ export function fixMediaBlocksFromSource(frRawContent, enRawContent) {
 			continue;
 		}
 
-		// Existing EN wp:gallery spans — if the matched images below turn
-		// out to already sit inside one, the whole existing wrapper (not
-		// just the inner images) must be replaced, otherwise a second pass
-		// nests a new wp:gallery inside the old one (caught by a local
-		// idempotency test before ever deploying this, 2026-08-18).
-		WP_GALLERY_PATTERN.lastIndex = 0;
-		const enGalleries = [];
-		let gMatch;
-		while ((gMatch = WP_GALLERY_PATTERN.exec(result)) !== null) {
-			enGalleries.push({ start: gMatch.index, end: gMatch.index + gMatch[0].length });
+		// Tier 1: a single existing top-level block (whatever type it's
+		// currently labeled) whose content already contains every target
+		// src. Covers a whole gallery that fell through wrapGutenberg's
+		// generic wp:html fallback — the individual images inside aren't
+		// separately wp:image-comment-wrapped in that case (they're bare
+		// <figure> elements nested straight in the wp:html block), so
+		// tier 2's per-image comment matching below can never see them
+		// (found live 2026-08-19 on CoachLingo: 3 galleries silently
+		// skipped this way, while a standalone wp:video right after them
+		// in the same post was fixed correctly).
+		ANY_BLOCK_PATTERN.lastIndex = 0;
+		let singleBlockMatch = null;
+		let anyMatch;
+		while ((anyMatch = ANY_BLOCK_PATTERN.exec(result)) !== null) {
+			if (srcs.every((src) => anyMatch[0].includes(`src="${src}"`))) {
+				singleBlockMatch = { start: anyMatch.index, end: anyMatch.index + anyMatch[0].length };
+				break;
+			}
+		}
+		if (singleBlockMatch) {
+			result = result.slice(0, singleBlockMatch.start) + frBlock + result.slice(singleBlockMatch.end);
+			changed = true;
+			continue;
 		}
 
-		// Search by generic block boundary, not a specific type — EN's
-		// current label for this media (wp:image, wp:html, wp:video, ...)
-		// can't be assumed, precisely because mislabeling is the bug being
-		// fixed here.
+		// Tier 2: each target image sitting in its OWN separate top-level
+		// block (the older "one gallery fragmented into standalone
+		// sibling wp:image blocks" shape, from before today's splitBlocks
+		// fix) — reassemble by finding each one individually and requiring
+		// them to be contiguous.
 		ANY_BLOCK_PATTERN.lastIndex = 0;
 		const matches = [];
 		let match;
 		while ((match = ANY_BLOCK_PATTERN.exec(result)) !== null) {
 			if (match[1] === 'gallery') {
-				continue; // handled via enGalleries below, not as a single src match
+				continue; // a real wp:gallery containing only SOME of the target srcs isn't this shape — skip, tier 1 already ruled out "contains all"
 			}
 			const src = (match[0].match(/src="([^"]+)"/) || [])[1];
 			if (src && srcs.includes(src)) {
@@ -231,21 +245,15 @@ export function fixMediaBlocksFromSource(frRawContent, enRawContent) {
 		}
 
 		let spanStart = matches[0].start;
-		let spanEnd = matches[matches.length - 1].end;
-		const enclosing = enGalleries.find((g) => spanStart >= g.start && spanEnd <= g.end);
-		if (enclosing) {
-			spanStart = enclosing.start;
-			spanEnd = enclosing.end;
-		} else {
-			// A dangling unclosed gallery-wrapper opening tag can still sit
-			// immediately before the first match if repairImageBlockMarkup
-			// (the earlier, superseded fix) never ran on this post — absorb
-			// it too rather than leaving it orphaned.
-			const before = result.slice(0, spanStart);
-			const dangling = before.match(/<!-- wp:image [^>]*-->\s*<figure\b[^>]*wp-block-gallery[^>]*>\s*$/);
-			if (dangling) {
-				spanStart -= dangling[0].length;
-			}
+		const spanEnd = matches[matches.length - 1].end;
+		// A dangling unclosed gallery-wrapper opening tag can still sit
+		// immediately before the first match if repairImageBlockMarkup
+		// (an earlier, superseded fix) never ran on this post — absorb it
+		// too rather than leaving it orphaned.
+		const before = result.slice(0, spanStart);
+		const dangling = before.match(/<!-- wp:image [^>]*-->\s*<figure\b[^>]*wp-block-gallery[^>]*>\s*$/);
+		if (dangling) {
+			spanStart -= dangling[0].length;
 		}
 
 		result = result.slice(0, spanStart) + frBlock + result.slice(spanEnd);
