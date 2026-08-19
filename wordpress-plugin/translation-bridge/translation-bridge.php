@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Translation Bridge (Polylang + SEO)
  * Description: REST endpoint to link FR/EN post translations via Polylang, plus REST read/write access to Yoast SEO fields and translation-tracking meta that aren't exposed by default.
- * Version: 1.8.0
+ * Version: 1.9.0
  * Requires PHP: 7.4
  */
 
@@ -389,27 +389,24 @@ function tb_create_term( WP_REST_Request $request ) {
 			$term_id = $existing->term_id;
 			$created = false;
 		} else {
-			$result = wp_insert_term( $name, $taxonomy );
+			// Every EN term gets an explicit "-en"-suffixed slug from the
+			// start, collision or not — a site-wide convention (established
+			// 2026-08-19 cleaning up the categories list by hand) so every
+			// EN category/tag is recognizable at a glance, not just the ones
+			// whose translated name happened to collide with its FR source
+			// (e.g. "chatbot" -> "Chatbot" always needed one; "jeu vidéo" ->
+			// "Video Game" didn't collide but should look the same either way).
+			$slug   = sanitize_title( $name ) . '-en';
+			$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
 			if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
-				// WordPress itself refuses two terms with the identical display
-				// name under the same parent, independent of Polylang and of the
-				// slug — hit live 2026-08-18 once legacy categories were
-				// relabelled back to "fr" (e.g. "images" the category still
-				// existed in French, blocking a same-named English one). Common
-				// case: the translated EN name equals (or case-insensitively
-				// matches) its own FR source name, e.g. "chatbot" -> "Chatbot".
-				// Try a clean "-en" slug first — readable, matches the naming
-				// convention used site-wide — before falling back to an
-				// id-suffixed one.
-				$slug   = sanitize_title( $name ) . '-en';
+				// The "-en" slug itself collided — either WordPress's
+				// case-insensitive name check tripped (found live 2026-08-18:
+				// FR/EN names that are identical or near-identical, e.g.
+				// "images"/"Images", block each other independent of slug),
+				// or two different FR terms translated to the same EN name.
+				// Fall back to a slug guaranteed unique via the FR term id.
+				$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
 				$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
-				if ( is_wp_error( $result ) && 'term_exists' === $result->get_error_code() ) {
-					// Even the clean slug collided — e.g. two different FR terms
-					// translating to the same EN name. Fall back to a slug
-					// guaranteed unique via the FR term id.
-					$slug   = sanitize_title( $name ) . '-en-' . ( $fr_term_id ? (int) $fr_term_id : $name );
-					$result = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );
-				}
 			}
 			if ( is_wp_error( $result ) ) {
 				return new WP_Error( 'term_creation_failed', $result->get_error_message(), array( 'status' => 500 ) );
