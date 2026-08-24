@@ -1,0 +1,46 @@
+name: One-off - Repair orphan EN drafts (categories + state backfill)
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Actually write (patch WP categories + save state). Unchecked = dry-run, no writes.'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  repair-orphan-drafts:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run repair script
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.apply }}" = "true" ]; then
+            ARGS="--apply"
+          fi
+          node repair-orphan-drafts.js $ARGS
+
+      - name: Commit updated state
+        if: ${{ inputs.apply }}
+        run: |
+          git config user.name "translation-bot"
+          git config user.email "actions@github.com"
+          git add state/translations.json
+          git diff --cached --quiet || git commit -m "Backfill state for repaired orphan EN drafts [skip ci]"
+          git push
