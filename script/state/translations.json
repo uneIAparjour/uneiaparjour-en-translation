@@ -17,6 +17,96 @@
     "last_error": null,
     "updated_at": "2026-08-19T21:03:49.778Z"
   },
+  "16714": {
+    "fr_slug": "presenton",
+    "en_id": 18826,
+    "en_slug": "",
+    "source_hash": "898438f774bc2cbd0d5d20c7059e8ef44fb81b3c5ea77f049459e2ca5fbec4a8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:53.996Z"
+  },
+  "16728": {
+    "fr_slug": "pomelli",
+    "en_id": 18825,
+    "en_slug": "",
+    "source_hash": "f9325ddd5ef2975f37876621c37ddc80fa8c08e91e6a642c137b5a77ce3344ab",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:53.996Z"
+  },
+  "16754": {
+    "fr_slug": "friday",
+    "en_id": 18824,
+    "en_slug": "",
+    "source_hash": "4ec2bb770cc9dc3f1458e7e98b8093e774b4aee7d3b57155624bc46f936dd2ec",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:53.574Z"
+  },
+  "16770": {
+    "fr_slug": "open-maic",
+    "en_id": 18823,
+    "en_slug": "",
+    "source_hash": "d4d70781e9c461144651206a71bcd4e5d41f8f45eef1a63598f8749120bcd40b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:53.202Z"
+  },
+  "16791": {
+    "fr_slug": "tokemon",
+    "en_id": 18820,
+    "en_slug": "",
+    "source_hash": "8d077b0363bd305a87d4c3234e520f97ca8281c125e1554747396e42a19b6970",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:51.976Z"
+  },
+  "16800": {
+    "fr_slug": "scifig",
+    "en_id": 18822,
+    "en_slug": "",
+    "source_hash": "e4cb2f18a985addaaafdd419f3d11996b716cc36859e6613ffd99c3e51170a76",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:52.780Z"
+  },
+  "16813": {
+    "fr_slug": "linto-studio",
+    "en_id": 18821,
+    "en_slug": "",
+    "source_hash": "94711b82e509f8425b29c568dabfd54651cf5d95d9653351eb1a0e50ed8ee34c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:52.400Z"
+  },
+  "16825": {
+    "fr_slug": "brik",
+    "en_id": 18819,
+    "en_slug": "",
+    "source_hash": "fdb4f8b213768ad5c2faa350b70553c6a577ef9119c4fd92d4f27c170c059903",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:51.467Z"
+  },
+  "16841": {
+    "fr_slug": "comparag",
+    "en_id": 18818,
+    "en_slug": "",
+    "source_hash": "2b3c5f13e3c7535a66d3a44a31c2cb8e28d4c81f2051a5f1d841637d0d2ac696",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:51.042Z"
+  },
+  "16853": {
+    "fr_slug": "hum2song",
+    "en_id": 18816,
+    "en_slug": "",
+    "source_hash": "6a19c008566f65e749a807984200e6acc43d1d246fec1b0523cff85107e083df",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:50.631Z"
+  },
   "16868": {
     "fr_slug": "nodalist",
     "en_id": 18843,
@@ -35,6 +125,24 @@
     "last_error": null,
     "updated_at": "2026-08-19T21:03:27.533Z"
   },
+  "16926": {
+    "fr_slug": "slidescript",
+    "en_id": 18815,
+    "en_slug": "",
+    "source_hash": "edf6c40b36b51f972bc74f491f09f4147f1013cc47f6cd99c938334f9a2de547",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:50.195Z"
+  },
+  "16938": {
+    "fr_slug": "pixal3d",
+    "en_id": 18814,
+    "en_slug": "",
+    "source_hash": "3b140af10f83a2699d6da02f9667790bbc8aec768849be25d2e5286a92c9478b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:49.779Z"
+  },
   "16951": {
     "fr_slug": "mixboard",
     "en_id": 18841,
@@ -43,6 +151,105 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-19T21:03:13.833Z"
+  },
+  "16974": {
+    "fr_slug": "vibeknow",
+    "en_id": 18813,
+    "en_slug": "",
+    "source_hash": "135d46bcd25d04eed68c7ec6ac1c803fbb015887e5368db0146a366cfc2e9485",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:49.389Z"
+  },
+  "16988": {
+    "fr_slug": "dim0",
+    "en_id": 18812,
+    "en_slug": "",
+    "source_hash": "aecfc6f12e1646a8314db379b99f492b5b4a1b0c96a1e463d39942db41ab90eb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:48.960Z"
+  },
+  "16999": {
+    "fr_slug": "ecosia",
+    "en_id": 18808,
+    "en_slug": "",
+    "source_hash": "1d69641382c8b387f5ea77b273978d56f85a69a00c5f8f81029504cc9efbb543",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:47.290Z"
+  },
+  "17004": {
+    "fr_slug": "our-stories",
+    "en_id": 18811,
+    "en_slug": "",
+    "source_hash": "0715056d4e570b974a1c088fe13c454f744487921004ea62aec6274a9f5eb6b5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:48.538Z"
+  },
+  "17019": {
+    "fr_slug": "cartomind",
+    "en_id": 18810,
+    "en_slug": "",
+    "source_hash": "17386e4295e0ed902820951e7002e909bbb76d376fc30933fd04213bc11ee5a7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:48.063Z"
+  },
+  "17061": {
+    "fr_slug": "stable-audio-3",
+    "en_id": 18809,
+    "en_slug": "",
+    "source_hash": "11074b109cdd4f141bdc575fc51fb21fabdeb41f08a7781d3d40e0e26e853207",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:47.664Z"
+  },
+  "17075": {
+    "fr_slug": "mindchat-world",
+    "en_id": 18807,
+    "en_slug": "",
+    "source_hash": "03e39d3e23af01b918bbcc88a18ecca06df5e6fa834624edfd477bc4ff66fcb4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:46.884Z"
+  },
+  "17091": {
+    "fr_slug": "meshgpt",
+    "en_id": 18806,
+    "en_slug": "",
+    "source_hash": "27f608f0db959827160200507a3be76c18e421db2b0a2ac2c4a9bdc216ebef65",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:46.504Z"
+  },
+  "17102": {
+    "fr_slug": "explainpaper",
+    "en_id": 18805,
+    "en_slug": "",
+    "source_hash": "405ef6c179819e087c5bb579fd69a43b433130d98ed3561e829564a57830b8ac",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:45.679Z"
+  },
+  "17116": {
+    "fr_slug": "happyseeds",
+    "en_id": 18804,
+    "en_slug": "",
+    "source_hash": "a6a50fd7aac40983dbd78c7d2a347427eb4b31b1ca762bbdf2a19a409175251d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:45.263Z"
+  },
+  "17124": {
+    "fr_slug": "docstoaudio",
+    "en_id": 18803,
+    "en_slug": "",
+    "source_hash": "a69098ea964707a04b57759b98519d318f9c783586aa4441e007b9f05bcdf6ab",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:44.890Z"
   },
   "17146": {
     "fr_slug": "workinprocess",
@@ -53,6 +260,33 @@
     "last_error": null,
     "updated_at": "2026-08-19T21:03:02.983Z"
   },
+  "17164": {
+    "fr_slug": "overline",
+    "en_id": 18802,
+    "en_slug": "",
+    "source_hash": "e92bfd041f99224080412c548897c8a098dcdf860a3ab0bc00563ecdd15d174d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:44.479Z"
+  },
+  "17175": {
+    "fr_slug": "mai-playground",
+    "en_id": 18801,
+    "en_slug": "",
+    "source_hash": "f3846455b16efc14d6286e282eada2e582d1427794e4df2b4babe3b60f3836c3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:44.067Z"
+  },
+  "17195": {
+    "fr_slug": "pdf-to-lesson",
+    "en_id": 18800,
+    "en_slug": "",
+    "source_hash": "dbdf8cee139969979d4ab28988cddbf2a040473f7ce420a9da91265d06d2b179",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:43.626Z"
+  },
   "17212": {
     "fr_slug": "arena",
     "en_id": 18839,
@@ -61,6 +295,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-19T21:02:51.901Z"
+  },
+  "17232": {
+    "fr_slug": "is-it-fake",
+    "en_id": 18799,
+    "en_slug": "",
+    "source_hash": "8f9d76cd2d001006cbc0223d7d574062beeb06fa61364f379015b6f3880eba88",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-24T21:26:43.207Z"
   },
   "17305": {
     "fr_slug": "lium",
