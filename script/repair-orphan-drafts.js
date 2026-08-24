@@ -31,6 +31,26 @@ import { readFile } from 'node:fs/promises';
 
 const APPLY = process.argv.includes('--apply');
 const stripHtml = (html) => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+// Term names come back from the WP REST/term-audit endpoints with HTML
+// entities intact (e.g. "Quiz &amp; Flashcards"), while
+// config/category-translations.json is written in plain text — decode
+// before comparing so lookups aren't defeated by "&" vs "&amp;" etc.
+const decodeEntities = (s) =>
+	(s || '')
+		.replace(/&amp;/g, '&')
+		.replace(/&#0?39;|&apos;/g, "'")
+		.replace(/&quot;/g, '"')
+		.replace(/&#8217;/g, '’')
+		.replace(/&#8216;/g, '‘');
+// Lookup key: decode entities, fold curly quotes to straight, lowercase,
+// collapse whitespace — so "Children&#8217;s Stories" (live) matches
+// "Children's Stories" (category-translations.json).
+const normKey = (s) =>
+	decodeEntities(s)
+		.replace(/[’‘]/g, "'")
+		.toLowerCase()
+		.trim()
+		.replace(/\s+/g, ' ');
 
 async function main() {
 	const state = await loadState();
@@ -51,9 +71,9 @@ async function main() {
 	const termById = new Map();
 	const enTermByName = new Map(); // taxonomy:name(lowercase) -> {id, name}
 	for (const row of [...categoryRows.map((r) => ({ ...r, tax: 'category' })), ...tagRows.map((r) => ({ ...r, tax: 'post_tag' }))]) {
-		termById.set(row.term_id, { name: row.name, lang: row.lang, tax: row.tax });
+		termById.set(row.term_id, { name: decodeEntities(row.name), lang: row.lang, tax: row.tax });
 		if (row.lang === 'en') {
-			enTermByName.set(`${row.tax}:${row.name.toLowerCase()}`, row.term_id);
+			enTermByName.set(`${row.tax}:${normKey(row.name)}`, row.term_id);
 		}
 	}
 
@@ -90,7 +110,7 @@ async function main() {
 				continue;
 			}
 			const enName = categoryTranslations[term.name];
-			const enId = enName ? enTermByName.get(`category:${enName.toLowerCase()}`) : null;
+			const enId = enName ? enTermByName.get(`category:${normKey(enName)}`) : null;
 			if (enId) {
 				fixedCategoryIds.push(enId);
 				notes.push(`  #${catId} "${term.name}" (fr) -> #${enId} "${enName}" (en)`);
