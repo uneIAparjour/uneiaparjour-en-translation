@@ -1,4 +1,31 @@
 {
+  "16617": {
+    "fr_slug": "tinfoil-chat",
+    "en_id": 19116,
+    "en_slug": "",
+    "source_hash": "232a79c4cf45fe7b185df3372289e4b13f8ff9a00f62f48434e1aac447ecfab1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:48:47.688Z"
+  },
+  "16625": {
+    "fr_slug": "soonlab",
+    "en_id": 19114,
+    "en_slug": "",
+    "source_hash": "417ab0de5350ca4209cedead2bba09ca08db30318b0ae1bcf4bb1ede79cf8c35",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:48:37.076Z"
+  },
+  "16647": {
+    "fr_slug": "honen",
+    "en_id": 19112,
+    "en_slug": "",
+    "source_hash": "56d02ffb776cecebf92f1a601cc5a6c5151b05e6eb7e94bce028b4017bd96a8d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:48:25.333Z"
+  },
   "16681": {
     "fr_slug": "replit-slides",
     "en_id": 18846,
@@ -305,6 +332,33 @@
     "last_error": null,
     "updated_at": "2026-08-24T21:26:43.207Z"
   },
+  "17255": {
+    "fr_slug": "infoblog",
+    "en_id": 19110,
+    "en_slug": "",
+    "source_hash": "aa26da1a2ceee4f5ff2faab96c59407d104d7b773a5a17f93823bc6d33d2d646",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:48:13.159Z"
+  },
+  "17272": {
+    "fr_slug": "open-paper",
+    "en_id": 19107,
+    "en_slug": "",
+    "source_hash": "2d6102dc90ffcf77594ab81d6a4f2be79cd4f0ed5bdebcccd6ab536f0f5b8111",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:48:01.175Z"
+  },
+  "17287": {
+    "fr_slug": "chordgen",
+    "en_id": 19105,
+    "en_slug": "",
+    "source_hash": "cdc3f64c3c29bfc684fb66458c72b89193a2d6d4de8db66ec4023634b48a1a71",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:47:48.739Z"
+  },
   "17305": {
     "fr_slug": "lium",
     "en_id": 18838,
@@ -313,6 +367,24 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-19T21:02:39.262Z"
+  },
+  "17336": {
+    "fr_slug": "inkfox-ai",
+    "en_id": 19103,
+    "en_slug": "",
+    "source_hash": "819030d02d2b61732f5039facc24e4b2582145a11351af42b46cf647d75689d3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:47:36.297Z"
+  },
+  "17354": {
+    "fr_slug": "pdffly-pdf-summarizer",
+    "en_id": 19101,
+    "en_slug": "",
+    "source_hash": "e8612942262bce90aded898888f37a92571f5a641499bace8674b068c033c52a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:47:24.949Z"
   },
   "17363": {
     "fr_slug": "happycapy",
@@ -872,6 +944,15 @@
     "last_error": null,
     "updated_at": "2026-08-17T20:40:29.309Z"
   },
+  "18384": {
+    "fr_slug": "transpic",
+    "en_id": 19097,
+    "en_slug": "",
+    "source_hash": "ad34ac4b3114a0ba557d241ee34209e0a1b5aa4758b9fb6f41b6a48526998128",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:47:00.838Z"
+  },
   "18388": {
     "fr_slug": "coachlingo",
     "en_id": 18759,
@@ -898,5 +979,59 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-19T06:42:31.734Z"
+  },
+  "18925": {
+    "fr_slug": "castreader",
+    "en_id": 19095,
+    "en_slug": "",
+    "source_hash": "bdd09a3b35cc0f6b2234773bef0af98fd3070f730fc0af7bd7d41b6a6b784fe6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:46:48.002Z"
+  },
+  "18947": {
+    "fr_slug": "eduquia",
+    "en_id": 19092,
+    "en_slug": "",
+    "source_hash": "ecd1724e622ea162fc81a6177a9cdec645abe16e9ee45d621e7fdf2bf636f193",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:46:38.148Z"
+  },
+  "18967": {
+    "fr_slug": "learn-leap",
+    "en_id": 19089,
+    "en_slug": "",
+    "source_hash": "4d5cad619e23d54da676d19ab93b308374b59d603e494731826ab67ac008a0ad",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:46:25.770Z"
+  },
+  "18981": {
+    "fr_slug": "voice-to-text",
+    "en_id": 19087,
+    "en_slug": "",
+    "source_hash": "a3150a020df85efc11b25e0bfb50b88ce98b4729a5a394c7a03bfd0547c6ac27",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:46:13.300Z"
+  },
+  "18990": {
+    "fr_slug": "cinematic-slideshow-studio",
+    "en_id": 19085,
+    "en_slug": "",
+    "source_hash": "116adad33514d05767cdbed62061679b1108f3d66242bbda776893ebe228fc14",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:45:59.988Z"
+  },
+  "19081": {
+    "fr_slug": "researchdeck",
+    "en_id": 19099,
+    "en_slug": "",
+    "source_hash": "7f31fefbe1dc0eb408ec2befcf873314ed89251dc3ea986178498a693485758c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-25T06:47:11.665Z"
   }
 }
