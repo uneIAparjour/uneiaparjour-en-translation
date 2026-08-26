@@ -1,4 +1,130 @@
 {
+  "15134": {
+    "fr_slug": "smol-lm-3",
+    "en_id": 19201,
+    "en_slug": "",
+    "source_hash": "4e98cad70727410a5d00e8bc2110dfeb94561f1f8eabc67aeacfecad7d565b48",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:51:25.199Z"
+  },
+  "15245": {
+    "fr_slug": "firered-image-edit",
+    "en_id": 19176,
+    "en_slug": "",
+    "source_hash": "05b2a7235696a8cf355527b283e448e251805455fa59b4e617ec6794764079e4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:49:13.145Z"
+  },
+  "16399": {
+    "fr_slug": "google-flow-music",
+    "en_id": 19203,
+    "en_slug": "",
+    "source_hash": "1865459bef654744173338422e35cfcc29c20cb909d0ae887a99247be93662da",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:51:38.600Z"
+  },
+  "16421": {
+    "fr_slug": "dailyscope",
+    "en_id": 19199,
+    "en_slug": "",
+    "source_hash": "ff8cfa31ee6b20d3f8a47da9370fb90423ec705273e31dc6d588fcd6c95c7005",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:51:13.809Z"
+  },
+  "16428": {
+    "fr_slug": "nbot",
+    "en_id": 19194,
+    "en_slug": "",
+    "source_hash": "9d30531af55585060d7a138b6d678f72b5dcb6ece0976b944d20892a7e968b75",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:50:49.577Z"
+  },
+  "16439": {
+    "fr_slug": "gemini-3-1-tts-preview",
+    "en_id": 19196,
+    "en_slug": "",
+    "source_hash": "be1fdb3ff8ef8ade506bfd7a27eaa0c87f65ad070ea65a01102508dd3ecb1d31",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:51:02.177Z"
+  },
+  "16466": {
+    "fr_slug": "chatgpt-images-2-0",
+    "en_id": 19192,
+    "en_slug": "",
+    "source_hash": "8a585f541d89a0eb9a24c2067460abe0aa952d7587e086774673f22d15dbdf3e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:50:37.177Z"
+  },
+  "16498": {
+    "fr_slug": "12ui",
+    "en_id": 19183,
+    "en_slug": "",
+    "source_hash": "47525cffdd63fb74e2e3312ab693e5af45155e1cf19a8e8cc277cda1fe1b98cf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:49:49.699Z"
+  },
+  "16501": {
+    "fr_slug": "podcasty",
+    "en_id": 19190,
+    "en_slug": "",
+    "source_hash": "2813b33f450a2b0498da316185807bd8fa7ef365f46b1572a0eb9719602bbad2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:50:25.152Z"
+  },
+  "16516": {
+    "fr_slug": "reka",
+    "en_id": 19187,
+    "en_slug": "",
+    "source_hash": "65bd34a5631eecdb8a383753060de002b178ee8e2f4d3d790356412a2bb4480f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:50:15.028Z"
+  },
+  "16532": {
+    "fr_slug": "arky",
+    "en_id": 19185,
+    "en_slug": "",
+    "source_hash": "58b26b2c129ba36ddc2bd8bc7a6e09855f08a6fe8ea608c7e36c2f9b83589ed9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:50:01.273Z"
+  },
+  "16559": {
+    "fr_slug": "happyhorse",
+    "en_id": 19180,
+    "en_slug": "",
+    "source_hash": "b01b08a9a2440d3a9807da6758755064276e008249415f9120499f92a44dd8dd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:49:38.427Z"
+  },
+  "16566": {
+    "fr_slug": "echo-2",
+    "en_id": 19178,
+    "en_slug": "",
+    "source_hash": "309b07d8a6727fe8a8d9251c673a10599e6cdf4f4a7d8d6a3b72a5968787d0d7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:49:26.209Z"
+  },
+  "16602": {
+    "fr_slug": "stanzio",
+    "en_id": 19174,
+    "en_slug": "",
+    "source_hash": "7932b5a034a549e206e6065c0e7ffe5631096ea831fc6c22ca4387ad838e6990",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:49:01.646Z"
+  },
   "16617": {
     "fr_slug": "tinfoil-chat",
     "en_id": 19116,
@@ -1024,6 +1150,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-25T06:45:59.988Z"
+  },
+  "19013": {
+    "fr_slug": "summarizevideototext",
+    "en_id": 19171,
+    "en_slug": "",
+    "source_hash": "99ecc45761a8afd4fc32100d1f67e346a13902a9f773726901d30a4469bc987a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-26T06:48:50.198Z"
   },
   "19081": {
     "fr_slug": "researchdeck",
