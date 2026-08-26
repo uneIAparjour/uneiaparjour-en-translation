@@ -1,0 +1,34 @@
+name: One-off - Fix page language (en -> fr)
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Actually write (set language=fr on all pages). Unchecked = dry-run, no writes.'
+        type: boolean
+        default: false
+
+jobs:
+  fix-page-language:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run fix
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.apply }}" = "true" ]; then
+            ARGS="--apply"
+          fi
+          node fix-page-language.js $ARGS
