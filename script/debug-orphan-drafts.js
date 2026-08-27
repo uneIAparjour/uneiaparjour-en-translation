@@ -25,13 +25,13 @@ import * as wp from './lib/wp.js';
 const WP_URL = process.env.WP_URL.replace(/\/$/, '');
 const AUTH_HEADER = 'Basic ' + Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_APP_PASSWORD}`).toString('base64');
 
-async function fetchDraftsWithAuthor() {
+async function fetchDraftsWithAuthor(status = 'draft') {
 	const posts = [];
 	let page = 1;
 	const perPage = 100;
 	while (true) {
 		const res = await fetch(
-			`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=draft&_fields=id,slug,title,date,date_gmt,author,categories,tags`,
+			`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,date,date_gmt,author,categories,tags`,
 			{ headers: { Authorization: AUTH_HEADER } }
 		);
 		if (!res.ok) {
@@ -55,11 +55,13 @@ async function main() {
 	const state = JSON.parse(fs.readFileSync(new URL('./state/translations.json', import.meta.url)));
 	const knownEnIds = new Set(Object.values(state).map((s) => s.en_id).filter(Boolean));
 
-	const [drafts, categoryRows, tagRows] = await Promise.all([
-		fetchDraftsWithAuthor(),
+	const [drafts, published, categoryRows, tagRows] = await Promise.all([
+		fetchDraftsWithAuthor('draft'),
+		fetchDraftsWithAuthor('publish'),
 		wp.termAudit('category'),
 		wp.termAudit('post_tag'),
 	]);
+	drafts.push(...published.filter((p) => p.author === 2)); // only translation-bot's own published posts, not FR originals
 	const termById = new Map();
 	for (const row of [...categoryRows, ...tagRows]) {
 		termById.set(row.term_id, { name: row.name, lang: row.lang });
