@@ -1,4 +1,13 @@
 {
+  "15120": {
+    "fr_slug": "zawa",
+    "en_id": 19245,
+    "en_slug": "",
+    "source_hash": "5b1e8b27973f674d4e3f7cb5788b08a1c66cd8d3d7d52ca866615df2cf35fb58",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:25:28.066Z"
+  },
   "15134": {
     "fr_slug": "smol-lm-3",
     "en_id": 19201,
@@ -16,6 +25,123 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-26T06:49:13.145Z"
+  },
+  "15512": {
+    "fr_slug": "rosebud",
+    "en_id": 19217,
+    "en_slug": "",
+    "source_hash": "3bee5838abef924de35d241aa30da4c755eceed127d6948c9a68121ea0703797",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:22:51.796Z"
+  },
+  "16118": {
+    "fr_slug": "gemma-4",
+    "en_id": 19243,
+    "en_slug": "",
+    "source_hash": "317b5c771584f508ac3c6c0addb6af1b0cadf22915368483549b25332333e7e6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:25:14.967Z"
+  },
+  "16130": {
+    "fr_slug": "voice-generator",
+    "en_id": 19241,
+    "en_slug": "",
+    "source_hash": "2e757da26b183691bb44b6563646620f9277571b0f67dfb55b9d659d0da1ecbc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:25:03.336Z"
+  },
+  "16140": {
+    "fr_slug": "adam",
+    "en_id": 19238,
+    "en_slug": "",
+    "source_hash": "c2e34ae8ca14441976eeabc1ed8e91908762d02b2bbb050f3360257c3ce0b784",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:24:52.183Z"
+  },
+  "16151": {
+    "fr_slug": "google-vids-veo-3-1",
+    "en_id": 19236,
+    "en_slug": "",
+    "source_hash": "90ba577cc99206071bc8d5225a359c680fb010140b3127d9589fe31dfb86490a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:24:39.886Z"
+  },
+  "16162": {
+    "fr_slug": "blueprint",
+    "en_id": 19234,
+    "en_slug": "",
+    "source_hash": "0060e322317c9e071e3637bf4ceb3875cab52493976c16ea3370508bfa677ba1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:24:28.054Z"
+  },
+  "16180": {
+    "fr_slug": "world-monitor",
+    "en_id": 19232,
+    "en_slug": "",
+    "source_hash": "2b004523b68ac15e1e88d64784d8ca10d599c3b59979a2413908e2814630bbdb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:24:15.411Z"
+  },
+  "16205": {
+    "fr_slug": "muse-spark",
+    "en_id": 19229,
+    "en_slug": "",
+    "source_hash": "1356f0166f9e4cd3570ba04baaff356e3afa5c75a84f0093ce4750446ca71336",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:24:04.409Z"
+  },
+  "16256": {
+    "fr_slug": "wiki-timeline",
+    "en_id": 19227,
+    "en_slug": "",
+    "source_hash": "6ac7b02e02bc1f59f7eedced1d5295ef6b4edc990fb8dd22ec5cd5fe29f23887",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:23:51.543Z"
+  },
+  "16299": {
+    "fr_slug": "maskerade",
+    "en_id": 19225,
+    "en_slug": "",
+    "source_hash": "5dfa46c4525905f242b1b7ba504ec2eac6058d2aca89ee197bd48ce6e2d588a2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:23:40.289Z"
+  },
+  "16317": {
+    "fr_slug": "learnclash",
+    "en_id": 19223,
+    "en_slug": "",
+    "source_hash": "5c48db00138feece23b0f821c36b2f82ba4665006fb751bdfc6f8b8232f363d5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:23:27.454Z"
+  },
+  "16350": {
+    "fr_slug": "pascal-editor",
+    "en_id": 19221,
+    "en_slug": "",
+    "source_hash": "0fd9836cb04375912ecba6f942b83fb4e44c43584aad626d138858594536a7ae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:23:15.819Z"
+  },
+  "16362": {
+    "fr_slug": "holotab",
+    "en_id": 19219,
+    "en_slug": "",
+    "source_hash": "e74b37dcad8a14ec9d4d492e3d9b7f3abec7f9f99e4a554c75b57ed686c4c6a9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:23:03.739Z"
   },
   "16399": {
     "fr_slug": "google-flow-music",
@@ -1168,5 +1294,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-25T06:47:11.665Z"
+  },
+  "19207": {
+    "fr_slug": "revise",
+    "en_id": 19214,
+    "en_slug": "",
+    "source_hash": "0b6951e99de58dc4d29c5bf65391961e54f8819edd7eac8af95c7b013491bffe",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-27T17:22:40.513Z"
   }
 }
