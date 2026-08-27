@@ -41,5 +41,9 @@
 	{ "term": "prompt", "translation": "prompt" },
 	{ "term": "prompts", "translation": "prompts" },
 	{ "term": "nano banana", "translation": "Nano Banana" },
-	{ "term": "GPT image", "translation": "GPT Image" }
+	{ "term": "GPT image", "translation": "GPT Image" },
+	{ "term": "HS", "translation": "down" },
+	{ "term": "compte", "translation": "account" },
+	{ "term": "Réseau Canopé", "translation": "Réseau Canopé" },
+	{ "term": "Art poétique", "translation": "Art poétique" }
 ]
