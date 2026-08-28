@@ -14,7 +14,7 @@ on:
       limit:
         description: 'Max posts to process this run'
         type: string
-        default: '50'
+        default: '200'
       repair_links:
         description: 'Run the link-repair pass instead of translating'
         type: boolean
