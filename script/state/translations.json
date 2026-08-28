@@ -586,30 +586,30 @@
   },
   "17255": {
     "fr_slug": "infoblog",
-    "en_id": 19110,
-    "en_slug": "",
+    "en_id": 18798,
+    "en_slug": "infoblog-2",
     "source_hash": "aa26da1a2ceee4f5ff2faab96c59407d104d7b773a5a17f93823bc6d33d2d646",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:48:13.159Z"
+    "updated_at": "2026-08-28T05:55:19.020Z"
   },
   "17272": {
     "fr_slug": "open-paper",
-    "en_id": 19107,
-    "en_slug": "",
+    "en_id": 18796,
+    "en_slug": "open-paper-2",
     "source_hash": "2d6102dc90ffcf77594ab81d6a4f2be79cd4f0ed5bdebcccd6ab536f0f5b8111",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:48:01.175Z"
+    "updated_at": "2026-08-28T05:55:16.707Z"
   },
   "17287": {
     "fr_slug": "chordgen",
-    "en_id": 19105,
-    "en_slug": "",
+    "en_id": 18795,
+    "en_slug": "chordgen-2",
     "source_hash": "cdc3f64c3c29bfc684fb66458c72b89193a2d6d4de8db66ec4023634b48a1a71",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:47:48.739Z"
+    "updated_at": "2026-08-28T05:55:14.411Z"
   },
   "17305": {
     "fr_slug": "lium",
@@ -622,21 +622,21 @@
   },
   "17336": {
     "fr_slug": "inkfox-ai",
-    "en_id": 19103,
-    "en_slug": "",
+    "en_id": 18794,
+    "en_slug": "inkfox-ai-2",
     "source_hash": "819030d02d2b61732f5039facc24e4b2582145a11351af42b46cf647d75689d3",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:47:36.297Z"
+    "updated_at": "2026-08-28T05:55:12.107Z"
   },
   "17354": {
     "fr_slug": "pdffly-pdf-summarizer",
-    "en_id": 19101,
-    "en_slug": "",
+    "en_id": 18793,
+    "en_slug": "pdffly-pdf-summarizer-2",
     "source_hash": "e8612942262bce90aded898888f37a92571f5a641499bace8674b068c033c52a",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:47:24.949Z"
+    "updated_at": "2026-08-28T05:55:09.729Z"
   },
   "17363": {
     "fr_slug": "happycapy",
@@ -1288,12 +1288,12 @@
   },
   "19081": {
     "fr_slug": "researchdeck",
-    "en_id": 19099,
-    "en_slug": "",
+    "en_id": 19079,
+    "en_slug": "researchdeck-2",
     "source_hash": "7f31fefbe1dc0eb408ec2befcf873314ed89251dc3ea986178498a693485758c",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-25T06:47:11.665Z"
+    "updated_at": "2026-08-28T05:55:21.343Z"
   },
   "19207": {
     "fr_slug": "revise",
