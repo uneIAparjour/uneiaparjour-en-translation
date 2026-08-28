@@ -35,6 +35,123 @@
     "last_error": null,
     "updated_at": "2026-08-27T17:22:51.796Z"
   },
+  "15677": {
+    "fr_slug": "scholar-labs",
+    "en_id": 19336,
+    "en_slug": "",
+    "source_hash": "5de1611555464388318bfbdec7670ce8873eef856a7ab998315bd3045827cbfd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:16:02.336Z"
+  },
+  "15926": {
+    "fr_slug": "comabot",
+    "en_id": 19362,
+    "en_slug": "",
+    "source_hash": "edf34b0b8ec13ef7ff1b01638b7569f06895da4c9839e7543f6f96c525db7bcc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:18:26.038Z"
+  },
+  "15936": {
+    "fr_slug": "thinkingline",
+    "en_id": 19360,
+    "en_slug": "",
+    "source_hash": "99f0ad91163d6d86723e022b7e85346cd3bc2ef59cdff4469d5ddfd9af3c5c3c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:18:13.592Z"
+  },
+  "15946": {
+    "fr_slug": "tosea",
+    "en_id": 19358,
+    "en_slug": "",
+    "source_hash": "e6df0bfa0099936b4bf238da24dbf9d303d35c159e92df6b65d891925bf90d9a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:18:01.992Z"
+  },
+  "15965": {
+    "fr_slug": "video-notes",
+    "en_id": 19356,
+    "en_slug": "",
+    "source_hash": "348687d85e7371b49232771e6e657d29e184aa9b74cfa5c8a696ce4312972d04",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:17:49.552Z"
+  },
+  "15974": {
+    "fr_slug": "public-ai",
+    "en_id": 19354,
+    "en_slug": "",
+    "source_hash": "bc2718409a2daa7ad395c4f87777c1469cce8a3c0398843b033d7e1684092d65",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:17:37.892Z"
+  },
+  "15984": {
+    "fr_slug": "thaura",
+    "en_id": 19351,
+    "en_slug": "",
+    "source_hash": "79ff5d6b8f96cd08090de40b61e38e4bae5f04eff81f42186536b8c354cc873e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:17:26.729Z"
+  },
+  "16003": {
+    "fr_slug": "omma",
+    "en_id": 19349,
+    "en_slug": "",
+    "source_hash": "4ee8e8cb6da1ec6ba5d1e1f2a61a8a3bcd51aba57530ec78fdfdefaff9d2664c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:17:15.354Z"
+  },
+  "16019": {
+    "fr_slug": "bookletai",
+    "en_id": 19347,
+    "en_slug": "",
+    "source_hash": "e0a128feb46b7b17eb473dc9497ffd39274f7e90659a71bc03572542d94bc21d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:17:03.226Z"
+  },
+  "16039": {
+    "fr_slug": "cohere-transcribe",
+    "en_id": 19345,
+    "en_slug": "",
+    "source_hash": "f9b4f910161c7530c6a179c3eaa9408c005da1202f7d7be7a8fcca37e366f9a1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:16:50.492Z"
+  },
+  "16046": {
+    "fr_slug": "molmo-web",
+    "en_id": 19343,
+    "en_slug": "",
+    "source_hash": "a08217cb07d904f798c920e9b4aaaa0359224e26b9a823603d037a5b7f2f9a6d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:16:38.165Z"
+  },
+  "16063": {
+    "fr_slug": "seedance-2",
+    "en_id": 19341,
+    "en_slug": "",
+    "source_hash": "ebb90f09e4da4fdd3d3e0767a98baa5127839f56d724c4981734d13a960679ca",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:16:26.205Z"
+  },
+  "16077": {
+    "fr_slug": "pixpark",
+    "en_id": 19338,
+    "en_slug": "",
+    "source_hash": "191558bd5c3034d527414780b2d508de1b87c6c9142c4b06108dbaaf822061ac",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:16:16.035Z"
+  },
   "16118": {
     "fr_slug": "gemma-4",
     "en_id": 19243,
@@ -317,11 +434,11 @@
   "16754": {
     "fr_slug": "friday",
     "en_id": 18824,
-    "en_slug": "",
-    "source_hash": "4ec2bb770cc9dc3f1458e7e98b8093e774b4aee7d3b57155624bc46f936dd2ec",
+    "en_slug": "friday-2",
+    "source_hash": "adbb9cb9aa940d19103ab87eed8fc648a83240fb7a0f4faea2d9aa06d98f13b4",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-24T21:26:53.574Z"
+    "updated_at": "2026-08-28T18:15:49.397Z"
   },
   "16770": {
     "fr_slug": "open-maic",
@@ -1303,5 +1420,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-27T17:22:40.513Z"
+  },
+  "19247": {
+    "fr_slug": "proseable",
+    "en_id": 19333,
+    "en_slug": "",
+    "source_hash": "9e2b31583368441fb4cbbcbb71d10a509f8859fb14db0a180b121df92627c9c8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-28T18:15:37.790Z"
   }
 }
