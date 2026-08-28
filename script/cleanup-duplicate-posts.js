@@ -18,7 +18,11 @@
  *   fr_id -> {keep: en_id to backfill into state, trash: duplicate en_id to remove}
  *
  * --dry-run (default): print the plan, write nothing.
- * --apply: trash the duplicate posts and write state/translations.json.
+ * --apply: unpublish (set to draft) the duplicate posts and write
+ * state/translations.json. Using 'draft' rather than 'trash' since the
+ * WP REST API's status enum for translation-bot's role rejected 'trash'
+ * (found live, first apply attempt) — draft achieves the same "off the
+ * public site" result and is unambiguously within Author capability.
  *
  * Run: node cleanup-duplicate-posts.js [--apply]
  */
@@ -57,7 +61,7 @@ async function main() {
 		console.log(`  state entry: fr #${pair.fr_id} -> en_id=${pair.keep_en_id}, source_hash=${sourceHash.slice(0, 12)}...`);
 
 		if (APPLY) {
-			await wp.updatePost(pair.trash_en_id, { status: 'trash' });
+			await wp.updatePost(pair.trash_en_id, { status: 'draft' });
 			state[pair.fr_id] = {
 				fr_slug: frPost.slug,
 				en_id: pair.keep_en_id,

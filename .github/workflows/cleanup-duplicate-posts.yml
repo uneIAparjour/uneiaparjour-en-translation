@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       apply:
-        description: 'Actually write (trash duplicates + update state). Unchecked = dry-run, no writes.'
+        description: 'Actually write (unpublish duplicates as draft + update state). Unchecked = dry-run, no writes.'
         type: boolean
         default: false
 
