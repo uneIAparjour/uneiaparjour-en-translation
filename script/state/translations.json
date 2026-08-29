@@ -44,6 +44,132 @@
     "last_error": null,
     "updated_at": "2026-08-28T18:16:02.336Z"
   },
+  "15690": {
+    "fr_slug": "medo",
+    "en_id": 19413,
+    "en_slug": "",
+    "source_hash": "30163ec07c4ed673e9558e2faae08ffb0925526cd8f8a201e3dce49b2fe8e242",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:25:25.257Z"
+  },
+  "15708": {
+    "fr_slug": "creen",
+    "en_id": 19411,
+    "en_slug": "",
+    "source_hash": "a0db6e4d95b50d7500b0115450c09b6b4729de18633d66dd3807f23d7d1c6a65",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:25:13.089Z"
+  },
+  "15717": {
+    "fr_slug": "ai-pdf-reader",
+    "en_id": 19423,
+    "en_slug": "",
+    "source_hash": "75a4721d04bfa77ead8b0a65be87fa5459ab4d777b5ee62e4876b7121f5a9636",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:26:25.125Z"
+  },
+  "15724": {
+    "fr_slug": "pandada",
+    "en_id": 19421,
+    "en_slug": "",
+    "source_hash": "8df4b4034e36b23980c70b7c931c93e9f7448e57407ec1a5bbcb7c4f5e486412",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:26:13.590Z"
+  },
+  "15736": {
+    "fr_slug": "trivia-pixel",
+    "en_id": 19419,
+    "en_slug": "",
+    "source_hash": "86fdf40f4d681c8765f12d1af0efdd05d6583ef0009844f803948a766157ce51",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:26:00.441Z"
+  },
+  "15748": {
+    "fr_slug": "cloudfare-build",
+    "en_id": 19417,
+    "en_slug": "",
+    "source_hash": "fe49c9d7d674b509fe0787d4a5ce0f4716612697170faf3e5a18f05da43c5509",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:25:49.446Z"
+  },
+  "15777": {
+    "fr_slug": "intangible",
+    "en_id": 19415,
+    "en_slug": "",
+    "source_hash": "136457f2c3b10fb3dfdb7bd1ce88e6282e82abb986c0ce87e5b503e37c969bec",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:25:36.860Z"
+  },
+  "15800": {
+    "fr_slug": "gistilo",
+    "en_id": 19409,
+    "en_slug": "",
+    "source_hash": "64a7753f4f3f588d8897754c931fc435fed512690b3edba830ee80c7921b3b4d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:25:01.129Z"
+  },
+  "15812": {
+    "fr_slug": "knowlify",
+    "en_id": 19407,
+    "en_slug": "",
+    "source_hash": "4cb6ab941581a0fd91eec5da09c5e2120d628cec2833a878fedaa470efa28acf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:24:48.476Z"
+  },
+  "15826": {
+    "fr_slug": "creatus-music",
+    "en_id": 19404,
+    "en_slug": "",
+    "source_hash": "ba0df96c7f465a70e7f4713924001e980e85d04fc9c9017c012ee3d1de40510e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:24:37.967Z"
+  },
+  "15838": {
+    "fr_slug": "clico",
+    "en_id": 19402,
+    "en_slug": "",
+    "source_hash": "60cb001077663076bae64ccdbeaf8ae4d5fca4007d618d96d444341441a40c00",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:24:25.085Z"
+  },
+  "15865": {
+    "fr_slug": "cartesia",
+    "en_id": 19400,
+    "en_slug": "",
+    "source_hash": "b8beb0d99ac48157ac6129a22a94b147b9f3d04eae5e2763699f01e3a57eee99",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:24:13.056Z"
+  },
+  "15878": {
+    "fr_slug": "wacka",
+    "en_id": 19398,
+    "en_slug": "",
+    "source_hash": "dbdba461cf5cf675df34ef4de85566ded683a87c6fce1346299c4249553952d5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:24:00.759Z"
+  },
+  "15898": {
+    "fr_slug": "make-it",
+    "en_id": 19396,
+    "en_slug": "",
+    "source_hash": "2906b3f0a6b0b01e26cb5656461d5b48f3b227aaaed9e4fb41b7883fa40df1dd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:23:49.446Z"
+  },
   "15926": {
     "fr_slug": "comabot",
     "en_id": 19362,
@@ -1429,5 +1555,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-28T18:15:37.790Z"
+  },
+  "19294": {
+    "fr_slug": "wondering",
+    "en_id": 19394,
+    "en_slug": "",
+    "source_hash": "60867953caf311ae3d8bb8534eac34ba9957805348879df7ff1a0aec8c405e87",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-29T12:23:37.065Z"
   }
 }
