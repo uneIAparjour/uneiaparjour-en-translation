@@ -1,4 +1,895 @@
 {
+  "7985": {
+    "fr_slug": "hotshot",
+    "en_id": 20772,
+    "en_slug": "",
+    "source_hash": "3be08ca5aea5a52b51c4a95ee1786cbd6be791ad803c3a447ecd12de3af6e75f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:07:41.047Z"
+  },
+  "7990": {
+    "fr_slug": "kajiwoto",
+    "en_id": 20770,
+    "en_slug": "",
+    "source_hash": "6f1f24e2c4eada992cc92b33e77b269f6004d245fbfd4b8dec8c2c80d593f542",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:07:27.025Z"
+  },
+  "7997": {
+    "fr_slug": "stable-diffusion-3-5",
+    "en_id": 20766,
+    "en_slug": "",
+    "source_hash": "46d895478d6b252ff0928598b6b394e542d4539b35ade168012feaddf280006e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:07:16.906Z"
+  },
+  "8002": {
+    "fr_slug": "ai-image-creator",
+    "en_id": 20762,
+    "en_slug": "",
+    "source_hash": "bed13931ecd74c2e8ac69b2a63b4d5b326a70dbe133317c7fb13c90a4d898cc4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:07:05.235Z"
+  },
+  "8005": {
+    "fr_slug": "factbot",
+    "en_id": 20758,
+    "en_slug": "",
+    "source_hash": "f24f4946a4ba23fdc7b01ee95d1d07d3958ab248bfeadf23985e9990d4b3abf5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:06:52.888Z"
+  },
+  "8012": {
+    "fr_slug": "neural-blender",
+    "en_id": 20754,
+    "en_slug": "",
+    "source_hash": "594d283960b91d3ce9eb26b838f9b8a673e71ba0cb838390b709cdde615fab10",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:06:40.966Z"
+  },
+  "8018": {
+    "fr_slug": "claptools",
+    "en_id": 20750,
+    "en_slug": "",
+    "source_hash": "020c570afb60fa75a223b3830463836bc2890dd1b0c0b70e17a756de50f2f4f4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:06:28.591Z"
+  },
+  "8023": {
+    "fr_slug": "arlinear",
+    "en_id": 20746,
+    "en_slug": "",
+    "source_hash": "4e5fbf77fcc36fbeadcf24dbcaad65d87836be23dcb1cb02e07a2e3e2eab2d96",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:06:16.689Z"
+  },
+  "8029": {
+    "fr_slug": "recraft-v3",
+    "en_id": 20744,
+    "en_slug": "",
+    "source_hash": "23eab925403348fb1acc4e7bfc7f26012e5161c8d80c161986829d5baf3a4b05",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:06:03.894Z"
+  },
+  "8035": {
+    "fr_slug": "chatgpt-search",
+    "en_id": 20742,
+    "en_slug": "",
+    "source_hash": "1290b6fe8925def949a61b7be0d03d44ea913c9e8e4c14fd0a8695222930328e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:05:50.641Z"
+  },
+  "8041": {
+    "fr_slug": "moschi",
+    "en_id": 20738,
+    "en_slug": "",
+    "source_hash": "5a18835978858aa47e9d7cb48a972920412ab7231f46366bf7cec00531627a45",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:05:40.808Z"
+  },
+  "8047": {
+    "fr_slug": "bolt",
+    "en_id": 20734,
+    "en_slug": "",
+    "source_hash": "1eb547c92826f3a41ff215faba021a75160511e0b19348d6a10d9172cfacb6df",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:05:29.390Z"
+  },
+  "8054": {
+    "fr_slug": "ellipsis-news",
+    "en_id": 20730,
+    "en_slug": "",
+    "source_hash": "b9c69d295a2fc3b3d972b690d3dfcb73bd37bd52827b50d4083ead99ed4293f1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:05:17.473Z"
+  },
+  "8062": {
+    "fr_slug": "loopple",
+    "en_id": 20728,
+    "en_slug": "",
+    "source_hash": "59f6b2bb91ac8a37566afa4d6f899204e5e42890d56c95cedef42fc2c8fd45cb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:05:03.151Z"
+  },
+  "8068": {
+    "fr_slug": "aha-slides",
+    "en_id": 20724,
+    "en_slug": "",
+    "source_hash": "e82efe52a7ba050eae99fdf0a33b0a9b9bd05cc9e035dac90e02162c3a93d9ec",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:04:52.919Z"
+  },
+  "8076": {
+    "fr_slug": "ai-summarizer",
+    "en_id": 20720,
+    "en_slug": "",
+    "source_hash": "cd7fb9bfc1ec140db8a8ba773b509584666ab3fbbbc1cf017a37221619fe572f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:04:41.140Z"
+  },
+  "8082": {
+    "fr_slug": "infography",
+    "en_id": 20717,
+    "en_slug": "",
+    "source_hash": "29d02c30dea17a0571e2d14fe4cb85f9e2ad6fc0fde8052752bc5445668ba44d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:04:27.660Z"
+  },
+  "8090": {
+    "fr_slug": "felter",
+    "en_id": 20713,
+    "en_slug": "",
+    "source_hash": "88026243ff9781011deed185d40cd506f5a4cfac90de147567c12a35409829c9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:04:17.025Z"
+  },
+  "8096": {
+    "fr_slug": "echodocs",
+    "en_id": 20711,
+    "en_slug": "",
+    "source_hash": "5a46bc35c755b790ec3cafc2a23679f7436eb52ea65400d426be5eaa514030e8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:04:02.514Z"
+  },
+  "8102": {
+    "fr_slug": "thatneedle-gist",
+    "en_id": 20707,
+    "en_slug": "",
+    "source_hash": "1c0d42b02501f43e107e4b5bb85baeb1277652dd3312c83068f28c82dad70eb5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:03:52.793Z"
+  },
+  "8110": {
+    "fr_slug": "page-on",
+    "en_id": 20705,
+    "en_slug": "",
+    "source_hash": "b2b0339d1919fb4d5de72acd0552f23fc07157ca1c5ff70cc47eb37309cae4c1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:03:39.002Z"
+  },
+  "8116": {
+    "fr_slug": "kepl",
+    "en_id": 20701,
+    "en_slug": "",
+    "source_hash": "bbb1f89d415bf2b81e094253e1262b2cb52cc322f9e150be4366379fc3a92bcc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:03:28.932Z"
+  },
+  "8123": {
+    "fr_slug": "zemith",
+    "en_id": 20699,
+    "en_slug": "",
+    "source_hash": "edefda0796a5d02dd493d40466038cd864662354c562459ca6e37b1ea47fe408",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:03:14.578Z"
+  },
+  "8129": {
+    "fr_slug": "mixus",
+    "en_id": 20695,
+    "en_slug": "",
+    "source_hash": "311f08b8cde08008834ea9a261aa644195daf7c2c3c75b68ed342a71e00bd972",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:03:05.523Z"
+  },
+  "8137": {
+    "fr_slug": "compute",
+    "en_id": 20691,
+    "en_slug": "",
+    "source_hash": "51d6d3f0aeaf2c16fcc0264434ea17363f9d83263a7b84a6b735994d620011e6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:02:38.939Z"
+  },
+  "8143": {
+    "fr_slug": "kidgeni",
+    "en_id": 20693,
+    "en_slug": "",
+    "source_hash": "ffa71a4d993f2d4ab4654f25724e7e078cc794781687fdc29d88e9f8ea20047f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:02:50.527Z"
+  },
+  "8150": {
+    "fr_slug": "ai-game-master",
+    "en_id": 20687,
+    "en_slug": "",
+    "source_hash": "61d4a08660499de4e9d681b67352f643967202d6bd4a13f5899d0d27d5852b17",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:02:28.858Z"
+  },
+  "8156": {
+    "fr_slug": "le-chat-v2",
+    "en_id": 20684,
+    "en_slug": "",
+    "source_hash": "45defbffbb7b87893c4b1e6b5629584dca99857bd7ba13d659986ea3d9afe558",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:02:16.117Z"
+  },
+  "8165": {
+    "fr_slug": "magic-quill",
+    "en_id": 20680,
+    "en_slug": "",
+    "source_hash": "e1066d3660a60396b69b5804edee02d021cc2890f93fa9764844769e4e3aaea4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:02:04.852Z"
+  },
+  "8172": {
+    "fr_slug": "vectorubi",
+    "en_id": 20676,
+    "en_slug": "",
+    "source_hash": "15eb87059337a861ad0e74575396844a11b151dd35450c9db5f5eff01aba7302",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:01:52.748Z"
+  },
+  "8178": {
+    "fr_slug": "noiz",
+    "en_id": 20672,
+    "en_slug": "",
+    "source_hash": "ed495e58f7b591f74bf1bc33e4971de89fdb6151cdff2308907d03145f1e6036",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:01:40.905Z"
+  },
+  "8184": {
+    "fr_slug": "memgrain",
+    "en_id": 20668,
+    "en_slug": "",
+    "source_hash": "83ac902d54d8fd3329a9398b36919a2617d2f5c0b9dc329a46de3ff6129ded1a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:01:28.913Z"
+  },
+  "8196": {
+    "fr_slug": "edenx",
+    "en_id": 20664,
+    "en_slug": "",
+    "source_hash": "785e99b0b3f9a82c036c11ba2164297575b4ae05fd3df5f7e846477fa65698bb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:01:17.300Z"
+  },
+  "8206": {
+    "fr_slug": "chat100",
+    "en_id": 20660,
+    "en_slug": "",
+    "source_hash": "cf05c94f9d692d9dd5d751ce7c578c3baaab89a8aa37b1eecc53e8bb251dad25",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:01:04.871Z"
+  },
+  "8212": {
+    "fr_slug": "imagine-anything",
+    "en_id": 20656,
+    "en_slug": "",
+    "source_hash": "83f613081c88a5e57065298e3e0eb07c62ddebeb51397afc54c904e963e58c6e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:00:53.208Z"
+  },
+  "8217": {
+    "fr_slug": "bookread",
+    "en_id": 20652,
+    "en_slug": "",
+    "source_hash": "c56c1ab913920ec64007253c7abea24392c99cf88e98e5f468b287e924066ff6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:00:41.413Z"
+  },
+  "8223": {
+    "fr_slug": "genfm",
+    "en_id": 20650,
+    "en_slug": "",
+    "source_hash": "a677e7d362fe9b53b97c5b7cd7278c31e307a9dee94fc5789dddd281270cbc40",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:00:26.398Z"
+  },
+  "8229": {
+    "fr_slug": "vera",
+    "en_id": 20646,
+    "en_slug": "",
+    "source_hash": "f13c0ffd4d0e94fc0e1775c58293553c42c344c2b7d70c26114dac598bc5d8d3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:00:16.901Z"
+  },
+  "8239": {
+    "fr_slug": "fabla",
+    "en_id": 20642,
+    "en_slug": "",
+    "source_hash": "c919939acbf42b572c3a703ca0920d99e1c3eb4887945bc3561a99c5ca09f2e1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T19:00:05.061Z"
+  },
+  "8255": {
+    "fr_slug": "thea",
+    "en_id": 20638,
+    "en_slug": "",
+    "source_hash": "2aff0f728b767dea6529ff3636c3227a8360c155471d74f971a275b2f8e756b5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:59:52.355Z"
+  },
+  "8261": {
+    "fr_slug": "right-click-youtube-summary",
+    "en_id": 20634,
+    "en_slug": "",
+    "source_hash": "6a276d38b38e9faf74bf835a93035aef0d79d68d6735df3395fa4745d36ccc79",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:59:40.575Z"
+  },
+  "8270": {
+    "fr_slug": "source-table",
+    "en_id": 20630,
+    "en_slug": "",
+    "source_hash": "3dd6a16300c545ccd93034de0d7ee7a1c0eeb93e0678052ea87f9ab121bfaa8d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:59:28.957Z"
+  },
+  "8277": {
+    "fr_slug": "concept-map",
+    "en_id": 20626,
+    "en_slug": "",
+    "source_hash": "1c3d7621755c650d4a18aab90105062e7c76119425ab49e07c40087d9c628cce",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:59:16.628Z"
+  },
+  "8283": {
+    "fr_slug": "bylo",
+    "en_id": 20622,
+    "en_slug": "",
+    "source_hash": "91b58a6630d08ca0f841cf5cf78d1f7a1a2cecbd4a39987ccd537325e754e612",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:59:04.301Z"
+  },
+  "8288": {
+    "fr_slug": "nemotron-70b",
+    "en_id": 20618,
+    "en_slug": "",
+    "source_hash": "65d0b0d4bd3a001e6f2e1a29e49e81ded1f654ad15b5a61fc666e11e1a30cb8f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:58:53.186Z"
+  },
+  "8292": {
+    "fr_slug": "deepseek",
+    "en_id": 20616,
+    "en_slug": "",
+    "source_hash": "de7ea50f21f4aaf7fcd1fda2aaa26c22041f72df418c2e3e728c03bdc4677b08",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:58:39.425Z"
+  },
+  "8298": {
+    "fr_slug": "humva",
+    "en_id": 20612,
+    "en_slug": "",
+    "source_hash": "db7f545278f7b7ef551975a228e7d142450cb28aa8bdff7d4f3d3142b9840781",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:58:28.691Z"
+  },
+  "8308": {
+    "fr_slug": "grok",
+    "en_id": 20608,
+    "en_slug": "",
+    "source_hash": "769ebbf8716e82ea37f1f5736fc7b93179373bfb7a1c757bc75b6cc0377e3a4e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:58:16.751Z"
+  },
+  "8314": {
+    "fr_slug": "pollo",
+    "en_id": 20604,
+    "en_slug": "",
+    "source_hash": "7b5718bc9232321e6440c7ec9e80e7b2ebd03483e9ef9e6e88a83d2d3e4d2d33",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:58:04.731Z"
+  },
+  "8319": {
+    "fr_slug": "mindmap-ai",
+    "en_id": 20597,
+    "en_slug": "",
+    "source_hash": "735e0192a71f28e3ce1f2367115339517910335c9834e5c541496814d4f85e56",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:57:40.607Z"
+  },
+  "8325": {
+    "fr_slug": "stream-realtime",
+    "en_id": 20601,
+    "en_slug": "",
+    "source_hash": "7b41dc0635323fc79943f65969219a5ceb1ebb071e3c6586907e21c4aa2d7523",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:57:51.655Z"
+  },
+  "8331": {
+    "fr_slug": "masterpiece-x",
+    "en_id": 20593,
+    "en_slug": "",
+    "source_hash": "aef97baabb753e03acbab4e8d7cd7fa03d073ef7aa1dd9395dc4890e2db8bc88",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:57:28.565Z"
+  },
+  "8342": {
+    "fr_slug": "zenmic",
+    "en_id": 20590,
+    "en_slug": "",
+    "source_hash": "f09aada394dc8bfadd40951f5a97115490909e9c85eb05253d8bf8ad8486893e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:57:15.738Z"
+  },
+  "8347": {
+    "fr_slug": "trickle",
+    "en_id": 20586,
+    "en_slug": "",
+    "source_hash": "bb598354ddff51fe492b2a684c16636fee1041c566b22359b8ee29a86402eadf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:57:05.141Z"
+  },
+  "8358": {
+    "fr_slug": "rapport",
+    "en_id": 20582,
+    "en_slug": "",
+    "source_hash": "9427daec22a35ef01f18c666d9ebed61d3b91549407441de10506abf4d04df15",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:56:52.774Z"
+  },
+  "8368": {
+    "fr_slug": "edify-3d",
+    "en_id": 20578,
+    "en_slug": "",
+    "source_hash": "1a349b4d566c7f973186a26afcb599140051ae544f5cf21b02513cdecaad5fc2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:56:40.698Z"
+  },
+  "8374": {
+    "fr_slug": "vidu",
+    "en_id": 20574,
+    "en_slug": "",
+    "source_hash": "73bc889acc7df291419b728f0d63b49140455f14182460942ee6da3bf016c07b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:56:29.069Z"
+  },
+  "8385": {
+    "fr_slug": "shou-xin",
+    "en_id": 20570,
+    "en_slug": "",
+    "source_hash": "2937bb89ad44d97d116e65a528b4a128fcba3d14ded15816e0d5d74f0fd0d161",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:56:16.781Z"
+  },
+  "8391": {
+    "fr_slug": "tem-polor",
+    "en_id": 20566,
+    "en_slug": "",
+    "source_hash": "8b28a79914714a58249b9c78a579de18c5cb6c15ce566e2d4e7dcd546f97ecf1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:56:04.178Z"
+  },
+  "8397": {
+    "fr_slug": "mymemo",
+    "en_id": 20562,
+    "en_slug": "",
+    "source_hash": "f1686f63645daaed74fc08631a71a067f55a6cd97c3d58483682eacde1a3f7ee",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:55:52.771Z"
+  },
+  "8404": {
+    "fr_slug": "trellis-3d",
+    "en_id": 20559,
+    "en_slug": "",
+    "source_hash": "847ec183ee147b7aa752af83bc62c0657460a2b93945c8e2a78ad37db92c7052",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:55:39.184Z"
+  },
+  "8410": {
+    "fr_slug": "tak",
+    "en_id": 20555,
+    "en_slug": "",
+    "source_hash": "7dfc14c2b402d341c8615bebc8b0f6d5f5c82265d76de38cf80e7c4c7b441c4b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:55:28.456Z"
+  },
+  "8417": {
+    "fr_slug": "imagine-qr",
+    "en_id": 20553,
+    "en_slug": "",
+    "source_hash": "5797c7d7b03dffb1dd47e097c166489809697699920eeb6ff56c921e1a32a737",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:55:15.524Z"
+  },
+  "8423": {
+    "fr_slug": "jugemu",
+    "en_id": 20549,
+    "en_slug": "",
+    "source_hash": "522b320a3c1020764ee06d48b412a03c4ef443e5f3820879fd538c6d4bde641a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:55:04.309Z"
+  },
+  "8429": {
+    "fr_slug": "sync-study",
+    "en_id": 20545,
+    "en_slug": "",
+    "source_hash": "bd6c2e47859db4b535cb2d3c4dc6f8fc50cae3d873da6fa9fc93cb25b70867f8",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:54:53.026Z"
+  },
+  "8436": {
+    "fr_slug": "britannica-chatbot",
+    "en_id": 20541,
+    "en_slug": "",
+    "source_hash": "97335a62c9f8889cd1f970403cfed50d8aacce6202b24b443efac6e4c63865fe",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:54:41.549Z"
+  },
+  "8442": {
+    "fr_slug": "nexform",
+    "en_id": 20537,
+    "en_slug": "",
+    "source_hash": "d94bfdd765a662604699700b0bbb3faf1e93ecc6c00febffead21b50fe666d35",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:54:28.790Z"
+  },
+  "8453": {
+    "fr_slug": "automina",
+    "en_id": 20534,
+    "en_slug": "",
+    "source_hash": "ba7da051e297a15f9e805667c06842ac906590ec54e7663109875c8ad8ff8339",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:54:15.317Z"
+  },
+  "8463": {
+    "fr_slug": "sendshort",
+    "en_id": 20530,
+    "en_slug": "",
+    "source_hash": "01551eb39a19f7da616f48d22763c4658f183fda236f349cb20b45a40ac9f224",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:54:04.576Z"
+  },
+  "8470": {
+    "fr_slug": "analysis-tool",
+    "en_id": 20526,
+    "en_slug": "",
+    "source_hash": "1c515ac9e99e929d0d88647c6d2edcf91a87c5bbc832ceb30f02c8b717b39a94",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:53:53.008Z"
+  },
+  "8478": {
+    "fr_slug": "kvistly",
+    "en_id": 20522,
+    "en_slug": "",
+    "source_hash": "1b0212fc8f0d6302c4522f52a9f7d6a7fed7560ccc451c5318a34df3182e20cf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:53:40.327Z"
+  },
+  "8484": {
+    "fr_slug": "sup-ai",
+    "en_id": 20518,
+    "en_slug": "",
+    "source_hash": "794ade85f669072a81bc8ac5011e5f750087cbd47e300737ec5a49dd699f15d4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:53:29.557Z"
+  },
+  "8489": {
+    "fr_slug": "mydeviceai",
+    "en_id": 20514,
+    "en_slug": "",
+    "source_hash": "0d8662968aa55a3f7a76d698916ba1547df41f35d4e928f070938d18a9b17ee9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:53:16.754Z"
+  },
+  "8495": {
+    "fr_slug": "photon",
+    "en_id": 20510,
+    "en_slug": "",
+    "source_hash": "550252bf0e563a28fbbddd682969f5d08fbb91b8ad8269a2b485d65a6ea2622a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:53:04.737Z"
+  },
+  "8502": {
+    "fr_slug": "dreamina",
+    "en_id": 20506,
+    "en_slug": "",
+    "source_hash": "67cd535213e5b3ac464c293ee4c715959405f865c15cb155d9573f61500b0cae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:52:53.088Z"
+  },
+  "8506": {
+    "fr_slug": "chatbot-arena",
+    "en_id": 20503,
+    "en_slug": "",
+    "source_hash": "0eb3fe3668a936de8a50305c60a73e8577bc38732c3f2fcbd57ecaa7b4a1ade1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:52:39.474Z"
+  },
+  "8512": {
+    "fr_slug": "syft",
+    "en_id": 20499,
+    "en_slug": "",
+    "source_hash": "2a521802e731c40b1e5cd417bc32c2b3f4c804740653e1a7c9a5556dc99f037e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:52:28.523Z"
+  },
+  "8518": {
+    "fr_slug": "omnicontrol",
+    "en_id": 20495,
+    "en_slug": "",
+    "source_hash": "542b9145753921beebc1cd7d8f00a604b0e2f54e2765381f59f991c020ea5f70",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:52:17.075Z"
+  },
+  "8526": {
+    "fr_slug": "phi-4",
+    "en_id": 20491,
+    "en_slug": "",
+    "source_hash": "06dc40c9cacc5cc8203b49bca2105684447c01b81fc3bc885d14cd8b28cf8d66",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:52:05.104Z"
+  },
+  "8531": {
+    "fr_slug": "diagram-generator",
+    "en_id": 20487,
+    "en_slug": "",
+    "source_hash": "6ddb73bee57729d4730c07afac020d2b9464835411dd387220a912f69593a1c6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:51:53.115Z"
+  },
+  "8538": {
+    "fr_slug": "co",
+    "en_id": 20483,
+    "en_slug": "",
+    "source_hash": "1b9ef92096b2493305083e421aaabfc077c740cc93b6fc54b48f2c9e24e2c43c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:51:40.175Z"
+  },
+  "8545": {
+    "fr_slug": "spar-3d",
+    "en_id": 20481,
+    "en_slug": "",
+    "source_hash": "7323e89a1b27e52f2c1a98dfce2a6976b575491f4a90be13133062cc55870262",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:51:27.295Z"
+  },
+  "8551": {
+    "fr_slug": "conte",
+    "en_id": 20477,
+    "en_slug": "",
+    "source_hash": "5fe75297d2066df835b37a996689e6c9f700cd6a1b04d1309df77b9b8858b1bd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:51:17.186Z"
+  },
+  "8558": {
+    "fr_slug": "lucie",
+    "en_id": 20473,
+    "en_slug": "",
+    "source_hash": "573fe0332b8b0cc7289a5784d01ebcf2462cde9d1e6157e1a19ac51ee000e3f9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:51:04.936Z"
+  },
+  "8578": {
+    "fr_slug": "pocketpal",
+    "en_id": 20469,
+    "en_slug": "",
+    "source_hash": "438f5e8d1ba2dbc4ebe2d739924e3591a158f1ec4f29de9aa8ca92dfc85d455d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:50:53.181Z"
+  },
+  "8586": {
+    "fr_slug": "open-canvas",
+    "en_id": 20465,
+    "en_slug": "",
+    "source_hash": "6a44981990327f175ba139ab7f8ebe6911feb326c11b99f50be18e63a0f79c35",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:50:41.098Z"
+  },
+  "8593": {
+    "fr_slug": "aithor",
+    "en_id": 20461,
+    "en_slug": "",
+    "source_hash": "72eceeb544b9e1c4bcdb5a32a9c6995471a818dd9526c4475fed7b7f661b3fab",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:50:29.492Z"
+  },
+  "8600": {
+    "fr_slug": "alle-ai",
+    "en_id": 20457,
+    "en_slug": "",
+    "source_hash": "d648051903b736703762ab38dd393c5c752783fa90e916e132f725e75ec962ae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:50:17.777Z"
+  },
+  "8608": {
+    "fr_slug": "multi-search-et-multi-ai",
+    "en_id": 20454,
+    "en_slug": "",
+    "source_hash": "a67154522ee34281ecf79c1b6848699436a205748daf69be57ac312986c9beda",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:50:03.583Z"
+  },
+  "8626": {
+    "fr_slug": "super-podcast",
+    "en_id": 20452,
+    "en_slug": "",
+    "source_hash": "03bb06dcd35c851b7e1ece47d7cfdd356406d0a718123e4811e5776175a8146e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:49:51.066Z"
+  },
+  "8635": {
+    "fr_slug": "learn-earth",
+    "en_id": 20448,
+    "en_slug": "",
+    "source_hash": "685eb46c00249c3d9a5f9e80d4894627158cd7b5aac82b14c6c0e5f5fbd5a85d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:49:41.410Z"
+  },
+  "8642": {
+    "fr_slug": "sam-2",
+    "en_id": 20444,
+    "en_slug": "",
+    "source_hash": "77ef71008c8f5998a897a3cc5ee8288f7f6ee95ca1a5e8e0aa741fdb8f42d231",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:49:29.685Z"
+  },
+  "8648": {
+    "fr_slug": "chat-pdf-gpt",
+    "en_id": 20440,
+    "en_slug": "",
+    "source_hash": "fb61b706703bc639e93ee4b750edbb9c7d4d2cec0f597771bb2d6e1fe73d1cdd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:49:16.918Z"
+  },
+  "8663": {
+    "fr_slug": "polychat",
+    "en_id": 20438,
+    "en_slug": "",
+    "source_hash": "3a51dc5c7111cea653f6d42be732c7eb1d9a425f17dd606f36c713dac38260e5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:49:02.801Z"
+  },
+  "8672": {
+    "fr_slug": "websim",
+    "en_id": 20434,
+    "en_slug": "",
+    "source_hash": "7ece3a1dd49ef686ac9ed9a384b6456d9efeea635bfb06e2765611c620163d04",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:48:53.190Z"
+  },
+  "8689": {
+    "fr_slug": "proxy",
+    "en_id": 20431,
+    "en_slug": "",
+    "source_hash": "18528e006a4e8dbbb216b772328f662b59d75be946c402a928bcf81b891c6af9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:48:40.532Z"
+  },
+  "8698": {
+    "fr_slug": "janus-pro",
+    "en_id": 20429,
+    "en_slug": "",
+    "source_hash": "e39d41f0420b5410f43f02fb39446e735210bebd62617db3c0f2bfebe04b26d4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:48:26.933Z"
+  },
+  "8706": {
+    "fr_slug": "ai-flowchart-generator",
+    "en_id": 20425,
+    "en_slug": "",
+    "source_hash": "6bdfc5c616e9e0d83d98ad15899295a6e9465b997b607521b6360731eba8298c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:48:17.233Z"
+  },
+  "8722": {
+    "fr_slug": "qwen-chat",
+    "en_id": 20421,
+    "en_slug": "",
+    "source_hash": "7181e417ced719c995e0895cc305de863022a43fecb1623ab074bad2040dc606",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-30T18:48:05.260Z"
+  },
   "8735": {
     "fr_slug": "fuzz-de-riffusion",
     "en_id": 20358,
@@ -5123,11 +6014,11 @@
   "19013": {
     "fr_slug": "summarizevideototext",
     "en_id": 19171,
-    "en_slug": "",
-    "source_hash": "99ecc45761a8afd4fc32100d1f67e346a13902a9f773726901d30a4469bc987a",
+    "en_slug": "summarizevideototext-2",
+    "source_hash": "13a9a2fc396abaefe4ea947805c389b63f3cb6fca0f1fd7057c7a4f04d899032",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-26T06:48:50.198Z"
+    "updated_at": "2026-08-30T18:47:49.872Z"
   },
   "19081": {
     "fr_slug": "researchdeck",
