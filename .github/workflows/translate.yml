@@ -73,7 +73,7 @@ jobs:
             if [ "${{ inputs.dry_run }}" = "true" ]; then
               ARGS="--dry-run"
             fi
-            ARGS="$ARGS --limit=${{ inputs.limit || '15' }}"
+            ARGS="$ARGS --limit=${{ inputs.limit || '200' }}"
             if [ -n "${{ inputs.only_fr_id }}" ]; then
               ARGS="$ARGS --only-fr-id=${{ inputs.only_fr_id }}"
             fi
