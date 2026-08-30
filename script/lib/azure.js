@@ -32,15 +32,35 @@ async function throttle() {
  * brand/model names (Claude, Gemma, GLM...) survive translation untouched.
  * Case-sensitive, word-boundary matches only, skips terms already wrapped.
  * See config/glossary.json for the list.
+ *
+ * Splits the text into alternating "inside an HTML tag" (`<...>`, e.g. an
+ * `href` attribute) and "plain text between tags" segments first, and skips
+ * substitution on: (a) the tag segments themselves, and (b) any text
+ * segment that is itself a bare URL. This site frequently links a source
+ * with the URL as the link's own visible text (`<a href="...">https://www.
+ * youtube.com/...</a>`) — found live (2026-08-28): substituting "youtube"
+ * or "html" inside that visible-URL text corrupted it once Azure's
+ * HTML-aware translation processed the resulting `<mstrans:dictionary>`
+ * markup sitting inside what looks like a URL (e.g. "youtube.com" came
+ * back as "YouTube. com"). Doesn't catch a URL embedded mid-sentence
+ * alongside other prose in the same segment — not a pattern seen live yet.
  */
 export function applyDictionary(text, glossary) {
-	let result = text;
-	for (const { term, translation } of glossary) {
-		const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-		const pattern = new RegExp(`(?<!<mstrans:dictionary translation="[^"]*">)\\b${escaped}\\b`, 'g');
-		result = result.replace(pattern, `<mstrans:dictionary translation="${translation}">${term}</mstrans:dictionary>`);
-	}
-	return result;
+	const segments = text.split(/(<[^>]*>)/);
+	return segments
+		.map((segment) => {
+			if (segment.startsWith('<') || /^\s*https?:\/\//.test(segment)) {
+				return segment;
+			}
+			let result = segment;
+			for (const { term, translation } of glossary) {
+				const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+				const pattern = new RegExp(`(?<!<mstrans:dictionary translation="[^"]*">)\\b${escaped}\\b`, 'g');
+				result = result.replace(pattern, `<mstrans:dictionary translation="${translation}">${term}</mstrans:dictionary>`);
+			}
+			return result;
+		})
+		.join('');
 }
 
 /**
