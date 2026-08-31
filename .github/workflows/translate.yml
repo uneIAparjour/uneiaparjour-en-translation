@@ -80,6 +80,22 @@ jobs:
           fi
           node translate.js $ARGS
 
+      # 2026-09-01: chained in after translate.js so the daily flow (phase
+      # 07) is fully automatic — direct-publish-then-QA was validated
+      # manually at scale on 2026-08-28/31 (thousands of posts, ~1-3%
+      # title-only error rate, 0 broken content), so the standing
+      # draft-then-manual-publish gate is no longer needed for the normal
+      # daily trickle. Skipped for any special-purpose run (dry-run,
+      # repair passes, single-post reruns via only_fr_id) — those aren't
+      # the regular daily flow and shouldn't auto-publish as a side effect.
+      - name: Publish newly translated EN posts
+        if: ${{ inputs.dry_run != 'true' && inputs.repair_links != 'true' && inputs.repair_images != 'true' && inputs.fix_media != 'true' }}
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: node publish.js --limit=250
+
       - name: Commit updated state
         run: |
           git config user.name "translation-bot"
