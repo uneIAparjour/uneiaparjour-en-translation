@@ -350,6 +350,1779 @@
     "last_error": null,
     "updated_at": "2026-08-31T13:31:20.689Z"
   },
+  "110": {
+    "fr_slug": "noowai",
+    "en_id": 21726,
+    "en_slug": "",
+    "source_hash": "17a27eb169da424cc73a14a2dd68ecbe7ef558b97f63f3558747d57657adf9fe",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:49:58.219Z"
+  },
+  "111": {
+    "fr_slug": "ask2end-ask2endcom-une-question-posee-sur-un",
+    "en_id": 21728,
+    "en_slug": "",
+    "source_hash": "edc085057fc1073e156a87bf21678b670d967b4e81c4d30eb9b334791fdd0e79",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:50:11.722Z"
+  },
+  "112": {
+    "fr_slug": "learnxyz",
+    "en_id": 21730,
+    "en_slug": "",
+    "source_hash": "747da2609b68f2d4fce6a4b196932f35206c4c62f9f91e18776713069034c5ad",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:50:22.795Z"
+  },
+  "113": {
+    "fr_slug": "magma-tutor",
+    "en_id": 21732,
+    "en_slug": "",
+    "source_hash": "e37d7fba8781ee231022e4bb7b47e67bb5003a25f943112f1bb3b9ab956798a0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:50:34.637Z"
+  },
+  "114": {
+    "fr_slug": "stable-audio",
+    "en_id": 21734,
+    "en_slug": "",
+    "source_hash": "532e0c0286d6c00bbe83bb11a6f1ff96f4957b275a2f32175fd59971a3b1d934",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:50:46.395Z"
+  },
+  "115": {
+    "fr_slug": "botpress",
+    "en_id": 21736,
+    "en_slug": "",
+    "source_hash": "6506848b7978a24ca179d74dd75718310a9cb0f20364c15104da73026483db80",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:50:58.846Z"
+  },
+  "116": {
+    "fr_slug": "suno",
+    "en_id": 21738,
+    "en_slug": "",
+    "source_hash": "ae35c5c014a4b18ec90f8a2ecfd914b2ba195ba49321a36ae9d86e503584ba2f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:51:10.930Z"
+  },
+  "117": {
+    "fr_slug": "my-lesson-pal",
+    "en_id": 21740,
+    "en_slug": "",
+    "source_hash": "b3065c50b7ea57b6fa8412d9e5a0b7fcc3457b43c8e5aae99d4148b4858dfdae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:51:22.923Z"
+  },
+  "118": {
+    "fr_slug": "video-highlight",
+    "en_id": 21742,
+    "en_slug": "",
+    "source_hash": "f48a169bc54d227d0c5dd4d70c0b4fb181bba276947e49a13fbf94f75a1a2027",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:51:34.401Z"
+  },
+  "120": {
+    "fr_slug": "vidnoz",
+    "en_id": 21746,
+    "en_slug": "",
+    "source_hash": "c8958d9e87dc9536b951bcca18122bb9a673b6732d10fd089fd2094840030aa6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:51:59.575Z"
+  },
+  "121": {
+    "fr_slug": "chatnbx",
+    "en_id": 21748,
+    "en_slug": "",
+    "source_hash": "204a5957c3f8153ce677c52842467c77c138b46e549193d61a3bc5b990dc8ff9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:52:11.671Z"
+  },
+  "124": {
+    "fr_slug": "5-minutes-lesson-plan",
+    "en_id": 21754,
+    "en_slug": "",
+    "source_hash": "fa04d4eec9e0771a0308d42c2ce02fb8294496dc91e5a486bcb5d5c2078f3d44",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:52:47.482Z"
+  },
+  "127": {
+    "fr_slug": "audiopen",
+    "en_id": 21760,
+    "en_slug": "",
+    "source_hash": "9bc4b9daaa9e95873a23ad6a8312e53454841aae69363cfb87629477623bb4f4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:53:22.319Z"
+  },
+  "128": {
+    "fr_slug": "prepsup",
+    "en_id": 21762,
+    "en_slug": "",
+    "source_hash": "a193d65722778975b643a58b07774941fd4659f764cc876defd9c15549af271a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:53:35.387Z"
+  },
+  "130": {
+    "fr_slug": "flair",
+    "en_id": 21766,
+    "en_slug": "",
+    "source_hash": "c4397e166a6e8092067189e58c2972897b63157fc2b89fc63563bfb15ea02bf4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:53:58.159Z"
+  },
+  "132": {
+    "fr_slug": "artsio",
+    "en_id": 21768,
+    "en_slug": "",
+    "source_hash": "499d5f82db0ea44f6fe4502690b499079dd283c2fbe6d084ec2e98c067899252",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:54:10.505Z"
+  },
+  "135": {
+    "fr_slug": "bloombot",
+    "en_id": 21772,
+    "en_slug": "",
+    "source_hash": "52f6df4023dd5e3686a12750d0f1ea1c9feb53cf8444afc382497dc42d10c2f0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:54:34.224Z"
+  },
+  "138": {
+    "fr_slug": "landingsite",
+    "en_id": 21778,
+    "en_slug": "",
+    "source_hash": "9c52db7a3aaea4956416907d104adcc4c3a9cd437e26ad7527e3262b523df14b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:55:09.983Z"
+  },
+  "139": {
+    "fr_slug": "goblin-tools",
+    "en_id": 21780,
+    "en_slug": "",
+    "source_hash": "30ccb1c9da13b5f3c8a61a16815c6970dffb051205b71330a1f85edacd7aad76",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:55:22.824Z"
+  },
+  "142": {
+    "fr_slug": "artemis",
+    "en_id": 21786,
+    "en_slug": "",
+    "source_hash": "8aa2045012a5046516f09f3cde9006ab4dcf952b89c7909b91e2ef444a36e416",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:55:58.418Z"
+  },
+  "143": {
+    "fr_slug": "lesson-planner",
+    "en_id": 21788,
+    "en_slug": "",
+    "source_hash": "514375d8b9035bfe590504b37609804cf71b008e566fc1af7ec168f12309b5c5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:56:10.205Z"
+  },
+  "144": {
+    "fr_slug": "semantic-scholar",
+    "en_id": 21790,
+    "en_slug": "",
+    "source_hash": "571b88ed978c51f3c967f923810190262d55852b34896b160f8da7ce83048395",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:56:22.503Z"
+  },
+  "145": {
+    "fr_slug": "vaizz",
+    "en_id": 21792,
+    "en_slug": "",
+    "source_hash": "4752815563b6b9406569fdf43d4343993520ebf1f6115d9feeefcfda5b959675",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:56:34.326Z"
+  },
+  "146": {
+    "fr_slug": "tensor",
+    "en_id": 21794,
+    "en_slug": "",
+    "source_hash": "2b974a49898c48fc43cf2ac3691fb094a3f87dca916214cd92dc192801e023ae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:56:46.254Z"
+  },
+  "147": {
+    "fr_slug": "hayo",
+    "en_id": 21796,
+    "en_slug": "",
+    "source_hash": "6156d99117b197413fa6f2f36119406946cf8cb7e1841a496d2f52f55bbecb03",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:56:58.091Z"
+  },
+  "150": {
+    "fr_slug": "cami",
+    "en_id": 21802,
+    "en_slug": "",
+    "source_hash": "e9b7bf048debb8f7bcb2b3f81c27e76a5eb163c846ee9bb74e2c3e9ba49787fd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:57:34.098Z"
+  },
+  "152": {
+    "fr_slug": "conker",
+    "en_id": 21806,
+    "en_slug": "",
+    "source_hash": "f41735bbd82af5ec3d8ea1ea4db0afa21ec1e536828565d555c28a80e82dc91a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:57:58.532Z"
+  },
+  "153": {
+    "fr_slug": "aipage",
+    "en_id": 21808,
+    "en_slug": "",
+    "source_hash": "951e548c1de01d3d0fef951de48166976fc9c694be99aff4e091a5eff5759d54",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:58:10.080Z"
+  },
+  "155": {
+    "fr_slug": "hello-history",
+    "en_id": 21812,
+    "en_slug": "",
+    "source_hash": "b1fdff0fefce9baaab937523cc589b16291cb0bcfca415d97a8e836adf557aaa",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:58:34.543Z"
+  },
+  "157": {
+    "fr_slug": "pixai",
+    "en_id": 21816,
+    "en_slug": "",
+    "source_hash": "c0cec0359161dae3e4aa1be064373cd4d0a043883e736978a0e2c9fae65d055d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:58:58.095Z"
+  },
+  "159": {
+    "fr_slug": "zeroscope",
+    "en_id": 21820,
+    "en_slug": "",
+    "source_hash": "05c413491fc0380f8c23386298246d0a94f94ef01ecc40022766f35caf92c1e4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:59:22.078Z"
+  },
+  "160": {
+    "fr_slug": "illustroke",
+    "en_id": 21822,
+    "en_slug": "",
+    "source_hash": "1a89778422d6758483c1fe8f7ad9417130f30520dfe8a13a2b34749c379843be",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:59:34.087Z"
+  },
+  "161": {
+    "fr_slug": "magicschool",
+    "en_id": 21824,
+    "en_slug": "",
+    "source_hash": "6cd82f2a1e33137a3f140cb934b3b16166ab0573fe6e093a7a49e952ea1bebf9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:59:46.496Z"
+  },
+  "165": {
+    "fr_slug": "learnbot",
+    "en_id": 21832,
+    "en_slug": "",
+    "source_hash": "3051d6e2ce8a86d938316567b7c8647c55b98094a264eeddf6ff57ba28445f03",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:00:34.088Z"
+  },
+  "166": {
+    "fr_slug": "diffit",
+    "en_id": 21834,
+    "en_slug": "",
+    "source_hash": "2d2b4abbeb1d68a101e196421caf75bbf4772e93086385449169f6eda7e123a3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:00:47.784Z"
+  },
+  "169": {
+    "fr_slug": "reemix",
+    "en_id": 21840,
+    "en_slug": "",
+    "source_hash": "0ccdba46d3cc2b7ee2f59d764e8d8933bc6764593e6dc33323a59106e7209cb0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:01:10.089Z"
+  },
+  "172": {
+    "fr_slug": "ora",
+    "en_id": 21846,
+    "en_slug": "",
+    "source_hash": "a266010799290bfdf02ba8523fe46b291aa42618dc7c35660a30aae2c3537c37",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:01:46.906Z"
+  },
+  "174": {
+    "fr_slug": "stable-doodle",
+    "en_id": 21850,
+    "en_slug": "",
+    "source_hash": "c23da3dfc99d1895c3cfd32917418a110b884cf8de0283ec889843488f2c0f3f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:02:10.238Z"
+  },
+  "175": {
+    "fr_slug": "coursebox",
+    "en_id": 21852,
+    "en_slug": "",
+    "source_hash": "89a15721ff1345d36d1adcc3e5f2d1f8cf595791fb3caddca21584de81481865",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:02:22.677Z"
+  },
+  "176": {
+    "fr_slug": "framer",
+    "en_id": 21854,
+    "en_slug": "",
+    "source_hash": "87c3050cea5eb3eb9cfa6df5f5da0b8dc87698d74068f93638183af1ea86e753",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:02:34.142Z"
+  },
+  "177": {
+    "fr_slug": "draw-things",
+    "en_id": 21856,
+    "en_slug": "",
+    "source_hash": "ebf9c83771196fa7f3745a3be88f81ac2bbb1f3934436d0c2567b5e6fe929095",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:02:47.012Z"
+  },
+  "180": {
+    "fr_slug": "re-art",
+    "en_id": 21862,
+    "en_slug": "",
+    "source_hash": "39a15dc7be21ff0f8c94d0c3fb9eb5b749c18f0f0936070c057369110e9bc454",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:03:23.299Z"
+  },
+  "181": {
+    "fr_slug": "ipic",
+    "en_id": 21864,
+    "en_slug": "",
+    "source_hash": "2a2ad11536f21c6f13e225b7225da961a06673da1c505786ec5e75e2d6cd2652",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:03:34.238Z"
+  },
+  "182": {
+    "fr_slug": "storyd",
+    "en_id": 21866,
+    "en_slug": "",
+    "source_hash": "60bb947a42259a1be5b19afde138094270a33b4ba68276aff56b5044df88d01a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:03:47.360Z"
+  },
+  "183": {
+    "fr_slug": "clip-drop",
+    "en_id": 21868,
+    "en_slug": "",
+    "source_hash": "d943ed0d1b67f219a4a7c39bcf6d15e80d35f6ab772af1de0da14fe8ed7f9d6f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:03:58.800Z"
+  },
+  "184": {
+    "fr_slug": "wordtune",
+    "en_id": 21870,
+    "en_slug": "",
+    "source_hash": "74238d6375eec13b3b37473ecb6f5ec03d2a40d3152d6f4ee034ee70176616e9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:04:10.347Z"
+  },
+  "185": {
+    "fr_slug": "aizzy",
+    "en_id": 21872,
+    "en_slug": "",
+    "source_hash": "9127fe067638938113e4e49710f8f710432180412074d8f9639fd65d4853d31d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:04:22.917Z"
+  },
+  "187": {
+    "fr_slug": "piggy",
+    "en_id": 21876,
+    "en_slug": "",
+    "source_hash": "80a24f610c9348f0e6bbb3652ed8682572a0288c2a6124c22d72310e53dc6c14",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:04:46.885Z"
+  },
+  "188": {
+    "fr_slug": "twee",
+    "en_id": 21878,
+    "en_slug": "",
+    "source_hash": "c945ea5af931f9cc9920647eb3f8adc1d9176147225e6d53f1547826857acf52",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:04:59.402Z"
+  },
+  "189": {
+    "fr_slug": "longshot",
+    "en_id": 21880,
+    "en_slug": "",
+    "source_hash": "9a941603bfb68c2ab50c5043b54fa6aef4a00facd45395b30fdfbe9353823668",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:05:10.236Z"
+  },
+  "190": {
+    "fr_slug": "sttatbot",
+    "en_id": 21882,
+    "en_slug": "",
+    "source_hash": "47feff9aee4281eb01e78c1fadbce8ba3c8ddc27b076f44a47df93f346358b3e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:05:22.855Z"
+  },
+  "193": {
+    "fr_slug": "quickcast",
+    "en_id": 21888,
+    "en_slug": "",
+    "source_hash": "abce60ceb6da89bb79eb6c85513f32cafff674870e6022f44011a876b9d4b979",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:05:58.871Z"
+  },
+  "195": {
+    "fr_slug": "eluna",
+    "en_id": 21892,
+    "en_slug": "",
+    "source_hash": "0bd1721d0dd1f40b31b2810e8a25e04496d151d9afb07d176589604122ddae49",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:06:22.275Z"
+  },
+  "198": {
+    "fr_slug": "gamma",
+    "en_id": 21898,
+    "en_slug": "",
+    "source_hash": "8db702b7b6f821f4a8f732bf39b76cb5726abebc8d4bd42f0de6fc5a1a9e1f0f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:06:59.289Z"
+  },
+  "199": {
+    "fr_slug": "breeze",
+    "en_id": 21901,
+    "en_slug": "",
+    "source_hash": "cb250754f846db5bd442d3aac843d32490c6b5ff80dd07243d391e00138ac385",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:07:10.886Z"
+  },
+  "200": {
+    "fr_slug": "muzaic-studio",
+    "en_id": 21903,
+    "en_slug": "",
+    "source_hash": "5e8010af9044d1f8c40e968879bcd30386c728f19dd7d0c5d67e2454487e0f81",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:07:22.284Z"
+  },
+  "203": {
+    "fr_slug": "hypotenuse",
+    "en_id": 21909,
+    "en_slug": "",
+    "source_hash": "0fe0f9ffddea63babc85baac1c2c6cc156dbb6afb689a68c3db5ad63a42fe977",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:07:58.384Z"
+  },
+  "207": {
+    "fr_slug": "decktopus",
+    "en_id": 21917,
+    "en_slug": "",
+    "source_hash": "f124230e9ef731e348cac45c8c1c8703abdf4af5148495eac5eeaeb5349244a3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:08:46.956Z"
+  },
+  "208": {
+    "fr_slug": "learnt",
+    "en_id": 21919,
+    "en_slug": "",
+    "source_hash": "376c4fa6d1b45e844227691947bc4d33afc3683d02718053115c0de037d95219",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:08:58.792Z"
+  },
+  "209": {
+    "fr_slug": "kreado",
+    "en_id": 21921,
+    "en_slug": "",
+    "source_hash": "db285a1bf322c6e25563ce5619d5f0420f2e00f24706f600e452460997d3cf32",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:09:11.088Z"
+  },
+  "212": {
+    "fr_slug": "albus",
+    "en_id": 21927,
+    "en_slug": "",
+    "source_hash": "b1e2f1135fc1a05b5a5c5f48dc3a115184a7eb0bf17a63672d3f9f02c6a74a2f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:09:46.387Z"
+  },
+  "214": {
+    "fr_slug": "todobot",
+    "en_id": 21929,
+    "en_slug": "",
+    "source_hash": "f2396598fc8070503325b4d7fa89ec357feaeb9e94b4a83dc88e96f670e7d984",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:00.064Z"
+  },
+  "217": {
+    "fr_slug": "courseau",
+    "en_id": 21935,
+    "en_slug": "",
+    "source_hash": "dfe6125c04032aa73917d1020e5b399ea74c3243b406bc3f9352b42e9eb751a7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:34.405Z"
+  },
+  "218": {
+    "fr_slug": "openart",
+    "en_id": 21937,
+    "en_slug": "",
+    "source_hash": "2c74c516c6e627c92cad885b0ac9342fa13470f8a6138ec06a7c234714cca4b9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:46.311Z"
+  },
+  "219": {
+    "fr_slug": "nutshell",
+    "en_id": 21939,
+    "en_slug": "",
+    "source_hash": "4afd249498a2d9bbb72a71910bf566ae1abb43aaa9c4655d224624157a58ac50",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:59.012Z"
+  },
+  "220": {
+    "fr_slug": "artflow",
+    "en_id": 21941,
+    "en_slug": "",
+    "source_hash": "29c84fe9f2e3c9a43a6c7f1028e15a923ac6d44dbd622a2cd1d430331bf264c0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:11:10.600Z"
+  },
+  "221": {
+    "fr_slug": "marmof",
+    "en_id": 21943,
+    "en_slug": "",
+    "source_hash": "74b6d4882945e5fdca117e7aa6f229d1c006e34aefdbecb28ece1a809818b1e6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:11:22.460Z"
+  },
+  "222": {
+    "fr_slug": "maze-guru",
+    "en_id": 21945,
+    "en_slug": "",
+    "source_hash": "1fb2b0cf12fa8ba5cb4f3962467e091c66debc0da246aadbf31b9a6fe77e5c01",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:11:35.127Z"
+  },
+  "223": {
+    "fr_slug": "firefly",
+    "en_id": 21947,
+    "en_slug": "",
+    "source_hash": "655e672416316df74e7dc951ba6380b3de4a0ec4fd303154a6e29a3f85a0e817",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:11:47.243Z"
+  },
+  "224": {
+    "fr_slug": "zoo",
+    "en_id": 21949,
+    "en_slug": "",
+    "source_hash": "88a07bc758558cd00e8be538a1ed8db659adb80ece3a64892b44e2584a770872",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:11:58.748Z"
+  },
+  "226": {
+    "fr_slug": "monica",
+    "en_id": 21953,
+    "en_slug": "",
+    "source_hash": "e4dc058fd7e58fb1f064b4d1000ff35cc8b57aacac8db01884eb3baf8c69da7a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:12:22.722Z"
+  },
+  "230": {
+    "fr_slug": "conversly",
+    "en_id": 21959,
+    "en_slug": "",
+    "source_hash": "2da19cde2a739cc26313b0cec61003eba4ce575eb09bdc140e2a6250e76ce84a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:12:59.110Z"
+  },
+  "231": {
+    "fr_slug": "exemplary",
+    "en_id": 21961,
+    "en_slug": "",
+    "source_hash": "f3629b5264340922a17b916ce3d40cacfe208df479ebf8507cb80c80a8010c9d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:13:11.340Z"
+  },
+  "232": {
+    "fr_slug": "dreamlike",
+    "en_id": 21963,
+    "en_slug": "",
+    "source_hash": "41e7a3311cf7eb6937b3b40b1c1b1f1f5d0b253e26b64901e6bf9689305102ab",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:13:22.445Z"
+  },
+  "233": {
+    "fr_slug": "songr",
+    "en_id": 21965,
+    "en_slug": "",
+    "source_hash": "16b6afcc2523ab58ee1d2f143fb5e18cb1e765c6555171c56427cafe62436ad0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:13:34.561Z"
+  },
+  "234": {
+    "fr_slug": "stablecog",
+    "en_id": 21967,
+    "en_slug": "",
+    "source_hash": "7e0287e82db158c8bd3fc6d6120148967a3cf5db5a38c1c77321d0697f460106",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:13:47.960Z"
+  },
+  "237": {
+    "fr_slug": "loudly",
+    "en_id": 21973,
+    "en_slug": "",
+    "source_hash": "5c3650bde4368c9aa38f4ca79e75db497a44d9c3730bba451d8de2d5814ec56f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:14:23.194Z"
+  },
+  "238": {
+    "fr_slug": "plazmapunk",
+    "en_id": 21975,
+    "en_slug": "",
+    "source_hash": "a161bc01b077eb336af6499968c471230ba89826b01c95eaaa7936c00e3c2c74",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:14:36.974Z"
+  },
+  "239": {
+    "fr_slug": "d-id",
+    "en_id": 21977,
+    "en_slug": "",
+    "source_hash": "75c7ee58a6f403ad596248d98df91a2500271f525a81ed70d1dac45ff4b4689e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:14:46.748Z"
+  },
+  "240": {
+    "fr_slug": "typpo",
+    "en_id": 21979,
+    "en_slug": "",
+    "source_hash": "da1cf9f54df6701ca0f8d5fec49cf4b9dcceb02f5a25299325393bdf7766aaa0",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:14:58.930Z"
+  },
+  "241": {
+    "fr_slug": "sofabrain",
+    "en_id": 21981,
+    "en_slug": "",
+    "source_hash": "3dab3a213b1817be5706eb1fcbb586aa5c0d3bf831e3549669490ef5fe8757fa",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:15:10.559Z"
+  },
+  "243": {
+    "fr_slug": "my-ai",
+    "en_id": 21985,
+    "en_slug": "",
+    "source_hash": "cf73b2fc481f139c82b476d71675f9f4e142b6d3ff6bf1c98061abeaa2ce851d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:15:35.192Z"
+  },
+  "245": {
+    "fr_slug": "novelflow",
+    "en_id": 21989,
+    "en_slug": "",
+    "source_hash": "919ccff266c05577e8522baa2be3de11d6ebbbc5eb0b139d5f90373aab8f1580",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:15:59.892Z"
+  },
+  "247": {
+    "fr_slug": "mentorgpt",
+    "en_id": 21995,
+    "en_slug": "",
+    "source_hash": "09d7db4bfc6b900b3e80ab60606d595f04fa25e4023655d1b55c74dc8a51e815",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:16:35.355Z"
+  },
+  "249": {
+    "fr_slug": "chartgpt",
+    "en_id": 21999,
+    "en_slug": "",
+    "source_hash": "691cd28cc3067e92c5dd13db4e14b7317650851a0e07d315be6c59c1bb8002e6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:16:58.585Z"
+  },
+  "250": {
+    "fr_slug": "blocklade-labs",
+    "en_id": 22001,
+    "en_slug": "",
+    "source_hash": "ada9495167fdb5a476fc4a72919b06386c531399becf57f8c8165062a8b9d692",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:17:10.706Z"
+  },
+  "253": {
+    "fr_slug": "open-assistant",
+    "en_id": 22007,
+    "en_slug": "",
+    "source_hash": "ba504330afc965f66f7bcbdfd8f96ee0febc9c506cee9ee9141b541da8b59fdf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:17:47.438Z"
+  },
+  "254": {
+    "fr_slug": "kaiber",
+    "en_id": 22009,
+    "en_slug": "",
+    "source_hash": "39378b95397bda2f1967cf3c7ffba65577fbe5f9c4d9f60c5809a3a1fdfee0bf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:17:59.238Z"
+  },
+  "255": {
+    "fr_slug": "creative-fabrica",
+    "en_id": 22011,
+    "en_slug": "",
+    "source_hash": "e3495878e70b1cfb470809a1ac6b37cc882282bd444d21ceac406bbf6fda114f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:18:10.585Z"
+  },
+  "256": {
+    "fr_slug": "mage",
+    "en_id": 22013,
+    "en_slug": "",
+    "source_hash": "6aa9cd2d8906cc65bc78d36fb274bb381ee55a55bd83dd0a5d703394520aae04",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:18:23.968Z"
+  },
+  "257": {
+    "fr_slug": "opus-clip",
+    "en_id": 22015,
+    "en_slug": "",
+    "source_hash": "4fbad7f84dbba97edbc09892c79b5aff1be46438ed764e095d3b9ba3216b4451",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:18:35.221Z"
+  },
+  "258": {
+    "fr_slug": "autogpt",
+    "en_id": 22017,
+    "en_slug": "",
+    "source_hash": "3f2fae534dbda25331d296f85decaa5addb25a83fc0c6b410dbc940d50985e0b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:18:47.141Z"
+  },
+  "259": {
+    "fr_slug": "stablelm",
+    "en_id": 22019,
+    "en_slug": "",
+    "source_hash": "142cb3b15e07b199e482aa9ff50f2e8943dea7d2172a5e23f86fd3b78d5c0425",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:18:59.109Z"
+  },
+  "260": {
+    "fr_slug": "instant-art",
+    "en_id": 22021,
+    "en_slug": "",
+    "source_hash": "9f76a138d8b26d88307ee6468de4b1fc6e54b5b2dbd8348a4c6488631e17c3d3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:19:10.724Z"
+  },
+  "261": {
+    "fr_slug": "binggpt",
+    "en_id": 22023,
+    "en_slug": "",
+    "source_hash": "5ab9edd6d8cc29930ee4e5ff483eab71f2e311d9f1fad271e7f85da29d1a428e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:19:23.248Z"
+  },
+  "263": {
+    "fr_slug": "plume-ai",
+    "en_id": 22025,
+    "en_slug": "",
+    "source_hash": "f8c924e6f1c58fe08afb4efb29e2a71c29ffdd86dcd699abc55a1afb60394af7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:19:35.048Z"
+  },
+  "264": {
+    "fr_slug": "my-askai",
+    "en_id": 22027,
+    "en_slug": "",
+    "source_hash": "8b34f7680e05d8747318bb1e8018798f687d1c8b047eeb51d0db4649e0ab978e",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:19:47.952Z"
+  },
+  "265": {
+    "fr_slug": "cohesive-2",
+    "en_id": 22029,
+    "en_slug": "",
+    "source_hash": "0311d8782dc3431a7c6f7d41cf8c541185ed9877361f682de73be55f2fce4d15",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:19:59.075Z"
+  },
+  "266": {
+    "fr_slug": "designer",
+    "en_id": 22031,
+    "en_slug": "",
+    "source_hash": "fa4cb2623cebe22e66a5cd5ddcc7a7bf9ac5693ca0805ec9691c3d44099bf168",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:20:10.746Z"
+  },
+  "267": {
+    "fr_slug": "verb-art",
+    "en_id": 22033,
+    "en_slug": "",
+    "source_hash": "020a5f7009c31ccfc5fea0ef984933eccd43c927342ee3d18ebca717300f64a1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:20:23.912Z"
+  },
+  "268": {
+    "fr_slug": "brancher",
+    "en_id": 22035,
+    "en_slug": "",
+    "source_hash": "66b07c9d30e7efad8a1d5c58dd51c732ff98c81e5e17e45e2efe401e793eb181",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:20:34.725Z"
+  },
+  "269": {
+    "fr_slug": "course-ai",
+    "en_id": 22037,
+    "en_slug": "",
+    "source_hash": "04f43b2f5190df9efa02fed845de671ef3aa55792a1e7f1a125eebc67a01620a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:20:46.591Z"
+  },
+  "270": {
+    "fr_slug": "night-cafe",
+    "en_id": 22039,
+    "en_slug": "",
+    "source_hash": "1b4f2b421aa2762dc9ce6c08ecaa59f0715a422fe4557a21e26e0ea41cecf3c1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:20:59.363Z"
+  },
+  "271": {
+    "fr_slug": "soundraw",
+    "en_id": 22041,
+    "en_slug": "",
+    "source_hash": "2c52be5ceb5c2f1fd63e98b7997e433283312caaac0e3a1415260375f06f8db9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:21:10.576Z"
+  },
+  "272": {
+    "fr_slug": "usechatgpt",
+    "en_id": 22043,
+    "en_slug": "",
+    "source_hash": "ef713964b60d60e4921b872dc6cf59309e21d94b28bde901e5a3ce6285e728fc",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:21:22.699Z"
+  },
+  "273": {
+    "fr_slug": "chatbase-grace-a-chatbase-httpchatbaseco",
+    "en_id": 22045,
+    "en_slug": "",
+    "source_hash": "e2de8cf270ea40744892aa5aea669a11002ab1a5fadaa2285345b0697f04e080",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:21:35.072Z"
+  },
+  "274": {
+    "fr_slug": "bedtime-story",
+    "en_id": 22047,
+    "en_slug": "",
+    "source_hash": "c49e3c0ef397bd332ec5d338e431fdaf064333ddea42c98454fa859edf814a96",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:21:46.794Z"
+  },
+  "275": {
+    "fr_slug": "steve",
+    "en_id": 22049,
+    "en_slug": "",
+    "source_hash": "23b0baf5634ade30519a5f591413096627f2d5d9e6a87963c949315b6e103c43",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:21:59.824Z"
+  },
+  "276": {
+    "fr_slug": "scenario-45-ia-generatives-dimages-dont-stable",
+    "en_id": 22051,
+    "en_slug": "",
+    "source_hash": "5add1e4b311a18f3e1ab601abe32457dab686641462ea2f5040b44e4bd031d64",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:22:10.686Z"
+  },
+  "277": {
+    "fr_slug": "studiogpt",
+    "en_id": 22053,
+    "en_slug": "",
+    "source_hash": "2c9a6adddb73f4d6400942a294e913488cbb06a4713cb375b2d61da724d47fcd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:22:22.826Z"
+  },
+  "278": {
+    "fr_slug": "story-wizard",
+    "en_id": 22055,
+    "en_slug": "",
+    "source_hash": "44e812c4823fdcd7c3dc5cfd5a8cd323a4533f78975fff22c79bcfa17d8286c1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:22:34.709Z"
+  },
+  "280": {
+    "fr_slug": "gen1-de-runway",
+    "en_id": 22057,
+    "en_slug": "",
+    "source_hash": "b12a6cb53dcda4f08e1b4b49ad966caad83e6e755a22346637793ffb18dc97bf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:22:46.631Z"
+  },
+  "281": {
+    "fr_slug": "catbird",
+    "en_id": 22059,
+    "en_slug": "",
+    "source_hash": "cf52958181bd7acd7fadcf152db29617564f2629c8d9e93eb148aa0940ac0519",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:22:58.739Z"
+  },
+  "282": {
+    "fr_slug": "type-type-une-ia-generative-de-texte-avec-outil",
+    "en_id": 22061,
+    "en_slug": "",
+    "source_hash": "1b787a73c11f341fe9fb2f1ff888e0de64189cd610d5e941e9f65b257eb98b92",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:23:11.058Z"
+  },
+  "283": {
+    "fr_slug": "chattypdf",
+    "en_id": 22063,
+    "en_slug": "",
+    "source_hash": "e10a99e820ca648b00617f583eb44abbe18200be20755f435f64fe6b84cbd307",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:23:26.085Z"
+  },
+  "284": {
+    "fr_slug": "playlistai",
+    "en_id": 22065,
+    "en_slug": "",
+    "source_hash": "e3d3d068d82c066f010b93c7de768b53833bc37aafb9a2f1f35d9dcb3cbce7ea",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:23:35.307Z"
+  },
+  "285": {
+    "fr_slug": "gptgo",
+    "en_id": 22067,
+    "en_slug": "",
+    "source_hash": "71cf64d8526694854cb77d36b79926ce993f1c6a10a7db658864ad38186748c7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:23:47.849Z"
+  },
+  "286": {
+    "fr_slug": "leonardo",
+    "en_id": 22069,
+    "en_slug": "",
+    "source_hash": "3561126439e73f1f4ae0c90a730f135781c42c0dae49e6d16490881e341942af",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:23:58.541Z"
+  },
+  "287": {
+    "fr_slug": "opera",
+    "en_id": 22071,
+    "en_slug": "",
+    "source_hash": "025e80cad1c6c4bc1c5568555033e21dc0854b9a63920dc45ca68294f6fb3068",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:24:11.316Z"
+  },
+  "288": {
+    "fr_slug": "elicit",
+    "en_id": 22073,
+    "en_slug": "",
+    "source_hash": "d75f3b1b2ba436f5ddfbbda9bc5ed73a555845d5fed370c66a7d7f004a791b15",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:24:23.353Z"
+  },
+  "289": {
+    "fr_slug": "perplexity",
+    "en_id": 22075,
+    "en_slug": "",
+    "source_hash": "df1b4f01da900c8e991bc22c6a5415457e1e9ccf775a3eff540da92ca2def30d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:24:34.698Z"
+  },
+  "290": {
+    "fr_slug": "natdev-tester-25-ia-generatives-de-texte-dont",
+    "en_id": 22077,
+    "en_slug": "",
+    "source_hash": "6a81f4aa5b03db8a4075cb697521e463d6d1029ca9875251f8e9d3b7cbeb1bc7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:24:47.767Z"
+  },
+  "291": {
+    "fr_slug": "imagine",
+    "en_id": 22079,
+    "en_slug": "",
+    "source_hash": "796f2faaf4b184fffd57704978d432de1a9eebcfbc1d3f0014749ff49c85c80b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:24:58.699Z"
+  },
+  "292": {
+    "fr_slug": "ludo",
+    "en_id": 22081,
+    "en_slug": "",
+    "source_hash": "fef8a425b7906d434192f99cddd7671c6052de94ad84f93667cc84ae2c3c6bf2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:25:11.908Z"
+  },
+  "293": {
+    "fr_slug": "boomy",
+    "en_id": 22083,
+    "en_slug": "",
+    "source_hash": "d842ef4a50b762a560e1bea2fce2f462d57aa70ad5fb5e90684b49a78664f253",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:25:22.678Z"
+  },
+  "295": {
+    "fr_slug": "rytr",
+    "en_id": 22085,
+    "en_slug": "",
+    "source_hash": "fbe07958f8eab529289c9031e14f3e6bd97b4cee927359103049163d5c392a0f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:25:35.942Z"
+  },
+  "296": {
+    "fr_slug": "modulo-ai-assistant",
+    "en_id": 22087,
+    "en_slug": "",
+    "source_hash": "57cc82433e5d5b0b4919f8915704c7f72015157509083d34ea16fe3081c4a5d7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:25:46.752Z"
+  },
+  "297": {
+    "fr_slug": "nolej",
+    "en_id": 22089,
+    "en_slug": "",
+    "source_hash": "1cf0c39561fd6cd57b6ade89c35a2371e0c3e9218dacb0886e8e18af5b7009ec",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:26:00.031Z"
+  },
+  "298": {
+    "fr_slug": "runway-ml",
+    "en_id": 22091,
+    "en_slug": "",
+    "source_hash": "9e4f91955478c3e18662c09a6459c1b8e95ea13df8f6e2193fbbacc43b28f763",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:26:10.784Z"
+  },
+  "299": {
+    "fr_slug": "imgcreator",
+    "en_id": 22093,
+    "en_slug": "",
+    "source_hash": "2e51acfbef50854b0e01cc173fd3f2564ebbc83289123ca7dc9b076d5089d834",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:26:22.943Z"
+  },
+  "301": {
+    "fr_slug": "cody",
+    "en_id": 22097,
+    "en_slug": "",
+    "source_hash": "5f1d00f2d78f974425065d58be4bc8670aa33b9bcc230e72bcb5fadc13325299",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:26:46.713Z"
+  },
+  "302": {
+    "fr_slug": "lucidpic",
+    "en_id": 22099,
+    "en_slug": "",
+    "source_hash": "9bad2a0473b255b85fe42177d6fd673a22298636f1d8853e9160c513fb3b0a38",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:00.090Z"
+  },
+  "303": {
+    "fr_slug": "webchatgpt",
+    "en_id": 22101,
+    "en_slug": "",
+    "source_hash": "3c77bc2c75baa3e8959312be97206789ef61f9e052005c54add4879fd5e90410",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:10.990Z"
+  },
+  "309": {
+    "fr_slug": "ayoa",
+    "en_id": 22113,
+    "en_slug": "",
+    "source_hash": "90c05120923c6af7ab12325f14faafc20570bcebcb899e1cd4de44325451a9ef",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:28:22.932Z"
+  },
+  "311": {
+    "fr_slug": "characterai",
+    "en_id": 22115,
+    "en_slug": "",
+    "source_hash": "9b2f88239b93f204b673a9a5d467a5116b1bbdebf7e8a3aea129a0b11643565b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:28:36.132Z"
+  },
+  "312": {
+    "fr_slug": "riffusion",
+    "en_id": 22117,
+    "en_slug": "",
+    "source_hash": "a2c40e657dee3be9e7e8621853d89d8205a72ad661742b02d4889ed3a15dbc63",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:28:49.670Z"
+  },
+  "313": {
+    "fr_slug": "scribble-diffusion",
+    "en_id": 22121,
+    "en_slug": "",
+    "source_hash": "57221563de245c87affe872848b4008e7db800553860e245b3da38b2a9862e76",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:28:59.210Z"
+  },
+  "315": {
+    "fr_slug": "youchat",
+    "en_id": 22125,
+    "en_slug": "",
+    "source_hash": "c3e72505d58babd61b69cef300380c919b1343dc202407c070711ecc59b735e3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:29:23.710Z"
+  },
+  "318": {
+    "fr_slug": "flikiai",
+    "en_id": 22127,
+    "en_slug": "",
+    "source_hash": "cbe2f4d5c797b42add74ebf4499298492999abbc52539d5532776272aefab261",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:29:34.882Z"
+  },
+  "320": {
+    "fr_slug": "playground",
+    "en_id": 22129,
+    "en_slug": "",
+    "source_hash": "d7e02406a75cfaa5771057a460c23d2bc557e061514823756854619aef4ca1ca",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:29:48.696Z"
+  },
+  "2584": {
+    "fr_slug": "whimsical",
+    "en_id": 22095,
+    "en_slug": "",
+    "source_hash": "f00c86a2739f7569cd0752a26d6afb0130a92b159dcdbabd3627a930afc7b459",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:26:36.207Z"
+  },
+  "2585": {
+    "fr_slug": "un-texte-jusqua-10000-caracteres-ou-une-url-et-2",
+    "en_id": 22103,
+    "en_slug": "",
+    "source_hash": "fab9884e3c7645e3bc0749917a0996f9347853416bf078bd1d4dffa897b1a0da",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:23.520Z"
+  },
+  "2586": {
+    "fr_slug": "endless-visual-novel-2",
+    "en_id": 22105,
+    "en_slug": "",
+    "source_hash": "763c50c0b0cae8ee280427d94f143d5fbf2b88e21a602a465124ed88a9186968",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:35.009Z"
+  },
+  "2587": {
+    "fr_slug": "vizcom-2",
+    "en_id": 22107,
+    "en_slug": "",
+    "source_hash": "4fbec26074074599ce52037a3f1b1615776f45ff2bb10ac103dcd7f2d3fa2c9b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:47.491Z"
+  },
+  "2588": {
+    "fr_slug": "paint-by-text-2",
+    "en_id": 22109,
+    "en_slug": "",
+    "source_hash": "85ccb4e4a848b85bb553b65d623f4cd9ae485d149dcf1291bb371a04a152977a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:27:59.629Z"
+  },
+  "2589": {
+    "fr_slug": "humata-2",
+    "en_id": 22111,
+    "en_slug": "",
+    "source_hash": "57150e8b81d6918e78f9f6a3ee712e515255bf45ea88032aab4bdcf9340368db",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:28:10.747Z"
+  },
+  "2592": {
+    "fr_slug": "prompt-20-secondes-1-page-web-redigee-et",
+    "en_id": 22123,
+    "en_slug": "",
+    "source_hash": "c1ae78227ca9d0662ad7a0b74fe25d6d2330b6b309043776d68d455535e82bd9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:29:10.782Z"
+  },
+  "2612": {
+    "fr_slug": "tutorai-2",
+    "en_id": 21983,
+    "en_slug": "",
+    "source_hash": "40e44168c07153eb80a771e3bb869274e70251eaf7e9c37e613aacaf5004ed38",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:15:22.679Z"
+  },
+  "2613": {
+    "fr_slug": "bluewillow-2",
+    "en_id": 21987,
+    "en_slug": "",
+    "source_hash": "5cd9c190ec69a0c6c74f3755ed681322c334014915471a4de17bb3ff432061a2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:15:47.759Z"
+  },
+  "2614": {
+    "fr_slug": "chatyoutube",
+    "en_id": 21993,
+    "en_slug": "",
+    "source_hash": "84d2e4d27666119f24022acbf38bbc0e6e72fe6b5ef70e639879569e2eda221b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:16:22.941Z"
+  },
+  "2616": {
+    "fr_slug": "looseleaf",
+    "en_id": 21997,
+    "en_slug": "",
+    "source_hash": "a66a70a45b00fe40a77e70b9bfb5471cadc77e6c3cafb253984f251277869b0b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:16:46.700Z"
+  },
+  "2617": {
+    "fr_slug": "forefront-chat",
+    "en_id": 22003,
+    "en_slug": "",
+    "source_hash": "184338dbac7d6e884b547f3e13524330d4a26fe7169a7c98c8a4d8ecad9a9223",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:17:23.187Z"
+  },
+  "2618": {
+    "fr_slug": "minigpt4-2",
+    "en_id": 22005,
+    "en_slug": "",
+    "source_hash": "568dcbb9ef0553bd3116bd07ec0b4d23f63724f0c71fd6b93b2cd0ccb9e40703",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:17:34.820Z"
+  },
+  "2619": {
+    "fr_slug": "askbooks-2",
+    "en_id": 21951,
+    "en_slug": "",
+    "source_hash": "5b29b804520c6c7f0acf1bc86006502217e90395cd76dc4f7c827cf644a67a10",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:12:11.123Z"
+  },
+  "2620": {
+    "fr_slug": "gitmind",
+    "en_id": 21955,
+    "en_slug": "",
+    "source_hash": "831cea3045cab403e8fafbde44bcca3e2ed92d884cf268a1fac60fb156d50d9c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:12:34.991Z"
+  },
+  "2624": {
+    "fr_slug": "teach-anything-2",
+    "en_id": 21957,
+    "en_slug": "",
+    "source_hash": "2270f62e6b59ef1b5434de69e2cd00607a9843a23be103f5ca9f1a25580cc86b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:12:46.603Z"
+  },
+  "2625": {
+    "fr_slug": "byeblankpage-2",
+    "en_id": 21969,
+    "en_slug": "",
+    "source_hash": "40d69fcbdc6fb94e2079d335a5b7986387bb9d2c14395833c197eceb2f707382",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:13:58.716Z"
+  },
+  "2626": {
+    "fr_slug": "beatbot-2",
+    "en_id": 21971,
+    "en_slug": "",
+    "source_hash": "737e274859e2b01b04cb90c7374ba1bb39606ef5585513ac80a5c3f5def8efe3",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:14:11.000Z"
+  },
+  "2628": {
+    "fr_slug": "bright-eye",
+    "en_id": 21896,
+    "en_slug": "",
+    "source_hash": "cda0a42f95c7d588cb8097b53ce0903629f684aaa19c29ecf19ea0641171b010",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:06:47.340Z"
+  },
+  "2629": {
+    "fr_slug": "studyflow",
+    "en_id": 21905,
+    "en_slug": "",
+    "source_hash": "cdb5ba2ebdb47fbb45f7063bbca76cb6a8647aac844a21305bb924860c188151",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:07:34.818Z"
+  },
+  "2630": {
+    "fr_slug": "patience",
+    "en_id": 21907,
+    "en_slug": "",
+    "source_hash": "6504946dd4efc7e58a5d1d3dbf5b3dec8f80569c127ff72bef8a31ac20007099",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:07:46.945Z"
+  },
+  "2631": {
+    "fr_slug": "meyer",
+    "en_id": 21911,
+    "en_slug": "",
+    "source_hash": "5de77b0856ae318d8563053f67e3cbf03847ed5e975e1033754a6b270cc3ed92",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:08:10.791Z"
+  },
+  "2633": {
+    "fr_slug": "leap",
+    "en_id": 21913,
+    "en_slug": "",
+    "source_hash": "80d22db9419b037ef5de8b0626d3382e53392a2f7a37a709adc50c218c601b80",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:08:22.369Z"
+  },
+  "2635": {
+    "fr_slug": "musicgen",
+    "en_id": 21915,
+    "en_slug": "",
+    "source_hash": "246ea2ff1f0ef7f61495d294254b749f69716f6ed11a8f9672a7c3cdd461cef4",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:08:34.295Z"
+  },
+  "2636": {
+    "fr_slug": "bookhero",
+    "en_id": 21923,
+    "en_slug": "",
+    "source_hash": "b4049f2c3a54cf4cbf7d0c8ebdab4b8af17b16ab3821742a4fdc83d25ade3080",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:09:22.504Z"
+  },
+  "2638": {
+    "fr_slug": "aitubo",
+    "en_id": 21925,
+    "en_slug": "",
+    "source_hash": "f3a531132c7d81f38da7bb10b5ee3081c034a7f38ed22e537fa1a4c08f1f2746",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:09:34.769Z"
+  },
+  "2640": {
+    "fr_slug": "fini-2",
+    "en_id": 21931,
+    "en_slug": "",
+    "source_hash": "79cb359d0ba30490527f7ce8b8b1d087210d1a1e13a68f521b4faa1faef2cb03",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:10.415Z"
+  },
+  "2641": {
+    "fr_slug": "the-infinite-drum-machine",
+    "en_id": 21933,
+    "en_slug": "",
+    "source_hash": "c4b19b263c07a408c6c1fe25791f97bdd251845a7f4ebe05b1ce3839e4698242",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:10:22.923Z"
+  },
+  "2642": {
+    "fr_slug": "color-anything",
+    "en_id": 21858,
+    "en_slug": "",
+    "source_hash": "a64508b9319a6fdc2d09ade34d055bc5aa126608367f0cf220fd4e967e67eb10",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:02:58.705Z"
+  },
+  "2644": {
+    "fr_slug": "veedio",
+    "en_id": 21860,
+    "en_slug": "",
+    "source_hash": "a49de3c2ca39ae09c88e4da63974fadbd2d3c36909e643986d2879a66f9b019b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:03:10.218Z"
+  },
+  "2645": {
+    "fr_slug": "pollinations-2",
+    "en_id": 21874,
+    "en_slug": "",
+    "source_hash": "658a49b326b278a38e8286ed40eb20d009a8ee5bde1f3791a5f1fef327637357",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:04:34.859Z"
+  },
+  "2646": {
+    "fr_slug": "imaginary-soundscape",
+    "en_id": 21884,
+    "en_slug": "",
+    "source_hash": "bdf8391e567fa5f766c08dccc9d0e8af3ee3c7f3022afc385eba0a6b730b65f5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:05:34.645Z"
+  },
+  "2648": {
+    "fr_slug": "stockimg-qrcode",
+    "en_id": 21886,
+    "en_slug": "",
+    "source_hash": "0f35642c50021e70d6fea35a39831fc4026f8c5e90a66157974ee83ccf348013",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:05:46.250Z"
+  },
+  "2649": {
+    "fr_slug": "curipod",
+    "en_id": 21890,
+    "en_slug": "",
+    "source_hash": "e5d67eb1c5ecbf9e006b68144752ef4b578e8167beb979aca6c9194550828f8b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:06:10.783Z"
+  },
+  "2650": {
+    "fr_slug": "teachertoolsgpt",
+    "en_id": 21894,
+    "en_slug": "",
+    "source_hash": "24d7173ac80add57d7bd3d5e564e93d71bb60be9f2db9ac0b695dfb10c46d9b5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:06:34.949Z"
+  },
+  "2651": {
+    "fr_slug": "openchat",
+    "en_id": 21818,
+    "en_slug": "",
+    "source_hash": "89ca9aa78f9c772d9065532aa35906612b42e8ef399da104962781a6f7782171",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:59:10.557Z"
+  },
+  "2652": {
+    "fr_slug": "dezgo",
+    "en_id": 21826,
+    "en_slug": "",
+    "source_hash": "5169b5b068493a5a8c8a4004ccb3f2fc42a9e71c9f7c820eb0e5c62c013692a2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:59:58.195Z"
+  },
+  "2654": {
+    "fr_slug": "minerva",
+    "en_id": 21828,
+    "en_slug": "",
+    "source_hash": "b180206bd9685b5f8c6eed5401fd9468c0c546b68f8921e5e2842a900a911f50",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:00:10.071Z"
+  },
+  "2655": {
+    "fr_slug": "llama",
+    "en_id": 21830,
+    "en_slug": "",
+    "source_hash": "34e87c63901bf20e7f0ad1df7a51c7b7acfbccba2b5bc3ea37b36796b5236461",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:00:22.623Z"
+  },
+  "2658": {
+    "fr_slug": "ai-dungeon",
+    "en_id": 21838,
+    "en_slug": "",
+    "source_hash": "90f4ca0545a09fa9c412f6a0f16997e431f9cd7f2877a74b6f3914f9ebd55d1a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:00:59.460Z"
+  },
+  "2659": {
+    "fr_slug": "pathfinder",
+    "en_id": 21842,
+    "en_slug": "",
+    "source_hash": "1177a62cf3c59d42b9ea9c1f269c1bcdabb87ef27a4d226f297ae887e8848863",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:01:22.202Z"
+  },
+  "2661": {
+    "fr_slug": "scispace",
+    "en_id": 21844,
+    "en_slug": "",
+    "source_hash": "b69f9b658cc8f9ddcba8c6dfbf3befb3fe1a00ee91b9f25164d83991005c784d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:01:34.592Z"
+  },
+  "2662": {
+    "fr_slug": "genmo-2",
+    "en_id": 21848,
+    "en_slug": "",
+    "source_hash": "984c1df9526d9ec4f5723529a5a558782a5158e9e8cb585a30516c03db36d7bf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:01:58.915Z"
+  },
+  "2663": {
+    "fr_slug": "imagica",
+    "en_id": 21776,
+    "en_slug": "",
+    "source_hash": "47bef0fbddcace0e6f4c104c963dfcea5c7bb0c783bf6475a5b439c913f2e601",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:54:59.221Z"
+  },
+  "2664": {
+    "fr_slug": "human-generator",
+    "en_id": 21782,
+    "en_slug": "",
+    "source_hash": "17ac9ca032ba38504996ff004d68fcc421e9089f87243ff6aebb796ecb5367ff",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:55:35.539Z"
+  },
+  "2666": {
+    "fr_slug": "iconai",
+    "en_id": 21784,
+    "en_slug": "",
+    "source_hash": "400578e9a8f2757d2c74ba2ee89329e844fae99f762b1bec4f49eb95e5811faf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:55:46.506Z"
+  },
+  "2668": {
+    "fr_slug": "talknotes",
+    "en_id": 21798,
+    "en_slug": "",
+    "source_hash": "4b29a9d09e27470bdb29c8d99d3bc375fd11fa0bf75884ac01db4f025f5f7f2a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:57:09.999Z"
+  },
+  "2669": {
+    "fr_slug": "skillify",
+    "en_id": 21800,
+    "en_slug": "",
+    "source_hash": "80b84dcda35b68452388f2e755a7005326e220fbf3208887a39eb7037df9153a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:57:22.282Z"
+  },
+  "2670": {
+    "fr_slug": "skolar",
+    "en_id": 21804,
+    "en_slug": "",
+    "source_hash": "83edd204adaeaa3ce06ea8ca0e6f5c0c4ffdf40817e3a7857990426284add547",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:57:46.115Z"
+  },
+  "2671": {
+    "fr_slug": "promind",
+    "en_id": 21810,
+    "en_slug": "",
+    "source_hash": "e2c6d0e09d5214868d47a556dde823c5004baeb6f7f0513f2fa191b6b90e8de9",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:58:22.112Z"
+  },
+  "2672": {
+    "fr_slug": "sendsteps",
+    "en_id": 21814,
+    "en_slug": "",
+    "source_hash": "766eb2cd80c26cb11267f22527837bee29bd057079831b43f6b15254a3e7306f",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:58:46.152Z"
+  },
+  "2673": {
+    "fr_slug": "logicballs",
+    "en_id": 21744,
+    "en_slug": "",
+    "source_hash": "b57149c13bd610a38ebd45ea5555cddb7b8671b253be162d4fdc86e19433be70",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:51:47.011Z"
+  },
+  "2674": {
+    "fr_slug": "puzzicle",
+    "en_id": 21750,
+    "en_slug": "",
+    "source_hash": "a715aea9ae2ce765e0858e3fca2ff64bc5e3b78ccc6409bdba4cf26e8a072ccd",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:52:23.022Z"
+  },
+  "2676": {
+    "fr_slug": "doc-analyser",
+    "en_id": 21752,
+    "en_slug": "",
+    "source_hash": "50c904dad39e1ebfe8b6f37d173835b823a77e9e73c95ab8d39786cfccf877a6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:52:34.154Z"
+  },
+  "2677": {
+    "fr_slug": "lex-2",
+    "en_id": 21756,
+    "en_slug": "",
+    "source_hash": "ac425c6a038604d37ecd0c9fe425d0c4e65b3dbdca1bcb003e4b920799aad629",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:52:58.118Z"
+  },
+  "2679": {
+    "fr_slug": "segmind-2",
+    "en_id": 21758,
+    "en_slug": "",
+    "source_hash": "949805fde777af42c2430ca479a9e58dcbc9c25401f1ece8fe9175bb739d94ae",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:53:10.513Z"
+  },
+  "2680": {
+    "fr_slug": "hix",
+    "en_id": 21764,
+    "en_slug": "",
+    "source_hash": "77b866d704d4c4f6e4ae0e5c2454c97260675bfe1022251f74cad292e7c055eb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:53:47.057Z"
+  },
   "2681": {
     "fr_slug": "morph-studio",
     "en_id": 21656,
@@ -358,6 +2131,24 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T13:24:32.320Z"
+  },
+  "2684": {
+    "fr_slug": "ideogram",
+    "en_id": 21770,
+    "en_slug": "",
+    "source_hash": "183b28eef41f7fe3ffa417cb7075c62607d287e6b90c574aa989939a602261ca",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:54:22.028Z"
+  },
+  "2685": {
+    "fr_slug": "transvibe",
+    "en_id": 21774,
+    "en_slug": "",
+    "source_hash": "db3a1d262627a98123f09775775134d509a1229bb4d7b742a9bf24a849540a75",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T14:54:46.156Z"
   },
   "2717": {
     "fr_slug": "education-genius",
@@ -547,6 +2338,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T13:27:32.105Z"
+  },
+  "3005": {
+    "fr_slug": "aomni",
+    "en_id": 21991,
+    "en_slug": "",
+    "source_hash": "3731c3f87492c03962ad3a756815fba61d982ec5f578476fe4ce40f5a53ffc85",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-08-31T15:16:11.070Z"
   },
   "3043": {
     "fr_slug": "educates",
