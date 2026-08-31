@@ -451,13 +451,11 @@ footer.note {
       <div class="num">05</div>
       <div>
         <h3>Panel de relecture &eacute;largi</h3>
-        <p class="desc">&Eacute;tape de confiance avant l'automatisation compl&egrave;te &mdash; d&eacute;cid&eacute;e ensemble ce soir.</p>
+        <p class="desc">&Eacute;tape de confiance avant l'automatisation compl&egrave;te &mdash; termin&eacute;e le 19&nbsp;ao&ucirc;t.</p>
         <ul class="tasklist">
-          <li>&Eacute;tendre le script &agrave; un panel d'environ <strong>50 fiches</strong>, toujours en brouillon &mdash; choisies volontairement h&eacute;t&eacute;rog&egrave;nes (courtes/longues, avec beaucoup de liens, anciennes/r&eacute;centes) plut&ocirc;t que les 50 derni&egrave;res publi&eacute;es</li>
-          <li>Relecture commune&nbsp;: qualit&eacute; de traduction, respect du glossaire test&eacute; en contexte de phrase (pas juste mot &agrave; mot&nbsp;: noms de mod&egrave;les/marques prot&eacute;g&eacute;s&nbsp;: Claude, GLM, Gemma&hellip;), coh&eacute;rence cat&eacute;gories/tags, liens internes</li>
-          <li>Ajuster le glossaire ou le script si des probl&egrave;mes r&eacute;currents apparaissent, puis it&eacute;rer</li>
+          <li class="done">Panel &eacute;tendu &agrave; <span class="found">49 fiches r&eacute;elles</span>, relues une par une, plusieurs bugs r&eacute;els trouv&eacute;s et corrig&eacute;s &agrave; la racine (m&eacute;dias/galeries, taxonomie, glossaire)</li>
         </ul>
-        <div class="chips en"><span class="chip en">~50 brouillons</span><span class="chip en">relecture &agrave; deux</span></div>
+        <div class="chips en"><span class="chip en">49/49 relus et publi&eacute;s</span></div>
       </div>
     </div>
 
@@ -465,13 +463,14 @@ footer.note {
       <div class="num">06</div>
       <div>
         <h3>Bascule en automatique</h3>
-        <p class="desc">Une fois le panel valid&eacute;, le reste du stock (&sim;1250 fiches restantes) suit progressivement, avec un palier interm&eacute;diaire avant la vitesse de croisi&egrave;re.</p>
+        <p class="desc"><strong>Termin&eacute;e le 28&nbsp;ao&ucirc;t</strong> &mdash; palier interm&eacute;diaire d&eacute;lib&eacute;r&eacute;ment saut&eacute;, cadence acc&eacute;l&eacute;r&eacute;e directement au-del&agrave; du plan de prudence initial, avec l'accord explicite de l'utilisateur &agrave; chaque &eacute;tape.</p>
         <ul class="tasklist">
-          <li>Palier interm&eacute;diaire&nbsp;: &eacute;tendre &agrave; ~150 fiches (toujours brouillon) avant de passer en publication directe &mdash; le panel de 50 ne couvre pas forc&eacute;ment tous les cas particuliers des 1300</li>
-          <li>D&eacute;marrage prudent de l'indexation&nbsp;: ~20&ndash;30 fiches/jour la premi&egrave;re semaine, en surveillant Search Console, avant d'acc&eacute;l&eacute;rer</li>
-          <li>Rythme de croisi&egrave;re 100 &agrave; 200 fiches/jour au maximum &mdash; jamais les 1300 d'un coup, pour &eacute;viter un pic d'indexation SEO artificiel</li>
-          <li>Activer le s&eacute;lecteur de langue Polylang dans le menu une fois assez de contenu EN publi&eacute;</li>
+          <li class="done">Cron corrig&eacute; (bug de fallback de limite jamais r&eacute;percut&eacute; sur les runs planifi&eacute;s &mdash; restait bloqu&eacute; &agrave; 15/jour malgr&eacute; les changements), puis mont&eacute; &agrave; <span class="found">200/jour</span></li>
+          <li class="done">S&eacute;quence directe valid&eacute;e &agrave; grande &eacute;chelle&nbsp;: traduction &rarr; publication imm&eacute;diate &rarr; v&eacute;rification automatis&eacute;e a posteriori (titre incoh&eacute;rent avec le FR, contenu dupliqu&eacute;, bloc Gutenberg cass&eacute;) plut&ocirc;t que relecture manuelle avant publication</li>
+          <li class="done"><strong>Stock quasi int&eacute;gralement &eacute;coul&eacute; en une session&nbsp;: 1269/1289 traduits et publi&eacute;s</strong> (2 jamais trait&eacute;s, hors dataset officiel &mdash; voir note sur les &laquo;&nbsp;19+1&nbsp;&raquo; plus bas). &Eacute;cart assum&eacute; au plan de d&eacute;marrage prudent SEO (~20&ndash;30/jour semaine 1) &mdash; le site n'a pas encore d'audience/indexation r&eacute;elle sur <code>/en/</code>, jug&eacute; acceptable</li>
+          <li>S&eacute;lecteur de langue Polylang dans le menu &mdash; <span class="found">pas encore fait</span>, reste sur la liste &laquo;&nbsp;habillage&nbsp;&raquo; ci-dessous</li>
         </ul>
+        <div class="chips en"><span class="chip en">1269/1289 publi&eacute;s</span><span class="chip en">~14 titres corrig&eacute;s en QA post-publication</span></div>
       </div>
     </div>
 
@@ -479,11 +478,11 @@ footer.note {
       <div class="num">07</div>
       <div>
         <h3>Flux quotidien continu</h3>
-        <p class="desc">Le r&eacute;gime de croisi&egrave;re, une fois le stock &eacute;coul&eacute;.</p>
+        <p class="desc">Le r&eacute;gime de croisi&egrave;re &mdash; <strong>priorit&eacute; actuelle</strong>, stock &eacute;coul&eacute;.</p>
         <ul class="tasklist">
-          <li>Workflow GitHub Actions planifi&eacute;&nbsp;: d&eacute;tecte les FR nouveaux ou modifi&eacute;s sans EN &agrave; jour</li>
-          <li>Traduction Azure, cr&eacute;ation en brouillon (tant que la confiance n'est pas totale), puis publication directe</li>
-          <li>Volume attendu&nbsp;: ~20&ndash;25k caract&egrave;res/mois, tr&egrave;s loin sous le quota gratuit Azure (2M/mois)</li>
+          <li class="done">Workflow GitHub Actions planifi&eacute;&nbsp;: d&eacute;tecte les FR nouveaux ou modifi&eacute;s sans EN &agrave; jour, tourne quotidiennement</li>
+          <li>Traduction Azure, cr&eacute;ation en brouillon <strong>puis publication</strong> &mdash; encore d&eacute;clench&eacute;e &agrave; la main (traduction et publication ench&acirc;in&eacute;es manuellement ce soir), <span class="found">pas encore automatis&eacute;e de bout en bout dans le workflow lui-m&ecirc;me</span></li>
+          <li>Volume attendu&nbsp;: ~20&ndash;25k caract&egrave;res/mois une fois en r&eacute;gime de croisi&egrave;re (flux quotidien FR, pas le stock), tr&egrave;s loin sous le quota Azure</li>
         </ul>
       </div>
     </div>
@@ -492,10 +491,54 @@ footer.note {
       <div class="num">08</div>
       <div>
         <h3>Suivi post-lancement</h3>
-        <p class="desc">Ce qu'on regarde apr&egrave;s coup, pas avant.</p>
+        <p class="desc">Ce qu'on regarde apr&egrave;s coup, pas avant. <strong>Priorit&eacute; actuelle avec la phase 07.</strong></p>
         <ul class="tasklist">
           <li>Suivre le trafic Google Analytics filtr&eacute; sur <code>/en/</code> pendant quelques semaines</li>
-          <li>D&eacute;cider d'une &eacute;ventuelle 3e langue sur cette donn&eacute;e r&eacute;elle uniquement &mdash; aucune langue suppl&eacute;mentaire n'est justifi&eacute;e par les chiffres actuels (l'essentiel du trafic r&eacute;el est francophone, hors bots)</li>
+        </ul>
+        <div class="callout"><strong>3e langue&nbsp;:</strong> abandonn&eacute;e, ne sera pas d&eacute;cid&eacute;e sur cette donn&eacute;e ni revisit&eacute;e dans le cadre de ce projet.</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="num">&mdash;</div>
+      <div>
+        <h3>Chantier &laquo;&nbsp;habillage&nbsp;&raquo; du site EN</h3>
+        <p class="desc">Ind&eacute;pendant du pipeline de traduction des articles.</p>
+        <ul class="tasklist">
+          <li class="done">Adapter les menus EN pour qu'ils correspondent aux menus FR &mdash; <span class="found">menu Categories reconstruit et fonctionnel, Header/Footer en placeholder propre ("Under construction") en attendant la traduction des pages statiques</span></li>
+          <li class="done">Traduire "lire la suite" &mdash; <span class="found">"Read More", corrig&eacute; par script JS cibl&eacute; (le texte &eacute;tait cod&eacute; en dur dans le th&egrave;me parent, hors Polylang)</span></li>
+          <li>Traduire le moteur de recherche / aide au choix (bas&eacute; sur des iframes) &mdash; pas fait</li>
+          <li>Traduire les pages statiques &mdash; pas fait (mais le bug de langue Polylang sur ces 10&nbsp;pages, h&eacute;rit&eacute; de la mauvaise config d'origine, a &eacute;t&eacute; corrig&eacute; le 28&nbsp;ao&ucirc;t)</li>
+          <li>Traduire le bloc lettre d'info affich&eacute; en colonne sur les pages articles &mdash; pas fait</li>
+          <li class="done">Adapter le menu du pied de page &mdash; <span class="found">placeholder "Under construction" en place, m&ecirc;me statut que le header</span></li>
+          <li class="done">Traduire le sous-titre "Une IA par jour" dans l'ent&ecirc;te &mdash; <span class="found">"One day, one generative AI tool." &mdash; vrai bug PHP trouv&eacute; et corrig&eacute; (texte FR cod&eacute; en dur sans condition de langue), pas juste un probl&egrave;me de Customizer comme suspect&eacute; au d&eacute;part</span></li>
+          <li>En tout dernier&nbsp;: traduire les pages qui peuvent l'&ecirc;tre</li>
+          <li>Ajouter un bouton de bascule FR/EN en page d'accueil</li>
+          <li>Une fois le pipeline pleinement industrialis&eacute;&nbsp;: pr&eacute;ciser sur le site qu'il s'agit d'une traduction automatique, et inviter les lecteurs &agrave; signaler les bugs de traduction restants</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="num">&infin;</div>
+      <div>
+        <h3>Plus tard, hors p&eacute;rim&egrave;tre traduction (FR + EN)</h3>
+        <p class="desc">Chantier de design ind&eacute;pendant, pas sp&eacute;cifique &agrave; l'anglais.</p>
+        <ul class="tasklist">
+          <li>Sur la page d'accueil, masquer les URLs affich&eacute;es sur les cartes d'articles</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="num">09</div>
+      <div>
+        <h3>Documentation &amp; passage en public du repo</h3>
+        <p class="desc">Derni&egrave;re &eacute;tape du projet &mdash; ajout&eacute;e le 31&nbsp;ao&ucirc;t. Partage d'exp&eacute;rience pr&eacute;vu depuis le 19&nbsp;ao&ucirc;t (voir <code>plan/readme-draft.md</code>), formalis&eacute; ici comme &eacute;tape finale explicite.</p>
+        <ul class="tasklist">
+          <li>R&eacute;diger le README du repo&nbsp;: contexte, architecture, cadre de s&eacute;curit&eacute;, et le journal chronologique des incidents r&eacute;els (taxonomie, m&eacute;dias, doublons, panne du cron, bug d'URL du glossaire&hellip;) &mdash; honn&ecirc;te sur ce qui a cass&eacute; et comment &ccedil;a a &eacute;t&eacute; corrig&eacute;, pas juste le code final</li>
+          <li>V&eacute;rifier qu'aucun secret n'a &eacute;t&eacute; commit&eacute; dans l'historique git avant de basculer la visibilit&eacute; (Application Password, cl&eacute; Azure&nbsp;: normalement seulement dans les secrets GitHub Actions, jamais commit&eacute;s directement, mais &agrave; v&eacute;rifier r&eacute;ellement, pas suppos&eacute;)</li>
+          <li>Passer le repo <code>uneIAparjour/uneiaparjour-en-translation</code> de priv&eacute; &agrave; public</li>
         </ul>
       </div>
     </div>
@@ -503,7 +546,8 @@ footer.note {
   </div>
 
   <footer class="note">
-    Plan verrouill&eacute; le 16&nbsp;ao&ucirc;t 2026, affin&eacute; apr&egrave;s deux revues externes &mdash; DeepL et Google &eacute;cart&eacute;s du pipeline (test sur 20 fiches r&eacute;elles), architecture &agrave; un seul moteur pour &eacute;viter toute rupture de style entre le stock et le flux quotidien. Volume du stock (~1300 fiches) v&eacute;rifi&eacute; empiriquement &agrave; ~1M caract&egrave;res via lecture directe de 20 articles r&eacute;els.
+    Plan verrouill&eacute; le 16&nbsp;ao&ucirc;t 2026, affin&eacute; apr&egrave;s deux revues externes &mdash; DeepL et Google &eacute;cart&eacute;s du pipeline (test sur 20 fiches r&eacute;elles), architecture &agrave; un seul moteur pour &eacute;viter toute rupture de style entre le stock et le flux quotidien. Volume du stock (~1300 fiches) v&eacute;rifi&eacute; empiriquement &agrave; ~1M caract&egrave;res via lecture directe de 20 articles r&eacute;els.<br><br>
+    <strong>Note sur les &laquo;&nbsp;19+1&nbsp;&raquo;&nbsp;:</strong> une v&eacute;rification technique (28&nbsp;ao&ucirc;t) a trouv&eacute; que les 19 &eacute;carts de date FR/EN + ResearchDeck s'expliquent tous (slugs hors dataset officiel des 1289&nbsp;outils, ou faux positif d'un script de v&eacute;rification). Le sujet est n&eacute;anmoins trait&eacute; **hors de ce projet** &agrave; la demande de l'utilisateur &mdash; pas class&eacute; r&eacute;solu ici, &agrave; ne pas re-signaler dans le cadre du pipeline de traduction.
   </footer>
 
 </div>
