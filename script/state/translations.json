@@ -11482,5 +11482,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T12:51:31.059Z"
+  },
+  "22163": {
+    "fr_slug": "englishpal",
+    "en_id": 22179,
+    "en_slug": "",
+    "source_hash": "e1570fe934c17cf41d629484b74c4edfaf8e5b4baebe0df115977fad9d141c1d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-02T10:45:14.940Z"
   }
 }
