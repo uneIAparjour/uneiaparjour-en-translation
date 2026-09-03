@@ -11491,5 +11491,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-02T10:45:14.940Z"
+  },
+  "22183": {
+    "fr_slug": "argos",
+    "en_id": 22194,
+    "en_slug": "",
+    "source_hash": "714ae3ebbe41251710ef4194a3491a6c05ce2905e1e4a3411f389b3035820d07",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-03T10:45:43.689Z"
   }
 }
