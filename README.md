@@ -4,28 +4,36 @@ Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.f
 
 ## Le projet
 
-~1289 fiches-outils traduites et publiées en anglais, sans environnement de staging, directement sur un site WordPress en production. Le choix assumé dès le départ : avancer par petits paliers avec des filets de sécurité (sauvegardes, permissions minimales, revue humaine graduée) plutôt qu'attendre un environnement de test qui n'existait pas.
+~1289 fiches-outils traduites et publiées en anglais, directement sur le site WordPress réel — il n'existait pas de copie du site pour s'entraîner d'abord sans risque (ce qu'on appelle un environnement de « staging »), l'hébergeur ne proposant pas cette option. Plutôt que de chercher une solution de contournement, le choix assumé a été d'avancer par petits paliers avec des filets de sécurité (sauvegardes, permissions minimales, revue humaine graduée).
 
-**Statut actuel** : 1269/1289 fiches du dataset officiel traduites et publiées. Flux quotidien désormais entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain).
+**Choix budgétaire assumé dès le départ** : rester gratuit, ou au pire au coût le plus bas possible, a été un critère de décision à chaque étape (moteur de traduction, hébergement des scripts, outils utilisés) — pas un ajustement fait après coup. Concrètement : GitHub Actions (gratuit pour un dépôt de cette taille), Polylang en version gratuite, et un moteur de traduction choisi en partie pour son offre gratuite généreuse (voir plus bas). Le seul poste réellement payant du projet, la traduction Azure, a coûté 11,27€ au total sur l'ensemble du projet — entièrement couvert par le crédit d'essai gratuit de 200$ offert à la création du compte Azure, donc 0€ déboursé à ce jour.
+
+**Statut actuel** : 1269/1289 fiches du dataset officiel traduites et publiées. Flux quotidien désormais entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain). La vérification humaine, elle, est passée d'un contrôle après chaque publication à un contrôle hebdomadaire — la confiance dans la qualité de traduction, construite au fil des incidents documentés ci-dessous et de leurs correctifs, ne justifie plus un contrôle quotidien systématique.
 
 ## Architecture
 
+- **[Polylang](https://wordpress.org/plugins/polylang/)** (version gratuite) — le plugin WordPress qui gère le site multilingue lui-même : bascule FR/EN, structure d'URL (`/en/...`), liaison entre un article français et sa traduction. C'est la brique qui fait tourner le site bilingue au quotidien ; le reste de ce dépôt existe pour la nourrir en contenu traduit. Sa version gratuite ne propose pas d'API pour lier une traduction depuis l'extérieur (seule la version payante Polylang Pro le permet) — c'est ce manque précis que le plugin maison ci-dessous comble.
 - **WordPress REST API** — lecture/écriture des articles, catégories, métadonnées SEO.
-- **Un plugin WordPress maison** (`wordpress-plugin/translation-bridge/`) — comble ce que l'API REST ne fait pas nativement : liaison des traductions Polylang (`pll_set_post_language`, `pll_save_post_translations`), exposition des champs SEO Yoast en lecture/écriture, hash de contenu stable pour la détection de changement.
-- **Azure Translator** (offre S1, payante à l'usage) — moteur de traduction, avec un glossaire maison (`config/glossary.json`) pour protéger les noms de marques/outils IA qui se traduisent mal en isolation ("Reve" → "Dream", "T3 Chat" → "T3 Cat", etc.).
+- **Un plugin WordPress maison** (`wordpress-plugin/translation-bridge/`) — comble ce que l'API REST et Polylang gratuit ne font pas nativement : liaison des traductions (`pll_set_post_language`, `pll_save_post_translations`), exposition des champs SEO Yoast en lecture/écriture, hash de contenu stable pour la détection de changement.
+- **Azure Translator** — moteur de traduction retenu après comparaison avec DeepL et Google (détail ci-dessous), avec un glossaire maison (`config/glossary.json`) pour protéger les noms de marques/outils IA qui se traduisent mal en isolation ("Reve" → "Dream", "T3 Chat" → "T3 Cat", etc.).
 - **GitHub Actions** — orchestration quotidienne (cron 06:00 UTC), état persisté dans `script/state/translations.json`.
+- **[Le dataset officiel des outils](https://huggingface.co/datasets/uneIAparjour/base)**, hébergé sur Hugging Face — la vraie base de données du site : la liste exacte et à jour des ~1289 fiches-outils réellement publiées, mise à jour automatiquement chaque nuit à partir du flux du site. C'est la référence que le pipeline consulte pour savoir quoi traduire : le site WordPress contient aussi d'autres contenus (newsletter, focus, lectures partagées) qui ne sont pas des fiches-outils et ne doivent pas être traduits comme si c'en était — sans ce filtre, le pipeline aurait traduit une quarantaine d'articles hors sujet.
 
-Choisi plutôt qu'un plugin clé-en-main (TranslatePress, Weglot) après comparaison : besoin de contrôle fin sur le glossaire, le anti-fig contenu Gutenberg, et les liens internes FR↔EN — un besoin que les plugins génériques ne couvrent pas bien pour ~1300 fiches courtes et très structurées.
+Choisi plutôt qu'un plugin clé-en-main (TranslatePress, Weglot) après comparaison : besoin de contrôle fin sur le glossaire, le contenu Gutenberg, et les liens internes FR↔EN — un besoin que les plugins génériques ne couvrent pas bien pour ~1300 fiches courtes et très structurées.
+
+### Le choix du moteur de traduction
+
+Trois moteurs testés sur 20 extraits réels du site avant de choisir : **DeepL**, **Google Translate** et **Azure Translator**. Résultat : DeepL avait un léger avantage de fluidité, mais inconstant d'un extrait à l'autre — pas assez net pour trancher seul. Google, en revanche, a produit 7 erreurs franches sur les 20 extraits, dont une particulièrement parlante : le nom du modèle d'IA "Claude" traduit en "Claudius". **Azure Translator a été retenu** : qualité comparable aux deux autres sur cet échantillon, et surtout une offre gratuite généreuse (2 millions de caractères par mois, renouvelée indéfiniment) qui couvrait largement les besoins du projet. L'idée de mélanger deux moteurs (DeepL pour le gros du travail initial, Azure pour le flux quotidien) a été envisagée puis écartée : le gain de qualité ne valait pas le risque d'un style qui varie selon le moteur utilisé, pour un site qui doit sonner cohérent d'un article à l'autre.
 
 ## Cadre de sécurité
 
-Aucun environnement de test n'étant disponible côté hébergeur, tout le filet de sécurité repose sur :
-- Un utilisateur WordPress dédié à droits minimaux (rôle Author, jamais le compte admin personnel).
-- Chaque endpoint du plugin gated par `current_user_can()` — jamais ouvert.
+Faute d'un environnement de test séparé (le « staging » évoqué plus haut — une copie du site où essayer sans risque avant d'agir sur le vrai), tout le filet de sécurité repose sur :
+- Un utilisateur WordPress dédié à droits minimaux (rôle Author, jamais le compte admin personnel) — même en cas de bug, ce compte ne peut techniquement pas toucher aux réglages du site ni aux 1300 articles français existants.
+- Chaque fonction ajoutée par le plugin maison vérifie que celui qui l'appelle a bien les droits nécessaires avant d'agir (`current_user_can()`) — aucune n'est accessible librement depuis l'extérieur sans authentification.
 - Sauvegardes avant toute opération à risque.
-- Test préalable du plugin dans WordPress Playground (bac à sable navigateur) avant tout déploiement réel.
-- Détection de changement par hash de contenu (pas par date de modification) + un flag de verrouillage empêchant qu'un article EN corrigé à la main soit écrasé par un resync automatique.
-- Dégradation gracieuse : un lien interne vers un article pas encore traduit reste sur la version FR plutôt que de casser.
+- Test préalable du plugin dans [WordPress Playground](https://playground.wordpress.org/) (une version de WordPress qui tourne entièrement dans le navigateur, sans rien installer, permettant d'essayer le plugin sur un site jetable avant de le déployer pour de vrai) avant tout déploiement réel.
+- Détection de changement par hash de contenu (une empreinte numérique du texte, qui permet de savoir si un article a réellement changé sans se fier à sa date de modification, peu fiable) + un flag de verrouillage empêchant qu'un article EN corrigé à la main soit écrasé par un resync automatique.
+- Si un article renvoie vers un autre article pas encore traduit, le lien reste vers la version française plutôt que de pointer vers une page qui n'existe pas encore — jamais de lien cassé, même quand la traduction est encore incomplète.
 - Montée en charge graduelle : quelques articles test → panel de revue manuelle (10, plusieurs fois ~50, puis ~150) → publication automatique seulement une fois la fiabilité prouvée à l'échelle.
 
 ## Journal des incidents
@@ -65,7 +73,7 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 ### Le quota gratuit Azure a été épuisé bien plus vite que prévu
 **Symptôme** : toutes les traductions ont commencé à échouer avec une erreur d'authentification générique, pendant plus de 10 heures.
 **Cause racine** : le quota gratuit (2M caractères/mois) a été consommé en moins de 3 jours réels — l'estimation initiale ("~1M caractères pour tout le backlog, tient sur le quota gratuit indéfiniment") n'avait pas anticipé le coût des tentatives échouées répétées (chaque retry renvoie tout le payload) ni les articles atypiquement longs.
-**Correctif** : passage à l'offre payante à l'usage (S1) — coût réel mesuré : environ 0,02€/article, soit ~25€ pour tout le backlog restant.
+**Correctif** : passage à l'offre Azure facturée à l'usage (S1), utilisée dans la limite du crédit d'essai gratuit de 200$ offert à la création du compte. Coût total réel sur l'ensemble du projet, vérifié une fois tout traduit : **11,27€**, intégralement pris en charge par ce crédit — 0€ déboursé.
 **Leçon** : une estimation de volume basée sur le contenu final ignore le coût des échecs et des reprises — prévoir large, et surveiller le coût réel après chaque run, pas seulement une fois au début.
 
 ### Un article neuf perdait systématiquement ses catégories anglaises
@@ -110,5 +118,4 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 
 - `wordpress-plugin/translation-bridge/` — le plugin WordPress maison (liaison Polylang + champs SEO Yoast + hash stable). `translation-bridge.zip` prêt à téléverser depuis wp-admin.
 - `script/` — le pipeline Node.js (voir `script/README.md` pour le détail des fichiers et de l'utilisation).
-- `plan/chantier-en.html` — copie locale du plan de travail complet.
 - `.github/workflows/` — orchestration GitHub Actions (traduction quotidienne, publication, scripts de diagnostic/réparation ponctuels).
