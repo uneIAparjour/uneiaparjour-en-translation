@@ -114,6 +114,20 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 - **Un correctif "safe une fois" peut devenir dangereux à la prochaine exécution** si les hypothèses sous-jacentes ont changé (ex. : la règle de migration de catégories, sûre pour le nettoyage initial, redevenue dangereuse une fois ce nettoyage terminé).
 - **La revue manuelle graduée n'est pas de la prudence excessive** — plusieurs de ces incidents n'ont été détectés que parce qu'un humain regardait vraiment chaque article, pas seulement les logs de succès du script.
 
+## Habillage du site EN
+
+Traduire les articles ne suffit pas à faire un site bilingue — l'interface elle-même (menus, textes fixes, widgets) devait suivre. Ce travail touche le thème WordPress (Kenta) directement, pas le pipeline de traduction, mais partage la même contrainte : aucun de ces éléments n'est un texte enregistré comme traduisible par Polylang, donc rien de tout ça ne s'est fait automatiquement.
+
+- **Menu latéral "Catégories" reconstruit pour l'anglais** — le menu déroulant regroupant les catégories par thème (Accès, Apprentissage, Audio, Images, Info & Recherche, Présentation, Texte & Documents, Web & Création, Archives) a été reconstruit à la main en anglais dans wp-admin, avec les bons liens vers les archives de catégories anglaises. Un bug trouvé au passage : un des groupes ("FR / EU") pointait vers l'archive française par erreur — deux termes de même nom existaient, l'un en anglais, l'un en français, et le mauvais avait été choisi ; corrigé en resélectionnant le bon terme.
+- **Menus principal et pied de page** — la plupart de leurs liens pointent vers les pages statiques du site (Sélection, Aide au choix, À propos...), elles-mêmes pas encore traduites (voir plus bas). Plutôt que d'attendre, un menu minimal **"Under construction – More coming soon"** a été mis en place à la place d'un renvoi silencieux vers la version française.
+- **"Lire la suite" → "Read More"** — texte codé en dur dans le thème parent, introuvable dans les chaînes traduisibles de Polylang. Remplacé côté client par un petit script conditionnel (uniquement sur les pages anglaises).
+- **Sous-titre du site** ("Une IA par jour, une lettre d'info par semaine" sous le logo) — même situation, texte codé en dur, corrigé par la même méthode côté serveur cette fois (le sous-titre est généré avant que la page n'arrive au navigateur).
+- **Bloc newsletter (colonne latérale des articles)** — traduit avec la même technique, après une fausse piste : c'est un bloc HTML natif du constructeur de page, pas un widget classique WordPress, donc les filtres WordPress habituels ne s'y appliquaient pas.
+- **Bandeau "traduction automatique"** — ajouté au-dessus du bloc Contact sur les pages anglaises, pour prévenir les lecteurs que la traduction est automatique et les inviter à signaler une erreur.
+- **Bouton de bascule FR ⇄ EN** — ajouté dans l'en-tête, à côté de la recherche et du bouton jour/nuit (icône globe, même style que les deux autres). Renvoie vers la traduction de la page en cours si elle existe, sinon vers l'accueil de l'autre langue — jamais vers un lien cassé.
+
+**Une seule et même méthode derrière tout ça** : le constructeur de page du thème (Kenta) ne propose aucune option native pour afficher un élément différemment selon la langue, et son éditeur ne permet pas d'ajouter un élément personnalisé à un endroit précis de l'en-tête. La solution retenue partout où c'est arrivé : un petit script, injecté uniquement sur les pages anglaises, qui repère l'élément concerné une fois la page chargée et le remplace ou complète — plutôt que de chercher à modifier le constructeur lui-même.
+
 ## Structure du dépôt
 
 - `wordpress-plugin/translation-bridge/` — le plugin WordPress maison (liaison Polylang + champs SEO Yoast + hash stable). `translation-bridge.zip` prêt à téléverser depuis wp-admin.
