@@ -6,7 +6,7 @@ Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.f
 
 ~1289 fiches-outils traduites et publiées en anglais, sans environnement de staging, directement sur un site WordPress en production. Le choix assumé dès le départ : avancer par petits paliers avec des filets de sécurité (sauvegardes, permissions minimales, revue humaine graduée) plutôt qu'attendre un environnement de test qui n'existait pas.
 
-**Statut actuel** : 1269/1289 fiches du dataset officiel traduites et publiées. Flux quotidien entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain). Reste à traiter : les pages statiques du site (sélection, à propos, aide au choix...) et l'habillage visuel de la version anglaise — voir « Ce qui reste à faire » plus bas.
+**Statut actuel** : 1269/1289 fiches du dataset officiel traduites et publiées. Flux quotidien désormais entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain).
 
 ## Architecture
 
@@ -26,7 +26,7 @@ Aucun environnement de test n'étant disponible côté hébergeur, tout le filet
 - Test préalable du plugin dans WordPress Playground (bac à sable navigateur) avant tout déploiement réel.
 - Détection de changement par hash de contenu (pas par date de modification) + un flag de verrouillage empêchant qu'un article EN corrigé à la main soit écrasé par un resync automatique.
 - Dégradation gracieuse : un lien interne vers un article pas encore traduit reste sur la version FR plutôt que de casser.
-- Montée en charge graduelle : quelques articles test → panel de revue manuelle (~50, puis ~150) → publication automatique seulement une fois la fiabilité prouvée à l'échelle.
+- Montée en charge graduelle : quelques articles test → panel de revue manuelle (10, plusieurs fois ~50, puis ~150) → publication automatique seulement une fois la fiabilité prouvée à l'échelle.
 
 ## Journal des incidents
 
@@ -100,18 +100,11 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 
 ## Leçons transversales
 
-- **Copier une source structurée intacte bat systématiquement la reconstruire depuis une version dérivée** — vrai pour le contenu média, probablement vrai ailleurs.
+- **Copier une source structurée intacte bat systématiquement la reconstruction depuis une version dérivée** — vrai pour le contenu média, probablement vrai ailleurs.
 - **Sous Polylang, aucun comptage natif de WordPress n'est fiable sans vérification explicite du filtrage de langue.**
 - **Un fichier d'état n'est correct que si son écriture est atomique avec l'action qu'il décrit** — sinon, un run interrompu laisse une trace réelle mais invisible.
 - **Un correctif "safe une fois" peut devenir dangereux à la prochaine exécution** si les hypothèses sous-jacentes ont changé (ex. : la règle de migration de catégories, sûre pour le nettoyage initial, redevenue dangereuse une fois ce nettoyage terminé).
 - **La revue manuelle graduée n'est pas de la prudence excessive** — plusieurs de ces incidents n'ont été détectés que parce qu'un humain regardait vraiment chaque article, pas seulement les logs de succès du script.
-
-## Ce qui reste à faire
-
-- Pages statiques du site (sélection, à propos, aide au choix, lettre d'infos...) — analysé, pas encore implémenté (voir les issues/discussions du dépôt pour le détail du blocage technique).
-- Sélecteur de langue FR/EN en page d'accueil.
-- Mention indiquant qu'il s'agit d'une traduction automatique, avec invitation à signaler les erreurs restantes.
-- Audit des secrets dans l'historique git avant passage en public (aucun secret n'est committé directement — tout passe par les secrets GitHub Actions — mais à vérifier plutôt qu'à supposer).
 
 ## Structure du dépôt
 
