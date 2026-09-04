@@ -1,6 +1,6 @@
 # uneiaparjour-en-translation
 
-Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.fr) — un outil d'IA générative par jour, en français depuis février 2023. Ce dépôt documente aussi bien le code que ce qui a cassé en le construisant, dans un souci de retour d'expérience honnête plutôt que de vitrine.
+Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.fr) en français depuis février 2023. Ce dépôt documente aussi bien le code que ce qui a cassé en le construisant, dans un souci de retour d'expérience honnête plutôt que de vitrine.
 
 ## Le projet
 
