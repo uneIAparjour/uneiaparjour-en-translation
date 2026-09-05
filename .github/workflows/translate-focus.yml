@@ -1,0 +1,71 @@
+name: Translate Focus articles to EN
+
+on:
+  schedule:
+    # 1h after the main translate.yml run (06:00 UTC) — same site, kept
+    # offset rather than parallel out of caution, no technical requirement.
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no writes)'
+        type: boolean
+        default: false
+      limit:
+        description: 'Max posts to process this run'
+        type: string
+        default: '15'
+      only_fr_id:
+        description: 'Limit to specific FR post ID(s), comma-separated (e.g. 22243,17693). Leave empty for the default behavior.'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  translate-focus:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: script
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Focus translation script
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
+          ARGS="$ARGS --limit=${{ inputs.limit || '15' }}"
+          if [ -n "${{ inputs.only_fr_id }}" ]; then
+            ARGS="$ARGS --only-fr-id=${{ inputs.only_fr_id }}"
+          fi
+          node translate-focus.js $ARGS
+
+      - name: Publish newly translated Focus EN posts
+        if: ${{ inputs.dry_run != 'true' }}
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: node publish-focus.js --limit=15
+
+      - name: Commit updated state
+        run: |
+          git config user.name "translation-bot"
+          git config user.email "actions@github.com"
+          git add state/focus-translations.json config/taxonomy-map.json
+          git diff --cached --quiet || git commit -m "Update Focus translation state [skip ci]"
+          git push
