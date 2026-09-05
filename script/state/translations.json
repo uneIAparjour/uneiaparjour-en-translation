@@ -11509,5 +11509,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-04T10:43:07.826Z"
+  },
+  "22219": {
+    "fr_slug": "happy-oyster",
+    "en_id": 22240,
+    "en_slug": "",
+    "source_hash": "71083afd709e5f897798b0786767e3a58a3dece7e6b691c5f0eaf0fc3e93d217",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-05T10:02:20.155Z"
   }
 }
