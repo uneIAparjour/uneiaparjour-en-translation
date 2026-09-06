@@ -899,6 +899,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:09:46.387Z"
   },
+  "213": {
+    "fr_slug": "recraft-1",
+    "en_id": 22386,
+    "en_slug": "",
+    "source_hash": "88c72f96cccf4db1bb444f9c718e906f178fb109c61df78e159849934eae3226",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:10:25.935Z"
+  },
   "214": {
     "fr_slug": "todobot",
     "en_id": 21929,
@@ -1349,6 +1358,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:22:34.709Z"
   },
+  "279": {
+    "fr_slug": "quiz-wizard",
+    "en_id": 22388,
+    "en_slug": "",
+    "source_hash": "675e2b0d9a066a34789667fa1dcd5990edc7da82fd1dc22eeb25f5f9fd100220",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:10:37.352Z"
+  },
   "280": {
     "fr_slug": "gen1-de-runway",
     "en_id": 22057,
@@ -1475,6 +1493,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:25:22.678Z"
   },
+  "294": {
+    "fr_slug": "bing-copilot",
+    "en_id": 22390,
+    "en_slug": "",
+    "source_hash": "ea3a81b240406984fd7b14081bcb1d7b97c942bdcdacbe557b85e7f93c844154",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:10:49.338Z"
+  },
   "295": {
     "fr_slug": "rytr",
     "en_id": 22085,
@@ -1592,6 +1619,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:29:23.710Z"
   },
+  "317": {
+    "fr_slug": "lexica-art",
+    "en_id": 22396,
+    "en_slug": "",
+    "source_hash": "1b4abf31ec729844a740042ef5c0ba0730fd2531325766eb57f55acc1eb7eb42",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:11:25.932Z"
+  },
   "318": {
     "fr_slug": "flikiai",
     "en_id": 22127,
@@ -1618,6 +1654,24 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-01T11:12:05.200Z"
+  },
+  "2581": {
+    "fr_slug": "murf",
+    "en_id": 22398,
+    "en_slug": "",
+    "source_hash": "9c95dd5c0d63d5f09fbcead4db79d62778f7cee8c7a117fc5f0a22f21f82973b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:11:37.141Z"
+  },
+  "2582": {
+    "fr_slug": "poe",
+    "en_id": 22400,
+    "en_slug": "",
+    "source_hash": "d0bf4618cad94aabb00c243c72a06b5e932cc61ce35651ed7515b6e72cab0c22",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:11:49.256Z"
   },
   "2583": {
     "fr_slug": "chaque-jour-nous-decouvrons-de-nouvelles-ia-2",
@@ -1682,6 +1736,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:28:10.747Z"
   },
+  "2591": {
+    "fr_slug": "invideo",
+    "en_id": 22392,
+    "en_slug": "",
+    "source_hash": "edbf8ef1762d501d9406650a96bf5c74b9f5d4a18eeb082a3d91cee21851270a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:11:01.169Z"
+  },
   "2592": {
     "fr_slug": "prompt-20-secondes-1-page-web-redigee-et",
     "en_id": 22123,
@@ -1690,6 +1753,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T15:29:10.782Z"
+  },
+  "2593": {
+    "fr_slug": "tome",
+    "en_id": 22394,
+    "en_slug": "",
+    "source_hash": "f687082e93946b4a9acbe3791902c15d7fd4b35b27524dcae53a83fb19f7d12c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:11:13.352Z"
   },
   "2612": {
     "fr_slug": "tutorai-2",
@@ -1979,6 +2051,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T15:00:22.623Z"
   },
+  "2656": {
+    "fr_slug": "questionwell",
+    "en_id": 22384,
+    "en_slug": "",
+    "source_hash": "829c53159b386b2ac0c4f9ae901862f9da2c805727c3359b5b0527815007576d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:10:12.690Z"
+  },
   "2658": {
     "fr_slug": "ai-dungeon",
     "en_id": 21838,
@@ -2149,6 +2230,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T13:24:32.320Z"
+  },
+  "2682": {
+    "fr_slug": "write-tone-2",
+    "en_id": 22382,
+    "en_slug": "",
+    "source_hash": "effd9140aa7444fb0c0b7c7e5b520fb3b23b34d293d26fa20f721d5164b1a32b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:10:01.441Z"
   },
   "2684": {
     "fr_slug": "ideogram",
@@ -2869,6 +2959,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-31T13:08:07.632Z"
+  },
+  "5417": {
+    "fr_slug": "quizizz-wayground",
+    "en_id": 22379,
+    "en_slug": "",
+    "source_hash": "1e4fee84c32086cb1dfe1f6eacd504894fdbda6ea06057e2e2b607c80f0e70bf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:09:51.380Z"
   },
   "5428": {
     "fr_slug": "reelcraft",
@@ -4192,6 +4291,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T19:59:44.672Z"
+  },
+  "7022": {
+    "fr_slug": "notebooklm",
+    "en_id": 22377,
+    "en_slug": "",
+    "source_hash": "0ff8c40a5ebe679397e62bf6010a121cf25d4d94093df51833f7c0a44c1c02d6",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:09:37.917Z"
   },
   "7028": {
     "fr_slug": "people-ai",
@@ -6829,6 +6937,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T15:44:50.576Z"
+  },
+  "9750": {
+    "fr_slug": "meta-ai-messageries",
+    "en_id": 22375,
+    "en_slug": "",
+    "source_hash": "fdc0b1de92a6178db4e88238fd78105f04c1ae51452573990656e3e0b0b8f0d2",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:09:25.062Z"
   },
   "9753": {
     "fr_slug": "infographics",
