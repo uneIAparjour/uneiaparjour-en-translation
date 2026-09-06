@@ -5390,6 +5390,15 @@
     "last_error": null,
     "updated_at": "2026-08-30T19:35:32.598Z"
   },
+  "7874": {
+    "fr_slug": "boosum",
+    "en_id": 22402,
+    "en_slug": "",
+    "source_hash": "e83ce37735ea8fc2a734395a8feff10bb0f55164f0e39ca7a3ee6bc7930ec49b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-06T09:17:39.446Z"
+  },
   "7880": {
     "fr_slug": "coursezy",
     "en_id": 20833,
