@@ -11635,5 +11635,23 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-05T10:02:20.155Z"
+  },
+  "22264": {
+    "fr_slug": "quad",
+    "en_id": 22432,
+    "en_slug": "",
+    "source_hash": "112e64cb816c4cb67e4e7d97cf967fc4914ee6d436b983e7e5282e640307328d",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-07T11:43:20.755Z"
+  },
+  "22409": {
+    "fr_slug": "formative",
+    "en_id": 22430,
+    "en_slug": "",
+    "source_hash": "05878a22c6a2e0c49adf9252fd9709c53f502c6e0362939896f17150b3631df7",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-07T11:43:08.402Z"
   }
 }
