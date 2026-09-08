@@ -10970,6 +10970,15 @@
     "last_error": null,
     "updated_at": "2026-08-19T06:53:15.198Z"
   },
+  "17600": {
+    "fr_slug": "laper",
+    "en_id": 22472,
+    "en_slug": "",
+    "source_hash": "82617c1bc6e65c8b004cee353fd39215f4ca9f5a2210d18b52fdf411e7e92d2c",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-08T21:11:29.249Z"
+  },
   "17621": {
     "fr_slug": "loopa",
     "en_id": 18763,
