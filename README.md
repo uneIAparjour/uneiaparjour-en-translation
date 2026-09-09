@@ -4,11 +4,11 @@ Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.f
 
 ## Le projet
 
-~1289 fiches-outils traduites et publiées en anglais, directement sur le site WordPress réel — il n'existait pas de copie du site pour s'entraîner d'abord sans risque (environnement de « staging »), l'hébergeur ne proposant pas cette option. Plutôt que de chercher une solution de contournement, le choix assumé a été d'avancer par petits paliers avec des filets de sécurité (sauvegardes, permissions minimales, revue humaine graduée).
+~1299 fiches-outils traduites et publiées en anglais, directement sur le site WordPress réel — il n'existait pas de copie du site pour s'entraîner d'abord sans risque (environnement de « staging »), l'hébergeur ne proposant pas cette option. Plutôt que de chercher une solution de contournement, le choix assumé a été d'avancer par petits paliers avec des filets de sécurité (sauvegardes, permissions minimales, revue humaine graduée).
 
 **Choix budgétaire assumé dès le départ** : rester gratuit, ou au pire au coût le plus bas possible, a été un critère de décision à chaque étape (moteur de traduction, hébergement des scripts, outils utilisés) — pas un ajustement fait après coup. Concrètement : GitHub Actions (gratuit pour un dépôt de cette taille), Polylang en version gratuite, et un moteur de traduction choisi en partie pour son offre gratuite généreuse (voir plus bas). Le seul poste réellement payant du projet, la traduction Azure, a coûté 11,27€ au total sur l'ensemble du projet — entièrement couvert par le crédit d'essai gratuit de 200$ offert à la création du compte Azure, donc 0€ déboursé à ce jour.
 
-**Statut actuel** : 1269/1289 fiches du dataset officiel traduites et publiées. Flux quotidien désormais entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain). La vérification humaine, elle, est passée d'un contrôle après chaque publication à un contrôle hebdomadaire — la confiance dans la qualité de traduction, construite au fil des incidents documentés ci-dessous et de leurs correctifs, ne justifie plus un contrôle quotidien systématique.
+**Statut actuel** : 1299/1299 fiches du dataset officiel traduites et publiées — couverture complète. Flux quotidien désormais entièrement automatisé (traduction → publication → commit d'état, zéro déclenchement humain). La vérification humaine, elle, est passée d'un contrôle après chaque publication à un contrôle hebdomadaire — la confiance dans la qualité de traduction, construite au fil des incidents documentés ci-dessous et de leurs correctifs, ne justifie plus un contrôle quotidien systématique.
 
 ## Architecture
 
@@ -17,7 +17,7 @@ Pipeline de traduction FR→EN pour [uneiaparjour.fr](https://www.uneiaparjour.f
 - **Un plugin WordPress maison** (`wordpress-plugin/translation-bridge/`) — comble ce que l'API REST et Polylang gratuit ne font pas nativement : liaison des traductions (`pll_set_post_language`, `pll_save_post_translations`), exposition des champs SEO Yoast en lecture/écriture, hash de contenu stable pour la détection de changement.
 - **Azure Translator** — moteur de traduction retenu après comparaison avec DeepL et Google (détail ci-dessous), avec un glossaire maison (`config/glossary.json`) pour protéger les noms de marques/outils IA qui se traduisent mal isolés dans le titre ("Reve" → "Dream", "T3 Chat" → "T3 Cat", etc.).
 - **GitHub Actions** — orchestration quotidienne (cron 06:00 UTC), état persisté dans `script/state/translations.json`.
-- **[Le dataset officiel des outils](https://huggingface.co/datasets/uneIAparjour/base)**, hébergé sur Hugging Face — la vraie base de données du site : la liste exacte et à jour des ~1289 fiches-outils réellement publiées, mise à jour automatiquement chaque nuit à partir du flux du site. C'est la référence que le pipeline consulte pour savoir quoi traduire : le site WordPress contient aussi d'autres contenus (newsletter, focus, lectures partagées) qui ne sont pas des fiches-outils et ne doivent pas être traduits comme si c'en était — sans ce filtre, le pipeline aurait traduit une quarantaine d'articles hors sujet. Le sens inverse est également protégé : la mise à jour automatique de ce dataset ignore explicitement toute URL en `/en/` — les articles traduits en anglais ne remontent jamais dans cette base, qui reste uniquement le reflet du contenu français original.
+- **[Le dataset officiel des outils](https://huggingface.co/datasets/uneIAparjour/base)**, hébergé sur Hugging Face — la vraie base de données du site : la liste exacte et à jour des ~1299 fiches-outils réellement publiées, mise à jour automatiquement chaque nuit à partir du flux du site. C'est la référence que le pipeline consulte pour savoir quoi traduire : le site WordPress contient aussi d'autres contenus (newsletter, focus, lectures partagées) qui ne sont pas des fiches-outils et ne doivent pas être traduits comme si c'en était — sans ce filtre, le pipeline aurait traduit une quarantaine d'articles hors sujet. Le sens inverse est également protégé : la mise à jour automatique de ce dataset ignore explicitement toute URL en `/en/` — les articles traduits en anglais ne remontent jamais dans cette base, qui reste uniquement le reflet du contenu français original.
 
 Choisi plutôt qu'un plugin clé-en-main (TranslatePress, Weglot) après comparaison : besoin de contrôle fin sur le glossaire, le contenu Gutenberg, et les liens internes FR↔EN — un besoin que les plugins génériques ne couvrent pas bien pour ~1300 fiches courtes et très structurées.
 
@@ -106,6 +106,14 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 **Correctif** : élargissement du scan de diagnostic aux articles publiés (pas seulement en brouillon), dépublication ciblée du doublon le plus récent pour chacun des six cas.
 **Leçon** : un correctif de diagnostic doit couvrir tous les états possibles d'un même bug, pas seulement celui observé en premier.
 
+### Corriger un gap du dataset officiel a repris la traduction d'un article qu'on voulait explicitement laisser de côté
+**Symptôme** : une comparaison FR/EN systématique du site a révélé deux fiches jamais traduites — "Reka" (article de 2024) et "Laper" (article de 2026) — absentes de `translations.json` sans jamais y être passées en erreur.
+**Cause racine, différente pour chacune** : l'entrée dataset de Reka pointait vers une URL périmée (`/reka/`) après qu'un article plus récent, sans rapport, ait repris ce même slug — l'original avait été automatiquement renommé `/reka-1/` par WordPress, sans que le dataset ne soit mis à jour en conséquence. Laper, lui, n'avait tout simplement jamais été ajouté au dataset par le script de mise à jour nocturne du dépôt [`base`](https://github.com/uneIAparjour/base) (fondé sur le flux RSS du site, qui ne remonte pas indéfiniment en arrière).
+**Correctif** : dataset officiel corrigé (URL de Reka réparée, Laper ajouté à sa date). Traduction demandée explicitement pour Laper seul — Reka devant rester de côté. Mais corriger l'entrée dataset de Reka l'a aussi rendu de nouveau éligible au flux **normal**, pas seulement au run manuel ciblé sur Laper : le cron quotidien suivant l'a traduit et publié tout seul, sans qu'aucune distinction ne soit possible entre "nouvel article à traiter" et "gap historique dont la correction ne devait pas déclencher de traduction".
+**Leçon** : le pipeline ne fait aucune différence entre "jamais vu" et "volontairement mis de côté" — corriger une entrée du dataset source la remet toujours en file d'attente normale, jamais dans un traitement isolé, même quand l'intention au moment du correctif était différente.
+
+**Effet de bord découvert dans la foulée** : le titre de l'article Laper a été traduit "Lap" au lieu de "Laper" — Azure Translator a pris le nom de l'outil pour le verbe français "laper" et l'a traduit, alors que le contenu de l'article gardait correctement le nom intact. Ajouté à `config/glossary.json` pour éviter la récidive, mais la correction du titre déjà publié reste manuelle (aucun accès en écriture direct au site depuis l'endroit où le gap a été repéré).
+
 ## Leçons transversales
 
 - **Copier une source structurée intacte bat systématiquement la reconstruction depuis une version dérivée** — vrai pour le contenu média, probablement vrai ailleurs.
@@ -113,6 +121,7 @@ Construire ce pipeline sur un site en production, sans staging, a produit une vi
 - **Un fichier d'état n'est correct que si son écriture est atomique avec l'action qu'il décrit** — sinon, un run interrompu laisse une trace réelle mais invisible.
 - **Un correctif "safe une fois" peut devenir dangereux à la prochaine exécution** si les hypothèses sous-jacentes ont changé (ex. : la règle de migration de catégories, sûre pour le nettoyage initial, redevenue dangereuse une fois ce nettoyage terminé).
 - **La revue manuelle graduée n'est pas de la prudence excessive** — plusieurs de ces incidents n'ont été détectés que parce qu'un humain regardait vraiment chaque article, pas seulement les logs de succès du script.
+- **Le pipeline ne distingue pas "jamais vu" de "mis de côté volontairement"** — toute correction du dataset source remet l'article correspondant dans le flux normal, sans exception possible depuis l'extérieur du code.
 
 ## Habillage du site EN
 
@@ -144,10 +153,11 @@ Au-delà du pipeline d'articles quotidiens, les pages fixes du site et les mini-
 | Articles de la catégorie **Focus** (44 articles) | Catégorie EN « Focus » | Pipeline dédié séparé du reste (`translate-focus.js`/`publish-focus.js`), car ces articles sont hors du dataset outils base/base-en — voir la section suivante |
 | [Sélection](https://www.uneiaparjour.fr/selection/) | [Selection](https://www.uneiaparjour.fr/en/selection-2/) | Le tableau et l'infographie Canva ont été remplacés par une page HTML/SVG autonome ([`uneiaparjour.github.io/selection/`](https://uneiaparjour.github.io/selection/selection-outils-en.html)) reprenant les vrais logos des outils |
 | [Aide au choix](https://www.uneiaparjour.fr/aide/) | [Choosing a Tool](https://www.uneiaparjour.fr/en/choosing-a-tool/) | Pas une simple traduction : l'app ([`choix-outil-ia-en`](https://github.com/uneIAparjour/choix-outil-ia-en), dépôt séparé de l'original FR) ajoute un double filtre région (Europe/hors Europe, puis France/autre pays européen) pour n'exposer les critères RGPD/AI Act qu'aux lecteurs concernés, et généralise les critères propres à la France pour les autres |
+| [Écho](https://www.uneiaparjour.fr/echo/) | [Echo](https://www.uneiaparjour.fr/en/echo-2/) | Décision éditoriale initialement d'abandonner la traduction (contenu narratif, ~300 fragments volontairement ambigus, proches de la poésie), puis reconsidérée. Traduit à la main plutôt que par le pipeline (registre littéraire, pas une fiche-outil) et déployé sur un dépôt séparé ([`echo-en`](https://github.com/uneIAparjour/echo-en)) ; le document de conception et les notes de making-of ont aussi été traduits. L'accent sur "Écho" a été retiré pour la version anglaise ("Echo") |
 
-**Reste non traduit** : **Écho** — abandon définitif, décision éditoriale (pas dans la feuille de route).
+Toutes les pages statiques du site ont désormais leur équivalent anglais.
 
-Le placement de ces pages dans les menus EN (actuellement en placeholder, voir plus haut) reste à faire, en bloc, une fois l'ensemble stabilisé.
+Le placement de ces pages dans les menus EN (actuellement en placeholder, voir plus haut) reste à faire, en bloc, une fois l'ensemble stabilisé — de même que deux liens manquants repérés dans le menu latéral "Catégories" EN (QR Code et Archives, catégories déjà traduites mais pas encore reliées dans le menu) et la traduction de l'étiquette du bouton hamburger ("Ouvrir le menu" → "Open menu", chaîne Polylang non renseignée).
 
 ## Le pipeline Focus (articles éditoriaux)
 
