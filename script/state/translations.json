@@ -3266,6 +3266,15 @@
     "last_error": null,
     "updated_at": "2026-08-31T13:01:19.480Z"
   },
+  "6220": {
+    "fr_slug": "reka-1",
+    "en_id": 22481,
+    "en_slug": "",
+    "source_hash": "afdcc4a6bed55b68db0f17cecd81005124229b0e93499b51f91828df976a7dbb",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-09T10:51:50.246Z"
+  },
   "6228": {
     "fr_slug": "stable-cascade",
     "en_id": 21413,
@@ -10766,11 +10775,11 @@
   "17102": {
     "fr_slug": "explainpaper",
     "en_id": 18805,
-    "en_slug": "",
-    "source_hash": "405ef6c179819e087c5bb579fd69a43b433130d98ed3561e829564a57830b8ac",
+    "en_slug": "explainpaper-2",
+    "source_hash": "2c050673c90b5fa3c2e5d6e512b82309b498b428ec6bf014e5d6b8a9c2be4bae",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-24T21:26:45.679Z"
+    "updated_at": "2026-09-09T10:51:37.344Z"
   },
   "17116": {
     "fr_slug": "happyseeds",
@@ -10893,10 +10902,10 @@
     "fr_slug": "pdffly-pdf-summarizer",
     "en_id": 18793,
     "en_slug": "pdffly-pdf-summarizer-2",
-    "source_hash": "e8612942262bce90aded898888f37a92571f5a641499bace8674b068c033c52a",
+    "source_hash": "84164dc8092dd9069840957f07f93c74f64ea10e63d5d9e89e2448371f260b2f",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-08-28T05:55:09.729Z"
+    "updated_at": "2026-09-09T10:51:24.906Z"
   },
   "17363": {
     "fr_slug": "happycapy",
@@ -11585,11 +11594,11 @@
   "19375": {
     "fr_slug": "moda",
     "en_id": 22157,
-    "en_slug": "",
-    "source_hash": "eb4d42de5169d67385462686421594d76a58cb64079f85f7b154f8ca8afa1836",
+    "en_slug": "moda-2",
+    "source_hash": "25bd13c8ecbf0b194077c7d3e9dbdfac2c5449651ee767bc1ffc184df1d5c1a2",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-01T11:11:52.473Z"
+    "updated_at": "2026-09-09T10:51:12.785Z"
   },
   "19426": {
     "fr_slug": "choicely",
@@ -11671,5 +11680,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-08T10:42:05.645Z"
+  },
+  "22455": {
+    "fr_slug": "docstoaudio-3",
+    "en_id": 22477,
+    "en_slug": "",
+    "source_hash": "2f9490895f21a1a5ed5a8a8275cb274bacd8a4eb5831a410981341cb1a58ffc1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-09T10:51:01.649Z"
   }
 }
