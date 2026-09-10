@@ -11689,5 +11689,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-09T10:51:01.649Z"
+  },
+  "22483": {
+    "fr_slug": "ppt-maker",
+    "en_id": 22500,
+    "en_slug": "",
+    "source_hash": "37e82e01974698f8e35f86621c3606f7c03033268ef9db55b822c665b23b038a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-10T10:44:31.067Z"
   }
 }
