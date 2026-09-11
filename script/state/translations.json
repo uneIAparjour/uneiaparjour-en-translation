@@ -11655,13 +11655,13 @@
     "updated_at": "2026-09-05T10:02:20.155Z"
   },
   "22264": {
-    "fr_slug": "quad",
+    "fr_slug": "quad-chat-2",
     "en_id": 22432,
-    "en_slug": "",
-    "source_hash": "112e64cb816c4cb67e4e7d97cf967fc4914ee6d436b983e7e5282e640307328d",
+    "en_slug": "quad-chat",
+    "source_hash": "f71b651123181ad75133c4f80ad311b10cfa1431ba387383934dce68ea28cb00",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-07T11:43:20.755Z"
+    "updated_at": "2026-09-11T10:42:44.757Z"
   },
   "22409": {
     "fr_slug": "formative",
@@ -11698,5 +11698,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-10T10:44:31.067Z"
+  },
+  "22502": {
+    "fr_slug": "crayon",
+    "en_id": 22542,
+    "en_slug": "",
+    "source_hash": "c9ca0797c174be1706fbee35148cf4feed055ac6bd285d70211d2a9501858ec1",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-11T10:42:32.793Z"
   }
 }
