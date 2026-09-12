@@ -394,5 +394,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-05T22:55:01.539Z"
+  },
+  "22569": {
+    "fr_slug": "voter-nest-peut-etre-pas-choisir",
+    "en_id": 22574,
+    "en_slug": "",
+    "source_hash": "f975dc20ba8ea10eeaa0c69859515d527e9b86fd0e961c8fbfe8c42bfa0a1f23",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-12T13:36:47.755Z"
   }
 }
