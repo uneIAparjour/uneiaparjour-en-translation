@@ -11658,10 +11658,10 @@
     "fr_slug": "quad-chat-2",
     "en_id": 22432,
     "en_slug": "quad-chat",
-    "source_hash": "f71b651123181ad75133c4f80ad311b10cfa1431ba387383934dce68ea28cb00",
+    "source_hash": "9a614c89430d4f4eaf9a5c91fe4449f26dbe193d3a3a278f3bc8c3f8b825ad27",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-11T10:42:44.757Z"
+    "updated_at": "2026-09-12T10:12:04.477Z"
   },
   "22409": {
     "fr_slug": "formative",
@@ -11707,5 +11707,11 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-11T10:42:32.793Z"
+  },
+  "22521": {
+    "fr_slug": "tabbit",
+    "status": "failed",
+    "last_error": "WP REST POST /translation-bridge/v1/link -> 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>openresty</center>\r\n</body>\r\n</html>\r\n",
+    "updated_at": "2026-09-12T10:11:50.671Z"
   }
 }
