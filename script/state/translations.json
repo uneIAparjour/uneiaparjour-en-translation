@@ -11710,8 +11710,11 @@
   },
   "22521": {
     "fr_slug": "tabbit",
-    "status": "failed",
-    "last_error": "WP REST POST /translation-bridge/v1/link -> 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>openresty</center>\r\n</body>\r\n</html>\r\n",
-    "updated_at": "2026-09-12T10:11:50.671Z"
+    "en_id": 22571,
+    "en_slug": "",
+    "source_hash": "c15ae25473b8c206567ddbf6ce8955d2ca5540a39bfca3516ebff36f1fcda818",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-12T13:32:49.022Z"
   }
 }
