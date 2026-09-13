@@ -11716,5 +11716,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-12T13:32:49.022Z"
+  },
+  "22544": {
+    "fr_slug": "scira",
+    "en_id": 22581,
+    "en_slug": "",
+    "source_hash": "8f27246ef17caef4a86f5202e03f769debeb5843e4c9693fdb46480d2472d1cf",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-13T11:11:11.418Z"
   }
 }
