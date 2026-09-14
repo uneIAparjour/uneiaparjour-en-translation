@@ -11725,5 +11725,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-13T11:11:11.418Z"
+  },
+  "22584": {
+    "fr_slug": "storydiffusion",
+    "en_id": 22610,
+    "en_slug": "",
+    "source_hash": "cd1e245edbb98d3671606d46ba9d0a84916b8222b4d0846aec1a60609c0f3189",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-14T11:57:10.633Z"
   }
 }
