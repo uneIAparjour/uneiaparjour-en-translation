@@ -11734,5 +11734,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-14T11:57:10.633Z"
+  },
+  "22612": {
+    "fr_slug": "north-small-translate",
+    "en_id": 22624,
+    "en_slug": "",
+    "source_hash": "cebd5527b3950aed337118930523b24f7f29944eb39ef83900b529f723621746",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-15T11:12:49.918Z"
   }
 }
