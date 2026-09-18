@@ -11757,6 +11757,12 @@
     "fr_slug": "kario",
     "status": "failed",
     "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-09-17T11:05:00.348Z"
+    "updated_at": "2026-09-18T10:40:29.053Z"
+  },
+  "22659": {
+    "fr_slug": "sharper-ai",
+    "status": "failed",
+    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
+    "updated_at": "2026-09-18T10:40:17.052Z"
   }
 }
