@@ -11755,14 +11755,20 @@
   },
   "22642": {
     "fr_slug": "kario",
-    "status": "failed",
-    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-09-18T10:40:29.053Z"
+    "en_id": 22694,
+    "en_slug": "",
+    "source_hash": "f9b70d68a853f79d45f62671be40a8ffd592330e755b23f278267f5963386b59",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-18T22:27:38.978Z"
   },
   "22659": {
     "fr_slug": "sharper-ai",
-    "status": "failed",
-    "last_error": "Azure Translator -> 401: {\"error\":{\"code\":401001,\"message\":\"The request is not authorized because credentials are missing or invalid.\"}}",
-    "updated_at": "2026-09-18T10:40:17.052Z"
+    "en_id": 22692,
+    "en_slug": "",
+    "source_hash": "21ff3fbac9a091d660330c147496e59a163109970d2dc49225b399702610ad8b",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-18T22:27:26.369Z"
   }
 }
