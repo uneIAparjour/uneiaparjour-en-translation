@@ -130,6 +130,7 @@ async function main() {
 
 	const slugMap = buildSlugMap(state);
 
+	let azureAuthError = null;
 	for (const item of batch) {
 		const { post } = item;
 		try {
@@ -145,8 +146,17 @@ async function main() {
 				updated_at: new Date().toISOString(),
 			};
 			await saveState(state, STATE_FILE);
+			if (/^Azure Translator -> (401|403)/.test(err.message)) {
+				azureAuthError = err.message;
+				break; // credentials/quota/subscription problem: retrying the other posts would fail the same way
+			}
 		}
 		await sleep(500); // courtesy delay between posts, Azure F0's rate limit is strict
+	}
+
+	if (azureAuthError) {
+		console.error(`::error::Azure Translator rejected the request (${azureAuthError.slice(0, 160)}). Batch stopped; remaining posts are untouched and will be retried on the next run.`);
+		process.exitCode = 1;
 	}
 
 	console.log('Batch done.');

@@ -37,6 +37,8 @@ jobs:
           node-version: '20'
 
       - name: Run Focus translation script
+        id: translate
+        continue-on-error: true
         env:
           WP_URL: ${{ secrets.WP_URL }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
@@ -69,3 +71,9 @@ jobs:
           git add state/focus-translations.json config/taxonomy-map.json
           git diff --cached --quiet || git commit -m "Update Focus translation state [skip ci]"
           git push
+
+      - name: Fail the job if Azure rejected the translation
+        if: ${{ steps.translate.outcome == 'failure' }}
+        run: |
+          echo "::error::The translation step failed (Azure 401/403: key, quota or subscription problem). See the translation step log."
+          exit 1
