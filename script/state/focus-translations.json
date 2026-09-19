@@ -403,5 +403,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-12T13:36:47.755Z"
+  },
+  "22699": {
+    "fr_slug": "lexpertise-a-portee-de-clic",
+    "en_id": 22701,
+    "en_slug": "",
+    "source_hash": "9e64dd2770318c040850121c8ff201cc7814d570603b539c4b62d98b1a6872a5",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-19T11:41:22.401Z"
   }
 }
