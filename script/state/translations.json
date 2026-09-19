@@ -11770,5 +11770,14 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-18T22:27:26.369Z"
+  },
+  "22680": {
+    "fr_slug": "instrument-playground",
+    "en_id": 22697,
+    "en_slug": "",
+    "source_hash": "938d88293264baf2f7c3999477b730122e7160e9c7c0daf767120d17db6a76ca",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-19T10:24:45.447Z"
   }
 }
