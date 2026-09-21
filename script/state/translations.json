@@ -11779,5 +11779,23 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-19T10:24:45.447Z"
+  },
+  "22706": {
+    "fr_slug": "chesslm",
+    "en_id": 22726,
+    "en_slug": "",
+    "source_hash": "c4e14d48734b5fff282b5054ad23680076896151b6a90aab5e92dee1cdc8923a",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-21T12:08:34.654Z"
+  },
+  "22709": {
+    "fr_slug": "revoldiv",
+    "en_id": 22724,
+    "en_slug": "",
+    "source_hash": "0c46a180bbe562ece36d614feb07091b6b4e1c744a741336da059a7316dce888",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-21T12:08:23.250Z"
   }
 }
