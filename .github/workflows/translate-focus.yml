@@ -2,9 +2,12 @@ name: Translate Focus articles to EN
 
 on:
   schedule:
-    # 1h after the main translate.yml run (06:00 UTC) — same site, kept
-    # offset rather than parallel out of caution, no technical requirement.
-    - cron: '0 7 * * *'
+    # Sunday only, 1h after the main translate.yml run (06:00 UTC) — Focus
+    # articles (the weekly reflection piece) only ever go out on weekends,
+    # so a daily run just burned WP REST calls scanning for FR sources that
+    # can't exist on weekdays. workflow_dispatch still allows a manual run
+    # any day (e.g. to catch up after a missed Sunday).
+    - cron: '0 7 * * 0'
   workflow_dispatch:
     inputs:
       dry_run:
