@@ -84,17 +84,27 @@ async function main() {
 	const state = await loadState(STATE_FILE);
 	const knownEnIds = new Set(Object.values(state).map((s) => s.en_id).filter(Boolean));
 
-	console.log('Fetching all FR posts...');
-	const allPosts = await wp.listAllPosts();
-	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id) && p.categories.includes(FOCUS_CATEGORY_ID));
-	console.log(`${allPosts.length} posts total, ${frPosts.length} are Focus FR sources to process.`);
+	console.log('Fetching FR post list (light)...');
+	const allPostsLight = await wp.listAllPostsLight();
+	const frPostsLight = allPostsLight.filter((p) => !knownEnIds.has(p.id) && p.categories.includes(FOCUS_CATEGORY_ID));
+	console.log(`${allPostsLight.length} posts total, ${frPostsLight.length} are Focus FR sources in scope.`);
 
 	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
 	const categoryNames = buildTermLookup(allCategories);
 	const tagNames = buildTermLookup(allTags);
 
+	// Same cheap pre-filter as translate.js — see its comment for why.
+	const toFetch = frPostsLight.filter((post) => {
+		const existing = state[post.id];
+		if (existing && existing.status === 'locked_skip') return false;
+		if (existing && existing.modified_gmt === post.modified_gmt) return false;
+		return true;
+	});
+	console.log(`${toFetch.length} of ${frPostsLight.length} Focus FR post(s) changed (or new) since last check, fetching full content for those.`);
+
 	const todo = [];
-	for (const post of frPosts) {
+	for (const light of toFetch) {
+		const post = await wp.getPost(light.id);
 		const title = stripHtml(post.title.rendered);
 		const content = post.content.rendered;
 		const yoastTitle = post.yoast_title || '';
@@ -103,13 +113,15 @@ async function main() {
 
 		const existing = state[post.id];
 		if (existing && existing.source_hash === currentHash) {
+			state[post.id] = { ...existing, modified_gmt: light.modified_gmt };
 			continue; // already up to date
 		}
 		if (existing && existing.status === 'locked_skip') {
 			continue; // was manually edited on the EN side, needs human review, never auto-touch
 		}
-		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash });
+		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash, modified_gmt: light.modified_gmt });
 	}
+	await saveState(state, STATE_FILE); // persist modified_gmt cache updates from unchanged posts above
 
 	const scopedTodo = ONLY_FR_IDS ? todo.filter((item) => ONLY_FR_IDS.has(item.post.id)) : todo;
 	console.log(
@@ -163,7 +175,7 @@ async function main() {
 }
 
 async function processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations) {
-	const { post, title, content, yoastTitle, yoastMetadesc, currentHash } = item;
+	const { post, title, content, yoastTitle, yoastMetadesc, currentHash, modified_gmt } = item;
 	const existing = state[post.id];
 
 	if (existing && existing.en_id) {
@@ -296,6 +308,7 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		en_id: enId,
 		en_slug: enPostFinal.slug,
 		source_hash: currentHash,
+		modified_gmt,
 		status: 'translated',
 		last_error: null,
 		updated_at: new Date().toISOString(),

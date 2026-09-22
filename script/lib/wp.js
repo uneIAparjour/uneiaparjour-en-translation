@@ -74,6 +74,50 @@ export async function listAllPosts(status = 'publish') {
 	return posts;
 }
 
+/**
+ * Same pagination as listAllPosts(), but deliberately omits content/
+ * raw_content/excerpt/meta — requesting those forces WordPress to fully
+ * render every post (Gutenberg blocks, shortcodes, embeds) just to serve the
+ * REST response. Callers that scan the WHOLE catalog every run (translate.js,
+ * translate-focus.js, publish.js) only actually need id/slug/dates/status/
+ * categories/tags to decide what changed; full content is fetched via
+ * getPost() only for the small subset that turns out to need it. Found
+ * 2026-09-22: the full-fields scan, run twice daily across the whole
+ * catalog, was tripping OVH's MySQL query-rate limit (thousands of blocked
+ * queries/day).
+ */
+export async function listAllPostsLight(status = 'publish') {
+	const posts = [];
+	let page = 1;
+	const perPage = 100;
+
+	while (true) {
+		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,date,date_gmt,modified_gmt,status,categories,tags,featured_media`, {
+			headers: { Authorization: AUTH_HEADER },
+		});
+
+		if (!res.ok) {
+			if (res.status === 400 && page > 1) {
+				break; // past the last page, same as listAllPosts()
+			}
+			const body = await res.text().catch(() => '');
+			throw new Error(`WP REST GET /wp/v2/posts (page ${page}, light) -> ${res.status}: ${body.slice(0, 500)}`);
+		}
+
+		const batch = await res.json();
+		if (!Array.isArray(batch) || batch.length === 0) {
+			break;
+		}
+		posts.push(...batch);
+		if (batch.length < perPage) {
+			break;
+		}
+		page += 1;
+	}
+
+	return posts;
+}
+
 export async function getPost(id) {
 	return wpFetch(`/wp/v2/posts/${id}?_fields=id,slug,title,content,excerpt,date,date_gmt,status,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`);
 }

@@ -26,7 +26,7 @@ async function main() {
 	);
 
 	console.log('Fetching draft EN posts...');
-	const draftPosts = await wp.listAllPosts('draft');
+	const draftPosts = await wp.listAllPostsLight('draft');
 	const readyToPublish = draftPosts.filter((p) => translatedEnIds.has(p.id));
 
 	console.log(

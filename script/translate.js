@@ -80,21 +80,35 @@ async function main() {
 		return;
 	}
 
-	console.log(`Fetching all FR posts...`);
-	const allPosts = await wp.listAllPosts();
+	console.log(`Fetching FR post list (light)...`);
+	const allPostsLight = await wp.listAllPostsLight();
 	const allowedSlugs = await loadAllowedSlugs();
-	const frPosts = allPosts.filter((p) => !knownEnIds.has(p.id) && allowedSlugs.has(p.slug));
-	const excludedCount = allPosts.length - frPosts.length - knownEnIds.size;
+	const frPostsLight = allPostsLight.filter((p) => !knownEnIds.has(p.id) && allowedSlugs.has(p.slug));
+	const excludedCount = allPostsLight.length - frPostsLight.length - knownEnIds.size;
 	console.log(
-		`${allPosts.length} posts total, ${allowedSlugs.size} in the tools dataset, ${frPosts.length} are FR sources to process (${excludedCount} posts excluded — not in the dataset, e.g. newsletter/focus/lecture content).`
+		`${allPostsLight.length} posts total, ${allowedSlugs.size} in the tools dataset, ${frPostsLight.length} are FR sources in scope (${excludedCount} posts excluded — not in the dataset, e.g. newsletter/focus/lecture content).`
 	);
 
 	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
 	const categoryNames = buildTermLookup(allCategories);
 	const tagNames = buildTermLookup(allTags);
 
+	// Cheap pre-filter: a post whose modified_gmt matches what we cached last
+	// time it was checked can't have changed, so skip it without a full
+	// getPost() — that's what avoids re-rendering the whole catalog's content
+	// every run. New posts and any post whose modified_gmt differs still get
+	// fetched in full below, which is what actually detects real changes.
+	const toFetch = frPostsLight.filter((post) => {
+		const existing = state[post.id];
+		if (existing && existing.status === 'locked_skip') return false;
+		if (existing && existing.modified_gmt === post.modified_gmt) return false;
+		return true;
+	});
+	console.log(`${toFetch.length} of ${frPostsLight.length} FR post(s) changed (or new) since last check, fetching full content for those.`);
+
 	const todo = [];
-	for (const post of frPosts) {
+	for (const light of toFetch) {
+		const post = await wp.getPost(light.id);
 		const title = stripHtml(post.title.rendered);
 		const content = post.content.rendered;
 		const yoastTitle = post.yoast_title || '';
@@ -109,13 +123,18 @@ async function main() {
 
 		const existing = state[post.id];
 		if (existing && existing.source_hash === currentHash) {
-			continue; // already up to date
+			// modified_gmt bumped without any real content change (e.g. a
+			// resave) — cache it anyway so the cheap pass skips this post
+			// next time instead of re-fetching it for nothing.
+			state[post.id] = { ...existing, modified_gmt: light.modified_gmt };
+			continue;
 		}
 		if (existing && existing.status === 'locked_skip') {
 			continue; // was manually edited on the EN side, needs human review, never auto-touch
 		}
-		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash });
+		todo.push({ post, title, content, yoastTitle, yoastMetadesc, currentHash, modified_gmt: light.modified_gmt });
 	}
+	await saveState(state); // persist modified_gmt cache updates from unchanged posts above
 
 	const scopedTodo = ONLY_FR_IDS ? todo.filter((item) => ONLY_FR_IDS.has(item.post.id)) : todo;
 	console.log(
@@ -182,7 +201,7 @@ function buildSlugMap(state) {
 }
 
 async function processPost(item, state, glossary, categoryNames, tagNames, slugMap, categoryTranslations) {
-	const { post, title, content, yoastTitle, yoastMetadesc, currentHash } = item;
+	const { post, title, content, yoastTitle, yoastMetadesc, currentHash, modified_gmt } = item;
 	const existing = state[post.id];
 
 	// If we're updating an existing EN post, never overwrite a manual human edit.
@@ -390,6 +409,7 @@ async function processPost(item, state, glossary, categoryNames, tagNames, slugM
 		en_id: enId,
 		en_slug: enPostFinal.slug,
 		source_hash: currentHash,
+		modified_gmt,
 		status: 'translated',
 		last_error: null,
 		updated_at: new Date().toISOString(),

@@ -30,7 +30,7 @@ async function main() {
 	);
 
 	console.log('Fetching draft EN posts...');
-	const draftPosts = await wp.listAllPosts('draft');
+	const draftPosts = await wp.listAllPostsLight('draft');
 	// Defense in depth: only ever publish posts this pipeline's own state
 	// recognizes as a completed translation, never any other draft that
 	// happens to belong to translation-bot for some other reason.
