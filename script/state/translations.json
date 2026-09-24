@@ -13051,7 +13051,7 @@
     "en_id": 22754,
     "en_slug": "",
     "source_hash": "e84eb9d1ed6b96af970e5e7396ba4430932a9c61b8b6d4b6e2773ace211e96fe",
-    "modified_gmt": "2026-09-22T22:03:18",
+    "modified_gmt": "2026-09-23T19:44:12",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-23T11:02:00.832Z"
@@ -13121,9 +13121,19 @@
     "en_id": 22752,
     "en_slug": "",
     "source_hash": "9b815313728d681407980fb4c427792490e0e77770c8c87c3e13790f60dafc1b",
-    "modified_gmt": "2026-09-22T22:10:51",
+    "modified_gmt": "2026-09-23T19:44:32",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-23T11:01:35.972Z"
+  },
+  "22756": {
+    "fr_slug": "22756-2",
+    "en_id": 22769,
+    "en_slug": "",
+    "source_hash": "0c05c023a00c80206c7d9f1ae09faa4cffad24155cc21ee464367874b183065c",
+    "modified_gmt": "2026-09-23T19:43:58",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-24T11:12:03.420Z"
   }
 }
