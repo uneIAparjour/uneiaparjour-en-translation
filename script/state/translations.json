@@ -13135,5 +13135,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-24T11:12:03.420Z"
+  },
+  "22771": {
+    "fr_slug": "getthegists",
+    "en_id": 22780,
+    "en_slug": "",
+    "source_hash": "fc9813a8e4bfce44b81448db159bba43c65c1e5f849584bd8294330b93e7ed22",
+    "modified_gmt": "2026-09-25T07:11:18",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-25T11:17:06.816Z"
   }
 }
