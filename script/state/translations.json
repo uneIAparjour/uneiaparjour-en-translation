@@ -13146,6 +13146,16 @@
     "last_error": null,
     "updated_at": "2026-09-25T11:17:06.816Z"
   },
+  "22782": {
+    "fr_slug": "k-tldr",
+    "en_id": 22804,
+    "en_slug": "",
+    "source_hash": "b0fcaf1e3dbca94d20db601062d904b8efb29e221f90ad3d8951396894bbe897",
+    "modified_gmt": "2026-09-25T13:12:22",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-27T11:30:13.650Z"
+  },
   "22789": {
     "fr_slug": "mai-thinking-1",
     "en_id": 22802,
