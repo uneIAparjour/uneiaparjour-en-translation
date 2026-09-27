@@ -458,5 +458,15 @@
     "last_error": null,
     "updated_at": "2026-09-19T11:41:22.401Z",
     "modified_gmt": "2026-09-20T09:31:11"
+  },
+  "22807": {
+    "fr_slug": "pas-si-comment",
+    "en_id": 22809,
+    "en_slug": "",
+    "source_hash": "a2a65fb7efb32ff941b9d45ca56bea7f21414e45cab254e97868731045416841",
+    "modified_gmt": "2026-09-27T16:47:07",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-27T17:25:29.385Z"
   }
 }
