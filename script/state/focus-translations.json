@@ -6,7 +6,8 @@
     "source_hash": "aa001b9421d6c62929145731da6214598bd9a517284b61e2bbb8623a8c420de8",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:03:44.903Z"
+    "updated_at": "2026-09-05T23:03:44.903Z",
+    "modified_gmt": "2026-02-22T21:04:06"
   },
   "15333": {
     "fr_slug": "quand-lia-prend-la-parole",
@@ -15,7 +16,8 @@
     "source_hash": "224345c819de3af8b7f7d38d6fe4b5940b6301bdaf55d9079285ddd85ce5899a",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:03:56.149Z"
+    "updated_at": "2026-09-05T23:03:56.149Z",
+    "modified_gmt": "2026-02-22T21:03:40"
   },
   "15341": {
     "fr_slug": "andre-le-chatbot-qui-decrypte-les-elections-francaises",
@@ -24,7 +26,8 @@
     "source_hash": "39c758b717d7481ec6d0a408c6345a706c0c4674128cac7dbb7eb4ce9c1f2009",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:04:07.306Z"
+    "updated_at": "2026-09-05T23:04:07.306Z",
+    "modified_gmt": "2026-02-22T21:07:47"
   },
   "15343": {
     "fr_slug": "mindmaclasse-les-cartes-mentales-libres-et-intelligentes",
@@ -33,7 +36,8 @@
     "source_hash": "11f841c7022cf920cfe05bece8ef39ba211bd179fb64007046f7d66d12a85916",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:04:19.365Z"
+    "updated_at": "2026-09-05T23:04:19.365Z",
+    "modified_gmt": "2026-02-22T21:11:23"
   },
   "15345": {
     "fr_slug": "et-si-de-petits-modeles-etaient-suffisants",
@@ -42,7 +46,8 @@
     "source_hash": "21e6c9d8e6a5504999a1f3591e2bf7be3f9e490f08db87187cbc671da9ccac24",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:04:32.529Z"
+    "updated_at": "2026-09-05T23:04:32.529Z",
+    "modified_gmt": "2026-02-22T21:44:53"
   },
   "15347": {
     "fr_slug": "supertonic-la-synthese-vocale-qui-reste-sur-votre-machine",
@@ -51,7 +56,8 @@
     "source_hash": "9a58ffc6021235221bb28ba82e2c69d72816325d25f52a028ad16effe0f0dcce",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:04:43.551Z"
+    "updated_at": "2026-09-05T23:04:43.551Z",
+    "modified_gmt": "2026-02-22T21:17:28"
   },
   "15351": {
     "fr_slug": "accessdoc-quand-lia-se-met-au-service-de-laccessibilite",
@@ -60,7 +66,8 @@
     "source_hash": "819a6862c5dc61b503dde50cc1bb91521927110d826978da6ba76fcaac15aefb",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:04:55.362Z"
+    "updated_at": "2026-09-05T23:04:55.362Z",
+    "modified_gmt": "2026-02-22T21:20:16"
   },
   "15354": {
     "fr_slug": "un-tableau-de-maitre-base-de-votre-prochain-morceau",
@@ -69,7 +76,8 @@
     "source_hash": "b595754042ec7d9ed0c835df0c72781ea1c24a6f30cb7a18ccf51c45d2fed468",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:05:07.893Z"
+    "updated_at": "2026-09-05T23:05:07.893Z",
+    "modified_gmt": "2026-02-22T21:26:00"
   },
   "15356": {
     "fr_slug": "design-arena-terrain-de-jeu-pour-comparer-les-modeles-dia",
@@ -78,7 +86,8 @@
     "source_hash": "2ef480cd717ec0ca36a54cb0966bea01e2946ddc512c9e4f9656b318e256a44a",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:05:19.425Z"
+    "updated_at": "2026-09-05T23:05:19.425Z",
+    "modified_gmt": "2026-02-22T21:28:10"
   },
   "15359": {
     "fr_slug": "molmo-2-le-petit-modele-de-vision-qui-voit-presque-tout",
@@ -87,7 +96,8 @@
     "source_hash": "d707abd14827b02f993624a00d41c259f472e7502aef74b32b44331064881298",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:05:32.132Z"
+    "updated_at": "2026-09-05T23:05:32.132Z",
+    "modified_gmt": "2026-02-22T21:31:51"
   },
   "15361": {
     "fr_slug": "deux-couteaux-suisses-pour-une-ia-simple-gratuite-et-responsable",
@@ -96,7 +106,8 @@
     "source_hash": "f332364bfaaf20a338c778c628a1a7c6358f07feffbd11196dc555e21c95dfaa",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:05:43.615Z"
+    "updated_at": "2026-09-05T23:05:43.615Z",
+    "modified_gmt": "2026-02-28T23:31:53"
   },
   "15363": {
     "fr_slug": "des-agents-ia-autonomes-et-nous-dans-tout-ca",
@@ -105,7 +116,8 @@
     "source_hash": "1bc9ef293e1e7c8705fbb12e239acf00d50e7a8bbaa44dcf366f030358ffaaba",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:05:55.753Z"
+    "updated_at": "2026-09-05T23:05:55.753Z",
+    "modified_gmt": "2026-02-22T21:36:56"
   },
   "15365": {
     "fr_slug": "lia-generative-a-trois-ans-bilan-rapide-dune-course-folle",
@@ -114,7 +126,8 @@
     "source_hash": "0949b6c9031669a815fcae1065ebf582565ac8e4a6d92fd715bddaea25993590",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:06:07.485Z"
+    "updated_at": "2026-09-05T23:06:07.485Z",
+    "modified_gmt": "2026-02-22T21:39:27"
   },
   "15367": {
     "fr_slug": "lia-generative-change-de-rythme-et-si-la-lenteur-etait-un-progres",
@@ -123,7 +136,8 @@
     "source_hash": "c60dbc6c269cb925846d6796c30c63cde876cf13b2040ebffa61aaf615eba3a1",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:06:19.395Z"
+    "updated_at": "2026-09-05T23:06:19.395Z",
+    "modified_gmt": "2026-02-22T21:42:22"
   },
   "15370": {
     "fr_slug": "time-ai-quand-un-journal-transforme-ses-archives-en-conversation",
@@ -132,7 +146,8 @@
     "source_hash": "b6e48ba2191d65b644ce0fd78c41972f4e48d7f9be4b482f861e719f56dc74cb",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:06:31.907Z"
+    "updated_at": "2026-09-05T23:06:31.907Z",
+    "modified_gmt": "2026-02-22T21:47:05"
   },
   "15372": {
     "fr_slug": "oracles-ou-romanciers-glisser-les-curseurs-et-regarder-lhistoire-diverger",
@@ -141,7 +156,8 @@
     "source_hash": "0300143a505d64c390fce6fbbfa797339182f50e5fb097e9a581204a5eb171e7",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:06:43.327Z"
+    "updated_at": "2026-09-05T23:06:43.327Z",
+    "modified_gmt": "2026-02-22T21:50:11"
   },
   "15374": {
     "fr_slug": "handy-la-reconnaissance-vocale-open-source-nee-dun-doigt-casse",
@@ -150,7 +166,8 @@
     "source_hash": "0c19c778368ed89c48c3934cf05bd52391e065e3068d153980ded7b0ab03bad9",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:06:57.465Z"
+    "updated_at": "2026-09-05T23:06:57.465Z",
+    "modified_gmt": "2026-02-22T21:53:07"
   },
   "15377": {
     "fr_slug": "quand-la-video-ia-devient-indiscernable-du-reel-la-verification-devient-vitale",
@@ -159,7 +176,8 @@
     "source_hash": "1883eddf4551b5b0a81df13683c488fef49ce403680dbbe7ca8eff25c1e2cfb6",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:07:07.551Z"
+    "updated_at": "2026-09-05T23:07:07.551Z",
+    "modified_gmt": "2026-02-22T21:55:28"
   },
   "15379": {
     "fr_slug": "rows-quand-le-tableur-rencontre-lia-pour-analyser-vos-donnees",
@@ -168,7 +186,8 @@
     "source_hash": "009c937385fcbb19bc65b94467834db9c349a6fe2c66abaf6a0f439cf5e049eb",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:07:19.949Z"
+    "updated_at": "2026-09-05T23:07:19.949Z",
+    "modified_gmt": "2026-02-22T21:57:47"
   },
   "15381": {
     "fr_slug": "folo-gratuit-open-source-et-peut-etre-lagregateur-ideal",
@@ -177,7 +196,8 @@
     "source_hash": "bd10520e411fa59b2bcb11ee98063a25f60ba3749c7c7a8089ea27e8e06d649e",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:07:31.397Z"
+    "updated_at": "2026-09-05T23:07:31.397Z",
+    "modified_gmt": "2026-02-28T23:32:18"
   },
   "15383": {
     "fr_slug": "meta-ai-ou-la-discrete-invasion-de-lia-generative-dans-nos-reseaux-sociaux",
@@ -186,7 +206,8 @@
     "source_hash": "7c8c0a2f64ca546b94dd178903ca54a2564a78b25defe6dc337bc6dae133227e",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:07:43.591Z"
+    "updated_at": "2026-09-05T23:07:43.591Z",
+    "modified_gmt": "2026-02-22T22:02:24"
   },
   "15386": {
     "fr_slug": "lia-generative-hors-ligne-plus-proche-plus-sobre-suffisante",
@@ -195,7 +216,8 @@
     "source_hash": "c2512bad4b2078d35f2fc3fcd6bf8b2cae521a637ea3b3ee2181e1c8a305a9b8",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:07:55.395Z"
+    "updated_at": "2026-09-05T23:07:55.395Z",
+    "modified_gmt": "2026-02-22T22:04:02"
   },
   "15388": {
     "fr_slug": "rolyai-confronter-les-points-de-vue-pour-mieux-dialoguer-avec-lia",
@@ -204,7 +226,8 @@
     "source_hash": "88665c00dd7ad29017fdcdf773faae6f791daa65198c58163c032661996767cf",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:08:07.443Z"
+    "updated_at": "2026-09-05T23:08:07.443Z",
+    "modified_gmt": "2026-02-22T22:06:09"
   },
   "15390": {
     "fr_slug": "derriere-les-modeles-ouverts-une-bataille-geopolitique-silencieuse",
@@ -213,7 +236,8 @@
     "source_hash": "be734509740cf4791b69e3f8c11dd0eb6c9ffc19e2b9e2843c0281f557dae0d8",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:08:19.845Z"
+    "updated_at": "2026-09-05T23:08:19.845Z",
+    "modified_gmt": "2026-02-22T22:08:06"
   },
   "15392": {
     "fr_slug": "comet-quand-le-navigateur-navigue-presque-sans-nous",
@@ -222,7 +246,8 @@
     "source_hash": "3557195dbe23b5686f4807bb6926150112c9504f191f085b5ce5fc26c37b6339",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:08:31.655Z"
+    "updated_at": "2026-09-05T23:08:31.655Z",
+    "modified_gmt": "2026-02-22T22:09:55"
   },
   "15562": {
     "fr_slug": "tout-generer-dun-seul-endroit-aubaine-ou-disparition-du-geste-creatif",
@@ -231,7 +256,8 @@
     "source_hash": "6c2e4daccd3a2f1fdd52debf37b44c1e2e706282b1d3cec9c59825dea15b7c22",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:03:31.721Z"
+    "updated_at": "2026-09-05T23:03:31.721Z",
+    "modified_gmt": "2026-03-06T08:42:26"
   },
   "15675": {
     "fr_slug": "mercury-2-quand-les-textes-emergent-comme-des-images",
@@ -240,7 +266,8 @@
     "source_hash": "c78b900a724dd850c5964b096f79121706945b21535c7650c6ed4697297699b9",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:03:19.733Z"
+    "updated_at": "2026-09-05T23:03:19.733Z",
+    "modified_gmt": "2026-03-07T22:34:15"
   },
   "15809": {
     "fr_slug": "du-waouh-au-ah-ouais-fabriquer-avec-la-machine-et-comprendre-ce-quon-fabrique",
@@ -249,7 +276,8 @@
     "source_hash": "9ce8ab0f6799268f2725d7babb3df06e547e61e58d0bd1be3a255d06ae2824e3",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:03:08.362Z"
+    "updated_at": "2026-09-05T23:03:08.362Z",
+    "modified_gmt": "2026-03-14T11:15:11"
   },
   "15891": {
     "fr_slug": "de-la-vraisemblance-ou-du-sens",
@@ -258,7 +286,8 @@
     "source_hash": "9385a6fb6ed3119491bf18daeaa165269fd4d7ba823195a86d4f6688509e8c12",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:02:56.406Z"
+    "updated_at": "2026-09-05T23:02:56.406Z",
+    "modified_gmt": "2026-03-21T11:09:34"
   },
   "15999": {
     "fr_slug": "echo-quand-faire-un-jeu-sur-la-delegation-devient-une-experience-de-delegation",
@@ -267,7 +296,8 @@
     "source_hash": "39c369d3d80a27e60e1d193c1a306aece2c4ca852968fc4ff89dc4010aee92d7",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:02:44.631Z"
+    "updated_at": "2026-09-05T23:02:44.631Z",
+    "modified_gmt": "2026-03-28T11:35:17"
   },
   "16108": {
     "fr_slug": "du-texte-au-monde",
@@ -276,7 +306,8 @@
     "source_hash": "206c71e9c0f4eafc36cc0750116b0b102d0f83461941d3beb9b943cc334f4e04",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:02:31.617Z"
+    "updated_at": "2026-09-05T23:02:31.617Z",
+    "modified_gmt": "2026-04-04T10:53:58"
   },
   "16203": {
     "fr_slug": "le-monde-dans-la-poche",
@@ -285,7 +316,8 @@
     "source_hash": "4e439aa646b8021dced99e17a9f10f72918334c21d3c4341981b87b59d093b66",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:02:19.615Z"
+    "updated_at": "2026-09-05T23:02:19.615Z",
+    "modified_gmt": "2026-04-11T15:11:27"
   },
   "16394": {
     "fr_slug": "et-si-nous-choisissions-le-niveau-dautonomie-de-la-machine",
@@ -294,7 +326,8 @@
     "source_hash": "262a8043a3ce3cca445fa742cefd7c702529b26c52c2b55a2d30b8dbb39524f2",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:02:08.076Z"
+    "updated_at": "2026-09-05T23:02:08.076Z",
+    "modified_gmt": "2026-04-18T21:51:13"
   },
   "16514": {
     "fr_slug": "une-information-vraisemblable",
@@ -303,7 +336,8 @@
     "source_hash": "aacc7e56bac1abc3cd5a0f724b5f9a9f7cecd21b39027efca5e3b97305633513",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:01:55.533Z"
+    "updated_at": "2026-09-05T23:01:55.533Z",
+    "modified_gmt": "2026-04-25T13:00:33"
   },
   "16615": {
     "fr_slug": "generation-de-video-une-geographie-qui-se-dessine",
@@ -312,7 +346,8 @@
     "source_hash": "cda27cf183b2fee09e84e403ba177dec3971facfb035cf3972932473ce59e463",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:01:44.274Z"
+    "updated_at": "2026-09-05T23:01:44.274Z",
+    "modified_gmt": "2026-05-02T20:24:01"
   },
   "16768": {
     "fr_slug": "que-reste-t-il-quand-loutil-a-fait-le-travail",
@@ -321,7 +356,8 @@
     "source_hash": "3593c0456bf598ceb4c3f0348da79c526b6a0b204f95b84d0ec48d321cdb0d4f",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:01:32.460Z"
+    "updated_at": "2026-09-05T23:01:32.460Z",
+    "modified_gmt": "2026-05-09T21:24:15"
   },
   "16850": {
     "fr_slug": "sait-on-vraiment-ce-quon-utilise",
@@ -330,7 +366,8 @@
     "source_hash": "9cca96a4b14c3e3822dce4cfdca11e79d4f4f043d40d54566f34ea7609e84146",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:01:20.337Z"
+    "updated_at": "2026-09-05T23:01:20.337Z",
+    "modified_gmt": "2026-05-16T08:28:35"
   },
   "16986": {
     "fr_slug": "le-debat-qui-nen-est-peut-etre-pas-un",
@@ -339,7 +376,8 @@
     "source_hash": "fe48362fd254bad3c86eabfd170d45bcd2d7760566cd2f1830039bf1a88a7dd3",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:01:08.322Z"
+    "updated_at": "2026-09-05T23:01:08.322Z",
+    "modified_gmt": "2026-05-23T08:48:56"
   },
   "17114": {
     "fr_slug": "la-recherche-apres-la-recherche",
@@ -348,7 +386,8 @@
     "source_hash": "0a2b7e270cc43347c5d998ec6c01883fc93d8eea7c8ccaffa4d0a2ff2ab70488",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:00:56.552Z"
+    "updated_at": "2026-09-05T23:00:56.552Z",
+    "modified_gmt": "2026-05-31T07:55:47"
   },
   "17208": {
     "fr_slug": "dans-le-retroviseur-39-mots-pour-39-lettres",
@@ -357,7 +396,8 @@
     "source_hash": "806f924f5d9201a69cb9550b1e77e2d1650b7be3b01a48aa4ad3d13a2ab6bd97",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:00:44.321Z"
+    "updated_at": "2026-09-05T23:00:44.321Z",
+    "modified_gmt": "2026-06-06T20:05:46"
   },
   "17415": {
     "fr_slug": "le-livre-dont-on-nest-plus-le-heros",
@@ -366,7 +406,8 @@
     "source_hash": "1bcab04c31097b05822622e8fbcbb911932238227c9ec3cb63caea3dcfdb166f",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:00:32.246Z"
+    "updated_at": "2026-09-05T23:00:32.246Z",
+    "modified_gmt": "2026-06-20T09:50:38"
   },
   "17498": {
     "fr_slug": "generer-vite-ou-decider-lentement",
@@ -375,7 +416,8 @@
     "source_hash": "c4b3433c2531797d43fb50f2db207605e2066f6498b9d9761a1c7441b97aa7ac",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:00:21.264Z"
+    "updated_at": "2026-09-05T23:00:21.264Z",
+    "modified_gmt": "2026-06-20T09:49:49"
   },
   "17693": {
     "fr_slug": "les-avis-quon-aura-peut-etre-revises-dici-la-rentree",
@@ -384,7 +426,8 @@
     "source_hash": "fb3d63ce2bd2b50082343186b05363b03c6f60a1003a25a36b841c8eabff074b",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T23:00:07.938Z"
+    "updated_at": "2026-09-05T23:00:07.938Z",
+    "modified_gmt": "2026-06-28T09:30:43"
   },
   "22243": {
     "fr_slug": "choisir-et-creer",
@@ -393,7 +436,8 @@
     "source_hash": "6156568136cd38ac2b38ddc79a7486fe2cfd4538a0d61934057d34fdbd11681a",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-05T22:55:01.539Z"
+    "updated_at": "2026-09-05T22:55:01.539Z",
+    "modified_gmt": "2026-09-05T20:39:50"
   },
   "22569": {
     "fr_slug": "voter-nest-peut-etre-pas-choisir",
@@ -402,7 +446,8 @@
     "source_hash": "f975dc20ba8ea10eeaa0c69859515d527e9b86fd0e961c8fbfe8c42bfa0a1f23",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-12T13:36:47.755Z"
+    "updated_at": "2026-09-12T13:36:47.755Z",
+    "modified_gmt": "2026-09-12T13:25:33"
   },
   "22699": {
     "fr_slug": "lexpertise-a-portee-de-clic",
@@ -411,6 +456,7 @@
     "source_hash": "9e64dd2770318c040850121c8ff201cc7814d570603b539c4b62d98b1a6872a5",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-09-19T11:41:22.401Z"
+    "updated_at": "2026-09-19T11:41:22.401Z",
+    "modified_gmt": "2026-09-20T09:31:11"
   }
 }
