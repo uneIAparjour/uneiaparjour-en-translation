@@ -13175,5 +13175,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-28T13:02:59.711Z"
+  },
+  "22815": {
+    "fr_slug": "aipoker-bot",
+    "en_id": 22828,
+    "en_slug": "",
+    "source_hash": "bf1ed4cd31b9aa47863fee12f9a560fa7f9d54614498114504abf9171983be12",
+    "modified_gmt": "2026-09-29T06:01:56",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-29T12:13:54.095Z"
   }
 }
