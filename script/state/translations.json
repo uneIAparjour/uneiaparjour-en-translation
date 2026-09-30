@@ -13185,5 +13185,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-29T12:13:54.095Z"
+  },
+  "22826": {
+    "fr_slug": "pxbee",
+    "en_id": 22843,
+    "en_slug": "",
+    "source_hash": "ac86dfdc29e9d7d531e4b8ee43fa779bc111f04d16de34688dd367dfaf713203",
+    "modified_gmt": "2026-09-30T04:34:22",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-09-30T12:00:10.023Z"
   }
 }
