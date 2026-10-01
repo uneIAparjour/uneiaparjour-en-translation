@@ -13046,6 +13046,16 @@
     "updated_at": "2026-09-15T11:12:49.918Z",
     "modified_gmt": "2026-09-14T21:23:36"
   },
+  "22620": {
+    "fr_slug": "alpie",
+    "en_id": 22864,
+    "en_slug": "",
+    "source_hash": "9c3ebee51dfde839e15ae77fceb489fcca4b36439d4cf3c9c39b56c3bf35f59b",
+    "modified_gmt": "2026-09-30T22:47:32",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-01T12:32:41.150Z"
+  },
   "22622": {
     "fr_slug": "xprivo",
     "en_id": 22754,
