@@ -13215,5 +13215,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-02T11:58:22.574Z"
+  },
+  "22885": {
+    "fr_slug": "patentfig",
+    "en_id": 22898,
+    "en_slug": "",
+    "source_hash": "6cd160843e4316aaba7c7d2ce5c4e6793f7d955ce9bd8c7ab309337c27d6d637",
+    "modified_gmt": "2026-10-02T07:07:54",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-03T11:11:40.619Z"
   }
 }
