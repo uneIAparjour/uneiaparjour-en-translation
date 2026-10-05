@@ -13225,5 +13225,25 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-03T11:11:40.619Z"
+  },
+  "22901": {
+    "fr_slug": "shipslides",
+    "en_id": 22947,
+    "en_slug": "",
+    "source_hash": "b5ae7459daa0c14fa35b2020c3dada38b32f6f41ada198bb240ab3e8f7832f5c",
+    "modified_gmt": "2026-10-04T08:32:20",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-05T13:45:32.555Z"
+  },
+  "22915": {
+    "fr_slug": "recastia",
+    "en_id": 22944,
+    "en_slug": "",
+    "source_hash": "e7e5eb419787813eb4f161012019ca7827bf39025e3e354c5bf378de3b7fc32e",
+    "modified_gmt": "2026-10-04T19:58:44",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-05T13:45:21.273Z"
   }
 }
