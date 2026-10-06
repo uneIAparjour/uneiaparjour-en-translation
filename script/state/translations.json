@@ -13245,5 +13245,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-05T13:45:21.273Z"
+  },
+  "22949": {
+    "fr_slug": "sakana-chat",
+    "en_id": 22983,
+    "en_slug": "",
+    "source_hash": "20047f4c75e8a46c7bfd8930e67b86421c9b8c1f9aa887fbd9efc0bad69a897c",
+    "modified_gmt": "2026-10-05T21:12:39",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-06T12:51:11.651Z"
   }
 }
