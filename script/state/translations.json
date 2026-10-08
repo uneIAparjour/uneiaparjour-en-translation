@@ -13265,5 +13265,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-07T12:45:05.831Z"
+  },
+  "22999": {
+    "fr_slug": "send-with-sam",
+    "en_id": 23006,
+    "en_slug": "",
+    "source_hash": "5eca93cc2cd347b20110f48f3bd094c56a987f15f933de306587f72c7d9560a1",
+    "modified_gmt": "2026-10-07T21:24:39",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-08T12:54:22.009Z"
   }
 }
