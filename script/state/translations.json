@@ -13275,5 +13275,25 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-08T12:54:22.009Z"
+  },
+  "23049": {
+    "fr_slug": "z-ai-slides",
+    "en_id": 23084,
+    "en_slug": "",
+    "source_hash": "6993c7bd209b15e4e0ecda29441cb975bec22e1d0ab202f4b04d9abd87c42544",
+    "modified_gmt": "2026-10-09T20:27:41",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-10T11:59:39.766Z"
+  },
+  "23070": {
+    "fr_slug": "generateur-video-de-taaft",
+    "en_id": 23082,
+    "en_slug": "",
+    "source_hash": "1526e337f98dfe45df4f3e1bc2b801bcf5870a0f56471f62bef459b69f8869d7",
+    "modified_gmt": "2026-10-09T20:28:21",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-10T11:59:27.315Z"
   }
 }
