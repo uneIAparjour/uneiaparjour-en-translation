@@ -468,5 +468,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-09-27T17:25:29.385Z"
+  },
+  "22941": {
+    "fr_slug": "adorables-mais-a-quelles-conditions",
+    "en_id": 23088,
+    "en_slug": "",
+    "source_hash": "8dd24cfedd0b5f95692c41acda2674c1a5f65d4a4582a9791db04ee3b5866196",
+    "modified_gmt": "2026-10-04T20:06:44",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-11T13:52:26.647Z"
   }
 }
