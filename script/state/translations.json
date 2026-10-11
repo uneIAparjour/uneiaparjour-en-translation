@@ -13286,6 +13286,16 @@
     "last_error": null,
     "updated_at": "2026-10-10T11:59:39.766Z"
   },
+  "23057": {
+    "fr_slug": "halomate",
+    "en_id": 23086,
+    "en_slug": "",
+    "source_hash": "0a6914e76e885e874579c5e1382f04567c07836ad42ede447026c695aeed06bc",
+    "modified_gmt": "2026-10-09T20:24:13",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-11T12:11:52.987Z"
+  },
   "23070": {
     "fr_slug": "generateur-video-de-taaft",
     "en_id": 23082,
