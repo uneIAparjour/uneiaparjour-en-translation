@@ -13305,5 +13305,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-10T11:59:27.315Z"
+  },
+  "23090": {
+    "fr_slug": "veridive",
+    "en_id": 23107,
+    "en_slug": "",
+    "source_hash": "924d217e4ed72c0376b50b91dd0a35d7b06e1aa06a6357625fbe72a43e44d99c",
+    "modified_gmt": "2026-10-11T22:11:48",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-12T14:34:07.029Z"
   }
 }
