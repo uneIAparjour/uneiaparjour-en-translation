@@ -13315,5 +13315,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-12T14:34:07.029Z"
+  },
+  "23109": {
+    "fr_slug": "morso",
+    "en_id": 23128,
+    "en_slug": "",
+    "source_hash": "afe4f000ae9f637a143487e68444a50344a3418c3a9338153a3e50dc59cb8d37",
+    "modified_gmt": "2026-10-12T20:06:05",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-13T13:39:53.700Z"
   }
 }
