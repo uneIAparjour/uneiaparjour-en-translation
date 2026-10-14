@@ -13325,5 +13325,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-13T13:39:53.700Z"
+  },
+  "23131": {
+    "fr_slug": "genpage",
+    "en_id": 23145,
+    "en_slug": "",
+    "source_hash": "0609535238a10da394d7995e718e02389bc62184940350e1cf0ea47c6f5fb862",
+    "modified_gmt": "2026-10-14T04:52:59",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-14T11:18:53.262Z"
   }
 }
