@@ -13335,5 +13335,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-14T11:18:53.262Z"
+  },
+  "23147": {
+    "fr_slug": "freemaker",
+    "en_id": 23155,
+    "en_slug": "",
+    "source_hash": "5daedce22468d9b8b6e6f328ffba95958a551f086b9d08c9c683dca96f401eaa",
+    "modified_gmt": "2026-10-14T22:48:33",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-15T10:56:28.546Z"
   }
 }
