@@ -13345,5 +13345,25 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-15T10:56:28.546Z"
+  },
+  "23157": {
+    "fr_slug": "search-revolution-crossroads",
+    "en_id": 23182,
+    "en_slug": "",
+    "source_hash": "f2b9085472d6861c2a2098c95e04805586427156ba6ae3e9143f1d3ed81fc537",
+    "modified_gmt": "2026-10-16T19:11:45",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-17T10:14:08.125Z"
+  },
+  "23163": {
+    "fr_slug": "openlingo",
+    "en_id": 23180,
+    "en_slug": "",
+    "source_hash": "4f62f6b59751f7ef8887a6250afd3c8e583c3d983346a61c4d4c0e20be03b0d1",
+    "modified_gmt": "2026-10-16T21:10:21",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-17T10:13:55.611Z"
   }
 }
