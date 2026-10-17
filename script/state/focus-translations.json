@@ -478,5 +478,25 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-11T13:52:26.647Z"
+  },
+  "23184": {
+    "fr_slug": "cinquante-samedis-a-fabriquer-cette-lettre",
+    "en_id": 23189,
+    "en_slug": "",
+    "source_hash": "c5291e4f935f21b7b4d866c21377010ed48b800082ead21bb60e94aa13b78cc5",
+    "modified_gmt": "2026-10-17T20:54:24",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-17T21:17:42.973Z"
+  },
+  "23186": {
+    "fr_slug": "quelle-vision-du-monde-dans-la-machine",
+    "en_id": 23191,
+    "en_slug": "",
+    "source_hash": "b8c2a80e471ca1137625f808b9c7479bb6b5971002164ead514c8919ae33f6b5",
+    "modified_gmt": "2026-10-17T20:57:25",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-17T21:17:54.717Z"
   }
 }
