@@ -13365,5 +13365,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-17T10:13:55.611Z"
+  },
+  "23201": {
+    "fr_slug": "council-ai",
+    "en_id": 23222,
+    "en_slug": "",
+    "source_hash": "8d06c1a91ffb42ee2a07e81dee355f5c25e07e5579bd79d21ed020c91a8e0e72",
+    "modified_gmt": "2026-10-17T22:23:09",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-18T10:29:11.502Z"
   }
 }
