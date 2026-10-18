@@ -86,13 +86,19 @@ export async function listAllPosts(status = 'publish') {
  * catalog, was tripping OVH's MySQL query-rate limit (thousands of blocked
  * queries/day).
  */
-export async function listAllPostsLight(status = 'publish') {
+export async function listAllPostsLight(status = 'publish', { modifiedAfter, include } = {}) {
 	const posts = [];
+	// Optional narrowing so a daily run doesn't have to walk the whole
+	// catalog: modifiedAfter (ISO 8601) maps to WP's modified_after, include
+	// (array of ids) to WP's include.
+	const extra =
+		(modifiedAfter ? `&modified_after=${encodeURIComponent(modifiedAfter)}` : '') +
+		(include && include.length ? `&include=${include.join(',')}` : '');
 	let page = 1;
 	const perPage = 100;
 
 	while (true) {
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,date,date_gmt,modified_gmt,status,categories,tags,featured_media`, {
+		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}${extra}&_fields=id,slug,title,date,date_gmt,modified_gmt,status,categories,tags,featured_media`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
