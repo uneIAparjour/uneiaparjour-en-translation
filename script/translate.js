@@ -18,6 +18,11 @@ const DRY_RUN = args.includes('--dry-run');
 const REPAIR_LINKS = args.includes('--repair-links');
 const REPAIR_IMAGES = args.includes('--repair-images');
 const FIX_MEDIA = args.includes('--fix-media');
+// Mon-Sat runs only look at posts modified recently (plus retries of failed
+// ones); the whole catalog is walked on Sundays UTC or with --full-scan.
+// Added 2026-10-18 after OVH again flagged the MySQL query-rate limit.
+const FULL_SCAN = args.includes('--full-scan') || new Date().getUTCDay() === 0;
+const INCREMENTAL_MARGIN_MS = 3 * 24 * 3600 * 1000; // covers site-timezone vs GMT skew and missed runs
 // Accepts a single id or a comma-separated list (--only-fr-id=17632 or
 // --only-fr-id=17632,18075,18119) — added 2026-08-19 to retry a specific
 // handful of old failures (ResearchDeck, Video Transcription AI, Bubul,
@@ -80,13 +85,12 @@ async function main() {
 		return;
 	}
 
-	console.log(`Fetching FR post list (light)...`);
-	const allPostsLight = await wp.listAllPostsLight();
+	const allPostsLight = await fetchCandidatePosts(state);
 	const allowedSlugs = await loadAllowedSlugs();
 	const frPostsLight = allPostsLight.filter((p) => !knownEnIds.has(p.id) && allowedSlugs.has(p.slug));
-	const excludedCount = allPostsLight.length - frPostsLight.length - knownEnIds.size;
+	const excludedCount = allPostsLight.length - frPostsLight.length;
 	console.log(
-		`${allPostsLight.length} posts total, ${allowedSlugs.size} in the tools dataset, ${frPostsLight.length} are FR sources in scope (${excludedCount} posts excluded — not in the dataset, e.g. newsletter/focus/lecture content).`
+		`${allPostsLight.length} posts scanned, ${allowedSlugs.size} in the tools dataset, ${frPostsLight.length} are FR sources in scope (${excludedCount} posts excluded — known EN posts or not in the dataset, e.g. newsletter/focus/lecture content).`
 	);
 
 	const [allCategories, allTags] = await Promise.all([wp.listCategories(), wp.listTags()]);
@@ -188,6 +192,27 @@ async function main() {
 	}
 
 	console.log('Batch done.');
+}
+
+async function fetchCandidatePosts(state) {
+	const cached = Object.values(state)
+		.map((e) => e.modified_gmt)
+		.filter(Boolean)
+		.sort();
+	if (FULL_SCAN || ONLY_FR_IDS || cached.length === 0) {
+		console.log('Fetching FR post list (light, full catalog scan)...');
+		return wp.listAllPostsLight();
+	}
+	const since = new Date(new Date(cached[cached.length - 1] + 'Z').getTime() - INCREMENTAL_MARGIN_MS).toISOString();
+	console.log(`Fetching FR posts modified since ${since} (incremental; full scan on Sundays or with --full-scan)...`);
+	const recent = await wp.listAllPostsLight('publish', { modifiedAfter: since });
+	const seen = new Set(recent.map((p) => p.id));
+	// Failed translations are retried every run regardless of modification date.
+	const retryIds = Object.entries(state)
+		.filter(([id, e]) => e.status === 'failed' && !seen.has(Number(id)))
+		.map(([id]) => Number(id));
+	const retries = retryIds.length ? await wp.listAllPostsLight('publish', { include: retryIds }) : [];
+	return [...recent, ...retries];
 }
 
 function buildSlugMap(state) {
