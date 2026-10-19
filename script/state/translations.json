@@ -13375,5 +13375,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-18T10:29:11.502Z"
+  },
+  "23224": {
+    "fr_slug": "mirelo",
+    "en_id": 23240,
+    "en_slug": "",
+    "source_hash": "2d28e8040417f907e0dec4b30dbc8b10ab49ef7a7137fc71423ccb8814f7aef0",
+    "modified_gmt": "2026-10-18T21:03:16",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-19T12:17:05.541Z"
   }
 }
