@@ -13385,5 +13385,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-19T12:17:05.541Z"
+  },
+  "23242": {
+    "fr_slug": "tomo",
+    "en_id": 23303,
+    "en_slug": "",
+    "source_hash": "17f4fce49e2a779a60faa5894c69f04cc520a30b1c6586f3ca0250c4f869a678",
+    "modified_gmt": "2026-10-19T21:44:02",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-20T10:59:15.004Z"
   }
 }
