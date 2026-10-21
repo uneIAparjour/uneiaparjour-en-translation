@@ -13395,5 +13395,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-20T10:59:15.004Z"
+  },
+  "23306": {
+    "fr_slug": "curie",
+    "en_id": 23322,
+    "en_slug": "",
+    "source_hash": "1eac1f0ee3f94928e3170a7cb3490bae8b662bb0f401c1fc61dab54f09b17970",
+    "modified_gmt": "2026-10-20T23:09:18",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-21T11:15:40.071Z"
   }
 }
