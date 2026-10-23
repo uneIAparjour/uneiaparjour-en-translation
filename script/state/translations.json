@@ -13405,5 +13405,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-21T11:15:40.071Z"
+  },
+  "23324": {
+    "fr_slug": "huffl",
+    "en_id": 23344,
+    "en_slug": "",
+    "source_hash": "aa991a3ce256e4eef5dda00c725801faf24409222606b06d6db063194d26396d",
+    "modified_gmt": "2026-10-22T20:33:10",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-23T11:06:06.851Z"
   }
 }
