@@ -13409,11 +13409,21 @@
   "23324": {
     "fr_slug": "huffl",
     "en_id": 23344,
-    "en_slug": "",
-    "source_hash": "aa991a3ce256e4eef5dda00c725801faf24409222606b06d6db063194d26396d",
-    "modified_gmt": "2026-10-22T20:33:10",
+    "en_slug": "huffl-2",
+    "source_hash": "ccb786923661fec65cb5ba2ed8bd8ebfb805001e0b051c856c9a8b7397c91acb",
+    "modified_gmt": "2026-10-24T09:35:49",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-10-23T11:06:06.851Z"
+    "updated_at": "2026-10-24T10:22:46.069Z"
+  },
+  "23363": {
+    "fr_slug": "teachoo",
+    "en_id": 23373,
+    "en_slug": "",
+    "source_hash": "6e77d851b15dafa2d9a3565113062c8206294375ea4f4b34f123d9a743fc2376",
+    "modified_gmt": "2026-10-23T21:55:54",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-24T10:22:34.700Z"
   }
 }
