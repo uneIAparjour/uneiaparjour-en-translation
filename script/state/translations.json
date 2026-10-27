@@ -13445,5 +13445,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-26T12:20:44.126Z"
+  },
+  "23410": {
+    "fr_slug": "clueso",
+    "en_id": 23424,
+    "en_slug": "",
+    "source_hash": "06c17f5b3688a8a4a361817655de0ad960bb43cd1b6b80084ca7dbbc61b65070",
+    "modified_gmt": "2026-10-26T23:14:01",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-27T11:40:43.029Z"
   }
 }
