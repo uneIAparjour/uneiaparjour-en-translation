@@ -498,5 +498,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-17T21:17:54.717Z"
+  },
+  "23377": {
+    "fr_slug": "sans-friction-y-a-t-il-encore-apprentissage",
+    "en_id": 23440,
+    "en_slug": "",
+    "source_hash": "05aef0f2d7fc2837d31bf4b0e69d5815fc270f43012f5212923babbc084cf2a4",
+    "modified_gmt": "2026-10-25T19:29:53",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-28T09:51:12.807Z"
   }
 }
