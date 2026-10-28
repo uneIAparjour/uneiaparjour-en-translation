@@ -10,8 +10,31 @@ function requireEnv(name) {
 	return value;
 }
 
+const RETRYABLE_STATUS = new Set([502, 503, 504]);
+const RETRY_DELAYS_MS = [5000, 15000, 30000];
+
+// Reads only: a GET that hits a gateway timeout / network blip is safe to
+// repeat. Writes (POST/PUT/DELETE) are never retried here — a repeated
+// create after a 502 that actually went through would duplicate the post.
+async function fetchWithRetry(url, options = {}) {
+	const isRead = !options.method || options.method === 'GET';
+	for (let attempt = 0; ; attempt++) {
+		try {
+			const res = await fetch(url, options);
+			if (!isRead || !RETRYABLE_STATUS.has(res.status) || attempt >= RETRY_DELAYS_MS.length) {
+				return res;
+			}
+			console.log(`WP ${res.status} on GET ${url.replace(WP_URL, '').slice(0, 80)}, retry ${attempt + 1}/${RETRY_DELAYS_MS.length} in ${RETRY_DELAYS_MS[attempt] / 1000}s`);
+		} catch (err) {
+			if (!isRead || attempt >= RETRY_DELAYS_MS.length) throw err;
+			console.log(`WP network error (${err.message}) on GET, retry ${attempt + 1}/${RETRY_DELAYS_MS.length} in ${RETRY_DELAYS_MS[attempt] / 1000}s`);
+		}
+		await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
+	}
+}
+
 async function wpFetch(path, options = {}) {
-	const res = await fetch(`${WP_URL}/wp-json${path}`, {
+	const res = await fetchWithRetry(`${WP_URL}/wp-json${path}`, {
 		...options,
 		headers: {
 			Authorization: AUTH_HEADER,
@@ -47,7 +70,7 @@ export async function listAllPosts(status = 'publish') {
 	const perPage = 100;
 
 	while (true) {
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,content,excerpt,date,date_gmt,status,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
+		const res = await fetchWithRetry(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}&_fields=id,slug,title,content,excerpt,date,date_gmt,status,raw_content,yoast_title,yoast_metadesc,featured_media,categories,tags,meta`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
@@ -98,7 +121,7 @@ export async function listAllPostsLight(status = 'publish', { modifiedAfter, inc
 	const perPage = 100;
 
 	while (true) {
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}${extra}&_fields=id,slug,title,date,date_gmt,modified_gmt,status,categories,tags,featured_media`, {
+		const res = await fetchWithRetry(`${WP_URL}/wp-json/wp/v2/posts?per_page=${perPage}&page=${page}&status=${status}${extra}&_fields=id,slug,title,date,date_gmt,modified_gmt,status,categories,tags,featured_media`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
@@ -177,7 +200,7 @@ async function listAllTerms(taxonomy, search) {
 	while (true) {
 		const qs = new URLSearchParams({ per_page: String(perPage), page: String(page) });
 		if (search) qs.set('search', search);
-		const res = await fetch(`${WP_URL}/wp-json/wp/v2/${taxonomy}?${qs.toString()}`, {
+		const res = await fetchWithRetry(`${WP_URL}/wp-json/wp/v2/${taxonomy}?${qs.toString()}`, {
 			headers: { Authorization: AUTH_HEADER },
 		});
 
