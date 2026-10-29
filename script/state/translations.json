@@ -13475,5 +13475,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-28T09:57:58.567Z"
+  },
+  "23446": {
+    "fr_slug": "triverse-ai",
+    "en_id": 23461,
+    "en_slug": "",
+    "source_hash": "b869e8b1aee9af114e759f3e68e7102b11895f08e22b005dcc139bc5026d3b35",
+    "modified_gmt": "2026-10-28T21:15:16",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-29T12:22:50.549Z"
   }
 }
