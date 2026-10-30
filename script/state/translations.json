@@ -13451,7 +13451,7 @@
     "en_id": 23405,
     "en_slug": "",
     "source_hash": "37efe7c8dae55c6001a74dc83188bd46cefbfef4a0f47bfb694e94621a45a76c",
-    "modified_gmt": "2026-10-25T20:40:10",
+    "modified_gmt": "2026-10-29T23:01:51",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-26T12:20:44.126Z"
@@ -13485,5 +13485,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-29T12:22:50.549Z"
+  },
+  "23465": {
+    "fr_slug": "mypip",
+    "en_id": 23500,
+    "en_slug": "",
+    "source_hash": "771d0068f8c6176bbd672c4ffad49a63c52afe350dae1f8b7c3449e200fea991",
+    "modified_gmt": "2026-10-29T22:04:35",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-30T12:13:30.708Z"
   }
 }
