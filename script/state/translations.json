@@ -13451,7 +13451,7 @@
     "en_id": 23405,
     "en_slug": "",
     "source_hash": "37efe7c8dae55c6001a74dc83188bd46cefbfef4a0f47bfb694e94621a45a76c",
-    "modified_gmt": "2026-10-29T23:01:51",
+    "modified_gmt": "2026-10-31T01:01:24",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-26T12:20:44.126Z"
@@ -13495,5 +13495,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-30T12:13:30.708Z"
+  },
+  "23488": {
+    "fr_slug": "deepcell",
+    "en_id": 23503,
+    "en_slug": "",
+    "source_hash": "39eccde4b467525173c7fdb674ee5e4cd04d4445f82f3108b16d853fb1e43130",
+    "modified_gmt": "2026-10-29T22:56:39",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-10-31T11:45:37.612Z"
   }
 }
