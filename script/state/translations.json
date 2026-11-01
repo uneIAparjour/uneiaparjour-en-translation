@@ -13505,5 +13505,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-31T11:45:37.612Z"
+  },
+  "23507": {
+    "fr_slug": "image-text-editor",
+    "en_id": 23519,
+    "en_slug": "",
+    "source_hash": "956306280bc48e522cc9837eb7e4be58254e1cf4a72b3e7f73cc82d340ec4a52",
+    "modified_gmt": "2026-10-31T22:07:37",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-01T12:44:58.223Z"
   }
 }
