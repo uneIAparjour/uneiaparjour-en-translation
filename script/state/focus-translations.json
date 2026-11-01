@@ -508,5 +508,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-10-28T09:51:12.807Z"
+  },
+  "23505": {
+    "fr_slug": "la-question-avant-loutil",
+    "en_id": 23521,
+    "en_slug": "",
+    "source_hash": "d58a6f453f4c0be3075c450b1ab0a62141d8d3c10a71fe824de4448da90c3181",
+    "modified_gmt": "2026-10-31T21:07:02",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-01T14:09:25.337Z"
   }
 }
