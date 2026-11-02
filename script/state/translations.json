@@ -13515,5 +13515,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-01T12:44:58.223Z"
+  },
+  "23523": {
+    "fr_slug": "sweepset",
+    "en_id": 23533,
+    "en_slug": "",
+    "source_hash": "ac12561e811394af0829f219d9b949cc5a3b463e5b7d0d113c347998db6ee04b",
+    "modified_gmt": "2026-11-01T20:54:49",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-02T14:53:06.098Z"
   }
 }
