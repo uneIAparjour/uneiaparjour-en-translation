@@ -13545,5 +13545,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-04T13:51:21.205Z"
+  },
+  "23563": {
+    "fr_slug": "factare",
+    "en_id": 23576,
+    "en_slug": "",
+    "source_hash": "1e4202581fb39c92f9fc0c50342c2b6b7c77d7d34137045c530c1aa347b8cfff",
+    "modified_gmt": "2026-11-04T23:59:10",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-05T14:04:33.789Z"
   }
 }
