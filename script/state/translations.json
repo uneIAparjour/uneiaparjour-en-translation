@@ -13541,7 +13541,7 @@
     "en_id": 23561,
     "en_slug": "",
     "source_hash": "79c5582c2f1be4f76aa7507b43cd79e0c2686b4385b62d89abf27f8af34fd7c8",
-    "modified_gmt": "2026-11-03T21:17:25",
+    "modified_gmt": "2026-11-05T22:20:06",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-04T13:51:21.205Z"
@@ -13555,5 +13555,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-05T14:04:33.789Z"
+  },
+  "23578": {
+    "fr_slug": "confetti",
+    "en_id": 23604,
+    "en_slug": "",
+    "source_hash": "a7c9e56510edb6447b4d267fe868aced3733c52319503ecadedfe7c1aee1f993",
+    "modified_gmt": "2026-11-06T08:14:24",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-06T13:48:55.745Z"
   }
 }
