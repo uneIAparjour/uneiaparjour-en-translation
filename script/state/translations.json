@@ -13561,9 +13561,19 @@
     "en_id": 23604,
     "en_slug": "",
     "source_hash": "a7c9e56510edb6447b4d267fe868aced3733c52319503ecadedfe7c1aee1f993",
-    "modified_gmt": "2026-11-06T08:14:24",
+    "modified_gmt": "2026-11-06T16:23:47",
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-06T13:48:55.745Z"
+  },
+  "23606": {
+    "fr_slug": "vocabhang",
+    "en_id": 23618,
+    "en_slug": "",
+    "source_hash": "70bdc6b89fb56e6f413ad1f3d5e850693f4d574f7b0654852c3807fb082639ba",
+    "modified_gmt": "2026-11-06T23:12:46",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-07T12:32:21.719Z"
   }
 }
