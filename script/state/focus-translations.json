@@ -518,5 +518,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-01T14:09:25.337Z"
+  },
+  "23620": {
+    "fr_slug": "quand-aucun-capteur-ne-repond",
+    "en_id": 23633,
+    "en_slug": "",
+    "source_hash": "a1858b219add90ffe0dbb11924092705b896701fd49edd8931a9341113603312",
+    "modified_gmt": "2026-11-07T22:03:13",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-08T14:09:51.577Z"
   }
 }
