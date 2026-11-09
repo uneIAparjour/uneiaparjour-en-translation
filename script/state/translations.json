@@ -13575,5 +13575,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-07T12:32:21.719Z"
+  },
+  "23622": {
+    "fr_slug": "gifgenerator",
+    "en_id": 23636,
+    "en_slug": "",
+    "source_hash": "e8f9bb5aaa10f890fdb993e07ba03dffc0278ee0d577b361f3eba314e5cd06cf",
+    "modified_gmt": "2026-11-08T09:37:56",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-09T15:20:55.249Z"
   }
 }
