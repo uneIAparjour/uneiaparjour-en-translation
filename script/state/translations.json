@@ -13585,5 +13585,25 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-09T15:20:55.249Z"
+  },
+  "23639": {
+    "fr_slug": "wanaka",
+    "en_id": 23673,
+    "en_slug": "",
+    "source_hash": "437f20e9abff912c95c2002bc21f5f9b1f3d7e8db104dd53b2d10ef4988e30ca",
+    "modified_gmt": "2026-11-10T07:24:35",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-10T14:25:17.409Z"
+  },
+  "23654": {
+    "fr_slug": "maket",
+    "en_id": 23675,
+    "en_slug": "",
+    "source_hash": "fe642f5cff9963dc66a35fc3b23d89a96fca5777ac1a4146b6339d58b1732667",
+    "modified_gmt": "2026-11-10T07:18:03",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-10T14:25:30.141Z"
   }
 }
