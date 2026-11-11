@@ -13605,5 +13605,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-10T14:25:30.141Z"
+  },
+  "23677": {
+    "fr_slug": "ask-america",
+    "en_id": 23770,
+    "en_slug": "",
+    "source_hash": "b5516c41094b06c1afaf26ee4db9ed51a7e06bba6a81992d54d41e4c4f00414a",
+    "modified_gmt": "2026-11-10T22:48:17",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-11T13:39:12.499Z"
   }
 }
