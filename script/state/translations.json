@@ -13615,5 +13615,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-11T13:39:12.499Z"
+  },
+  "23730": {
+    "fr_slug": "dola",
+    "en_id": 23792,
+    "en_slug": "",
+    "source_hash": "e1cd0a6d6b94c0566c26bf257939dcaa3ef88af45cfc69e8e62dad882f30aabc",
+    "modified_gmt": "2026-11-11T13:51:05",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-12T14:42:39.625Z"
   }
 }
