@@ -13616,6 +13616,16 @@
     "last_error": null,
     "updated_at": "2026-11-11T13:39:12.499Z"
   },
+  "23687": {
+    "fr_slug": "orange-ias",
+    "en_id": 23794,
+    "en_slug": "",
+    "source_hash": "655b529d4e345a58c1e8ab0a5b6945ade92180e81e8ffc9123073c1d9857b7a8",
+    "modified_gmt": "2026-11-11T15:52:04",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-13T13:59:32.114Z"
+  },
   "23730": {
     "fr_slug": "dola",
     "en_id": 23792,
