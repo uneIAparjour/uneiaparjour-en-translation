@@ -13635,5 +13635,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-12T14:42:39.625Z"
+  },
+  "23780": {
+    "fr_slug": "cleanup-audio",
+    "en_id": 23796,
+    "en_slug": "",
+    "source_hash": "924db593b0c25ef1469cd6e2dcc8d11f8568d18a2e72474121c25093f99dfcd1",
+    "modified_gmt": "2026-11-11T14:14:25",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-14T13:01:37.598Z"
   }
 }
