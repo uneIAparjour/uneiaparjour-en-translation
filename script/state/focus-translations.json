@@ -528,5 +528,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-08T14:09:51.577Z"
+  },
+  "23790": {
+    "fr_slug": "croire-sur-parole",
+    "en_id": 23811,
+    "en_slug": "",
+    "source_hash": "691b0e5bd0051f6e1765304eee28e65b5e07ecc39e46988af967adde29eef127",
+    "modified_gmt": "2026-11-11T21:40:25",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-15T14:37:11.573Z"
   }
 }
