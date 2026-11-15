@@ -13645,5 +13645,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-14T13:01:37.598Z"
+  },
+  "23798": {
+    "fr_slug": "uncracked-city",
+    "en_id": 23808,
+    "en_slug": "",
+    "source_hash": "40df041bb70c1a0d966a7ae779d9cafc1202e19261ac476e292f0e4398a91274",
+    "modified_gmt": "2026-11-14T21:47:30",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-15T13:30:00.241Z"
   }
 }
