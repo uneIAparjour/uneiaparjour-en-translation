@@ -13665,5 +13665,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-16T14:55:57.537Z"
+  },
+  "23841": {
+    "fr_slug": "whiboard",
+    "en_id": 23870,
+    "en_slug": "",
+    "source_hash": "23dc05fcc0d933fa4aac82163662c02f5f7ca78168b24240b5a341d9dda302ab",
+    "modified_gmt": "2026-11-16T21:52:54",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-17T15:33:54.764Z"
   }
 }
