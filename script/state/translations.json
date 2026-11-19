@@ -13685,5 +13685,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-17T15:33:54.764Z"
+  },
+  "23879": {
+    "fr_slug": "2speech",
+    "en_id": 23888,
+    "en_slug": "",
+    "source_hash": "b0020a83270c12cf5aa5ee5c0993801a8f43aab5152481d887c2b0b0f1573096",
+    "modified_gmt": "2026-11-18T23:18:38",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-19T15:19:37.435Z"
   }
 }
