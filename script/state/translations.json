@@ -13659,12 +13659,12 @@
   "23813": {
     "fr_slug": "mister-blocks",
     "en_id": 23875,
-    "en_slug": "",
-    "source_hash": "ede1496cc2e8ecc89a7d0dfb8bf3a584a487425bcd1a716a3d5ce2d795ef6d14",
-    "modified_gmt": "2026-11-17T19:34:55",
+    "en_slug": "mister-blocks-2",
+    "source_hash": "a0cb493d0d65dca95493b0cd0d28bd430ef589da8c5f0998f603b51e9a014671",
+    "modified_gmt": "2026-11-19T23:27:49",
     "status": "translated",
     "last_error": null,
-    "updated_at": "2026-11-18T15:12:07.879Z"
+    "updated_at": "2026-11-20T14:57:58.518Z"
   },
   "23815": {
     "fr_slug": "chalkie",
@@ -13695,5 +13695,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-19T15:19:37.435Z"
+  },
+  "23891": {
+    "fr_slug": "base-3d-ar-studio",
+    "en_id": 23910,
+    "en_slug": "",
+    "source_hash": "a0e8b569d42a79bfb18af07a9a38cc8bf66c7e14c56df2f8931305efd0d69d01",
+    "modified_gmt": "2026-11-19T23:31:39",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-20T14:57:46.614Z"
   }
 }
