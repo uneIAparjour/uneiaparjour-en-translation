@@ -13705,5 +13705,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-20T14:57:46.614Z"
+  },
+  "23914": {
+    "fr_slug": "oreate-ai",
+    "en_id": 23926,
+    "en_slug": "",
+    "source_hash": "d2b35ad953b3b00918f3514d12be10d71e68c95a97b0e58573510003a07d8c8f",
+    "modified_gmt": "2026-11-21T00:02:38",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-21T14:17:42.857Z"
   }
 }
