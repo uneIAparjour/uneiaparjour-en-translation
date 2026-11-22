@@ -13715,5 +13715,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-21T14:17:42.857Z"
+  },
+  "23943": {
+    "fr_slug": "slack-moji",
+    "en_id": 23970,
+    "en_slug": "",
+    "source_hash": "0e78f3e0cdc6bb1ef9d5ec74eb8c0e2564c88c73c987c2347a9305e667ad2e8f",
+    "modified_gmt": "2026-11-21T22:46:53",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-22T14:08:45.894Z"
   }
 }
