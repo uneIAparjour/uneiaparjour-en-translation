@@ -538,5 +538,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-15T14:37:11.573Z"
+  },
+  "23928": {
+    "fr_slug": "lia-quon-nous-raconte-lia-quon-croit",
+    "en_id": 23972,
+    "en_slug": "",
+    "source_hash": "20b0ee14c77b5fd46cdd2adc5438cadffbead533d07c48e3deee1156b1c0e108",
+    "modified_gmt": "2026-11-21T16:48:51",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-22T15:08:59.259Z"
   }
 }
