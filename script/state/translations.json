@@ -13725,5 +13725,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-22T14:08:45.894Z"
+  },
+  "23974": {
+    "fr_slug": "minimax-music-3",
+    "en_id": 23985,
+    "en_slug": "",
+    "source_hash": "6c4c86a8d03fa1d3d51812567fb79cd170c999e5666f5c57c8f58b3106810abc",
+    "modified_gmt": "2026-11-22T18:16:43",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-23T17:30:00.790Z"
   }
 }
