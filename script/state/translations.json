@@ -4897,7 +4897,7 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T19:57:31.877Z",
-    "modified_gmt": "2024-07-02T07:22:34"
+    "modified_gmt": "2026-11-23T22:26:08"
   },
   "7100": {
     "fr_slug": "slidesgpt",
@@ -7536,7 +7536,7 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T15:48:50.205Z",
-    "modified_gmt": "2025-04-18T20:35:00"
+    "modified_gmt": "2026-11-23T22:26:32"
   },
   "9361": {
     "fr_slug": "readdy",
@@ -7966,7 +7966,7 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T15:40:15.033Z",
-    "modified_gmt": "2025-04-24T20:48:36"
+    "modified_gmt": "2026-11-23T22:01:03"
   },
   "10198": {
     "fr_slug": "flowith",
@@ -9086,7 +9086,7 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-08-30T15:17:49.013Z",
-    "modified_gmt": "2025-08-14T18:32:30"
+    "modified_gmt": "2026-11-23T22:00:20"
   },
   "12059": {
     "fr_slug": "panopulse",
@@ -13735,5 +13735,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-23T17:30:00.790Z"
+  },
+  "23987": {
+    "fr_slug": "qiplim",
+    "en_id": 24015,
+    "en_slug": "",
+    "source_hash": "a588590b6eaa9cba341592055c292ac85aa26d49942048cf34ffbf2b63b68054",
+    "modified_gmt": "2026-11-23T23:32:03",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-24T17:01:46.606Z"
   }
 }
