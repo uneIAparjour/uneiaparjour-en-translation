@@ -13765,5 +13765,15 @@
     "status": "translated",
     "last_error": null,
     "updated_at": "2026-11-26T16:29:28.458Z"
+  },
+  "24048": {
+    "fr_slug": "framaspeak",
+    "en_id": 24058,
+    "en_slug": "",
+    "source_hash": "3804f0de6de8ddf5c52fdf62327153aa8abbfbd91f6b7f42254f93a35693dbf7",
+    "modified_gmt": "2026-11-26T22:50:46",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-27T16:14:51.360Z"
   }
 }
