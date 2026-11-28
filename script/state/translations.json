@@ -13486,6 +13486,16 @@
     "last_error": null,
     "updated_at": "2026-10-29T12:22:50.549Z"
   },
+  "23463": {
+    "fr_slug": "nexcite",
+    "en_id": 24084,
+    "en_slug": "",
+    "source_hash": "a8e28b9c4cd8dd085109746d3f6ab2834978c5fd3c5a0ec423bea7add7e7beaa",
+    "modified_gmt": "2026-11-27T23:29:34",
+    "status": "translated",
+    "last_error": null,
+    "updated_at": "2026-11-28T15:07:33.417Z"
+  },
   "23465": {
     "fr_slug": "mypip",
     "en_id": 23500,
